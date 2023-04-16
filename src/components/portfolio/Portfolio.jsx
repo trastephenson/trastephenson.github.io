@@ -1,6 +1,6 @@
 import React from 'react'
 import './portfolio.css'
-import IMG1 from '../../assets/ciri.png'
+import IMG1 from '../../assets/travitar9000.gif'
 import IMG2 from '../../assets/ciri.png'
 import IMG3 from '../../assets/portfolio3.gif'
 import IMG4 from '../../assets/ciri.png'
@@ -13,9 +13,9 @@ const data = [
   {
     id: 1,
     image: IMG1,
-    title: 'Crypto Currency Dashboard & Financial Visualization',
-    github: 'https://github.com',
-    demo: 'https://dribbble.com/shots/16673715-Crypto-currency-dashboards-and-financial-data-visualization'
+    title: 'Travitar 9000 Virtual Chatbot of Me',
+    github: 'https://github.com/trastephenson/Travitar-9000',
+    demo: 'https://travitar-9000.vercel.app/'
   },
   {
     id: 2,
