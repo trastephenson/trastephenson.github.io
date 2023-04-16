@@ -13,7 +13,7 @@ const data = [
   {
     id: 1,
     image: IMG1,
-    title: 'Travitar 9000 Virtual Chatbot of Me made w/Next.js,tailwindcss,typescript,tRPC,markdown,and Chat GPT 3.5 ',
+    title: 'Travitar 9000 Virtual Chatbot of Me',
     github: 'https://github.com/trastephenson/Travitar-9000',
     demo: 'https://travitar-9000.vercel.app/'
   },
