@@ -1,6 +1,6 @@
 import React from 'react'
 import './about.css'
-import ME from '../../assets/me-about.jpg'
+import ME from '../../assets/me-about.png'
 import {GiDiceTwentyFacesTwenty} from 'react-icons/gi'
 import {IoIosPeople} from 'react-icons/io'
 import {MdOutlineFolderSpecial} from 'react-icons/md'
