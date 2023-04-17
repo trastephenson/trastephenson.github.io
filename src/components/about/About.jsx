@@ -23,19 +23,19 @@ const About = () => {
             <article className='about__card'>
               <GiDiceTwentyFacesTwenty className='about__icon'/>
               <h5>Experience</h5>
-              <small>8+ Years Web Development</small>
+              <small>Software Development, Project Management, QA</small>
             </article>
 
             <article className='about__card'>
               <IoIosPeople className='about__icon'/>
               <h5>Clients</h5>
-              <small>150+ Worldwide</small>
+              <small>50+ Worldwide</small>
             </article>
 
             <article className='about__card'>
               <MdOutlineFolderSpecial className='about__icon'/>
               <h5>Projects</h5>
-              <small>150+ Completed</small>
+              <small>50+ Completed</small>
             </article>
           </div>
 
