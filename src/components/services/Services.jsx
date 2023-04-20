@@ -19,7 +19,7 @@ const Services = () => {
             <li>
               <FaToolbox className='service__list-icon' />
               <p>
-      Figma-Maintain a Component Library{' '}
+      Figma-Check out one of my component libraries.{' '}
       <a
         href="https://www.figma.com/file/qcOL0OUNoaHpRW4T4EJehX/Appstango-Library?node-id=0%3A1&t=vKZ8xTL9DZaMSXGq-1"
         target="_blank"
