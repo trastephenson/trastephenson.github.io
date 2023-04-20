@@ -88,10 +88,7 @@ const Services = () => {
               <FaToolbox className='service__list-icon' />
               <p>Docker</p>
             </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Slack</p>
-            </li>
+           
           </ul>
         </article>
        
