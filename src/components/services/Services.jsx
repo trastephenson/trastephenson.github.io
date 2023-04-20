@@ -2,8 +2,8 @@ import React from 'react'
 import './services.css'
 import {FaToolbox} from 'react-icons/fa'
 import {FaFigma} from 'react-icons/fa'
-import {SiAdobexd} from 'react-icons/fa'
-import {SiBlender} from 'react-icons/fa'
+import {SiAdobexd} from 'react-icons/si'
+import {SiBlender} from 'react-icons/si'
 
 
 const Services = () => {
