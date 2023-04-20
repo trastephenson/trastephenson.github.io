@@ -1,12 +1,13 @@
 import React from 'react'
 import './services.css'
 import {FaToolbox} from 'react-icons/fa'
+import {FaFigma} from 'react-icons/fa'
 
 const Services = () => {
   return (
     <section id='services'>
-      <h5>What I Offer</h5>
-      <h2>Services</h2>
+      <h5>Other Proficiencies</h5>
+      <h2>Tools Used</h2>
 
       <div className="container services__container">
         <article className="service">
@@ -17,7 +18,16 @@ const Services = () => {
           <ul className='service__list'>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>
+      Figma-Maintain a Component Library{' '}
+      <a
+        href="https://www.figma.com/file/qcOL0OUNoaHpRW4T4EJehX/Appstango-Library?node-id=0%3A1&t=vKZ8xTL9DZaMSXGq-1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaFigma />
+      </a>
+    </p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
