@@ -2,6 +2,9 @@ import React from 'react'
 import './services.css'
 import {FaToolbox} from 'react-icons/fa'
 import {FaFigma} from 'react-icons/fa'
+import {SiAdobexd} from 'react-icons/fa'
+import {SiBlender} from 'react-icons/fa'
+
 
 const Services = () => {
   return (
@@ -32,13 +35,13 @@ const Services = () => {
             <li>
               <FaToolbox className='service__list-icon' />
               <p>
-      Adobe Creative Cloud{' '}
+      Adobe XD{' '}
       <a
         href="https://youtu.be/3xAadIADHOw"
         target="_blank"
         rel="noopener noreferrer"
       >
-        <SiAdobe />
+        <SiAdobexd />
       </a>
     </p>
             </li>
@@ -55,76 +58,64 @@ const Services = () => {
       </a>
     </p>
             </li>
+            <li>
+              <FaToolbox className='service__list-icon' />
+              <p>Adalo</p>
+            </li>
             
           </ul>
         </article>
        
         <article className="service">
           <div className="service__head">
-            <h3>Web Development</h3>
+            <h3>Software Development</h3>
           </div>
 
           <ul className='service__list'>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>AWS</p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>Azure</p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>Github/Gitlab</p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>Docker</p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>Slack</p>
             </li>
           </ul>
         </article>
        
         <article className="service">
           <div className="service__head">
-            <h3>Content Creation</h3>
+            <h3>Project Management</h3>
           </div>
 
           <ul className='service__list'>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>Jira</p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>DevOps</p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>Lean Sigma Six Yellow Belt</p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>OpenProject</p>
             </li>
           </ul>
         </article>
