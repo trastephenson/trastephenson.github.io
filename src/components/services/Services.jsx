@@ -10,7 +10,7 @@ const Services = () => {
   return (
     <section id='services'>
       <h5>Other Proficiencies</h5>
-      <h2>Tools Utilized</h2>
+      <h2>Tools</h2>
 
       <div className="container services__container">
         <article className="service">
