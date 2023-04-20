@@ -31,24 +31,31 @@ const Services = () => {
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+              <p>
+      Adobe Creative Cloud{' '}
+      <a
+        href="https://youtu.be/3xAadIADHOw"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <SiAdobe />
+      </a>
+    </p>
             </li>
             <li>
               <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
+               <p>
+      Blender{' '}
+      <a
+        href="https://photos.app.goo.gl/dHMsJJ84dinH115z6"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <SiBlender />
+      </a>
+    </p>
             </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Lorem, ipsum dolor sit amet consectetur elit.</p>
-            </li>
+            
           </ul>
         </article>
        
