@@ -31,27 +31,6 @@ const data = [
     github: 'https://github.com/trastephenson/identicon',
     demo: 'https://www.youtube.com/watch?v=8ybW48rKBME'
   }
-  #{
-   # id: 4,
-   # image: IMG4,
-    #title: 'Maintaining tasks and tracking progress',
-    #github: 'https://github.com',
-    #demo: 'https://dribbble.com/shots/16955822-Maintaining-tasks-and-tracking-progress'
-  #},
-  #{
-   # id: 5,
-    # image: IMG5,
-     #title: 'Charts templates & infographics in Figma',
-     #github: 'https://github.com',
-     #demo: 'https://dribbble.com/shots/16541289-Orion-UI-kit-Charts-templates-infographics-in-Figma'
-   #},
-   #{
-     #id: 6,
-     #image: IMG6,
-     #title: 'Charts templates & infographics in Figma',
-     #github: 'https://github.com',
-     #demo: 'https://dribbble.com/shots/15887665-Orion-UI-kit-Charts-templates-infographics-in-Figma'
-  # }
 ]
 
 
