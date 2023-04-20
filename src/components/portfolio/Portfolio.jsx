@@ -27,9 +27,9 @@ const data = [
   {
     id: 3,
     image: IMG3,
-    title: 'Identicon Maker in Elixir',
-    github: 'https://github.com/trastephenson/identicon',
-    demo: 'https://www.youtube.com/watch?v=8ybW48rKBME'
+    title: 'Update of The Essential Life App in Flutter',
+    github: 'https://youtu.be/3xAadIADHOw',
+    demo: 'https://app.essentiallife.com/'
   }
 ]
 
