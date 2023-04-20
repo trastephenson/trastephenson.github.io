@@ -34,6 +34,7 @@ const Contact = () => {
             <h4>Messenger</h4>
             <h5>Travis Stephenson</h5>
             <a href="https://m.me/travis.stephenson.9887" target="_blank">Send a message</a>
+          </article>
         </div>
         {/* END OF CONTACT OPTIONS */}
         <form ref={form} onSubmit={sendEmail}>
