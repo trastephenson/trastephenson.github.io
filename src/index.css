@@ -11,12 +11,12 @@
   }
   
   :root {
-    --color-bg: #031526;
-    --color-bg-variant: #3C6997;
-    --color-primary: #FFDD4A;
-    --color-primary-variant: #CCA700;
-    --color-white: #fff;
-    --color-light: rgba(255, 255, 255, 0.6);
+     --primary-color: #198754;  /* Rich Green */
+  --heading-color: #1c1c1c;   /* Deep Charcoal */
+  --body-text-color: #333333; /* Standard Dark Gray */
+  --background-color: #FFFFFF; /* Pure White */
+  --accent-color: #ffc107;   /* Warm Gold */
+  --link-color: var(--primary-color); /* Use primary color for links */
   
     --transition: all 400ms ease;
   
@@ -41,6 +41,8 @@
     color: var(--color-white);
     line-height: 1.7;
     background-image: url(../src/assets/bg-texture.png);
+    background-color: var(--background-color);
+    color: var(--body-text-color); 
   }
   
   /* ============== GENEARL STYLES ============== */
@@ -56,6 +58,7 @@
   h5 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
+    color: var(--heading-color);
   }
   
   h1 {
@@ -82,12 +85,12 @@
   }
   
   a {
-    color: var(--color-primary);
+    color: var(--link-color);
     transition: var(--transition);
   }
   
   a:hover {
-    color: var(--color-white);
+   text-decoration: underline; /* Optional: Adds underline on hover */
   }
   
   .btn {
