@@ -105,8 +105,8 @@
   }
   
   .btn:hover {
-    background: var(--color-white);
-    color: var(--color-bg);
+    background-color: var(--primary-color);
+    color: white; /* White text often still works best on a colored button */
     border-color: transparent;
   }
   
