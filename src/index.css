@@ -34,92 +34,98 @@
   }
   
   body {
-    font-family: 'Lato', 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Lato', 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-    background: var(--color-bg);
-    color: var(--color-white);
-    line-height: 1.7;
-    background-image: url(../src/assets/bg-texture.png);
-    background-color: var(--background-color);
-    color: var(--body-text-color); 
-  }
+  line-height: 1.7;
+  background-image: url(../src/assets/bg-texture.png);
+
+  /* --- CORRECTED COLORS --- */
+  background-color: var(--background-color);
+  color: var(--body-text-color);
+}
   
   /* ============== GENEARL STYLES ============== */
   .container {
-    width: var(--container-width-lg);
-    margin: 0 auto;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    color: var(--heading-color);
-  }
-  
-  h1 {
-    font-size: 2.5rem;
-  }
-  
-  section {
-    margin-top: 8rem;
-  }
-  
-  section > h2,
-  section > h5 {
-    text-align: center;
-    color: var(--color-light);
-  }
-  
-  section > h2 {
-    color: var(--color-primary);
-    margin-bottom: 3rem;
-  }
-  
-  .text-light {
-    color: var(--color-light);
-  }
-  
-  a {
-    color: var(--link-color);
-    transition: var(--transition);
-  }
-  
-  a:hover {
-   text-decoration: underline; /* Optional: Adds underline on hover */
-  }
-  
-  .btn {
-    width: max-content;
-    display: inline-block;
-    color: var(--color-primary);
-    padding: 0.75rem 1.2rem;
-    border-radius: 0.4rem;
-    cursor: pointer;
-    border: 1px solid var(--color-primary);
-    transition: var(--transition);
-  }
-  
-  .btn:hover {
-    background-color: var(--primary-color);
-    color: white; /* White text often still works best on a colored button */
-    border-color: transparent;
-  }
-  
-  .btn-primary {
-    background: var(--color-primary);
-    color: var(--color-bg);
-  }
-  
-  img {
-    display: block;
-    width: 100%;
-    object-fit: cover;
-  }
+  width: var(--container-width-lg);
+  margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  color: var(--heading-color);
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+section {
+  margin-top: 8rem;
+}
+
+section > h2,
+section > h5 {
+  text-align: center;
+  /* If you want a light text color for a specific section, create a new variable or use a direct hex code */
+  /* For now, we'll let them inherit the main heading color */
+}
+
+section > h2 {
+  color: var(--primary-color); /* Corrected from --color-primary */
+  margin-bottom: 3rem;
+}
+
+.text-light {
+  /* This class was using an undefined color. Let's make it use the accent color for now. */
+  color: var(--accent-color);
+}
+
+a {
+  color: var(--link-color);
+  transition: var(--transition);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  width: max-content;
+  display: inline-block;
+  padding: 0.75rem 1.2rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: var(--transition);
+
+  /* --- CORRECTED COLORS --- */
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.btn:hover {
+  background-color: var(--primary-color);
+  color: var(--background-color); /* Use background color for text on hover for better contrast */
+  border-color: transparent;
+}
+
+.btn-primary {
+  /* --- CORRECTED COLORS --- */
+  background: var(--primary-color);
+  color: var(--background-color);
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
   
   /* ================ MEDIA QUERIES (MEDIUM DEVICES) ================= */
   @media screen and (max-width: 1024px) {
