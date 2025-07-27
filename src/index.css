@@ -38,10 +38,8 @@
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   line-height: 1.7;
-  background-image: url(../src/assets/bg-texture.png);
-
-  /* --- CORRECTED COLORS --- */
-  background-color: var(--background-color);
+  /* Removed background-image to let the animated pattern show through */
+  background-color: transparent;
   color: var(--body-text-color);
 }
   
@@ -68,6 +66,12 @@ h1 {
 
 section {
   margin-top: 8rem;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: none;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 section > h2,
