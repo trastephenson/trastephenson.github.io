@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './contact.css'
 import {MdOutlineEmail} from 'react-icons/md'
 import {RiMessengerLine} from 'react-icons/ri'
@@ -10,12 +10,23 @@ import SleekButton from '../common/SleekButton'
 const Contact = () => {
   const form = useRef();
 
+  useEffect(() => {
+    // Initialize EmailJS
+    emailjs.init('NDbWMvRzAqmh3g5Dj');
+  }, []);
+
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs.sendForm('service_77o3efy', 'template_1kwjnyx', form.current, 'NDbWMvRzAqmh3g5Dj')
-
-    e.target.reset()
+      .then((result) => {
+        console.log('SUCCESS!', result.text);
+        alert('Message sent successfully!');
+        e.target.reset();
+      }, (error) => {
+        console.log('FAILED...', error.text);
+        alert('Failed to send message. Please try again.');
+      });
   };
 
   return (
