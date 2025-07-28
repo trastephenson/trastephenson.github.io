@@ -1,211 +1,225 @@
 import React from 'react';
 import styled from 'styled-components';
 import ME from '../../assets/me.png';
+import { MdOutlineEmail } from 'react-icons/md';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import SleekButton from '../common/SleekButton';
 
-const CardWrapper = styled.div`
+const CardContainer = styled.div`
+  width: 550px;
+  height: 450px;
+  background: linear-gradient(135deg, #0d1120 0%, #3a4b8a 43%, #0d1120 100%);
+  border-radius: 32px;
+  padding: 3px;
   position: relative;
-  width: 380px;
-  height: 508px;
-  perspective: 1000px;
-`;
-
-const Card = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border-radius: 60px;
-  overflow: hidden;
+  box-shadow: rgba(96, 75, 74, 0.3) 0px 70px 30px -50px, 0 0 30px rgba(255, 255, 255, 0.2);
+  transition: all 0.5s ease-in-out;
+  border: 2px solid rgba(255, 255, 255, 0.3);
 
   &:hover {
-    transform: rotateY(10deg) rotateX(5deg);
+    border-top-left-radius: 55px;
+    box-shadow: 
+      rgba(96, 75, 74, 0.4) 0px 70px 30px -50px, 
+      0 0 40px rgba(255, 255, 255, 0.3),
+      0 0 60px rgba(255, 255, 255, 0.2),
+      0 0 80px rgba(255, 255, 255, 0.1),
+      0 0 100px rgba(255, 255, 255, 0.4),
+      0 0 120px rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.8);
   }
-`;
-
-const CardFront = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  background: linear-gradient(135deg, #0d1120 0%, #3a4b8a 43%, #0d1120 100%);
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 60px;
-  box-shadow: 
-    0 0 30px rgba(255, 255, 255, 0.4),
-    0 0 60px rgba(255, 255, 255, 0.2),
-    0 0 90px rgba(255, 255, 255, 0.1),
-    inset 0 0 30px rgba(255, 255, 255, 0.1);
-  overflow: hidden;
 
   &::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-    animation: shimmer 3s infinite;
-    z-index: 1;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+    border-radius: 36px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
   }
 
-  &:hover {
-    box-shadow: 
-      0 0 40px rgba(255, 255, 255, 0.6),
-      0 0 80px rgba(255, 255, 255, 0.3),
-      0 0 120px rgba(255, 255, 255, 0.2),
-      inset 0 0 40px rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-  }
-
-  @keyframes shimmer {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+  &:hover::before {
+    opacity: 1;
   }
 `;
 
-const CardBack = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  background: linear-gradient(135deg, #3a4b8a 0%, #0d1120 50%, #3a4b8a 100%);
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 60px;
-  transform: rotateY(180deg);
-  box-shadow: 
-    0 0 30px rgba(255, 255, 255, 0.4),
-    0 0 60px rgba(255, 255, 255, 0.2),
-    0 0 90px rgba(255, 255, 255, 0.1),
-    inset 0 0 30px rgba(255, 255, 255, 0.1);
-`;
 
-const ProfileImage = styled.img`
+
+const ProfilePic = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+  top: 3px;
+  left: 3px;
+  border-radius: 29px;
+  z-index: 1;
+  border: 0px solid #E6E6FA;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+    transition: all 0.5s ease-in-out;
+  }
+
+  ${CardContainer}:hover & {
+    width: 140px;
+    height: 140px;
+    aspect-ratio: 1;
+    top: 20px;
+    left: 20px;
+    border-radius: 50%;
+    z-index: 3;
+    border: 7px solid #E6E6FA;
+    box-shadow: rgba(96, 75, 74, 0.3) 0px 5px 5px 0px;
+    transition: all 0.5s ease-in-out;
+
+     img {
+  transform: scale(2.3) translateY(26%);
+  object-position: center top;
   object-fit: cover;
-  border-radius: 60px;
-  z-index: 2;
-  transition: all 0.3s ease;
-
-  ${CardWrapper}:hover & {
-    transform: scale(1.05);
-    filter: brightness(1.1) contrast(1.1);
-  }
-`;
-
-const GlowEffect = styled.div`
-  position: absolute;
-  top: -4px;
-  left: -4px;
-  right: -4px;
-  bottom: -4px;
-  background: linear-gradient(45deg, #fff, #3a4b8a, #fff, #3a4b8a);
-  border-radius: 64px;
-  z-index: 0;
-  animation: glow 2s ease-in-out infinite alternate;
-  opacity: 0.6;
-  filter: blur(2px);
-
-  @keyframes glow {
-    0% { 
-      opacity: 0.4;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    }
-    100% { 
-      opacity: 0.8;
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.8);
-    }
-  }
-`;
-
-const OuterGlow = styled.div`
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-  border-radius: 68px;
-  z-index: -1;
-  animation: outerGlow 3s ease-in-out infinite alternate;
-
-  @keyframes outerGlow {
-    0% { 
-      opacity: 0.2;
-      transform: scale(1);
-    }
-    100% { 
-      opacity: 0.5;
-      transform: scale(1.05);
-    }
-  }
-`;
-
-const FloatingElements = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  z-index: 3;
-  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+  }
 `;
 
-const FloatingDot = styled.div`
+const Bottom = styled.div`
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 50%;
-  animation: float 6s ease-in-out infinite;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+  bottom: 3px;
+  left: 3px;
+  right: 3px;
+  background: linear-gradient(135deg, #E6E6FA 0%, #3a4b8a 100%);
+  top: 80%;
+  border-radius: 29px;
+  z-index: 2;
+  box-shadow: rgba(96, 75, 74, 0.3) 0px 5px 5px 0px inset;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
 
-  &:nth-child(1) {
+  ${CardContainer}:hover & {
     top: 20%;
-    left: 10%;
-    animation-delay: 0s;
-  }
-
-  &:nth-child(2) {
-    top: 60%;
-    right: 15%;
-    animation-delay: 2s;
-  }
-
-  &:nth-child(3) {
-    bottom: 30%;
-    left: 20%;
-    animation-delay: 4s;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.8; }
-    50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+    border-radius: 80px 29px 29px 29px;
+    transition: all 0.5s ease-in-out;
   }
 `;
+
+const Content = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+
+  ${CardContainer}:hover & {
+    opacity: 1;
+  }
+`;
+
+const Name = styled.span`
+  display: block;
+  font-size: 1.2rem;
+  color: #0d1120;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+`;
+
+const AboutMe = styled.p`
+  display: block;
+  font-size: 0.9rem;
+  color: #0d1120;
+  margin-top: 1rem;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+`;
+
+const BottomBottom = styled.div`
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 4;
+`;
+
+const SocialLinksContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  svg {
+    height: 20px;
+    fill: #0d1120;
+    stroke: #0d1120;
+    filter: drop-shadow(0 5px 5px rgba(165, 132, 130, 0.3));
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      fill: #fff;
+      stroke: #fff;
+      transform: scale(1.2);
+    }
+  }
+`;
+
+
 
 const NewHeaderCard = () => {
   return (
-    <CardWrapper>
-      <OuterGlow />
-      <GlowEffect />
-      <Card>
-        <CardFront>
-          <ProfileImage src={ME} alt="Travis Stephenson" />
-          <FloatingElements>
-            <FloatingDot />
-            <FloatingDot />
-            <FloatingDot />
-          </FloatingElements>
-        </CardFront>
-        <CardBack />
-      </Card>
-    </CardWrapper>
+    <CardContainer>
+      <ProfilePic>
+        <img src={ME} alt="Travis Stephenson" />
+      </ProfilePic>
+      <Bottom>
+        <Content>
+          <Name>Travis Stephenson</Name>
+          <AboutMe>Software Developer, Senior Project Manager</AboutMe>
+        </Content>
+        <BottomBottom>
+          <SocialLinksContainer>
+            <a href="https://linkedin.com/in/travis-stephenson" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin />
+            </a>
+            <a href="mailto:stephenson.tra@gmail.com" target="_blank" rel="noopener noreferrer">
+              <MdOutlineEmail />
+            </a>
+            <a href="https://github.com/trastephenson" target="_blank" rel="noopener noreferrer">
+              <FaGithub />
+            </a>
+          </SocialLinksContainer>
+          <SleekButton onClick={() => {
+            const portfolioSection = document.getElementById('portfolio');
+            if (portfolioSection) {
+              portfolioSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}>View Work</SleekButton>
+        </BottomBottom>
+      </Bottom>
+    </CardContainer>
   );
 };
 
