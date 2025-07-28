@@ -69,7 +69,8 @@ header {
 /* ================ MEDIA QUERIES (SMALL DEVICES) ================= */
 @media screen and (max-width: 600px) {
   header {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     /* added after tutorial */
     padding-top: 4rem;
     padding-bottom: 2rem;
@@ -85,6 +86,7 @@ header {
     width: 94%;
     max-width: 20rem;
     margin-top: 2.5rem;
+    margin-bottom: 2rem;
     justify-content: center;
   }
 
@@ -99,5 +101,10 @@ header {
 @media screen and (max-width: 480px) {
   header {
     padding-bottom: 3rem;
+    padding-top: 2rem;
+  }
+  
+  .header__container {
+    padding-bottom: 2rem;
   }
 }
