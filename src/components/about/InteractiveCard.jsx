@@ -473,6 +473,16 @@ const StyledWrapper = styled.div`
     .card-icon {
       font-size: 3.5rem;
     }
+
+    .subtitle {
+      font-size: 0.8em;
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+
+    .subtitle li {
+      margin-bottom: 3px;
+    }
   }
 
   @media screen and (max-width: 480px) {
@@ -492,6 +502,16 @@ const StyledWrapper = styled.div`
 
     .card-icon {
       font-size: 3rem;
+    }
+
+    .subtitle {
+      font-size: 0.7em;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .subtitle li {
+      margin-bottom: 2px;
     }
   }
 `;
