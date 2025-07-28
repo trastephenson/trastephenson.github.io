@@ -2,7 +2,7 @@ import React from 'react'
 import './header.css'
 import CTA from './CTA'
 import HeaderSocial from './HeaderSocials'
-import GlowingCard from './GlowingCard'
+import NewHeaderCard from './NewHeaderCard'
 
 const Header = () => {
   return (
@@ -42,7 +42,7 @@ const Header = () => {
         <HeaderSocial />
 
         <div className="me">
-          <GlowingCard />
+          <NewHeaderCard />
         </div>
 
 
