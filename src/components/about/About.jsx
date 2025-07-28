@@ -1,10 +1,10 @@
 import React from 'react'
 import './about.css'
-import ME from '../../assets/travicon.png'
+import ME from '../../assets/me-about.png'
 import {GiDiceTwentyFacesTwenty} from 'react-icons/gi'
 import {IoIosPeople} from 'react-icons/io'
 import {MdOutlineFolderSpecial} from 'react-icons/md'
-import GlowingButton from '../common/GlowingButton'
+import SleekButton from '../common/SleekButton'
 import InteractiveCard from './InteractiveCard'
 
 const About = () => {
@@ -20,7 +20,7 @@ const About = () => {
       }}>Get To Know</h5>
       <h2 style={{ 
         color: 'white',
-        fontSize: '2.5rem',
+        fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
         fontWeight: '700',
         fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
         letterSpacing: '0.05em',
@@ -60,9 +60,9 @@ const About = () => {
           </div>
 
           <div style={{ marginTop: '2rem' }}>
-            <GlowingButton>
+            <SleekButton>
               <a href="#contact" style={{ color: 'inherit', textDecoration: 'none' }}>Let's Talk</a>
-            </GlowingButton>
+            </SleekButton>
           </div>
         </div>
       </div>

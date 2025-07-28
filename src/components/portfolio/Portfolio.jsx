@@ -44,8 +44,23 @@ const data = [
 const Portfolio = () => {
   return (
     <section id='portfolio'>
-      <h5>My Recent Work</h5>
-      <h2>Portfolio</h2>
+      <h5 style={{ 
+        color: '#E6E6FA',
+        fontSize: '1.2rem',
+        fontWeight: '400',
+        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase'
+      }}>My Recent Work</h5>
+      <h2 style={{ 
+        color: 'white',
+        fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
+        fontWeight: '700',
+        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
+        textShadow: '0 0 20px rgba(255,255,255,0.3)'
+      }}>Portfolio</h2>
 
       <div 
         className="slider"

@@ -1,16 +1,16 @@
 import React from 'react'
 import CV from '../../assets/cv.pdf'
-import GlowingButton from '../common/GlowingButton'
+import SleekButton from '../common/SleekButton'
 
 const CTA = () => {
   return (
     <div className='cta'>
-        <GlowingButton>
+        <SleekButton>
           <a href={CV} download style={{ color: 'inherit', textDecoration: 'none' }}>Download CV</a>
-        </GlowingButton>
-        <GlowingButton>
+        </SleekButton>
+        <SleekButton>
           <a href="#contact" style={{ color: 'inherit', textDecoration: 'none' }}>Let's Talk</a>
-        </GlowingButton>
+        </SleekButton>
     </div>
   )
 }

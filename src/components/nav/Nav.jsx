@@ -21,6 +21,18 @@ const StyledNav = styled.nav`
   gap: 0.8rem;
   border-radius: 3rem;
   backdrop-filter: blur(15px);
+
+  /* Mobile responsive */
+  @media screen and (max-width: 600px) {
+    padding: 0.5rem 1.2rem;
+    gap: 0.5rem;
+    bottom: 1rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0.4rem 1rem;
+    gap: 0.4rem;
+  }
 `;
 
 const StyledNavLink = styled.a`
@@ -39,6 +51,17 @@ const StyledNavLink = styled.a`
   cursor: pointer;
   text-decoration: none;
 
+  /* Mobile responsive */
+  @media screen and (max-width: 600px) {
+    padding: 0.7rem;
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
   &:hover {
     color: var(--glow-color);
     background: rgba(0, 0, 0, 0.3);
@@ -46,6 +69,23 @@ const StyledNavLink = styled.a`
                 0 0 2em 1em var(--glow-spread-color);
     text-shadow: 0 0 0.5em var(--glow-color);
     transform: scale(1.1);
+  }
+
+  /* Touch device optimization */
+  @media (hover: none) and (pointer: coarse) {
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    
+    &:active {
+      color: var(--glow-color);
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 1em 0.25em var(--glow-color),
+                  0 0 2em 1em var(--glow-spread-color);
+      text-shadow: 0 0 0.5em var(--glow-color);
+      transform: scale(1.05);
+    }
   }
 
   &.active {

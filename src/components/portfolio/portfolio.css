@@ -168,18 +168,120 @@
   color: white;
 }
 
+/* ================ MEDIA QUERIES (LARGE DEVICES) ================= */
+@media screen and (max-width: 1200px) {
+  .slider {
+    --width: 400px !important;
+    --height: 300px !important;
+  }
+  
+  .card__title {
+    font-size: 20px;
+  }
+  
+  .card__description {
+    font-size: 13px;
+  }
+  
+  .card__button {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
+
 /* ================ MEDIA QUERIES (MEDIUM DEVICES) ================= */
 @media screen and (max-width: 1024px) {
   .slider {
     --width: 350px !important;
-    --height: 250px !important;
+    --height: 280px !important;
+  }
+  
+  .card__content {
+    padding: 20px;
+  }
+  
+  .card__title {
+    font-size: 18px;
+  }
+  
+  .card__description {
+    font-size: 12px;
+    margin: 8px 0 8px;
+  }
+  
+  .card__button {
+    padding: 8px 14px;
+    font-size: 13px;
+    margin: 6px 0;
   }
 }
 
 /* ================ MEDIA QUERIES (SMALL DEVICES) ================= */
 @media screen and (max-width: 600px) {
   .slider {
-    --width: 320px !important;
+    --width: 280px !important;
+    --height: 240px !important;
+  }
+  
+  .card__content {
+    padding: 15px;
+    height: 95%;
+  }
+  
+  .card__title {
+    font-size: 16px;
+  }
+  
+  .card__description {
+    font-size: 11px;
+    margin: 6px 0 6px;
+  }
+  
+  .card__button {
+    padding: 6px 12px;
+    font-size: 12px;
+    margin: 4px 0;
+  }
+  
+  .card-icon {
+    width: 60px;
+    height: 60px;
+    top: 15px;
+    left: 15px;
+  }
+}
+
+/* ================ MEDIA QUERIES (EXTRA SMALL DEVICES) ================= */
+@media screen and (max-width: 480px) {
+  .slider {
+    --width: 250px !important;
     --height: 220px !important;
+  }
+  
+  .card__content {
+    padding: 12px;
+    height: 98%;
+  }
+  
+  .card__title {
+    font-size: 14px;
+  }
+  
+  .card__description {
+    font-size: 10px;
+    margin: 4px 0 4px;
+  }
+  
+  .card__button {
+    padding: 5px 10px;
+    font-size: 11px;
+    margin: 3px 0;
+  }
+  
+  .card-icon {
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    left: 10px;
   }
 }

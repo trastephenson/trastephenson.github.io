@@ -19,6 +19,16 @@ const StyledSocialsContainer = styled.div`
     height: 2rem;
     background: var(--color-primary);
   }
+
+  /* Mobile responsive */
+  @media screen and (max-width: 600px) {
+    bottom: 2rem;
+    gap: 0.6rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const StyledSocialLink = styled.a`
@@ -37,6 +47,12 @@ const StyledSocialLink = styled.a`
   cursor: pointer;
   text-decoration: none;
 
+  /* Mobile responsive */
+  @media screen and (max-width: 600px) {
+    padding: 0.7rem;
+    font-size: 1rem;
+  }
+
   &:hover {
     color: var(--glow-color);
     background: rgba(0, 0, 0, 0.3);
@@ -44,6 +60,23 @@ const StyledSocialLink = styled.a`
                 0 0 2em 1em var(--glow-spread-color);
     text-shadow: 0 0 0.5em var(--glow-color);
     transform: scale(1.1);
+  }
+
+  /* Touch device optimization */
+  @media (hover: none) and (pointer: coarse) {
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    
+    &:active {
+      color: var(--glow-color);
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 1em 0.25em var(--glow-color),
+                  0 0 2em 1em var(--glow-spread-color);
+      text-shadow: 0 0 0.5em var(--glow-color);
+      transform: scale(1.05);
+    }
   }
 `;
 

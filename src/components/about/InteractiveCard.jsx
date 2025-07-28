@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const InteractiveCard = ({ icon: Icon, title, subtitle, prompt = "HOVER OVER :D" }) => {
   return (
     <StyledWrapper>
-      <div className="container noselect">
+      <div className="card-container noselect">
         <div className="canvas">
           <div className="tracker tr-1" />
           <div className="tracker tr-2" />
@@ -47,16 +47,16 @@ const InteractiveCard = ({ icon: Icon, title, subtitle, prompt = "HOVER OVER :D"
 
 const StyledWrapper = styled.div`
   /*works janky on mobile :<*/
-  .container {
+  .card-container {
     position: relative;
-    width: 285px;
-    height: 381px;
+    width: 350px;
+    height: 300px;
     transition: 200ms;
   }
 
-  .container:active {
-    width: 270px;
-    height: 367px;
+  .card-container:active {
+    width: 340px;
+    height: 295px;
   }
 
   #card {
@@ -64,62 +64,61 @@ const StyledWrapper = styled.div`
     inset: 0;
     z-index: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 30px;
     transition: 700ms;
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-    padding: 30px;
-    box-sizing: border-box;
+    background: linear-gradient(180deg, #000000 0%, #333333 50%, #ffffff 100%);
   }
 
   .icon-container {
-    margin-bottom: 22px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
   .card-icon {
-    font-size: 3.75rem;
+    font-size: 4rem;
     color: white;
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
   }
 
   .subtitle {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
     color: white;
-    text-align: left;
+    text-align: center;
     width: 100%;
-    font-size: 1.25em;
+    font-size: 1em;
     font-weight: bold;
     font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
     transition: 300ms ease-in-out;
     transition-delay: 200ms;
-    line-height: 1.4;
+    line-height: 1.7;
   }
 
   .subtitle ul {
     margin: 0;
     padding-left: 0;
     list-style: none;
+    text-align: center;
   }
 
   .subtitle li {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     position: relative;
-    padding-left: 20px;
+    padding-left: 0;
+    color: white;
+    text-align: center;
   }
 
   .subtitle li::before {
     content: "•";
     color: white;
     font-weight: bold;
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: relative;
+    margin-right: 8px;
   }
 
   .tracker:hover ~ #card .subtitle {
@@ -128,16 +127,15 @@ const StyledWrapper = styled.div`
   }
 
   #prompt {
-    bottom: 12px;
-    left: 18px;
+    bottom: 15px;
+    left: 20px;
     z-index: 20;
-    font-size: 21px;
+    font-size: 24px;
     font-weight: bold;
     transition: 300ms ease-in-out-out;
     position: absolute;
-    max-width: 165px;
-    color: rgb(255, 255, 255);
-    font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
+    max-width: 150px;
+    color: #000000;
   }
 
   .tracker {
@@ -160,7 +158,7 @@ const StyledWrapper = styled.div`
     filter: brightness(1.1);
   }
 
-  .container:hover #card::before {
+  .card-container:hover #card::before {
     transition: 200ms;
     content: '';
     opacity: 80%;
@@ -184,7 +182,7 @@ const StyledWrapper = styled.div`
 
   #card::before {
     content: '';
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
+    background: linear-gradient(180deg, #000000 0%, #333333 50%, #ffffff 100%);
     filter: blur(2rem);
     opacity: 30%;
     width: 100%;
@@ -432,6 +430,48 @@ const StyledWrapper = styled.div`
     user-select: none;
      /* Non-prefixed version, currently
   									supported by Chrome, Edge, Opera and Firefox */
-  }`;
+  }
+
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .card-container {
+      width: 280px;
+      height: 240px;
+    }
+    
+    .card-container:active {
+      width: 270px;
+      height: 235px;
+    }
+
+    #card {
+      border-radius: 25px;
+    }
+
+    .card-icon {
+      font-size: 3.5rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .card-container {
+      width: 260px;
+      height: 220px;
+    }
+    
+    .card-container:active {
+      width: 250px;
+      height: 215px;
+    }
+
+    #card {
+      border-radius: 20px;
+    }
+
+    .card-icon {
+      font-size: 3rem;
+    }
+  }
+`;
 
 export default InteractiveCard; 

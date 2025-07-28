@@ -9,11 +9,11 @@ const CardContainer = styled.div`
   background: rgba(255, 255, 255, 0);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 2px solid rgba(209, 38, 197, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   transition: 0.3s ease;
   border-radius: 60px;
-  filter: drop-shadow(0px 0px 30px rgba(209, 38, 197, 0.5));
-  box-shadow: 0 0 20px rgba(209, 38, 197, 0.3), inset 0 0 20px rgba(209, 38, 197, 0.1);
+  filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.5));
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1);
 
   &::after {
     content: '';
@@ -32,9 +32,9 @@ const CardContainer = styled.div`
   }
 
   &:hover {
-    filter: drop-shadow(0px 0px 30px rgba(209, 38, 197, 1));
-    border: 2px solid rgba(209, 38, 197, 1);
-    box-shadow: 0 0 30px rgba(209, 38, 197, 0.8), inset 0 0 30px rgba(209, 38, 197, 0.2);
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 1));
+    border: 2px solid rgba(255, 255, 255, 1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0);
   }
 `;
