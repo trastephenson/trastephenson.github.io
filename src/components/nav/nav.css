@@ -28,8 +28,9 @@ nav a:hover {
 }
 
 nav a.active {
-  background: var(--color-primary);
-  color: var(--color-bg);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 /* =============== GLOW EFFECTS FOR NAV ICONS ============== */
@@ -45,21 +46,24 @@ nav a.active {
 
 .glowable-nav-icon:hover {
   background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .glowable-nav-icon.active {
-  background: var(--color-primary);
-  color: var(--color-bg);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
 [glow] .glowable-nav-icon {
-  color: var(--glow-color);
+  color: white;
   transform: scale(1.1);
-  text-shadow: 0 0 10px var(--glow-color);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 [glow] .glowable-nav-icon.active {
-  background: var(--color-primary);
-  color: var(--color-bg);
-  text-shadow: 0 0 10px var(--glow-color);
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }

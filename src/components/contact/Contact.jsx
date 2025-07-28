@@ -5,6 +5,7 @@ import {RiMessengerLine} from 'react-icons/ri'
 import { useRef } from 'react';
 import emailjs from 'emailjs-com'
 import StyledContactForm from './StyledContactForm'
+import SleekButton from '../common/SleekButton'
 
 const Contact = () => {
   const form = useRef();
@@ -18,7 +19,7 @@ const Contact = () => {
   };
 
   return (
-    <section id='contact'>
+    <section id='contact' style={{ marginBottom: '0' }}>
       <h5 style={{ 
         color: '#E6E6FA',
         fontSize: '1.2rem',
@@ -40,16 +41,28 @@ const Contact = () => {
       <div className="container contact__container">
         <div className="contact__options">
           <article className="contact__option">
-            <MdOutlineEmail className='contact__option-icon'/>
-            <h4>Email</h4>
-            <h5>stephenson.tra@gmail.com</h5>
-            <a href="mailto:stephenson.tra@gmail.com" target="_blank">Send a message</a>
+            <div className="card">
+              <MdOutlineEmail className='contact__option-icon'/>
+              <h4>Email</h4>
+              <h5>stephenson.tra@gmail.com</h5>
+              <a href="mailto:stephenson.tra@gmail.com" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                <SleekButton>
+                  Send a message
+                </SleekButton>
+              </a>
+            </div>
           </article>
           <article className="contact__option">
-            <RiMessengerLine className='contact__option-icon'/>
-            <h4>Messenger</h4>
-            <h5>Travis Stephenson</h5>
-            <a href="https://m.me/travis.stephenson.9887" target="_blank">Send a message</a>
+            <div className="card">
+              <RiMessengerLine className='contact__option-icon'/>
+              <h4>Messenger</h4>
+              <h5>Travis Stephenson</h5>
+              <a href="https://m.me/travis.stephenson.9887" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                <SleekButton>
+                  Send a message
+                </SleekButton>
+              </a>
+            </div>
           </article>
         </div>
         {/* END OF CONTACT OPTIONS */}

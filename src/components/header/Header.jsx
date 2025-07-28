@@ -45,11 +45,7 @@ const Header = () => {
           <GlowingCard />
         </div>
 
-        <a href="#contact" className='scroll__down' style={{ 
-          color: '#E6E6FA',
-          fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
-          fontWeight: '400'
-        }}>Scroll Down</a>
+
       </div>
     </header>
   )

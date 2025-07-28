@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import SleekButton from '../common/SleekButton';
 
 const StyledContactForm = ({ onSubmit, formRef }) => {
   return (
@@ -50,7 +51,9 @@ const StyledContactForm = ({ onSubmit, formRef }) => {
               ></textarea>
             </div>
 
-            <button type="submit" className="sendMessage-btn">Send Message</button>
+            <SleekButton type="submit">
+              Send Message
+            </SleekButton>
           </form>
         </div>
       </div>
@@ -59,26 +62,60 @@ const StyledContactForm = ({ onSubmit, formRef }) => {
 };
 
 const StyledWrapper = styled.div`
+  .form-card1 {
+    background: #3a4b8a;
+    padding: 1px;
+    border-radius: 1.2rem;
+    box-shadow: 0px 1rem 1.5rem -0.9rem #000000e1, 0 0 20px rgba(255, 255, 255, 0.3);
+    max-width: 100%;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-card1:hover {
+    box-shadow: 0px 1.5rem 2rem -0.9rem #000000e1, 0 0 30px rgba(255, 255, 255, 0.5);
+  }
+
+  .form-card1:hover {
+    box-shadow: 0px 1.5rem 2rem -0.9rem #000000e1;
+  }
+
+  .form-card2 {
+    font-size: 1rem;
+    color: #bec4cf;
+    background: linear-gradient(135deg, #0d1120 0%, #3a4b8a 43%, #0d1120 100%);
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+  }
+
   .form {
     display: flex;
     flex-direction: column;
     align-self: center;
     font-family: inherit;
-    gap: 10px;
-    padding-inline: 2em;
-    padding-bottom: 0.4em;
-    background-color: #171717;
-    border-radius: 20px;
+    gap: 1.2rem;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
   }
 
   .form-heading {
     text-align: center;
-    margin: 2em;
-    color: rgb(209, 38, 197);
+    margin: 0 0 1rem 0;
+    color: #bec4cf;
     font-size: 1.2em;
     background-color: transparent;
     align-self: center;
-    text-shadow: 0 0 10px rgba(209, 38, 197, 0.5), 0 0 20px rgba(209, 38, 197, 0.3);
+    text-shadow: 0 0 10px rgba(190, 196, 207, 0.5);
   }
 
   .form-field {
@@ -91,8 +128,13 @@ const StyledWrapper = styled.div`
     border: none;
     outline: none;
     color: white;
-    background-color: #171717;
-    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  .form-field:focus-within {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(190, 196, 207, 0.2);
   }
 
   .input-field {
@@ -100,65 +142,25 @@ const StyledWrapper = styled.div`
     border: none;
     outline: none;
     width: 100%;
-    color: #ccd6f6;
+    color: #bec4cf;
     padding-inline: 1em;
-    font-family: inherit;
+    font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
+    font-size: 1rem;
     resize: vertical;
-    text-shadow: 0 0 5px rgba(204, 214, 246, 0.3);
   }
 
   .input-field:focus {
-    text-shadow: 0 0 8px rgba(209, 38, 197, 0.6), 0 0 15px rgba(209, 38, 197, 0.4);
+    outline: none;
   }
 
   .input-field::placeholder {
-    color: #8892b0;
-    text-shadow: 0 0 3px rgba(136, 146, 176, 0.3);
+    color: rgba(190, 196, 207, 0.6);
+    font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
   }
 
-  .sendMessage-btn {
-    cursor: pointer;
-    margin-bottom: 3em;
-    padding: 1em;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    color: rgb(209, 38, 197);
-    font-weight: bold;
-    outline: 1px solid rgb(209, 38, 197);
-    transition: all ease-in-out 0.3s;
-    font-family: inherit;
-    text-shadow: 0 0 5px rgba(209, 38, 197, 0.5), 0 0 10px rgba(209, 38, 197, 0.3);
-  }
-
-  .sendMessage-btn:hover {
-    transition: all ease-in-out 0.3s;
-    background-color: rgb(209, 38, 197);
-    color: #000;
-    cursor: pointer;
-    box-shadow: 0 0 20px rgba(209, 38, 197, 0.8), inset 2px 5px 10px rgb(5, 5, 5);
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
-  }
-
-  .form-card1 {
-    background-image: linear-gradient(163deg, rgb(209, 38, 197) 0%, rgb(209, 38, 197) 100%);
-    border-radius: 22px;
-    transition: all 0.3s;
-  }
-
-  .form-card1:hover {
-    box-shadow: 0px 0px 30px 1px rgba(209, 38, 197, 0.3);
-  }
-
-  .form-card2 {
-    border-radius: 0;
-    transition: all 0.2s;
-  }
-
-  .form-card2:hover {
-    transform: scale(0.98);
-    border-radius: 20px;
+  .btn-31 {
+    width: 100%;
+    margin-top: 1rem;
   }
 `;
 

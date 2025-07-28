@@ -3,7 +3,9 @@
   display: grid;
   grid-template-columns: 30% 58%;
   gap: 12%;
-  align-items: start;
+  align-items: stretch;
+  margin: 0 auto;
+  height: fit-content;
 }
 
 .contact__options {
@@ -16,139 +18,78 @@
 }
 
 .contact__option {
-  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-  padding: 1.5rem;
-  border-radius: 20px;
+  background: linear-gradient(135deg, #fffffff5, #3a4b8a, #ffffff98);
+  padding: 1px;
+  border-radius: 1.2rem;
+  box-shadow: 0px 1rem 1.5rem -0.9rem #000000e1, 0 0 20px rgba(255, 255, 255, 0.3);
+  max-width: 300px;
   text-align: center;
-  border: 2px solid rgba(255, 255, 0, 0.3);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 30px rgba(255, 255, 0, 0.5);
 }
 
-.contact__option::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-  filter: blur(2rem);
-  opacity: 30%;
-  z-index: -1;
+.contact__option .card {
+  font-size: 1rem;
+  color: #bec4cf;
+  background: linear-gradient(135deg, #0d1120 0%, #3a4b8a 43%, #0d1120 100%);
+  padding: 1.5rem;
+  border-radius: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .contact__option:hover {
-  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-  border-color: rgba(255, 255, 0, 0.8);
-  box-shadow: 0 0 40px rgba(255, 255, 0, 0.8);
   transform: translateY(-5px);
+  box-shadow: 0px 1.5rem 2rem -0.9rem #000000e1, 0 0 30px rgba(255, 255, 255, 0.5);
+}
+
+.contact__option .card:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .contact__option-icon {
   font-size: 2rem;
   margin-bottom: 0.5rem;
-  color: white;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+  color: #bec4cf;
+  filter: drop-shadow(0 0 10px rgba(190, 196, 207, 0.5));
 }
 
 .contact__option h4 {
-  color: white;
+  color: #bec4cf;
   font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
   font-weight: 600;
   margin-bottom: 0.5rem;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  text-shadow: 0 0 10px rgba(190, 196, 207, 0.5);
 }
 
 .contact__option h5 {
-  color: #E6E6FA;
+  color: #bec4cf;
   font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
   font-size: 0.9rem;
   margin-bottom: 1rem;
-  text-shadow: 0 0 5px rgba(230, 230, 250, 0.5);
+  text-shadow: 0 0 5px rgba(190, 196, 207, 0.5);
 }
 
 .contact__option a {
   margin-top: 0.7rem;
-  display: inline-block;
-  font-size: 0.9rem;
-  color: rgb(255, 255, 0);
+  display: block;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  border: 1px solid rgb(255, 255, 0);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
-  font-weight: 600;
-  text-shadow: 0 0 5px rgba(255, 255, 0, 0.5);
-  --glow-color: rgb(255, 255, 0);
-  --glow-spread-color: rgba(255, 255, 0, 0.781);
-  --enhanced-glow-color: rgb(255, 255, 50);
-  --btn-color: rgb(100, 100, 0);
-  border: .25em solid var(--glow-color);
-  padding: 1em 3em;
-  color: var(--glow-color);
-  font-size: 15px;
-  font-weight: bold;
-  background-color: var(--btn-color);
-  border-radius: 1em;
-  outline: none;
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 1em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-  text-shadow: 0 0 .5em var(--glow-color);
-  position: relative;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.contact__option a::after {
-  pointer-events: none;
-  content: "";
-  position: absolute;
-  top: 120%;
-  left: 0;
-  height: 100%;
   width: 100%;
-  background-color: var(--glow-spread-color);
-  filter: blur(2em);
-  opacity: .7;
-  transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
 }
 
-.contact__option a:hover {
-  color: var(--btn-color);
-  background-color: var(--glow-color);
-  box-shadow: 0 0 1em .25em var(--glow-color),
-          0 0 4em 2em var(--glow-spread-color),
-          inset 0 0 .75em .25em var(--glow-color);
-}
-
-.contact__option a:active {
-  box-shadow: 0 0 0.6em .25em var(--glow-color),
-          0 0 2.5em 2em var(--glow-spread-color),
-          inset 0 0 .5em .25em var(--glow-color);
+.contact__option .btn-31 {
+  width: 100%;
+  margin-top: 0.7rem;
 }
 
 /* ================= FORM ================== */
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  background: transparent;
-  border: 2px solid var(--color-primary-variant);
-  resize: none;
-  color: var(--color-white);
-}
+/* Form styling is now handled in StyledContactForm.jsx */
 
 /* ================ MEDIA QUERIES (MEDIUM DEVICES) ================= */
 @media screen and (max-width: 1024px) {

@@ -1,7 +1,6 @@
 footer {
-  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-  background-color: rgba(101, 136, 208, 0.25);
-  padding: 3rem 0;
+  background: linear-gradient(135deg, #fffffff5, #3a4b8a, #ffffff98);
+  padding: 1.5rem 0;
   text-align: center;
   font-size: 0.9rem;
   margin-top: 7rem;
@@ -16,7 +15,7 @@ footer::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
+  background: linear-gradient(135deg, #fffffff5, #3a4b8a, #ffffff98);
   filter: blur(2rem);
   opacity: 0.25;
   z-index: -1;
@@ -31,7 +30,7 @@ footer a {
 .footer__logo {
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   display: inline-block;
   color: white;
   font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
@@ -49,8 +48,8 @@ footer a {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
-  margin: 0 auto 3rem;
+  gap: 1rem;
+  margin: 0 auto 1.5rem;
 }
 
 .permalinks a {
@@ -71,7 +70,7 @@ footer a {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
 }
 
 .footer__socials a {
@@ -94,7 +93,7 @@ footer a {
 }
 
 .footer__copyright {
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   color: #E6E6FA;
   font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
   text-shadow: 0 0 5px rgba(230, 230, 250, 0.5);

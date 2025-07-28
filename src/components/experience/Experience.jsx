@@ -26,7 +26,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id='experience'>
+    <section id='experience' style={{ marginBottom: '0' }}>
       <h5 style={{ 
         color: '#E6E6FA',
         fontSize: '1.2rem',

@@ -29,7 +29,6 @@ const StyledTestimonialCard = ({ avatar, name, review, rating = 5, isActive = fa
             {review}
           </p>
         </div>
-        {!isActive && <div className="gradient-overlay" />}
       </div>
     </StyledWrapper>
   );
@@ -37,57 +36,39 @@ const StyledTestimonialCard = ({ avatar, name, review, rating = 5, isActive = fa
 
 const StyledWrapper = styled.div`
   .card {
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-    padding: 3rem;
-    width: 600px;
-    height: 450px;
-    border-radius: 30px;
-    box-shadow: 0 0 30px rgba(209, 38, 197, 0.5);
-    border: 2px solid rgba(209, 38, 197, 0.3);
+    background-color: rgba(243, 244, 246, 1);
+    padding: 2rem;
+    width: 320px;
+    height: 280px;
+    border-radius: 10px;
+    box-shadow: 0 20px 30px -20px rgba(5, 5, 5, 0.24);
+    opacity: ${props => props.isActive ? 1 : 0.7};
+    transform: ${props => props.isActive ? 'scale(1)' : 'scale(0.95)'};
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    opacity: ${props => props.isActive ? 1 : 0.7};
-    transform: ${props => props.isActive ? 'scale(1)' : 'scale(0.9)'};
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
-    filter: blur(2rem);
-    opacity: 30%;
-    z-index: -1;
   }
 
   .card:hover {
-    box-shadow: 0 0 40px rgba(209, 38, 197, 0.8);
-    border: 2px solid rgba(209, 38, 197, 0.8);
-    transform: ${props => props.isActive ? 'translateY(-5px) scale(1)' : 'translateY(-5px) scale(0.9)'};
+    transform: ${props => props.isActive ? 'translateY(-5px) scale(1)' : 'translateY(-5px) scale(0.95)'};
   }
 
   .header {
     display: flex;
     align-items: center;
-    grid-gap: 1.5rem;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    grid-gap: 1rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
     flex-shrink: 0;
   }
 
   .header .image {
-    height: 6rem;
-    width: 6rem;
+    height: 4rem;
+    width: 4rem;
     border-radius: 9999px;
     overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    object-fit: cover;
+    background-color: royalblue;
   }
 
   .header .image img {
@@ -101,23 +82,21 @@ const StyledWrapper = styled.div`
     justify-content: center;
     grid-gap: 0.125rem;
     gap: 0.125rem;
-    color: #FFD700;
-    filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+    color: rgba(34, 197, 94, 1);
   }
 
   .stars svg {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1rem;
+    width: 1rem;
   }
 
   .name {
     margin-top: 0.25rem;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     line-height: 1.75rem;
     font-weight: 600;
-    color: white;
-    font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    --tw-text-opacity: 1;
+    color: rgba(55, 65, 81, 1);
   }
 
   .message-container {
@@ -128,49 +107,30 @@ const StyledWrapper = styled.div`
   }
 
   .message {
-    color: white;
-    font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
-    line-height: 1.6;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    color: rgba(107, 114, 128, 1);
     overflow-y: auto;
     flex: 1;
-    padding-right: 10px;
     margin: 0;
-    font-size: 1.1rem;
+    padding-right: 8px;
+    line-height: 1.5;
   }
 
   .message::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
   }
 
   .message::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
   }
 
   .message::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
   }
 
   .message::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-  }
-
-  .gradient-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, 
-      rgba(0, 0, 0, 0.8) 0%, 
-      rgba(0, 0, 0, 0.4) 30%, 
-      rgba(0, 0, 0, 0.1) 70%, 
-      rgba(0, 0, 0, 0.8) 100%);
-    pointer-events: none;
-    z-index: 10;
-  }
-`;
+    background: rgba(0, 0, 0, 0.5);
+  }`;
 
 export default StyledTestimonialCard; 

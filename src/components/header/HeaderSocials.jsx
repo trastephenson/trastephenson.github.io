@@ -11,18 +11,18 @@ const StyledSocialsContainer = styled.div`
   gap: 0.8rem;
   position: absolute;
   left: 0;
-  bottom: 3rem;
+  bottom: 5rem;
 
   &::after {
     content: "";
     width: 1px;
     height: 2rem;
-    background: var(--color-primary);
+    background: rgba(255, 255, 255, 0.5);
   }
 
   /* Mobile responsive */
   @media screen and (max-width: 600px) {
-    bottom: 2rem;
+    bottom: 4rem;
     gap: 0.6rem;
   }
 
@@ -32,10 +32,6 @@ const StyledSocialsContainer = styled.div`
 `;
 
 const StyledSocialLink = styled.a`
-  --glow-color: #8A2BE2;
-  --glow-spread-color: rgba(138, 43, 226, 0.781);
-  --enhanced-glow-color: rgb(138, 43, 226);
-  
   background: transparent;
   padding: 0.9rem;
   border-radius: 50%;
@@ -54,11 +50,10 @@ const StyledSocialLink = styled.a`
   }
 
   &:hover {
-    color: var(--glow-color);
+    color: white;
     background: rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 1em 0.25em var(--glow-color),
-                0 0 2em 1em var(--glow-spread-color);
-    text-shadow: 0 0 0.5em var(--glow-color);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     transform: scale(1.1);
   }
 
@@ -70,11 +65,10 @@ const StyledSocialLink = styled.a`
     }
     
     &:active {
-      color: var(--glow-color);
+      color: white;
       background: rgba(0, 0, 0, 0.3);
-      box-shadow: 0 0 1em 0.25em var(--glow-color),
-                  0 0 2em 1em var(--glow-spread-color);
-      text-shadow: 0 0 0.5em var(--glow-color);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
       transform: scale(1.05);
     }
   }

@@ -9,7 +9,7 @@ import InteractiveCard from './InteractiveCard'
 
 const About = () => {
   return (
-    <section id='about'>
+    <section id='about' style={{ marginBottom: '0' }}>
       <h5 style={{ 
         color: '#E6E6FA',
         fontSize: '1.2rem',
@@ -59,7 +59,7 @@ const About = () => {
             />
           </div>
 
-          <div style={{ marginTop: '2rem' }}>
+          <div style={{ marginTop: '1rem' }}>
             <SleekButton>
               <a href="#contact" style={{ color: 'inherit', textDecoration: 'none' }}>Let's Talk</a>
             </SleekButton>

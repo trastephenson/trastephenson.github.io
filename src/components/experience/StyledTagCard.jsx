@@ -22,15 +22,15 @@ const StyledWrapper = styled.div`
   .card {
     width: 100%;
     height: 300px;
-    margin: 30px;
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
+    margin: 5px;
+    background: linear-gradient(180deg, #000000 0%, #333333 50%, #ffffff 100%);
     padding: 20px;
     display: flex;
     flex-direction: column;
     color: white;
     border-radius: 20px;
-    box-shadow: 0 0 30px rgba(209, 38, 197, 0.5);
-    border: 2px solid rgba(209, 38, 197, 0.3);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -43,15 +43,15 @@ const StyledWrapper = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(43deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 46%, rgb(255, 204, 112) 100%);
+    background: linear-gradient(180deg, #000000 0%, #333333 50%, #ffffff 100%);
     filter: blur(2rem);
     opacity: 30%;
     z-index: -1;
   }
 
   .card:hover {
-    box-shadow: 0 0 40px rgba(209, 38, 197, 0.8);
-    border: 2px solid rgba(209, 38, 197, 0.8);
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
     transform: translateY(-5px);
   }
 
@@ -66,7 +66,7 @@ const StyledWrapper = styled.div`
     font-size: 1.7em;
     color: white;
     font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
-    text-shadow: 0 0 20px rgba(255,255,255,0.8);
+    text-shadow: 0 0 20px rgba(255,255,255,0.5);
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }
@@ -75,7 +75,7 @@ const StyledWrapper = styled.div`
     display: inline-block;
     color: white;
     font-size: 1.1em;
-    background: rgba(209, 38, 197, 0.8);
+    background: rgba(255, 255, 255, 0.1);
     padding: 8px 20px;
     border-radius: 70em;
     margin: 8px 6px 8px 0;
@@ -86,8 +86,8 @@ const StyledWrapper = styled.div`
     transition: all 0.3s ease-in-out;
     font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
     font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 15px rgba(209, 38, 197, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
   }
 
@@ -101,8 +101,8 @@ const StyledWrapper = styled.div`
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
   }
 
   .tag__name::before {
@@ -115,9 +115,9 @@ const StyledWrapper = styled.div`
 
   .tag__name:hover {
     transform: scale(1.1);
-    background: rgba(209, 38, 197, 1);
-    box-shadow: 0 0 25px rgba(209, 38, 197, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
   }
 
@@ -138,12 +138,12 @@ const StyledWrapper = styled.div`
   }
 
   .card__tags::-webkit-scrollbar-thumb {
-    background: rgba(209, 38, 197, 0.6);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
   }
 
   .card__tags::-webkit-scrollbar-thumb:hover {
-    background: rgba(209, 38, 197, 0.8);
+    background: rgba(255, 255, 255, 0.5);
   }`;
 
 export default StyledTagCard; 
