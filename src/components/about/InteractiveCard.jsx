@@ -68,7 +68,7 @@ const StyledWrapper = styled.div`
     align-items: center;
     border-radius: 30px;
     transition: 700ms;
-    background: linear-gradient(180deg, #000000 0%, #333333 50%, #ffffff 100%);
+    background: linear-gradient(135deg, #0d1120 0%, #3a4b8a 43%, #0d1120 100%);
   }
 
   .icon-container {
@@ -88,7 +88,7 @@ const StyledWrapper = styled.div`
     opacity: 0;
     transform: translateY(40px);
     color: white;
-    text-align: center;
+    text-align: left;
     width: 100%;
     font-size: 1em;
     font-weight: bold;
@@ -96,13 +96,15 @@ const StyledWrapper = styled.div`
     transition: 300ms ease-in-out;
     transition-delay: 200ms;
     line-height: 1.7;
+    padding-left: 105px;
+    padding-right: 20px;
   }
 
   .subtitle ul {
     margin: 0;
     padding-left: 0;
     list-style: none;
-    text-align: center;
+    text-align: left;
   }
 
   .subtitle li {
@@ -110,7 +112,7 @@ const StyledWrapper = styled.div`
     position: relative;
     padding-left: 0;
     color: white;
-    text-align: center;
+    text-align: left;
   }
 
   .subtitle li::before {
@@ -119,6 +121,26 @@ const StyledWrapper = styled.div`
     font-weight: bold;
     position: relative;
     margin-right: 8px;
+  }
+
+  .subtitle a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .subtitle a:hover {
+    color: #E6E6FA;
+    text-shadow: 0 0 10px rgba(230, 230, 250, 0.8);
+  }
+
+  .subtitle a {
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
   }
 
   .tracker:hover ~ #card .subtitle {
@@ -135,7 +157,7 @@ const StyledWrapper = styled.div`
     transition: 300ms ease-in-out-out;
     position: absolute;
     max-width: 150px;
-    color: #000000;
+    color: white;
   }
 
   .tracker {

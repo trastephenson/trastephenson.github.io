@@ -23,7 +23,7 @@ const StyledWrapper = styled.div`
     width: 100%;
     height: 300px;
     margin: 5px;
-    background: linear-gradient(180deg, #000000 0%, #333333 50%, #ffffff 100%);
+    background: linear-gradient(135deg, #0d1120 0%, #3a4b8a 43%, #0d1120 100%);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -43,7 +43,7 @@ const StyledWrapper = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg, #000000 0%, #333333 50%, #ffffff 100%);
+    background: linear-gradient(135deg, #0d1120 0%, #3a4b8a 43%, #0d1120 100%);
     filter: blur(2rem);
     opacity: 30%;
     z-index: -1;
@@ -51,7 +51,6 @@ const StyledWrapper = styled.div`
 
   .card:hover {
     box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
     transform: translateY(-5px);
   }
 
@@ -66,7 +65,7 @@ const StyledWrapper = styled.div`
     font-size: 1.7em;
     color: white;
     font-family: "'Inter', 'Segoe UI', 'Roboto', sans-serif";
-    text-shadow: 0 0 20px rgba(255,255,255,0.5);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     letter-spacing: 0.05em;
     text-transform: uppercase;
   }

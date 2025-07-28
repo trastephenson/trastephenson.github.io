@@ -47,14 +47,14 @@ const About = () => {
             <InteractiveCard 
               icon={IoIosPeople}
               title="Clients"
-              subtitle="50+ Worldwide"
+              subtitle="<ul><li>Total Wellness Media</li><li>Seeds of Thyme</li><li>Utah Valley University</li><li>Companion Asset Management</li><li>Angel Studios</li></ul>"
               prompt="HOVER FOR DETAILS"
             />
 
             <InteractiveCard 
               icon={MdOutlineFolderSpecial}
               title="Projects"
-              subtitle="50+ Completed"
+              subtitle="<ul><li><a href='https://www.oillife.com/pages/essential-life-app' target='_blank' rel='noopener noreferrer'>Essential Life</a></li><li><a href='https://www.seedsofthyme.com/pages/app-seedsofthyme' target='_blank' rel='noopener noreferrer'>Seeds of Thyme</a></li><li><a href='https://camscompanion.com/' target='_blank' rel='noopener noreferrer'>CAMS ATM Management</a></li><li><a href='https://safetywallet.org/' target='_blank' rel='noopener noreferrer'>Safety Wallet</a></li><li><a href='https://www.pantryplenty.com/' target='_blank' rel='noopener noreferrer'>Pantry Plenty</a></li></ul>"
               prompt="HOVER FOR DETAILS"
             />
           </div>

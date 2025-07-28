@@ -9,6 +9,12 @@
     list-style: none;
     text-decoration: none;
   }
+
+  /* Remove any debug overlays or unwanted borders */
+  [class*="sc-"] {
+    border: none !important;
+    outline: none !important;
+  }
   
   :root {
      --primary-color: #198754;  /* Rich Green */
