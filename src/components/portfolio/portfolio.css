@@ -112,6 +112,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   border-radius: 15px;
   overflow: hidden;
 }
@@ -138,35 +139,7 @@
   line-height: 1.5;
 }
 
-.card__button {
-  padding: 12px 20px;
-  border-radius: 10px;
-  background: #777;
-  border: none;
-  color: white;
-  text-decoration: none;
-  text-align: center;
-  margin: 8px 0;
-  transition: all 0.3s ease;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.card__button:hover {
-  background: #555;
-  transform: translateY(-2px);
-}
-
-.secondary {
-  background: transparent;
-  color: #777;
-  border: 1px solid #777;
-}
-
-.secondary:hover {
-  background: #777;
-  color: white;
-}
+/* Button styling now handled by SleekButton component */
 
 /* ================ MEDIA QUERIES (LARGE DEVICES) ================= */
 @media screen and (max-width: 1200px) {
@@ -183,10 +156,7 @@
     font-size: 13px;
   }
   
-  .card__button {
-    padding: 10px 16px;
-    font-size: 14px;
-  }
+  /* Button styling now handled by SleekButton component */
 }
 
 /* ================ MEDIA QUERIES (MEDIUM DEVICES) ================= */
@@ -209,11 +179,7 @@
     margin: 8px 0 8px;
   }
   
-  .card__button {
-    padding: 8px 14px;
-    font-size: 13px;
-    margin: 6px 0;
-  }
+  /* Button styling now handled by SleekButton component */
 }
 
 /* ================ MEDIA QUERIES (SMALL DEVICES) ================= */
@@ -237,11 +203,7 @@
     margin: 6px 0 6px;
   }
   
-  .card__button {
-    padding: 6px 12px;
-    font-size: 12px;
-    margin: 4px 0;
-  }
+  /* Button styling now handled by SleekButton component */
   
   .card-icon {
     width: 60px;
@@ -272,11 +234,7 @@
     margin: 4px 0 4px;
   }
   
-  .card__button {
-    padding: 5px 10px;
-    font-size: 11px;
-    margin: 3px 0;
-  }
+  /* Button styling now handled by SleekButton component */
   
   .card-icon {
     width: 50px;

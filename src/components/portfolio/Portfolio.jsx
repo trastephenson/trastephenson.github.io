@@ -5,6 +5,7 @@ import IMG2 from '../../assets/ciri.png'
 import IMG3 from '../../assets/portfolio3.gif'
 import IMG4 from '../../assets/0727.gif'
 import TravIcon from '../../assets/travicon.png'
+import SleekButton from '../common/SleekButton'
 
 const data = [
   {
@@ -82,8 +83,12 @@ const Portfolio = () => {
                   <div className="card__content">
                     <p className="card__title">{title}</p>
                     <p className="card__description">{description}</p>
-                    <a href={demo} className="card__button" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                    <a href={github} className="card__button secondary" target="_blank" rel="noopener noreferrer">Source Code</a>
+                    <a href={demo} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                      <SleekButton>Live Demo</SleekButton>
+                    </a>
+                    <a href={github} target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+                      <SleekButton>Source Code</SleekButton>
+                    </a>
                   </div>
                 </div>
               </div>
