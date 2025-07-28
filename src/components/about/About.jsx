@@ -40,7 +40,7 @@ const About = () => {
             <InteractiveCard 
               icon={GiDiceTwentyFacesTwenty}
               title="Experience"
-              subtitle="<ul><li>Software Development</li><li>Project Management</li><li>QA</li><li>Solutions Architecture</li></ul>"
+              subtitle="<ul><li>Software Development</li><li>Project Management</li><li>Solutions Architecture</li><li>Quality Assurance</li></ul>"
               prompt="HOVER FOR DETAILS"
             />
 
