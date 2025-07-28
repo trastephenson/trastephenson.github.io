@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './contact.css'
 import {MdOutlineEmail} from 'react-icons/md'
 import {RiMessengerLine} from 'react-icons/ri'
@@ -6,24 +6,14 @@ import { useRef } from 'react';
 import emailjs from 'emailjs-com'
 import StyledContactForm from './StyledContactForm'
 import SleekButton from '../common/SleekButton'
-import StyledPopup from '../common/StyledPopup'
 
 const Contact = () => {
   const form = useRef();
-  const [popup, setPopup] = useState({ isOpen: false, message: '', type: 'success' });
 
   useEffect(() => {
     // Initialize EmailJS
     emailjs.init('NDbWMvRzAqmh3g5Dj');
   }, []);
-
-  const showPopup = (message, type = 'success') => {
-    setPopup({ isOpen: true, message, type });
-  };
-
-  const closePopup = () => {
-    setPopup({ isOpen: false, message: '', type: 'success' });
-  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -39,12 +29,12 @@ const Contact = () => {
       .then((result) => {
         console.log('SUCCESS!', result.text);
         console.log('Full response:', result);
-        showPopup('Message sent successfully! I\'ll get back to you soon.', 'success');
+        alert('Message sent successfully!');
         e.target.reset();
       }, (error) => {
         console.log('FAILED...', error.text);
         console.log('Full error:', error);
-        showPopup('Failed to send message. Please try again or use the Email/Messenger buttons above.', 'error');
+        alert('Failed to send message. Please try again.');
       });
   };
 
@@ -98,13 +88,6 @@ const Contact = () => {
         {/* END OF CONTACT OPTIONS */}
         <StyledContactForm onSubmit={sendEmail} formRef={form} />
       </div>
-      
-      <StyledPopup 
-        isOpen={popup.isOpen}
-        message={popup.message}
-        type={popup.type}
-        onClose={closePopup}
-      />
     </section>
   )
 }
