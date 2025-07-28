@@ -1,122 +1,58 @@
 import React from 'react'
 import './services.css'
-import {FaToolbox} from 'react-icons/fa'
-import {FaFigma} from 'react-icons/fa'
-import {SiAdobexd} from 'react-icons/si'
-import {SiBlender} from 'react-icons/si'
-
+import StyledTagCard from '../experience/StyledTagCard'
 
 const Services = () => {
+  const uiUxTools = [
+    'Figma', 'Adobe XD', 'Blender', 'Adalo', 'Sketch', 'InVision',
+    'Adobe Creative Suite', 'Prototyping', 'Wireframing', 'User Research'
+  ];
+
+  const softwareDevTools = [
+    'AWS', 'Azure', 'GitHub/GitLab', 'Docker', 'Kubernetes', 'Jenkins',
+    'Terraform', 'Ansible', 'Vagrant', 'VSCode', 'IntelliJ', 'Postman'
+  ];
+
+  const projectManagementTools = [
+    'Jira', 'DevOps', 'Lean Six Sigma', 'OpenProject', 'Confluence',
+    'Trello', 'Asana', 'Monday.com', 'Slack', 'Microsoft Teams'
+  ];
+
   return (
     <section id='services'>
-      <h5>Other Proficiencies</h5>
-      <h2>Tools</h2>
+      <h5 style={{ 
+        color: '#E6E6FA',
+        fontSize: '1.2rem',
+        fontWeight: '400',
+        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase'
+      }}>Other Proficiencies</h5>
+      <h2 style={{ 
+        color: 'white',
+        fontSize: '2.5rem',
+        fontWeight: '700',
+        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+        letterSpacing: '0.05em',
+        textTransform: 'uppercase',
+        textShadow: '0 0 20px rgba(255,255,255,0.3)'
+      }}>Tools</h2>
 
       <div className="container services__container">
-        <article className="service">
-          <div className="service__head">
-            <h3>UI/UX Design</h3>
-          </div>
-
-          <ul className='service__list'>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>
-      Figma-Check out one of my component libraries.{' '}
-      <a
-        href="https://www.figma.com/file/qcOL0OUNoaHpRW4T4EJehX/Appstango-Library?node-id=0%3A1&t=vKZ8xTL9DZaMSXGq-1"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <FaFigma />
-      </a>
-    </p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>
-      Adobe XD{' '}
-      <a
-        href="https://youtu.be/3xAadIADHOw"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <SiAdobexd />
-      </a>
-    </p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-               <p>
-      Blender{' '}
-      <a
-        href="https://photos.app.goo.gl/dHMsJJ84dinH115z6"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <SiBlender />
-      </a>
-    </p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Adalo</p>
-            </li>
-            
-          </ul>
-        </article>
-       
-        <article className="service">
-          <div className="service__head">
-            <h3>Software Development</h3>
-          </div>
-
-          <ul className='service__list'>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>AWS</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Azure</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Github/Gitlab</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Docker</p>
-            </li>
-           
-          </ul>
-        </article>
-       
-        <article className="service">
-          <div className="service__head">
-            <h3>Project Management</h3>
-          </div>
-
-          <ul className='service__list'>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Jira</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>DevOps</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>Lean Sigma Six Yellow Belt</p>
-            </li>
-            <li>
-              <FaToolbox className='service__list-icon' />
-              <p>OpenProject</p>
-            </li>
-          </ul>
-        </article>
+        <StyledTagCard 
+          title="UI/UX Design Tools"
+          tags={uiUxTools}
+        />
         
+        <StyledTagCard 
+          title="Software Development Tools"
+          tags={softwareDevTools}
+        />
+
+        <StyledTagCard 
+          title="Project Management Tools"
+          tags={projectManagementTools}
+        />
       </div>
     </section>
   )

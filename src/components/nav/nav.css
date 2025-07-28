@@ -31,3 +31,35 @@ nav a.active {
   background: var(--color-primary);
   color: var(--color-bg);
 }
+
+/* =============== GLOW EFFECTS FOR NAV ICONS ============== */
+.glowable-nav-icon {
+  background: transparent;
+  padding: 0.9rem;
+  border-radius: 50%;
+  display: flex;
+  color: white;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.glowable-nav-icon:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.glowable-nav-icon.active {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+[glow] .glowable-nav-icon {
+  color: var(--glow-color);
+  transform: scale(1.1);
+  text-shadow: 0 0 10px var(--glow-color);
+}
+
+[glow] .glowable-nav-icon.active {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  text-shadow: 0 0 10px var(--glow-color);
+}

@@ -1,24 +1,54 @@
 import React from 'react'
 import './header.css'
 import CTA from './CTA'
-import ME from '../../assets/me.png'
 import HeaderSocial from './HeaderSocials'
+import GlowingCard from './GlowingCard'
 
 const Header = () => {
   return (
     <header>
       <div className="container header__container">
-        <h5>Hello I'm</h5>
-        <h1>Travis Stephenson</h1>
-        <h5 className="text-light">Fullstack Developer</h5>
+        <h5 style={{ 
+          color: '#E6E6FA',
+          fontSize: '1.2rem',
+          fontWeight: '400',
+          fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+          letterSpacing: '0.05em',
+          textTransform: 'uppercase'
+        }}>Hello I'm</h5>
+        <h1 style={{ 
+          color: 'white', 
+          fontSize: '6rem',
+          fontWeight: '900',
+          fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+          textShadow: '0 0 30px rgba(255,255,255,0.9), 0 0 60px rgba(255,255,255,0.6), 0 0 90px rgba(255,255,255,0.3)',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          lineHeight: '1.1'
+        }}>Travis Stephenson</h1>
+        <h2 style={{ 
+          color: '#E6E6FA', 
+          fontSize: '1.5rem',
+          fontWeight: '700',
+          fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+          textShadow: '0 0 20px rgba(230,230,250,0.8), 0 0 40px rgba(230,230,250,0.5)',
+          letterSpacing: '0.05em',
+          textTransform: 'uppercase',
+          lineHeight: '1.2',
+          marginTop: '1rem'
+        }}>Professional Portfolio</h2>
         <CTA />
         <HeaderSocial />
 
         <div className="me">
-          <img src={ME} alt="me" />
+          <GlowingCard />
         </div>
 
-        <a href="#contact" className='scroll__down'>Scroll Down</a>
+        <a href="#contact" className='scroll__down' style={{ 
+          color: '#E6E6FA',
+          fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+          fontWeight: '400'
+        }}>Scroll Down</a>
       </div>
     </header>
   )

@@ -50,8 +50,8 @@ const Portfolio = () => {
       <div 
         className="slider"
         style={{
-          '--width': '400px',
-          '--height': '280px',
+          '--width': '500px',
+          '--height': '350px',
           '--quantity': data.length
         }}
       >
