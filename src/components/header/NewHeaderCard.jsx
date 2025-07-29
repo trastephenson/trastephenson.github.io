@@ -13,8 +13,9 @@ const CardContainer = styled.div`
   padding: 3px;
   position: relative;
   box-shadow: rgba(96, 75, 74, 0.3) 0px 70px 30px -50px, 0 0 30px rgba(255, 255, 255, 0.2);
-  transition: all 0.5s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid rgba(255, 255, 255, 0.3);
+  will-change: transform, box-shadow;
 
   &:hover {
     border-top-left-radius: 55px;
@@ -39,7 +40,7 @@ const CardContainer = styled.div`
     border-radius: 36px;
     z-index: -1;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:hover::before {
@@ -59,14 +60,14 @@ const ProfilePic = styled.div`
   z-index: 1;
   border: 0px solid #E6E6FA;
   overflow: hidden;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   img {
     object-fit: cover;
     width: 100%;
     height: 100%;
     object-position: center center;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   ${CardContainer}:hover & {
@@ -79,7 +80,7 @@ const ProfilePic = styled.div`
     z-index: 3;
     border: 7px solid #E6E6FA;
     box-shadow: rgba(96, 75, 74, 0.3) 0px 5px 5px 0px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
      img {
   transform: scale(2.3) translateY(26%);
@@ -87,7 +88,7 @@ const ProfilePic = styled.div`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
   }
 `;
@@ -103,12 +104,12 @@ const Bottom = styled.div`
   z-index: 2;
   box-shadow: rgba(96, 75, 74, 0.3) 0px 5px 5px 0px inset;
   overflow: hidden;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
   ${CardContainer}:hover & {
     top: 20%;
     border-radius: 80px 29px 29px 29px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 `;
 
@@ -182,6 +183,15 @@ const SocialLinksContainer = styled.div`
       fill: #fff;
       stroke: #fff;
       transform: scale(1.2);
+    }
+  }
+
+  /* Mobile optimizations */
+  @media screen and (max-width: 768px) {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    ${CardContainer}:hover & {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 `;
