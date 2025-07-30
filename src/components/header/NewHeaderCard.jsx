@@ -211,7 +211,7 @@ const NewHeaderCard = () => {
         </Content>
         <BottomBottom>
           <SocialLinksContainer>
-            <a href="https://linkedin.com/in/travis-stephenson" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/trastephenson/" target="_blank" rel="noopener noreferrer">
               <FaLinkedin />
             </a>
             <a href="mailto:stephenson.tra@gmail.com" target="_blank" rel="noopener noreferrer">

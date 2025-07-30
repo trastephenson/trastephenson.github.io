@@ -77,7 +77,7 @@ const StyledSocialLink = styled.a`
 const HeaderSocials = () => {
   return (
     <StyledSocialsContainer>
-        <StyledSocialLink href="https://www.linkedin.com/in/mrtravisstephenson/" target="_blank" rel="noreferrer">
+        <StyledSocialLink href="https://www.linkedin.com/in/trastephenson/" target="_blank" rel="noreferrer">
           <BsLinkedin/>
         </StyledSocialLink>
         <StyledSocialLink href="https://github.com/trastephenson" target="_blank" rel="noreferrer">
