@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledTestimonialCard = ({ avatar, name, review, rating = 5, isActive = false }) => {
+const StyledTestimonialCard = ({ avatar, name, jobTitle, review, rating = 5, isActive = false }) => {
   const renderStars = (count) => {
     return Array.from({ length: count }, (_, i) => (
       <svg key={i} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -22,6 +22,7 @@ const StyledTestimonialCard = ({ avatar, name, review, rating = 5, isActive = fa
               {renderStars(rating)}
             </div>
             <p className="name">{name}</p>
+            {jobTitle && <p className="job-title">{jobTitle}</p>}
           </div>
         </div>
         <div className="message-container">
@@ -38,8 +39,8 @@ const StyledWrapper = styled.div`
   .card {
     background-color: rgba(243, 244, 246, 1);
     padding: 2rem;
-    width: 320px;
-    height: 280px;
+    width: 640px;
+    height: 322px;
     border-radius: 10px;
     box-shadow: 0 20px 30px -20px rgba(5, 5, 5, 0.24);
     opacity: ${props => props.isActive ? 1 : 0.7};
@@ -47,6 +48,20 @@ const StyledWrapper = styled.div`
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 768px) {
+      width: 90vw;
+      max-width: 400px;
+      height: 320px;
+      padding: 1.5rem;
+    }
+
+    @media (max-width: 480px) {
+      width: 95vw;
+      max-width: 350px;
+      height: 300px;
+      padding: 1rem;
+    }
   }
 
   .card:hover {
@@ -60,6 +75,16 @@ const StyledWrapper = styled.div`
     gap: 1rem;
     margin-bottom: 1rem;
     flex-shrink: 0;
+
+    @media (max-width: 768px) {
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    @media (max-width: 480px) {
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
   }
 
   .header .image {
@@ -69,6 +94,16 @@ const StyledWrapper = styled.div`
     overflow: hidden;
     object-fit: cover;
     background-color: royalblue;
+
+    @media (max-width: 768px) {
+      height: 3rem;
+      width: 3rem;
+    }
+
+    @media (max-width: 480px) {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
   }
 
   .header .image img {
@@ -83,11 +118,25 @@ const StyledWrapper = styled.div`
     grid-gap: 0.125rem;
     gap: 0.125rem;
     color: rgba(34, 197, 94, 1);
+
+    @media (max-width: 768px) {
+      gap: 0.1rem;
+    }
   }
 
   .stars svg {
     height: 1rem;
     width: 1rem;
+
+    @media (max-width: 768px) {
+      height: 0.875rem;
+      width: 0.875rem;
+    }
+
+    @media (max-width: 480px) {
+      height: 0.75rem;
+      width: 0.75rem;
+    }
   }
 
   .name {
@@ -97,6 +146,39 @@ const StyledWrapper = styled.div`
     font-weight: 600;
     --tw-text-opacity: 1;
     color: rgba(55, 65, 81, 1);
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      line-height: 1.5rem;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+      line-height: 1.4rem;
+      margin-top: 0.15rem;
+    }
+  }
+
+  .job-title {
+    margin-top: 0.125rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    color: rgba(107, 114, 128, 1);
+    font-style: italic;
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+      line-height: 1.2rem;
+      margin-top: 0.1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.75rem;
+      line-height: 1.1rem;
+      margin-top: 0.05rem;
+    }
   }
 
   .message-container {
@@ -104,6 +186,14 @@ const StyledWrapper = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: column;
+
+    @media (max-width: 768px) {
+      min-height: 140px;
+    }
+
+    @media (max-width: 480px) {
+      min-height: 120px;
+    }
   }
 
   .message {
@@ -113,6 +203,18 @@ const StyledWrapper = styled.div`
     margin: 0;
     padding-right: 8px;
     line-height: 1.5;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      padding-right: 6px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      padding-right: 4px;
+    }
   }
 
   .message::-webkit-scrollbar {

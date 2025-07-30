@@ -19,7 +19,7 @@ const Services = () => {
   ];
 
   return (
-    <section id='services' style={{ marginBottom: '0' }}>
+    <section id='services' style={{ marginBottom: '0', paddingTop: '4rem' }}>
       <h5 style={{ 
         color: '#E6E6FA',
         fontSize: '1.2rem',

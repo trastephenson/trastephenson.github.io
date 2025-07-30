@@ -44,7 +44,7 @@ const data = [
 
 const Portfolio = () => {
   return (
-    <section id='portfolio' style={{ marginBottom: '0' }}>
+    <section id='portfolio' style={{ marginBottom: '0', paddingTop: '0' }}>
       <h5 style={{ 
         color: '#E6E6FA',
         fontSize: '1.2rem',

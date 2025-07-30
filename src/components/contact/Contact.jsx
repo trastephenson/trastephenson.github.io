@@ -39,7 +39,7 @@ const Contact = () => {
   };
 
   return (
-    <section id='contact' style={{ marginBottom: '0' }}>
+    <section id='contact' style={{ marginBottom: '0', paddingTop: '2rem' }}>
       <h5 style={{ 
         color: '#E6E6FA',
         fontSize: '1.2rem',
