@@ -48,6 +48,24 @@ const CardContainer = styled.div`
   &:hover::before {
     opacity: 1;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    max-width: 450px;
+    height: 400px;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 95%;
+    max-width: 400px;
+    height: 380px;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 95%;
+    max-width: 350px;
+    height: 360px;
+  }
 `;
 
 
@@ -118,6 +136,22 @@ const Bottom = styled.div`
     transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     z-index: 2;
   }
+
+  @media screen and (max-width: 600px) {
+    top: 75%;
+    
+    ${CardContainer}:hover & {
+      top: 15%;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    top: 70%;
+    
+    ${CardContainer}:hover & {
+      top: 12%;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -135,9 +169,18 @@ const Content = styled.div`
   opacity: 0;
   transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   pointer-events: none;
+  padding: 0 1rem;
 
   ${CardContainer}:hover & {
     opacity: 1;
+  }
+
+  @media screen and (max-width: 600px) {
+    padding: 0 0.8rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 0 0.6rem;
   }
 `;
 
@@ -147,6 +190,14 @@ const Name = styled.span`
   color: #0d1120;
   font-weight: bold;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+
+  @media screen and (max-width: 600px) {
+    font-size: 1rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const AboutMe = styled.p`
@@ -155,6 +206,18 @@ const AboutMe = styled.p`
   color: #0d1120;
   margin-top: 1rem;
   text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+
+  @media screen and (max-width: 600px) {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+    line-height: 1.3;
+  }
+
+  @media screen and (max-width: 480px) {
+    font-size: 0.7rem;
+    margin-top: 0.5rem;
+    line-height: 1.2;
+  }
 `;
 
 const BottomBottom = styled.div`
@@ -167,6 +230,23 @@ const BottomBottom = styled.div`
   justify-content: space-between;
   z-index: 4;
   pointer-events: auto;
+  gap: 0.5rem;
+
+  @media screen and (max-width: 600px) {
+    bottom: 0.8rem;
+    left: 1rem;
+    right: 1rem;
+    gap: 0.4rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    bottom: 0.6rem;
+    left: 0.8rem;
+    right: 0.8rem;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 const SocialLinksContainer = styled.div`
