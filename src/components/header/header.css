@@ -14,8 +14,9 @@ header {
 .cta {
   margin-top: 2.5rem;
   display: flex;
-  gap: 1.2rem;
+  gap: clamp(0.8rem, 2vw, 1.2rem);
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* =============== HEADER SOCIALS ============== */
@@ -66,14 +67,15 @@ header {
   }
 }
 
-/* ================ MEDIA QUERIES (SMALL DEVICES) ================= */
-@media screen and (max-width: 600px) {
+/* ================ RESPONSIVE DESIGN - MOBILE FIRST ================= */
+
+/* Mobile-specific adjustments (below 768px) */
+@media screen and (max-width: 767px) {
   header {
     min-height: 100vh;
     height: auto;
-    /* added after tutorial */
-    padding-top: 4rem;
-    padding-bottom: 2rem;
+    padding-top: clamp(2rem, 8vh, 4rem);
+    padding-bottom: clamp(1.5rem, 5vh, 2rem);
   }
 
   .header__socials,
@@ -81,30 +83,28 @@ header {
     display: none;
   }
 
-  /* added after tutorial */
   .me {
-    width: 94%;
+    width: clamp(280px, 94vw, 20rem);
     max-width: 20rem;
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
+    margin-top: clamp(1.5rem, 5vh, 2.5rem);
+    margin-bottom: clamp(1.5rem, 5vh, 2rem);
     justify-content: center;
   }
 
-  /* added after tutorial */
   .cta {
-    margin-top: 1.7rem;
-    gap: 1rem;
+    margin-top: clamp(1.2rem, 4vh, 1.7rem);
+    gap: clamp(0.6rem, 2vw, 1rem);
   }
 }
 
-/* ================ MEDIA QUERIES (EXTRA SMALL DEVICES) ================= */
-@media screen and (max-width: 480px) {
+/* Extra small devices (below 480px) */
+@media screen and (max-width: 479px) {
   header {
-    padding-bottom: 3rem;
-    padding-top: 2rem;
+    padding-bottom: clamp(2rem, 6vh, 3rem);
+    padding-top: clamp(1.5rem, 5vh, 2rem);
   }
   
   .header__container {
-    padding-bottom: 2rem;
+    padding-bottom: clamp(1.5rem, 4vh, 2rem);
   }
 }
