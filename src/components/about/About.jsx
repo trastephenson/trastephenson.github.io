@@ -9,7 +9,7 @@ import InteractiveCard from './InteractiveCard'
 
 const About = () => {
   return (
-    <section id='about' style={{ marginBottom: '0', paddingTop: '2rem' }}>
+    <section id='about' style={{ marginBottom: '0', paddingTop: '6rem', marginTop: '0', position: 'relative', zIndex: 0 }}>
       <h5 style={{ 
         color: '#E6E6FA',
         fontSize: '1.2rem',

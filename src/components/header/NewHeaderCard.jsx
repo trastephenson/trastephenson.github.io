@@ -16,8 +16,10 @@ const CardContainer = styled.div`
   transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border: 2px solid rgba(255, 255, 255, 0.3);
   will-change: transform, box-shadow;
-  overflow: hidden;
+  overflow: visible;
   isolation: isolate;
+  margin: 2rem auto;
+  z-index: 2;
 
   &:hover {
     border-top-left-radius: 55px;

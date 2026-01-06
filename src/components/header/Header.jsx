@@ -6,7 +6,7 @@ import NewHeaderCard from './NewHeaderCard'
 
 const Header = () => {
   return (
-    <header style={{ paddingBottom: '0', height: '100vh', position: 'relative', zIndex: 1000, display: 'flex', alignItems: 'center' }}>
+    <header style={{ paddingBottom: '4rem', minHeight: '100vh', height: 'auto', position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', overflow: 'visible' }}>
       <div className="container header__container">
         <h5 style={{ 
           color: '#E6E6FA',
