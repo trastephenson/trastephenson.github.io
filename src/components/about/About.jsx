@@ -59,6 +59,26 @@ const About = () => {
             />
           </div>
 
+          <div style={{ marginTop: '1.5rem', color: '#E6E6FA', fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif" }}>
+            <p style={{ color: 'white', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '1rem' }}>
+              I'm a Principal-level Solutions Architect and Technical Product Leader with 10+ years of experience delivering cloud-scale platforms across mobile, backend, and AI-enabled systems. My work bridges solution architecture, product strategy, and delivery governance—helping organizations translate complex business goals into scalable, production-ready systems.
+            </p>
+
+            <div style={{ marginTop: '1rem' }}>
+              <p style={{ color: 'white', fontWeight: 700, marginBottom: '0.5rem' }}>What I do best:</p>
+              <ul style={{ marginLeft: '1.2rem', lineHeight: '1.8' }}>
+                <li>Own solution architecture from discovery through delivery and production readiness</li>
+                <li>Define cloud standards across AWS/Azure (APIs, data models, reliability practices)</li>
+                <li>Lead cross-functional execution across engineering, product, design, and QA</li>
+                <li>Integrate GenAI/LLM workflows for automation, search, summarization, and decision support</li>
+              </ul>
+            </div>
+
+            <p style={{ marginTop: '1rem', opacity: 0.95 }}>
+              <strong style={{ color: 'white' }}>Open to:</strong> Principal Solutions Architect and Director / Principal Technical Product roles (platform-scale and AI-enabled systems)
+            </p>
+          </div>
+
           <div style={{ marginTop: '1rem' }}>
             <SleekButton>
               <a href="#contact" style={{ color: 'inherit', textDecoration: 'none' }}>Let's Talk</a>

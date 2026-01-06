@@ -103,6 +103,13 @@ section {
   margin-right: 1rem;
 }
 
+section#contact {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
 section > h2,
 section > h5 {
   text-align: center;

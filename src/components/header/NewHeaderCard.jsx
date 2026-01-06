@@ -13,9 +13,11 @@ const CardContainer = styled.div`
   padding: 3px;
   position: relative;
   box-shadow: rgba(96, 75, 74, 0.3) 0px 70px 30px -50px, 0 0 30px rgba(255, 255, 255, 0.2);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border: 2px solid rgba(255, 255, 255, 0.3);
   will-change: transform, box-shadow;
+  overflow: hidden;
+  isolation: isolate;
 
   &:hover {
     border-top-left-radius: 55px;
@@ -40,7 +42,7 @@ const CardContainer = styled.div`
     border-radius: 36px;
     z-index: -1;
     opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   &:hover::before {
@@ -57,17 +59,19 @@ const ProfilePic = styled.div`
   top: 3px;
   left: 3px;
   border-radius: 29px;
-  z-index: 1;
+  z-index: 3;
   border: 0px solid #E6E6FA;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), z-index 0s;
+  transform-origin: top left;
+  isolation: isolate;
 
   img {
     object-fit: cover;
     width: 100%;
     height: 100%;
     object-position: center center;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   ${CardContainer}:hover & {
@@ -77,10 +81,10 @@ const ProfilePic = styled.div`
     top: 20px;
     left: 20px;
     border-radius: 50%;
-    z-index: 3;
+    z-index: 5;
     border: 7px solid #E6E6FA;
     box-shadow: rgba(96, 75, 74, 0.3) 0px 5px 5px 0px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), z-index 0s;
 
      img {
   transform: scale(2.3) translateY(26%);
@@ -88,7 +92,7 @@ const ProfilePic = styled.div`
   object-fit: cover;
   width: 100%;
   height: 100%;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
   }
 `;
@@ -101,15 +105,18 @@ const Bottom = styled.div`
   background: linear-gradient(135deg, #E6E6FA 0%, #3a4b8a 100%);
   top: 80%;
   border-radius: 29px;
-  z-index: 2;
+  z-index: 1;
   box-shadow: rgba(96, 75, 74, 0.3) 0px 5px 5px 0px inset;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: bottom center;
+  isolation: isolate;
 
   ${CardContainer}:hover & {
     top: 20%;
     border-radius: 80px 29px 29px 29px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 2;
   }
 `;
 
@@ -126,7 +133,8 @@ const Content = styled.div`
   text-align: center;
   z-index: 3;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
 
   ${CardContainer}:hover & {
     opacity: 1;
@@ -158,6 +166,7 @@ const BottomBottom = styled.div`
   align-items: center;
   justify-content: space-between;
   z-index: 4;
+  pointer-events: auto;
 `;
 
 const SocialLinksContainer = styled.div`
@@ -207,7 +216,7 @@ const NewHeaderCard = () => {
       <Bottom>
         <Content>
           <Name>Travis Stephenson</Name>
-          <AboutMe>Software Developer, Senior Project Manager</AboutMe>
+          <AboutMe>Principal Solutions Architect • Cloud & AI Platforms • Technical Product Leader</AboutMe>
         </Content>
         <BottomBottom>
           <SocialLinksContainer>
@@ -226,7 +235,7 @@ const NewHeaderCard = () => {
             if (portfolioSection) {
               portfolioSection.scrollIntoView({ behavior: 'smooth' });
             }
-          }}>View Work</SleekButton>
+          }}>Featured Work</SleekButton>
         </BottomBottom>
       </Bottom>
     </CardContainer>

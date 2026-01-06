@@ -6,7 +6,7 @@ import NewHeaderCard from './NewHeaderCard'
 
 const Header = () => {
   return (
-    <header style={{ paddingBottom: '6rem', height: '100vh', position: 'relative', zIndex: 1000, display: 'flex', alignItems: 'center' }}>
+    <header style={{ paddingBottom: '0', height: '100vh', position: 'relative', zIndex: 1000, display: 'flex', alignItems: 'center' }}>
       <div className="container header__container">
         <h5 style={{ 
           color: '#E6E6FA',
@@ -37,7 +37,19 @@ const Header = () => {
           textTransform: 'uppercase',
           lineHeight: '1.2',
           marginTop: '1rem'
-        }}>Professional Portfolio</h2>
+        }}>
+          Principal Solutions Architect | Technical Product & Platform Leader | AI Engineering (MS)
+        </h2>
+        <p style={{
+          color: '#E6E6FA',
+          marginTop: '0.75rem',
+          fontSize: '1rem',
+          fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
+          letterSpacing: '0.02em',
+          opacity: 0.95
+        }}>
+          Cloud-native platforms • AI-enabled automation • Client-facing architecture & delivery ownership
+        </p>
         <CTA />
         <HeaderSocial />
 

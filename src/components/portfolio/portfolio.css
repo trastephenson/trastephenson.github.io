@@ -3,6 +3,8 @@
   height: var(--height);
   overflow: hidden;
   mask-image: linear-gradient(to right, transparent, #000 10% 90%, transparent);
+  position: relative;
+  z-index: 1;
 }
 
 .slider .list {
@@ -121,11 +123,33 @@
   transform: translate(-50%, -50%) rotateX(0deg);
 }
 
+.card__default {
+  display: none;
+}
+
+.card__hover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
 .card__title {
   margin: 0;
   font-size: 24px;
-  color: #333;
+  color: #000;
   font-weight: 700;
+  text-align: center;
+}
+
+.card__summary {
+  margin: 12px 0 0;
+  font-size: 16px;
+  color: #222;
+  line-height: 1.5;
+  text-align: center;
 }
 
 .card:hover .card-icon {
@@ -135,8 +159,54 @@
 .card__description {
   margin: 12px 0 12px;
   font-size: 14px;
-  color: #777;
+  color: #111;
   line-height: 1.5;
+  text-align: left;
+}
+
+/* GenAI card (id: 5) - white text and smaller font */
+.slider .list .item:nth-child(5) .card__title {
+  color: #fff;
+  font-size: 20px;
+}
+
+.slider .list .item:nth-child(5) .card__description {
+  color: #fff;
+  font-size: 12px;
+  margin: 8px 0 8px;
+  line-height: 1.4;
+}
+
+/* GenAI card buttons - ensure visibility */
+.slider .list .item:nth-child(5) .card__buttons a {
+  opacity: 1;
+}
+
+.slider .list .item:nth-child(5) .card__content {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+}
+
+.card__buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.card__buttons button {
+  font-size: 0.75rem;
+  padding: 0.7rem 1.2rem;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+.card__buttons .btn-31 {
+  font-size: 0.75rem !important;
+  padding: 0.7rem 1.2rem !important;
+  white-space: nowrap !important;
 }
 
 /* Button styling now handled by SleekButton component */

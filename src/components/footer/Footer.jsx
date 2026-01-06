@@ -1,8 +1,5 @@
 import React from 'react'
 import './footer.css'
-import {FaFacebookF} from 'react-icons/fa'
-import {FiInstagram} from 'react-icons/fi'
-import {IoLogoTwitter} from 'react-icons/io'
 import {FaLinkedinIn} from 'react-icons/fa'
 
 const Footer = () => {
@@ -13,7 +10,7 @@ const Footer = () => {
       <ul className='permalinks'>
         <li><a href="#">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#experience">Expeirience</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#services">Tools</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#testimonials">Testimonials</a></li>
@@ -21,10 +18,9 @@ const Footer = () => {
       </ul>
 
       <div className="footer__socials">
-        <a href="https://www.facebook.com/travis.stephenson.9887"><FaFacebookF/></a>
-        <a href="https://www.instagram.com/t_moneyswagg/"><FiInstagram/></a>
-        <a href="https://twitter.com/TraviLeeHans"><IoLogoTwitter/></a>
-        <a href="https://www.linkedin.com/in/trastephenson/"><FaLinkedinIn/></a>
+        <a href="https://www.linkedin.com/in/mrtravisstephenson/" target="_blank" rel="noopener noreferrer">
+          <FaLinkedinIn/>
+        </a>
       </div>
 
       <div className="footer__copyright">
