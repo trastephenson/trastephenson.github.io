@@ -49,24 +49,22 @@ const CardContainer = styled.div`
     opacity: 1;
   }
 
-  /* Mobile-first responsive sizing */
-  width: clamp(320px, 95vw, 550px);
-  height: clamp(360px, 85vh, 450px);
-  max-width: 550px;
-
-  @media screen and (min-width: 480px) {
-    width: clamp(350px, 90vw, 450px);
-    height: clamp(380px, 80vh, 400px);
+  @media screen and (max-width: 768px) {
+    width: 90%;
+    max-width: 450px;
+    height: 400px;
   }
 
-  @media screen and (min-width: 768px) {
-    width: clamp(400px, 85vw, 500px);
-    height: clamp(400px, 75vh, 420px);
+  @media screen and (max-width: 600px) {
+    width: 95%;
+    max-width: 400px;
+    height: 380px;
   }
 
-  @media screen and (min-width: 1024px) {
-    width: 550px;
-    height: 450px;
+  @media screen and (max-width: 480px) {
+    width: 95%;
+    max-width: 350px;
+    height: 360px;
   }
 `;
 
@@ -139,20 +137,19 @@ const Bottom = styled.div`
     z-index: 2;
   }
 
-  /* Mobile adjustments - more space for content */
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 600px) {
     top: 75%;
     
     ${CardContainer}:hover & {
-      top: clamp(12%, 15vh, 18%);
+      top: 15%;
     }
   }
 
-  @media screen and (max-width: 479px) {
+  @media screen and (max-width: 480px) {
     top: 70%;
     
     ${CardContainer}:hover & {
-      top: clamp(10%, 12vh, 15%);
+      top: 12%;
     }
   }
 `;
