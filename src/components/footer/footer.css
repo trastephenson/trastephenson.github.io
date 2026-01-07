@@ -1,24 +1,79 @@
 footer {
-  background: linear-gradient(135deg, #fffffff5, #3a4b8a, #ffffff98);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(58, 75, 138, 0.25), rgba(255, 255, 255, 0.15));
   padding: 1.5rem 0;
   text-align: center;
   font-size: 0.9rem;
   margin-top: 0;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.1);
+  z-index: 1;
 }
 
+/* Magnifying glass effect - creates zoomed/magnified background */
 footer::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% 50%, 
+      rgba(102, 126, 234, 0.3) 0%, 
+      rgba(118, 75, 162, 0.2) 30%,
+      transparent 60%);
+  transform: scale(1.15) translateY(0);
+  transform-origin: center bottom;
+  filter: blur(2px) brightness(1.1);
+  opacity: 0.5;
+  z-index: -1;
+  pointer-events: none;
+  will-change: transform;
+  animation: magnifyPulse 5s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* Liquid glass distortion and refraction layer */
+footer::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #fffffff5, #3a4b8a, #ffffff98);
-  filter: blur(2rem);
-  opacity: 0.25;
-  z-index: -1;
+  background: 
+    radial-gradient(ellipse at 20% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 50%, rgba(255, 255, 255, 0.15) 0%, transparent 40%),
+    linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+  backdrop-filter: blur(8px) brightness(1.1);
+  -webkit-backdrop-filter: blur(8px) brightness(1.1);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+  mix-blend-mode: overlay;
+}
+
+/* Animation for subtle magnifying effect */
+@keyframes magnifyPulse {
+  0%, 100% {
+    transform: scale(1.15) translateY(0) translateZ(0);
+    opacity: 0.5;
+    filter: blur(2px) brightness(1.1);
+  }
+  50% {
+    transform: scale(1.2) translateY(-2px) translateZ(0);
+    opacity: 0.6;
+    filter: blur(1px) brightness(1.15);
+  }
+}
+
+footer > * {
+  position: relative;
+  z-index: 2;
 }
 
 footer a {
