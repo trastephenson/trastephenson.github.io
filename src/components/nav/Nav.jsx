@@ -8,82 +8,123 @@ import {BiMessageSquareDetail} from 'react-icons/bi'
 import { useScroll } from '../../context/ScrollContext'
 
 const StyledNav = styled.nav`
-  background: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(238, 241, 255, 0.91) 100%
+  );
   width: max-content;
   display: flex;
-  padding: 0.5rem 1.2rem;
+  align-items: stretch;
+  padding: 0.55rem 0.85rem;
   z-index: 100;
   position: fixed;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) perspective(500px) rotateX(-7deg);
+  transform-origin: bottom center;
   bottom: 2rem;
-  gap: 0.2rem;
-  border-radius: 3rem;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  gap: 0.1rem;
+  border-radius: 1.6rem;
+  backdrop-filter: blur(28px) saturate(220%);
+  -webkit-backdrop-filter: blur(28px) saturate(220%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.96);
+  box-shadow:
+    0 28px 64px rgba(0, 0, 0, 0.14),
+    0 8px 24px rgba(0, 0, 0, 0.09),
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+    inset 1px 0 0 rgba(255, 255, 255, 0.6),
+    inset -1px 0 0 rgba(255, 255, 255, 0.35);
 
   @media screen and (max-width: 600px) {
-    padding: 0.5rem 1.2rem;
-    gap: 0.5rem;
+    padding: 0.5rem 0.7rem;
     bottom: 1rem;
+    /* Remove 3D tilt on small screens for readability */
+    transform: translateX(-50%);
+    border-radius: 1.4rem;
   }
-
-  @media screen and (max-width: 480px) {
-    padding: 0.4rem 1rem;
-    gap: 0.4rem;
-  }
-`;
+`
 
 const StyledNavButton = styled.button`
   background: transparent;
-  padding: 0.9rem;
-  border-radius: 50%;
+  padding: 0.55rem 0.9rem;
+  border-radius: 1.1rem;
   display: flex;
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  transition: all 0.3s ease;
-  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.22rem;
+  color: var(--text-secondary, #555);
+  transition: all 0.22s ease;
   cursor: pointer;
   border: none;
   outline: none;
+  min-width: 56px;
 
-  @media screen and (max-width: 600px) {
-    padding: 0.7rem;
-    font-size: 1rem;
+  .icon {
+    font-size: 1.15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.22s ease;
   }
 
-  @media screen and (max-width: 480px) {
-    padding: 0.6rem;
-    font-size: 0.9rem;
+  .label {
+    font-size: 0.48rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    line-height: 1;
+    transition: opacity 0.22s ease;
+    white-space: nowrap;
   }
 
   &:hover {
-    color: var(--text-primary);
-    background: rgba(0, 0, 0, 0.05);
-    transform: scale(1.1);
+    color: var(--text-primary, #111);
+    background: rgba(0, 0, 0, 0.055);
+    transform: translateY(-2px);
+
+    .icon {
+      transform: scale(1.12) translateY(-1px);
+    }
+
+    .label {
+      opacity: 0.85;
+    }
   }
 
   @media (hover: none) and (pointer: coarse) {
     &:hover {
       transform: none;
+      .icon { transform: none; }
     }
     &:active {
-      color: var(--text-primary);
+      color: var(--text-primary, #111);
       background: rgba(0, 0, 0, 0.08);
-      transform: scale(1.05);
     }
   }
 
   &.active {
-    background: rgba(0, 0, 0, 0.08);
-    color: var(--text-primary);
+    background: rgba(0, 0, 0, 0.07);
+    color: var(--text-primary, #111);
+
+    .label {
+      opacity: 1;
+    }
   }
 
   &.active:hover {
-    background: rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.10);
   }
-`;
+
+  @media screen and (max-width: 600px) {
+    padding: 0.5rem 0.75rem;
+    min-width: 48px;
+  }
+`
 
 const NAV_ITEMS = [
   { icon: ImHome, label: 'Home', sectionIndex: 0 },
@@ -91,7 +132,7 @@ const NAV_ITEMS = [
   { icon: GiDiceTwentyFacesTwenty, label: 'Skills', sectionIndex: 4 },
   { icon: FaToolbox, label: 'Work', sectionIndex: 6 },
   { icon: BiMessageSquareDetail, label: 'Contact', sectionIndex: 10 },
-];
+]
 
 const SECTION_TO_NAV = {
   0: 0, 1: 0,
@@ -101,11 +142,11 @@ const SECTION_TO_NAV = {
   9: 10,
   10: 10,
   11: 10,
-};
+}
 
 const Nav = () => {
-  const { currentSection, scrollTo } = useScroll();
-  const activeMapped = SECTION_TO_NAV[currentSection];
+  const { currentSection, scrollTo } = useScroll()
+  const activeMapped = SECTION_TO_NAV[currentSection]
 
   return (
     <StyledNav aria-label="Section navigation">
@@ -118,7 +159,8 @@ const Nav = () => {
           aria-current={activeMapped === sectionIndex ? 'true' : undefined}
           title={label}
         >
-          <Icon />
+          <span className="icon"><Icon /></span>
+          <span className="label">{label}</span>
         </StyledNavButton>
       ))}
     </StyledNav>

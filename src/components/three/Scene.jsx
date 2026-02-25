@@ -20,9 +20,13 @@ export default function Scene({ children }) {
         gl={{ antialias: true }}
         dpr={Math.min(window.devicePixelRatio, 2)}
       >
-        {/* TunnelRings renders the fullscreen animated contour-line BG shader */}
+        {/* Background shader — unaffected by lights (depthTest:false) */}
         <TunnelRings />
         <Particles />
+        {/* Studio lighting for the 3D card surfaces */}
+        <ambientLight intensity={2.4} color="#ffffff" />
+        <directionalLight position={[4, 6, 14]} intensity={1.5} color="#ffffff" />
+        <directionalLight position={[-6, 2, 6]} intensity={0.45} color="#eef2ff" />
         <CameraRig />
         {children}
       </Canvas>

@@ -1,6 +1,6 @@
 import { useRef, useState, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text, PresentationControls } from '@react-three/drei';
+import { Text, RoundedBox, PresentationControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { easing } from 'maath';
 import { useScroll } from '../../context/ScrollContext';
@@ -12,122 +12,118 @@ import {
   TOTAL_SECTIONS,
 } from '../../utils/cardLayout';
 
-// ── Liquid glass shader ────────────────────────────────────────────────────
-const vertexShader = `
-  varying vec2 vUv;
-  varying vec3 vNormal;
-  void main() {
-    vUv = uv;
-    vNormal = normalMatrix * normal;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
+// One accent color per section — spread across portfolio palette
+const ACCENT_COLORS = [
+  '#7c6ff7', '#9c6df7', '#4f9ef5', '#2eb8c7',
+  '#22c97a', '#f07c3c', '#e95b78', '#c94bb9',
+  '#5b5ef5', '#3bc7c7', '#f5b84b', '#8a8aaa',
+];
 
-const fragmentShader = `
-  uniform float uTime;
-  uniform float uHovered;
-  varying vec2 vUv;
-  varying vec3 vNormal;
+// Short descriptor line under each section label
+const SUBTITLES = [
+  'Portfolio', 'What I do', 'Background', 'Core skills',
+  'Career', 'Offerings', 'Apps', 'Platforms',
+  'AI & ML', 'Reviews', 'Get in touch', '',
+];
 
-  void main() {
-    // Frosted glass base tint
-    vec3 base = vec3(0.97, 0.975, 0.99);
-
-    // Top-edge specular band — bright white highlight like glass catching light
-    float topSpec = smoothstep(0.88, 1.0, vUv.y);
-    base += vec3(topSpec * 0.45);
-
-    // Left-edge iridescence (subtle blue-white shimmer)
-    float leftEdge = (1.0 - smoothstep(0.0, 0.06, vUv.x)) * 0.35;
-    base += vec3(leftEdge * 0.1, leftEdge * 0.2, leftEdge * 0.5);
-
-    // Animated diagonal sweep when hovered
-    float diag = vUv.x - vUv.y + uTime * 0.18;
-    float sweep = smoothstep(0.0, 0.04, mod(diag, 1.8)) *
-                  smoothstep(0.04, 0.0, mod(diag, 1.8) - 0.07);
-    base += vec3(sweep * 0.22 * uHovered);
-
-    // Bottom shadow gradient — grounds the card
-    float bottomShadow = 1.0 - smoothstep(0.0, 0.14, vUv.y);
-    base -= vec3(bottomShadow * 0.04);
-
-    // Thin border on all edges
-    float borderX = min(smoothstep(0.0, 0.02, vUv.x), smoothstep(1.0, 0.98, vUv.x));
-    float borderY = min(smoothstep(0.0, 0.02, vUv.y), smoothstep(1.0, 0.98, vUv.y));
-    float border  = 1.0 - min(borderX, borderY);
-    base = mix(base, vec3(1.0), border * 0.6);
-
-    // Alpha: opaque glass (solid enough to read, still glass-like at edges)
-    float alpha = mix(0.93, 0.98, uHovered);
-
-    gl_FragColor = vec4(base, alpha);
-  }
-`;
-// ──────────────────────────────────────────────────────────────────────────
+const DEPTH = 0.12;   // card thickness
+const RADIUS = 0.05;  // rounded corner radius
+const STRIPE_H = 0.16; // accent stripe height
 
 function SectionCard({ index, onSelect }) {
-  const meshRef = useRef();
+  const innerRef = useRef();
   const [hovered, setHovered] = useState(false);
   const pos = useMemo(() => getCardPosition(index), [index]);
+  const accentColor = useMemo(() => new THREE.Color(ACCENT_COLORS[index]), [index]);
 
-  const uniforms = useMemo(() => ({
-    uTime: { value: 0 },
-    uHovered: { value: 0 },
-  }), []);
-
-  useFrame(({ clock }, delta) => {
-    uniforms.uTime.value = clock.getElapsedTime();
-    easing.damp(uniforms.uHovered, 'value', hovered ? 1 : 0, 0.12, delta);
-
-    if (meshRef.current) {
-      const targetScale = hovered ? 1.03 : 1.0;
-      easing.damp(meshRef.current.scale, 'x', targetScale, 0.1, delta);
-      easing.damp(meshRef.current.scale, 'y', targetScale, 0.1, delta);
-    }
+  useFrame((_, delta) => {
+    if (!innerRef.current) return;
+    // Lift card toward camera + subtle scale on hover
+    easing.damp(innerRef.current.position, 'z', hovered ? 0.22 : 0, 0.12, delta);
+    const sc = hovered ? 1.04 : 1.0;
+    easing.damp(innerRef.current.scale, 'x', sc, 0.10, delta);
+    easing.damp(innerRef.current.scale, 'y', sc, 0.10, delta);
   });
 
   return (
+    // Outer group anchors the card at its grid position (never changes)
     <group position={pos}>
-      <mesh
-        ref={meshRef}
-        onPointerEnter={(e) => { e.stopPropagation(); setHovered(true); document.body.style.cursor = 'pointer'; }}
-        onPointerLeave={() => { setHovered(false); document.body.style.cursor = 'default'; }}
-        onClick={(e) => { e.stopPropagation(); onSelect(index); }}
-      >
-        <planeGeometry args={[CARD_W, CARD_H]} />
-        <shaderMaterial
-          vertexShader={vertexShader}
-          fragmentShader={fragmentShader}
-          uniforms={uniforms}
-          transparent
-          side={THREE.DoubleSide}
-          depthWrite={false}
-        />
-      </mesh>
+      {/* Inner group handles hover animation (lift + scale) */}
+      <group ref={innerRef}>
 
-      {/* Section label */}
-      <Text
-        position={[0, 0, 0.02]}
-        fontSize={CARD_H * 0.13}
-        color="#111111"
-        anchorX="center"
-        anchorY="middle"
-        maxWidth={CARD_W * 0.78}
-        font={undefined}
-      >
-        {SECTION_LABELS[index]}
-      </Text>
+        {/* ── 3D card body ──────────────────────────────── */}
+        <RoundedBox
+          args={[CARD_W, CARD_H, DEPTH]}
+          radius={RADIUS}
+          smoothness={3}
+          onPointerEnter={(e) => {
+            e.stopPropagation();
+            setHovered(true);
+            document.body.style.cursor = 'pointer';
+          }}
+          onPointerLeave={() => {
+            setHovered(false);
+            document.body.style.cursor = 'default';
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelect(index);
+          }}
+        >
+          <meshStandardMaterial
+            color="#f7f8ff"
+            roughness={0.06}
+            metalness={0.03}
+          />
+        </RoundedBox>
 
-      {/* Section number (small, bottom-right) */}
-      <Text
-        position={[CARD_W / 2 - 0.22, -CARD_H / 2 + 0.2, 0.02]}
-        fontSize={CARD_H * 0.07}
-        color="rgba(80,80,90,0.5)"
-        anchorX="right"
-        anchorY="bottom"
-      >
-        {String(index + 1).padStart(2, '0')}
-      </Text>
+        {/* ── Accent colour stripe at top ───────────────── */}
+        <mesh
+          position={[0, CARD_H / 2 - STRIPE_H / 2 - 0.01, DEPTH / 2 + 0.003]}
+          raycast={() => null}
+        >
+          <planeGeometry args={[CARD_W - 0.26, STRIPE_H]} />
+          <meshBasicMaterial color={accentColor} />
+        </mesh>
+
+        {/* ── Section title ─────────────────────────────── */}
+        <Text
+          position={[0, 0.10, DEPTH / 2 + 0.012]}
+          fontSize={CARD_H * 0.135}
+          color="#111122"
+          anchorX="center"
+          anchorY="middle"
+          maxWidth={CARD_W * 0.80}
+          font={undefined}
+        >
+          {SECTION_LABELS[index]}
+        </Text>
+
+        {/* ── Short subtitle ────────────────────────────── */}
+        <Text
+          position={[0, -0.26, DEPTH / 2 + 0.012]}
+          fontSize={CARD_H * 0.074}
+          color="#555577"
+          anchorX="center"
+          anchorY="middle"
+          maxWidth={CARD_W * 0.76}
+          font={undefined}
+        >
+          {SUBTITLES[index]}
+        </Text>
+
+        {/* ── Card index number (bottom-right) ──────────── */}
+        <Text
+          position={[CARD_W / 2 - 0.18, -CARD_H / 2 + 0.17, DEPTH / 2 + 0.012]}
+          fontSize={CARD_H * 0.068}
+          color="#aaaacc"
+          anchorX="right"
+          anchorY="bottom"
+        >
+          {String(index + 1).padStart(2, '0')}
+        </Text>
+
+      </group>
     </group>
   );
 }
