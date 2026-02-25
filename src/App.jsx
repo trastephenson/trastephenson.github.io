@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react';
 import { ScrollProvider } from './context/ScrollContext';
 import Scene from './components/three/Scene';
-import SpatialSection from './components/three/SpatialSection';
 import WorkCard3D from './components/three/WorkCard3D';
+import SectionOverlay from './components/scroll/SectionOverlay';
 import ScrollProgress from './components/scroll/ScrollProgress';
 import ScreenReaderStatus from './components/scroll/ScreenReaderStatus';
 import Header from './components/header/Header';
@@ -13,6 +13,7 @@ import Strengths from './components/about/Strengths';
 import Experience from './components/experience/Experience';
 import Services from './components/services/Services';
 import { mobileApps, platforms, aiWork } from './components/portfolio/Portfolio';
+import WorkPanel from './components/portfolio/WorkPanel';
 import Testimonials from './components/testimonials/Testimonials';
 import Contact from './components/contact/Contact';
 import Footer from './components/footer/Footer';
@@ -20,52 +21,58 @@ import Footer from './components/footer/Footer';
 const App = () => {
   return (
     <ScrollProvider>
-      {/* Layer 1+2: 3D Scene with spatial content */}
+      {/* Layer 1: 3D scene — canvas only, no Html elements inside */}
       <Scene>
-        {/* HTML sections positioned in 3D space */}
-        <SpatialSection sectionIndex={0} noPanel>
-          <Header />
-        </SpatialSection>
-        <SpatialSection sectionIndex={1}>
-          <CTA />
-        </SpatialSection>
-        <SpatialSection sectionIndex={2}>
-          <About />
-        </SpatialSection>
-        <SpatialSection sectionIndex={3}>
-          <Strengths />
-        </SpatialSection>
-        <SpatialSection sectionIndex={4}>
-          <Experience />
-        </SpatialSection>
-        <SpatialSection sectionIndex={5}>
-          <Services />
-        </SpatialSection>
-
-        {/* 3D holographic work cards — isolated Suspense per card so texture loading doesn't block other sections */}
         <Suspense fallback={null}>
-          <WorkCard3D items={mobileApps} sectionIndex={6} title="Featured Work — Mobile Apps" />
+          <WorkCard3D items={mobileApps} sectionIndex={6} />
         </Suspense>
         <Suspense fallback={null}>
-          <WorkCard3D items={platforms} sectionIndex={7} title="Featured Work — Platforms" />
+          <WorkCard3D items={platforms} sectionIndex={7} />
         </Suspense>
         <Suspense fallback={null}>
-          <WorkCard3D items={aiWork} sectionIndex={8} title="Featured Work — AI" />
+          <WorkCard3D items={aiWork} sectionIndex={8} />
         </Suspense>
-
-        {/* More HTML sections */}
-        <SpatialSection sectionIndex={9}>
-          <Testimonials />
-        </SpatialSection>
-        <SpatialSection sectionIndex={10}>
-          <Contact />
-        </SpatialSection>
-        <SpatialSection sectionIndex={11}>
-          <Footer />
-        </SpatialSection>
       </Scene>
 
-      {/* Layer 3: UI Overlay (outside Canvas, in DOM) */}
+      {/* Layer 2: HTML content — CSS-positioned, scroll-driven overlays in the DOM */}
+      <SectionOverlay sectionIndex={0} noPanel>
+        <Header />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={1}>
+        <CTA />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={2}>
+        <About />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={3}>
+        <Strengths />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={4}>
+        <Experience />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={5}>
+        <Services />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={6}>
+        <WorkPanel items={mobileApps} title="Featured Work — Mobile Apps" />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={7}>
+        <WorkPanel items={platforms} title="Featured Work — Platforms" />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={8}>
+        <WorkPanel items={aiWork} title="Featured Work — AI" />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={9}>
+        <Testimonials />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={10}>
+        <Contact />
+      </SectionOverlay>
+      <SectionOverlay sectionIndex={11}>
+        <Footer />
+      </SectionOverlay>
+
+      {/* Layer 3: Persistent UI overlay */}
       <Nav />
       <ScrollProgress />
       <ScreenReaderStatus />
