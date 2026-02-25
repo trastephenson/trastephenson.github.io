@@ -1,6 +1,6 @@
 import { useRef, useState, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
+import { Text, PresentationControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { easing } from 'maath';
 import { useScroll } from '../../context/ScrollContext';
@@ -57,8 +57,8 @@ const fragmentShader = `
     float border  = 1.0 - min(borderX, borderY);
     base = mix(base, vec3(1.0), border * 0.6);
 
-    // Alpha: mostly opaque with slight inner translucency
-    float alpha = mix(0.78, 0.92, uHovered);
+    // Alpha: opaque glass (solid enough to read, still glass-like at edges)
+    float alpha = mix(0.93, 0.98, uHovered);
 
     gl_FragColor = vec4(base, alpha);
   }
@@ -133,13 +133,23 @@ function SectionCard({ index, onSelect }) {
 }
 
 export default function SpatialGrid() {
-  const { zoomToSection } = useScroll();
+  const { zoomToSection, isOverview } = useScroll();
 
   return (
-    <group>
-      {Array.from({ length: TOTAL_SECTIONS }, (_, i) => (
-        <SectionCard key={i} index={i} onSelect={zoomToSection} />
-      ))}
-    </group>
+    <PresentationControls
+      enabled={isOverview}
+      global={false}
+      polar={[-Math.PI / 10, Math.PI / 10]}
+      azimuth={[-Math.PI / 6, Math.PI / 6]}
+      speed={1.4}
+      zoom={1}
+      snap={{ mass: 4, tension: 400 }}
+    >
+      <group>
+        {Array.from({ length: TOTAL_SECTIONS }, (_, i) => (
+          <SectionCard key={i} index={i} onSelect={zoomToSection} />
+        ))}
+      </group>
+    </PresentationControls>
   );
 }

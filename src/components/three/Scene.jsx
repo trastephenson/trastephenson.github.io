@@ -16,7 +16,7 @@ export default function Scene({ children }) {
       }}
     >
       <Canvas
-        camera={{ position: [0, 0, 0.5], fov: 75, near: 0.1, far: 200 }}
+        camera={{ position: [0, 0, 20], fov: 55, near: 0.1, far: 200 }}
         gl={{ antialias: true }}
         dpr={Math.min(window.devicePixelRatio, 2)}
       >

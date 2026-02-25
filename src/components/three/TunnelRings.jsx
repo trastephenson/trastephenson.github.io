@@ -80,8 +80,8 @@ export default function TunnelRings() {
   });
 
   return (
-    <mesh ref={meshRef}>
-      {/* Fullscreen triangle that sits behind everything */}
+    <mesh ref={meshRef} raycast={() => null}>
+      {/* Fullscreen quad rendered in clip space — excluded from raycasting */}
       <planeGeometry args={[2, 2]} />
       <shaderMaterial
         vertexShader={vertexShader}
