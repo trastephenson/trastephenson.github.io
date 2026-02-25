@@ -10,47 +10,48 @@ import { useScroll } from '../../context/ScrollContext'
 const StyledNav = styled.nav`
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.94) 0%,
-    rgba(238, 241, 255, 0.91) 100%
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(240, 244, 255, 0.93) 100%
   );
   width: max-content;
   display: flex;
   align-items: stretch;
-  padding: 0.55rem 0.85rem;
+  padding: 0.7rem 1.1rem;
   z-index: 100;
   position: fixed;
   left: 50%;
-  transform: translateX(-50%) perspective(500px) rotateX(-7deg);
+  transform: translateX(-50%) perspective(600px) rotateX(-8deg);
   transform-origin: bottom center;
   bottom: 2rem;
-  gap: 0.1rem;
-  border-radius: 1.6rem;
-  backdrop-filter: blur(28px) saturate(220%);
-  -webkit-backdrop-filter: blur(28px) saturate(220%);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  border-top: 1.5px solid rgba(255, 255, 255, 0.96);
+  gap: 0.15rem;
+  border-radius: 2rem;
+  backdrop-filter: blur(52px) saturate(320%) brightness(124%);
+  -webkit-backdrop-filter: blur(52px) saturate(320%) brightness(124%);
+  border: 1.5px solid rgba(255, 255, 255, 0.84);
+  border-top: 2px solid rgba(255, 255, 255, 1);
   box-shadow:
-    0 28px 64px rgba(0, 0, 0, 0.14),
-    0 8px 24px rgba(0, 0, 0, 0.09),
-    0 2px 4px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.96),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.05),
-    inset 1px 0 0 rgba(255, 255, 255, 0.6),
-    inset -1px 0 0 rgba(255, 255, 255, 0.35);
+    0 32px 72px rgba(0, 0, 0, 0.16),
+    0 10px 28px rgba(0, 0, 0, 0.10),
+    0 2px 6px rgba(0, 0, 0, 0.05),
+    inset 0 2px 0 rgba(255, 255, 255, 1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.85),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.42),
+    inset 1px 0 0 rgba(255, 255, 255, 0.72),
+    inset -1px 0 0 rgba(255, 255, 255, 0.38);
 
   @media screen and (max-width: 600px) {
-    padding: 0.5rem 0.7rem;
+    padding: 0.55rem 0.85rem;
     bottom: 1rem;
     /* Remove 3D tilt on small screens for readability */
     transform: translateX(-50%);
-    border-radius: 1.4rem;
+    border-radius: 1.6rem;
   }
 `
 
 const StyledNavButton = styled.button`
   background: transparent;
-  padding: 0.55rem 0.9rem;
-  border-radius: 1.1rem;
+  padding: 0.62rem 1rem;
+  border-radius: 1.2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,10 +62,10 @@ const StyledNavButton = styled.button`
   cursor: pointer;
   border: none;
   outline: none;
-  min-width: 56px;
+  min-width: 66px;
 
   .icon {
-    font-size: 1.15rem;
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,7 +73,7 @@ const StyledNavButton = styled.button`
   }
 
   .label {
-    font-size: 0.48rem;
+    font-size: 0.52rem;
     font-weight: 700;
     letter-spacing: 0.09em;
     text-transform: uppercase;

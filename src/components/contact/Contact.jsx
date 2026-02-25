@@ -48,16 +48,20 @@ const ContactOptions = styled.div`
 `;
 
 const ContactCard = styled.article`
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 136, 204, 0.1);
-  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.88) 0%, rgba(247,249,255,0.84) 100%);
+  backdrop-filter: blur(28px) saturate(200%) brightness(112%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(112%);
+  border: 1px solid rgba(255,255,255,0.75);
+  border-top: 1.5px solid rgba(255,255,255,0.96);
+  border-radius: 20px;
   padding: 1.2rem;
   text-align: center;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.95);
 
   &:hover {
-    border-color: rgba(0, 136, 204, 0.2);
-    box-shadow: 0 2px 12px rgba(0, 136, 204, 0.08);
+    box-shadow: 0 8px 32px rgba(0,136,204,0.10), inset 0 1px 0 rgba(255,255,255,0.95);
+    border-color: rgba(255,255,255,0.88);
   }
 
   svg {
@@ -81,10 +85,14 @@ const ContactCard = styled.article`
 `;
 
 const FormWrapper = styled.div`
-  background: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgba(0, 136, 204, 0.1);
-  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.88) 0%, rgba(247,249,255,0.84) 100%);
+  backdrop-filter: blur(28px) saturate(200%) brightness(112%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(112%);
+  border: 1px solid rgba(255,255,255,0.75);
+  border-top: 1.5px solid rgba(255,255,255,0.96);
+  border-radius: 20px;
   padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.95);
 `;
 
 const FormTitle = styled.p`

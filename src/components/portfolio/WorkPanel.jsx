@@ -1,4 +1,5 @@
 import React from 'react';
+import SleekButton from '../common/SleekButton';
 
 const headingStyle = {
   color: '#0088cc',
@@ -17,12 +18,16 @@ const gridStyle = {
 };
 
 const cardStyle = {
-  background: 'rgba(255,255,255,0.7)',
-  border: '1px solid rgba(0, 136, 204, 0.15)',
-  borderRadius: '12px',
+  background: 'linear-gradient(145deg, rgba(255,255,255,0.88) 0%, rgba(247,249,255,0.84) 100%)',
+  backdropFilter: 'blur(28px) saturate(200%) brightness(112%)',
+  WebkitBackdropFilter: 'blur(28px) saturate(200%) brightness(112%)',
+  border: '1px solid rgba(255,255,255,0.75)',
+  borderTop: '1.5px solid rgba(255,255,255,0.96)',
+  borderRadius: '16px',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
+  boxShadow: '0 8px 32px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.95)',
 };
 
 const imgStyle = {
@@ -60,17 +65,11 @@ const btnRowStyle = {
   gap: '0.5rem',
   flexWrap: 'wrap',
   marginTop: '0.25rem',
+  justifyContent: 'center',
 };
 
-const linkStyle = {
-  color: '#0088cc',
-  fontSize: '0.75rem',
-  textDecoration: 'none',
-  border: '1px solid rgba(0, 136, 204, 0.3)',
-  padding: '0.25rem 0.7rem',
-  borderRadius: '4px',
-  fontFamily: "'Inter', sans-serif",
-};
+// Blue colour theme — keeps #0088cc brand colour, fills with blue on hover, text flips to white
+const BTN_COLOR = { '--btn-text': '#0088cc', '--btn-fill': '#0088cc' };
 
 export default function WorkPanel({ items, title }) {
   return (
@@ -85,14 +84,20 @@ export default function WorkPanel({ items, title }) {
               <p style={summaryStyle}>{item.summary}</p>
               <div style={btnRowStyle}>
                 {item.primaryUrl && item.primaryUrl !== '#contact' && (
-                  <a href={item.primaryUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>
-                    {item.primaryCta}
-                  </a>
+                  <SleekButton style={BTN_COLOR}>
+                    <a href={item.primaryUrl} target="_blank" rel="noopener noreferrer"
+                       style={{ color: 'inherit', textDecoration: 'none' }}>
+                      {item.primaryCta}
+                    </a>
+                  </SleekButton>
                 )}
                 {item.secondaryUrl && item.secondaryUrl !== '#contact' && (
-                  <a href={item.secondaryUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>
-                    {item.secondaryCta}
-                  </a>
+                  <SleekButton style={BTN_COLOR}>
+                    <a href={item.secondaryUrl} target="_blank" rel="noopener noreferrer"
+                       style={{ color: 'inherit', textDecoration: 'none' }}>
+                      {item.secondaryCta}
+                    </a>
+                  </SleekButton>
                 )}
               </div>
             </div>

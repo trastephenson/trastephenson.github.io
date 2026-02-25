@@ -29,7 +29,7 @@ const StyledWrapper = styled.div`
     -webkit-appearance: button;
     background-color: var(--bg-void, #f5f5f5);
     background-image: none;
-    color: #111;
+    color: var(--btn-text, #111);
     cursor: pointer;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
       Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
@@ -69,7 +69,7 @@ const StyledWrapper = styled.div`
 
   .btn-31:before {
     --progress: 100%;
-    background: var(--accent, #0088cc);
+    background: var(--btn-fill, var(--accent, #111));
     -webkit-clip-path: polygon(
       100% 0,
       var(--progress) var(--progress),
@@ -104,7 +104,7 @@ const StyledWrapper = styled.div`
     display: block;
     font-weight: 900;
     position: relative;
-    color: #111;
+    color: var(--btn-text, #111);
     transition: color 0.15s ease;
   }
 
