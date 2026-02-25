@@ -47,8 +47,8 @@ const fragmentShader = /* glsl */ `
     // Fade sheen as uActive approaches 1
     float sheenFade = 1.0 - smoothstep(0.7, 1.0, uActive);
 
-    // Cyan-white sheen color matching portfolio accent
-    vec3 sheenColor = vec3(0.0, 0.94, 1.0) * intensity * 0.7 * sheenFade;
+    // Blue sheen color matching portfolio accent (#0088cc)
+    vec3 sheenColor = vec3(0.0, 0.53, 0.8) * intensity * 0.7 * sheenFade;
     vec3 finalColor = baseColor + sheenColor * texColor.a;
 
     gl_FragColor = vec4(finalColor, texColor.a * uOpacity);

@@ -39,8 +39,8 @@ const Slide = styled.div`
 `;
 
 const TestimonialCard = styled.div`
-  background: rgba(8, 12, 28, 0.6);
-  border: 1px solid rgba(0, 240, 255, 0.08);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 136, 204, 0.1);
   border-radius: 16px;
   padding: 2rem;
   text-align: left;
@@ -62,7 +62,7 @@ const Avatar = styled.div`
   height: 3.5rem;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid rgba(0, 240, 255, 0.15);
+  border: 2px solid rgba(0, 136, 204, 0.15);
   flex-shrink: 0;
 
   img {
@@ -108,7 +108,7 @@ const ReviewText = styled.p`
     width: 3px;
   }
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 240, 255, 0.15);
+    background: rgba(0, 136, 204, 0.15);
     border-radius: 2px;
   }
 `;
@@ -126,7 +126,7 @@ const DotButton = styled.button`
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background: ${props => props.$active ? 'var(--accent)' : 'rgba(0, 240, 255, 0.2)'};
+  background: ${props => props.$active ? 'var(--accent)' : 'rgba(0, 136, 204, 0.2)'};
   box-shadow: ${props => props.$active ? '0 0 8px var(--accent-glow)' : 'none'};
   transition: all 0.3s ease;
   padding: 0;

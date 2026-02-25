@@ -1,72 +1,95 @@
 import { useRef, useMemo } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
-import * as THREE from 'three';
-import { SCROLL_CONFIG } from '../../hooks/useVirtualScroll';
+import { useFrame } from '@react-three/fiber';
 
-const TORUS_COUNT = 60;
-const TUNNEL_RADIUS = 6;
-const TUBE_RADIUS = 0.12;
-const TOTAL_DEPTH = SCROLL_CONFIG.TOTAL_SECTIONS * SCROLL_CONFIG.SECTION_HEIGHT;
-const TORUS_SPACING = TOTAL_DEPTH / TORUS_COUNT;
+// Fullscreen quad with a topographic contour-line shader,
+// matching the shoe-finder demo's BG Shader aesthetic.
+const vertexShader = `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = vec4(position, 1.0);
+  }
+`;
+
+const fragmentShader = `
+  varying vec2 vUv;
+  uniform float uTime;
+  uniform float uAspect;
+
+  // Simple smooth noise
+  float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+  }
+  float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    float a = hash(i);
+    float b = hash(i + vec2(1.0, 0.0));
+    float c = hash(i + vec2(0.0, 1.0));
+    float d = hash(i + vec2(1.0, 1.0));
+    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+  }
+  float fbm(vec2 p) {
+    float v = 0.0;
+    float a = 0.5;
+    for (int i = 0; i < 5; i++) {
+      v += a * noise(p);
+      p *= 2.0;
+      a *= 0.5;
+    }
+    return v;
+  }
+
+  void main() {
+    vec2 uv = vUv;
+    uv.x *= uAspect;
+    uv *= 3.0; // scale — matches demo's "Scale: 3.0"
+
+    float t = uTime * 0.05; // slow drift — matches "Speed: 0.05"
+    float h = fbm(uv + t);
+
+    // Contour lines: thin bands at regular intervals (thickness ~0.03)
+    float contour = abs(fract(h * 8.0) - 0.5);
+    float line = 1.0 - smoothstep(0.0, 0.03, contour);
+
+    // Background color: #eaeaea
+    vec3 bgColor = vec3(0.918, 0.918, 0.918);
+    // Line color: slightly darker — matches demo's #e0e0e0 @ 0.40 opacity
+    vec3 lineColor = vec3(0.82, 0.82, 0.82);
+
+    vec3 color = mix(bgColor, lineColor, line * 0.55);
+    gl_FragColor = vec4(color, 1.0);
+  }
+`;
 
 export default function TunnelRings() {
-  const groupRef = useRef();
-  const { camera } = useThree();
-
-  const ringsData = useMemo(() => {
-    return Array.from({ length: TORUS_COUNT }, (_, i) => ({
-      baseZ: -i * TORUS_SPACING,
-      rotationSpeed: 0.002 + (i % 5) * 0.001,
-      color: new THREE.Color().lerpColors(
-        new THREE.Color(0x00d4ff),
-        new THREE.Color(0x0066aa),
-        i / TORUS_COUNT
-      ),
-      initialRotY: (i % 3) * 0.15,
-    }));
-  }, []);
+  const meshRef = useRef();
+  const uniforms = useMemo(() => ({
+    uTime: { value: 0 },
+    uAspect: { value: window.innerWidth / window.innerHeight },
+  }), []);
 
   const prefersReducedMotion =
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  useFrame(() => {
-    if (!groupRef.current || prefersReducedMotion) return;
-
-    groupRef.current.children.forEach((mesh, i) => {
-      const data = ringsData[i];
-      if (!data) return;
-
-      mesh.rotation.z += data.rotationSpeed;
-
-      const dist = Math.abs(mesh.position.z - camera.position.z);
-      mesh.material.opacity = dist < 2 ? 0.9 : Math.max(0.15, 0.9 - dist * 0.015);
-      mesh.material.emissiveIntensity = dist < 3 ? 0.7 : Math.max(0.2, 0.7 - dist * 0.01);
-
-      const scale = dist < 3 ? 1.0 : Math.max(0.6, 1.0 - dist * 0.008);
-      mesh.scale.setScalar(scale);
-    });
+  useFrame(({ clock }) => {
+    if (!meshRef.current || prefersReducedMotion) return;
+    uniforms.uTime.value = clock.getElapsedTime();
   });
 
   return (
-    <group ref={groupRef}>
-      {ringsData.map((data, i) => (
-        <mesh
-          key={i}
-          position={[0, 0, data.baseZ]}
-          rotation={[Math.PI / 2, data.initialRotY, 0]}
-        >
-          <torusGeometry args={[TUNNEL_RADIUS, TUBE_RADIUS, 16, 48]} />
-          <meshStandardMaterial
-            color={data.color}
-            emissive={data.color}
-            emissiveIntensity={0.6}
-            wireframe
-            transparent
-            opacity={0.85}
-          />
-        </mesh>
-      ))}
-    </group>
+    <mesh ref={meshRef}>
+      {/* Fullscreen triangle that sits behind everything */}
+      <planeGeometry args={[2, 2]} />
+      <shaderMaterial
+        vertexShader={vertexShader}
+        fragmentShader={fragmentShader}
+        uniforms={uniforms}
+        depthTest={false}
+        depthWrite={false}
+      />
+    </mesh>
   );
 }

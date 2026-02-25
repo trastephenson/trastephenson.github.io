@@ -29,18 +29,18 @@ const Tag = styled.span`
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.05em;
-  background: rgba(0, 180, 212, 0.08);
+  background: rgba(0, 136, 204, 0.06);
   padding: 0.5rem 1.2rem;
   border-radius: 50px;
-  border: 1px solid rgba(0, 180, 212, 0.15);
+  border: 1px solid rgba(0, 136, 204, 0.12);
   cursor: default;
   transition: all 0.3s ease;
   font-family: 'Inter', sans-serif;
 
   &:hover {
-    background: rgba(0, 180, 212, 0.2);
-    border-color: rgba(0, 180, 212, 0.35);
-    box-shadow: 0 0 15px rgba(0, 180, 212, 0.2);
+    background: rgba(0, 136, 204, 0.12);
+    border-color: rgba(0, 136, 204, 0.25);
+    box-shadow: 0 2px 8px rgba(0, 136, 204, 0.1);
     transform: translateY(-2px);
   }
 `;

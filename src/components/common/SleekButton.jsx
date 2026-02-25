@@ -27,9 +27,9 @@ const StyledWrapper = styled.div`
   .btn-31 {
     -webkit-tap-highlight-color: transparent;
     -webkit-appearance: button;
-    background-color: var(--bg-void, #050510);
+    background-color: var(--bg-void, #f5f5f5);
     background-image: none;
-    color: var(--accent, #00f0ff);
+    color: var(--accent, #0088cc);
     cursor: pointer;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
       Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
@@ -61,7 +61,7 @@ const StyledWrapper = styled.div`
 
   .btn-31 {
     border-width: 1px;
-    border-color: rgba(0, 240, 255, 0.15);
+    border-color: rgba(0, 136, 204, 0.2);
     padding: 1rem 2rem;
     position: relative;
     text-transform: uppercase;
@@ -69,7 +69,7 @@ const StyledWrapper = styled.div`
 
   .btn-31:before {
     --progress: 100%;
-    background: var(--accent, #00f0ff);
+    background: var(--accent, #0088cc);
     -webkit-clip-path: polygon(
       100% 0,
       var(--progress) var(--progress),

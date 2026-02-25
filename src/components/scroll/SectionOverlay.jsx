@@ -20,14 +20,11 @@ const panelBase = {
 const glassExtra = {
   maxHeight: '85vh',
   overflowY: 'auto',
-  background: 'rgba(255, 255, 255, 0.92)',
-  backdropFilter: 'blur(24px) saturate(140%)',
-  WebkitBackdropFilter: 'blur(24px) saturate(140%)',
-  border: '1px solid rgba(0, 100, 180, 0.14)',
-  borderRadius: '20px',
+  background: '#ffffff',
+  border: '1px solid rgba(0, 0, 0, 0.06)',
+  borderRadius: '16px',
   padding: 'clamp(1.5rem, 4vw, 3rem)',
-  boxShadow:
-    '0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.8)',
+  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04)',
 };
 
 const noPanelExtra = {

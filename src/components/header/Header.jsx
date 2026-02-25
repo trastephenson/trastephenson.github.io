@@ -18,9 +18,7 @@ const HeroName = styled.h1`
   font-weight: 900;
   font-family: 'Inter', sans-serif;
   text-shadow:
-    0 0 30px var(--accent-glow),
-    0 0 60px rgba(0, 240, 255, 0.3),
-    0 0 90px rgba(0, 240, 255, 0.15);
+    0 1px 2px rgba(0, 0, 0, 0.08);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   line-height: 1.1;

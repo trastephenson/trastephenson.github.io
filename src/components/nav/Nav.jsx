@@ -8,19 +8,20 @@ import {BiMessageSquareDetail} from 'react-icons/bi'
 import { useScroll } from '../../context/ScrollContext'
 
 const StyledNav = styled.nav`
-  background: rgba(5, 5, 16, 0.6);
+  background: rgba(255, 255, 255, 0.9);
   width: max-content;
   display: flex;
-  padding: 0.7rem 1.7rem;
+  padding: 0.5rem 1.2rem;
   z-index: 100;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   bottom: 2rem;
-  gap: 0.8rem;
+  gap: 0.2rem;
   border-radius: 3rem;
-  backdrop-filter: blur(20px) saturate(120%);
-  border: 1px solid rgba(0, 240, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
 
   @media screen and (max-width: 600px) {
     padding: 0.5rem 1.2rem;
@@ -58,34 +59,29 @@ const StyledNavButton = styled.button`
   }
 
   &:hover {
-    color: var(--accent);
-    background: rgba(0, 240, 255, 0.08);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    color: var(--text-primary);
+    background: rgba(0, 0, 0, 0.05);
     transform: scale(1.1);
   }
 
   @media (hover: none) and (pointer: coarse) {
     &:hover {
       transform: none;
-      box-shadow: none;
     }
     &:active {
-      color: var(--accent);
-      background: rgba(0, 240, 255, 0.1);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.08);
       transform: scale(1.05);
     }
   }
 
   &.active {
-    background: rgba(0, 240, 255, 0.12);
-    color: var(--accent);
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+    background: rgba(0, 0, 0, 0.08);
+    color: var(--text-primary);
   }
 
   &.active:hover {
-    background: rgba(0, 240, 255, 0.18);
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+    background: rgba(0, 0, 0, 0.12);
   }
 `;
 

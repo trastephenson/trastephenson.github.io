@@ -11,17 +11,17 @@
 }
 
 :root {
-  /* Dark Cosmos Palette */
-  --bg-void: #050510;
-  --bg-surface: rgba(8, 12, 28, 0.75);
-  --text-primary: #f0f0f0;
-  --text-secondary: rgba(180, 200, 220, 0.8);
-  --accent: #00f0ff;
-  --accent-glow: rgba(0, 240, 255, 0.4);
-  --ring-near: #00d4ff;
-  --ring-far: #0066aa;
-  --particle: #00b8d4;
-  --danger: #ff3366;
+  /* Shoe-finder inspired: near-white warm gray, clean and minimal */
+  --bg-void: #eaeaea;
+  --bg-surface: rgba(255, 255, 255, 0.97);
+  --text-primary: #111111;
+  --text-secondary: rgba(50, 50, 55, 0.72);
+  --accent: #111111;
+  --accent-glow: rgba(0, 0, 0, 0.08);
+  --ring-near: #d4d4d4;
+  --ring-far: #e5e5e5;
+  --particle: #cccccc;
+  --danger: #dc2626;
 
   /* Layout */
   --container-width-lg: 75%;

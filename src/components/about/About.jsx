@@ -20,8 +20,8 @@ const PhotoWrapper = styled.div`
   height: clamp(120px, 20vw, 200px);
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid rgba(0, 240, 255, 0.15);
-  box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+  border: 2px solid rgba(0, 136, 204, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 
   img {
     width: 100%;

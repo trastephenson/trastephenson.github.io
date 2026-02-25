@@ -48,16 +48,16 @@ const ContactOptions = styled.div`
 `;
 
 const ContactCard = styled.article`
-  background: rgba(0, 240, 255, 0.03);
-  border: 1px solid rgba(0, 240, 255, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 136, 204, 0.1);
   border-radius: 12px;
   padding: 1.2rem;
   text-align: center;
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: rgba(0, 240, 255, 0.2);
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.06);
+    border-color: rgba(0, 136, 204, 0.2);
+    box-shadow: 0 2px 12px rgba(0, 136, 204, 0.08);
   }
 
   svg {
@@ -81,8 +81,8 @@ const ContactCard = styled.article`
 `;
 
 const FormWrapper = styled.div`
-  background: rgba(8, 12, 28, 0.5);
-  border: 1px solid rgba(0, 240, 255, 0.08);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 136, 204, 0.1);
   border-radius: 16px;
   padding: 1.5rem;
 `;
@@ -96,15 +96,15 @@ const FormTitle = styled.p`
 `;
 
 const FormField = styled.div`
-  background: rgba(0, 240, 255, 0.03);
+  background: rgba(0, 136, 204, 0.04);
   border-radius: 10px;
   padding: 0.6rem;
   margin-bottom: 0.8rem;
   transition: all 0.3s ease;
 
   &:focus-within {
-    background: rgba(0, 240, 255, 0.06);
-    box-shadow: 0 0 10px rgba(0, 240, 255, 0.08);
+    background: rgba(0, 136, 204, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 136, 204, 0.08);
   }
 `;
 

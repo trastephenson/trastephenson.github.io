@@ -31,10 +31,10 @@ const LogoButton = styled.button`
   margin-bottom: 1rem;
   display: inline-block;
   transition: all 0.3s ease;
-  text-shadow: 0 0 10px var(--accent-glow);
+  text-shadow: none;
 
   &:hover {
-    text-shadow: 0 0 20px var(--accent-glow);
+    color: var(--accent);
     transform: translateY(-2px);
   }
 `;
@@ -60,7 +60,7 @@ const NavButton = styled.button`
 
   &:hover {
     color: var(--accent);
-    text-shadow: 0 0 8px var(--accent-glow);
+    text-decoration: none;
   }
 `;
 
@@ -71,18 +71,18 @@ const Socials = styled.div`
   margin-bottom: 1rem;
 
   a {
-    background: rgba(0, 240, 255, 0.06);
+    background: rgba(0, 136, 204, 0.06);
     color: var(--text-primary);
     padding: 0.6rem;
     border-radius: 0.5rem;
     display: flex;
-    border: 1px solid rgba(0, 240, 255, 0.1);
+    border: 1px solid rgba(0, 136, 204, 0.12);
     transition: all 0.3s ease;
 
     &:hover {
-      background: rgba(0, 240, 255, 0.15);
-      border-color: rgba(0, 240, 255, 0.3);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+      background: rgba(0, 136, 204, 0.12);
+      border-color: rgba(0, 136, 204, 0.25);
+      box-shadow: 0 2px 8px rgba(0, 136, 204, 0.12);
       transform: translateY(-2px);
     }
   }
