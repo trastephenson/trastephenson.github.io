@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { easing } from 'maath';
 import { useScroll } from '../../context/ScrollContext';
 
-const CAMERA_START_Z = 5;
+const CAMERA_START_Z = 0;
 const DAMP_FACTOR = 0.15;
 const TILT_FACTOR = 0.3;
 const TILT_DAMP = 0.2;
@@ -16,7 +16,7 @@ export default function CameraRig() {
   const { camera } = useThree();
   const { subscribe } = useScroll();
   const scrollRef = useRef(0);
-  const prevZ = useRef(CAMERA_START_Z);
+  const prevZ = useRef(0);
   const velocityZ = useRef(0);
 
   const prefersReducedMotion =
