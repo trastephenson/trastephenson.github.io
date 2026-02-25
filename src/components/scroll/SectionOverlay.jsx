@@ -1,35 +1,38 @@
 import { useRef, useLayoutEffect } from 'react';
 import { useScroll } from '../../context/ScrollContext';
+import { ACCENT_COLORS, SECTION_LABELS } from '../../utils/cardLayout';
 
-// Apple-style liquid glass: translucent, blurred, bright specular top edge
-const panelBase = {
+// Outer wrapper — position:fixed, centred, transitions in/out
+const wrapperBase = {
   position: 'fixed',
   top: '50%',
   left: '50%',
   zIndex: 10,
   width: '90vw',
-  maxWidth: '1100px',
-  background: 'linear-gradient(145deg, rgba(255,255,255,0.72) 0%, rgba(242,244,255,0.68) 100%)',
-  backdropFilter: 'blur(48px) saturate(200%) brightness(110%)',
-  WebkitBackdropFilter: 'blur(48px) saturate(200%) brightness(110%)',
-  border: '1px solid rgba(255,255,255,0.55)',
-  borderTop: '1px solid rgba(255,255,255,0.92)',
-  borderLeft: '1px solid rgba(255,255,255,0.75)',
-  borderRadius: '22px',
-  padding: 'clamp(1.5rem, 4vw, 3rem)',
+  maxWidth: '900px',
+  // Glass card body
+  background: 'linear-gradient(160deg, rgba(255,255,255,0.93) 0%, rgba(240,242,255,0.91) 100%)',
+  backdropFilter: 'blur(48px) saturate(200%) brightness(108%)',
+  WebkitBackdropFilter: 'blur(48px) saturate(200%) brightness(108%)',
+  border: '1px solid rgba(255,255,255,0.65)',
+  borderTop: '1.5px solid rgba(255,255,255,0.96)',
+  borderRadius: '20px',
+  overflow: 'hidden',           // clip the accent stripe to card corners
   boxShadow: [
-    '0 8px 48px rgba(0,0,0,0.10)',
-    '0 2px 8px rgba(0,0,0,0.06)',
+    '0 24px 64px rgba(0,0,0,0.13)',
+    '0 4px 16px rgba(0,0,0,0.07)',
     'inset 0 1px 0 rgba(255,255,255,0.96)',
     'inset 0 -1px 0 rgba(255,255,255,0.35)',
     'inset 1px 0 0 rgba(255,255,255,0.6)',
     'inset -1px 0 0 rgba(255,255,255,0.3)',
   ].join(', '),
-  maxHeight: '82vh',
-  overflowY: 'auto',
-  transition: 'opacity 0.38s cubic-bezier(0.4,0,0.2,1), transform 0.38s cubic-bezier(0.4,0,0.2,1)',
+  maxHeight: '84vh',
+  display: 'flex',
+  flexDirection: 'column',
+  transition: 'opacity 0.36s cubic-bezier(0.4,0,0.2,1), transform 0.36s cubic-bezier(0.4,0,0.2,1)',
 };
 
+// Hero (noPanel) — transparent passthrough, no glass card
 const heroPanelBase = {
   position: 'fixed',
   top: '50%',
@@ -40,32 +43,16 @@ const heroPanelBase = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: 'opacity 0.38s cubic-bezier(0.4,0,0.2,1), transform 0.38s cubic-bezier(0.4,0,0.2,1)',
-};
-
-const backBtnStyle = {
-  position: 'absolute',
-  top: '1rem',
-  right: '1.1rem',
-  background: 'rgba(0,0,0,0.06)',
-  border: '1px solid rgba(0,0,0,0.08)',
-  borderRadius: '50%',
-  width: '2rem',
-  height: '2rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  cursor: 'pointer',
-  fontSize: '0.85rem',
-  color: '#444',
-  lineHeight: 1,
-  transition: 'background 0.2s',
+  transition: 'opacity 0.36s cubic-bezier(0.4,0,0.2,1), transform 0.36s cubic-bezier(0.4,0,0.2,1)',
 };
 
 export default function SectionOverlay({ sectionIndex, children, noPanel }) {
   const ref = useRef();
   const { activeSection, zoomOut } = useScroll();
   const isActive = activeSection === sectionIndex;
+
+  const accentColor = ACCENT_COLORS[sectionIndex] ?? '#888';
+  const sectionTitle = SECTION_LABELS[sectionIndex] ?? '';
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -76,31 +63,97 @@ export default function SectionOverlay({ sectionIndex, children, noPanel }) {
       el.style.pointerEvents = 'auto';
     } else {
       el.style.opacity = '0';
-      el.style.transform = 'translate(-50%, -50%) scale(0.94)';
+      el.style.transform = 'translate(-50%, -50%) scale(0.93)';
       el.style.pointerEvents = 'none';
     }
   }, [isActive]);
 
   const baseStyle = {
-    ...(noPanel ? heroPanelBase : panelBase),
+    ...(noPanel ? heroPanelBase : wrapperBase),
     opacity: 0,
-    transform: 'translate(-50%, -50%) scale(0.94)',
+    transform: 'translate(-50%, -50%) scale(0.93)',
     pointerEvents: 'none',
   };
 
+  if (noPanel) {
+    return (
+      <div ref={ref} style={baseStyle}>
+        {children}
+      </div>
+    );
+  }
+
   return (
     <div ref={ref} style={baseStyle}>
-      {!noPanel && (
+      {/* ── Card header — matches the 3D card accent stripe ── */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.75rem',
+        padding: '0 1.25rem',
+        borderBottom: '1px solid rgba(0,0,0,0.055)',
+        flexShrink: 0,
+      }}>
+        {/* Accent colour dot matching the card stripe */}
+        <span style={{
+          display: 'inline-block',
+          width: '10px',
+          height: '10px',
+          borderRadius: '50%',
+          background: accentColor,
+          flexShrink: 0,
+        }} />
+        {/* Section title matching the 3D card label */}
+        <h2 style={{
+          margin: 0,
+          padding: '0.9rem 0',
+          fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
+          fontWeight: 700,
+          color: '#111',
+          letterSpacing: '-0.01em',
+          flex: 1,
+        }}>
+          {sectionTitle}
+        </h2>
+        {/* Back / close button */}
         <button
-          style={backBtnStyle}
           onClick={zoomOut}
           aria-label="Back to overview"
           title="Back (Esc)"
+          style={{
+            background: 'rgba(0,0,0,0.06)',
+            border: '1px solid rgba(0,0,0,0.08)',
+            borderRadius: '50%',
+            width: '1.9rem',
+            height: '1.9rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            fontSize: '0.8rem',
+            color: '#444',
+            flexShrink: 0,
+          }}
         >
           ✕
         </button>
-      )}
-      {children}
+      </div>
+
+      {/* Coloured stripe — 5 px, full width, echoes the card top stripe */}
+      <div style={{
+        height: '5px',
+        background: accentColor,
+        flexShrink: 0,
+      }} />
+
+      {/* ── Scrollable content area ── */}
+      <div style={{
+        overflowY: 'auto',
+        padding: 'clamp(1.2rem, 3.5vw, 2.5rem)',
+        flex: 1,
+      }}>
+        {children}
+      </div>
     </div>
   );
 }

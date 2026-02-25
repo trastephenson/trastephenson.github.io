@@ -9,15 +9,9 @@ import {
   CARD_W,
   CARD_H,
   SECTION_LABELS,
+  ACCENT_COLORS,
   TOTAL_SECTIONS,
 } from '../../utils/cardLayout';
-
-// One accent color per section — spread across portfolio palette
-const ACCENT_COLORS = [
-  '#7c6ff7', '#9c6df7', '#4f9ef5', '#2eb8c7',
-  '#22c97a', '#f07c3c', '#e95b78', '#c94bb9',
-  '#5b5ef5', '#3bc7c7', '#f5b84b', '#8a8aaa',
-];
 
 // Short descriptor line under each section label
 const SUBTITLES = [

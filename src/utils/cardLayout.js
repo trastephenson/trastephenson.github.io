@@ -34,6 +34,13 @@ export function getCardPosition(index) {
   return [x, y, z];
 }
 
+// One accent colour per section — used by both the 3D card and the HTML overlay
+export const ACCENT_COLORS = [
+  '#7c6ff7', '#9c6df7', '#4f9ef5', '#2eb8c7',
+  '#22c97a', '#f07c3c', '#e95b78', '#c94bb9',
+  '#5b5ef5', '#3bc7c7', '#f5b84b', '#8a8aaa',
+];
+
 export const SECTION_LABELS = [
   'Hello',
   'Tagline',
