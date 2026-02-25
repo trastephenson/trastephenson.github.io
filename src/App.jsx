@@ -5,9 +5,11 @@ import SpatialGrid from './components/three/SpatialGrid';
 import SectionOverlay from './components/scroll/SectionOverlay';
 import ScrollProgress from './components/scroll/ScrollProgress';
 import ScreenReaderStatus from './components/scroll/ScreenReaderStatus';
+import BackButton from './components/scroll/BackButton';
 import Header from './components/header/Header';
 import CTA from './components/header/CTA';
 import Nav from './components/nav/Nav';
+import ME from './assets/me.png';
 import About from './components/about/About';
 import Strengths from './components/about/Strengths';
 import Experience from './components/experience/Experience';
@@ -27,8 +29,17 @@ const App = () => {
       </Scene>
 
       {/* Layer 2: HTML content — CSS-positioned, scroll-driven overlays in the DOM */}
-      <SectionOverlay sectionIndex={0} noPanel>
-        <Header />
+      <SectionOverlay sectionIndex={0}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem', textAlign: 'center' }}>
+          <img
+            src={ME}
+            alt="Travis Stephenson"
+            style={{ width: '110px', height: '110px', borderRadius: '50%', objectFit: 'cover',
+                     border: '3px solid rgba(124,111,247,0.25)', boxShadow: '0 4px 20px rgba(0,0,0,0.1)' }}
+          />
+          <Header />
+          <CTA />
+        </div>
       </SectionOverlay>
       <SectionOverlay sectionIndex={1}>
         <CTA />
@@ -66,6 +77,7 @@ const App = () => {
 
       {/* Layer 3: Persistent UI overlay */}
       <Nav />
+      <BackButton />
       <ScrollProgress />
       <ScreenReaderStatus />
     </ScrollProvider>

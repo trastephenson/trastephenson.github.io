@@ -8,13 +8,12 @@ const HeroContainer = styled.div`
   justify-content: center;
   text-align: center;
   width: 100%;
-  height: 100%;
-  padding: 2rem;
+  padding: 0.25rem 1rem;
 `;
 
 const HeroName = styled.h1`
   color: var(--text-primary);
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(1.8rem, 6vw, 3.5rem);
   font-weight: 900;
   font-family: 'Inter', sans-serif;
   text-shadow:
