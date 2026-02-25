@@ -39,11 +39,19 @@ const Slide = styled.div`
 `;
 
 const TestimonialCard = styled.div`
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(0, 136, 204, 0.1);
-  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.93) 0%, rgba(247,249,255,0.89) 100%);
+  backdrop-filter: blur(28px) saturate(200%) brightness(112%);
+  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(112%);
+  border: 1px solid rgba(255,255,255,0.78);
+  border-top: 1.5px solid rgba(255,255,255,0.97);
+  border-radius: 20px;
   padding: 2rem;
   text-align: left;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.07),
+    0 2px 8px rgba(0,0,0,0.04),
+    inset 0 1.5px 0 rgba(255,255,255,0.97),
+    inset 0 -1px 0 rgba(255,255,255,0.32);
 
   @media (max-width: 600px) {
     padding: 1.2rem;

@@ -1,4 +1,4 @@
-import { useRef, useState, useMemo, Suspense } from 'react';
+import { useRef, useState, useMemo, useEffect, Suspense } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { RoundedBox, PresentationControls, Text, useTexture } from '@react-three/drei';
 import { easing } from 'maath';
@@ -13,12 +13,28 @@ import {
 } from '../../utils/cardLayout';
 
 // Asset imports — used as WebGL textures (no HTML/CSS involved)
-import ME       from '../../assets/me.png';
-import ME_ABOUT from '../../assets/me-about.png';
-import IMG_SOT  from '../../assets/sot.png';
-import IMG_CAMS from '../../assets/CAMS.png';
-import IMG_AI   from '../../assets/portfolio5.png';
-import IMG_BERT from '../../assets/bert.jpg';
+import ME         from '../../assets/me.png';
+import ME_ABOUT   from '../../assets/me-about.png';
+import IMG_SOT    from '../../assets/sot.png';
+import IMG_CAMS   from '../../assets/CAMS.png';
+import IMG_AI     from '../../assets/portfolio5.png';
+import IMG_BERT   from '../../assets/bert.jpg';
+import IMG_MAGESH from '../../assets/magesh.jpg';
+import IMG_ARYAN  from '../../assets/aryan.jpg';
+import IMG_SAM    from '../../assets/sam.jpg';
+import IMG_ANIRBAN from '../../assets/anirban.jpg';
+
+// ── Testimonials data (compact, fits 3D card preview) ──────────────────────────
+const T_SRCS   = [IMG_MAGESH, IMG_BERT,      IMG_ARYAN,              IMG_SAM,                    IMG_ANIRBAN];
+const T_NAMES  = ['Magesh',  'Bert Curtis',  'Aryan Basak',          'Sammuel Syphrett',         'Anirban Dutta'];
+const T_ROLES  = ['QA Lead, Fidelity', 'Senior SDET', 'PM @ Utah Tech Labs', 'Supervisor',     'Python Data Engineer'];
+const T_QUOTES = [
+  '"highly skilled, dedicated professional — problem-solving sets them apart"',
+  '"consistently demonstrates a passion for learning and problem-solving"',
+  '"drives projects to successful completion — truly impressive"',
+  '"exceptional leadership and humility — invaluable asset"',
+  '"great team player, always keeps the team spirit high"',
+];
 
 const DEPTH  = 0.12;
 const RADIUS = 0.05;
@@ -59,6 +75,58 @@ function CardHeader({ label, c }) {
       >
         {label.toUpperCase()}
       </Text>
+    </>
+  );
+}
+
+// ── Testimonials carousel (3D card) ───────────────────────────────────────────
+// Inner: uses useTexture (needs Suspense above it) + cycling state
+function TestimonialsInner({ c }) {
+  const textures = useTexture(T_SRCS);   // preloads all 5 photos at once
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setIdx(i => (i + 1) % T_SRCS.length), 3500);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <>
+      {/* Photo — key forces material recreate so texture swap is immediate */}
+      <mesh position={[-0.88, 0.08, FACE_Z]}>
+        <circleGeometry args={[0.22, 48]} />
+        <meshBasicMaterial key={idx} map={textures[idx]} transparent />
+      </mesh>
+      <Text position={[-0.54, 0.30, FACE_Z]} fontSize={0.12} color="#111"
+            anchorX="left" anchorY="middle" maxWidth={1.82}>
+        {T_NAMES[idx]}
+      </Text>
+      <Text position={[-0.54, 0.11, FACE_Z]} fontSize={0.09} color="#888"
+            anchorX="left" anchorY="middle" maxWidth={1.82}>
+        {T_ROLES[idx]}
+      </Text>
+      <Text position={[0, -0.18, FACE_Z]} fontSize={0.1} color="#444"
+            anchorX="center" anchorY="top" maxWidth={2.55} textAlign="center" lineHeight={1.55}>
+        {T_QUOTES[idx]}
+      </Text>
+      {/* Dot indicators */}
+      {T_SRCS.map((_, i) => (
+        <mesh key={i} position={[-0.28 + i * 0.14, -0.73, FACE_Z]}>
+          <circleGeometry args={[i === idx ? 0.052 : 0.035, 16]} />
+          <meshBasicMaterial color={i === idx ? c : '#cccccc'} />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
+function TestimonialsCard3D({ c }) {
+  return (
+    <>
+      <CardHeader label={SECTION_LABELS[9]} c={c} />
+      <Suspense fallback={null}>
+        <TestimonialsInner c={c} />
+      </Suspense>
     </>
   );
 }
@@ -204,24 +272,9 @@ function CardFace({ index, c }) {
         </>
       );
 
-    // ── 9: Testimonials ────────────────────────────────────────────────────────
+    // ── 9: Testimonials — live cycling carousel ────────────────────────────────
     case 9:
-      return (
-        <>
-          <CardHeader label={label} c={c} />
-          <Suspense fallback={null}>
-            <PhotoPlane src={IMG_BERT} pos={[-0.86, CY + 0.05, FACE_Z]} w={0.52} h={0.52} circle />
-          </Suspense>
-          <Text position={[0.1, CY + 0.3, FACE_Z]} fontSize={0.105} color="#333"
-                anchorX="center" anchorY="middle" maxWidth={1.75} textAlign="center">
-            {'"...rare combination of technical depth and business alignment."'}
-          </Text>
-          <Text position={[0.1, CY - 0.42, FACE_Z]} fontSize={0.09} color="#777"
-                anchorX="center" anchorY="middle">
-            Bert Deceuninck — Manager
-          </Text>
-        </>
-      );
+      return <TestimonialsCard3D c={c} />;
 
     // ── 10: Contact ────────────────────────────────────────────────────────────
     case 10:

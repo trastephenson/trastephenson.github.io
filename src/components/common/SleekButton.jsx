@@ -29,7 +29,7 @@ const StyledWrapper = styled.div`
     -webkit-appearance: button;
     background-color: var(--bg-void, #f5f5f5);
     background-image: none;
-    color: var(--accent, #0088cc);
+    color: #111;
     cursor: pointer;
     font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
       Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
@@ -103,11 +103,13 @@ const StyledWrapper = styled.div`
   .btn-31 .text {
     display: block;
     font-weight: 900;
-    mix-blend-mode: difference;
     position: relative;
+    color: #111;
+    transition: color 0.15s ease;
   }
 
   .btn-31:hover .text {
+    color: #ffffff;
     -webkit-animation: move-up-alternate 0.3s ease forwards;
     animation: move-up-alternate 0.3s ease forwards;
   }
