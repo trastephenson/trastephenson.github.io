@@ -14,8 +14,8 @@ const GAP_Y = 0.5;
 const TOTAL_W = GRID_COLS * CARD_W + (GRID_COLS - 1) * GAP_X;
 const TOTAL_H = GRID_ROWS * CARD_H + (GRID_ROWS - 1) * GAP_Y;
 
-// Camera z when showing the full overview grid
-export const OVERVIEW_Z = 20;
+// Camera z when showing the full overview grid (14 = ~43% larger than z=20)
+export const OVERVIEW_Z = 14;
 // How far in front of the card the camera stops when zoomed in
 export const DETAIL_Z_OFFSET = 6;
 

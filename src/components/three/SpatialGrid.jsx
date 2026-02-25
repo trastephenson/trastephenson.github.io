@@ -1,38 +1,33 @@
 import { useRef, useState, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Text, RoundedBox, PresentationControls } from '@react-three/drei';
-import * as THREE from 'three';
+import { Html, RoundedBox, PresentationControls } from '@react-three/drei';
 import { easing } from 'maath';
 import { useScroll } from '../../context/ScrollContext';
 import {
   getCardPosition,
   CARD_W,
   CARD_H,
-  SECTION_LABELS,
-  ACCENT_COLORS,
   TOTAL_SECTIONS,
 } from '../../utils/cardLayout';
+import CardPreview from './CardPreview';
 
-// Short descriptor line under each section label
-const SUBTITLES = [
-  'Portfolio', 'What I do', 'Background', 'Core skills',
-  'Career', 'Offerings', 'Apps', 'Platforms',
-  'AI & ML', 'Reviews', 'Get in touch', '',
-];
+// CardPreview container: 840 × 540 px; scale maps px → world units
+const CONTAINER_W = 840;
+const HTML_SCALE  = CARD_W / CONTAINER_W;   // ≈ 0.003333 world-units per px
 
-const DEPTH = 0.12;   // card thickness
-const RADIUS = 0.05;  // rounded corner radius
-const STRIPE_H = 0.16; // accent stripe height
+const DEPTH  = 0.12;  // card thickness
+const RADIUS = 0.05;  // rounded-corner radius
+
+// border-radius in preview-px that matches the 3D card corner radius
+const CORNER_PX = Math.round(RADIUS / HTML_SCALE); // ≈ 15 px
 
 function SectionCard({ index, onSelect }) {
   const innerRef = useRef();
   const [hovered, setHovered] = useState(false);
   const pos = useMemo(() => getCardPosition(index), [index]);
-  const accentColor = useMemo(() => new THREE.Color(ACCENT_COLORS[index]), [index]);
 
   useFrame((_, delta) => {
     if (!innerRef.current) return;
-    // Lift card toward camera + subtle scale on hover
     easing.damp(innerRef.current.position, 'z', hovered ? 0.22 : 0, 0.12, delta);
     const sc = hovered ? 1.04 : 1.0;
     easing.damp(innerRef.current.scale, 'x', sc, 0.10, delta);
@@ -40,12 +35,10 @@ function SectionCard({ index, onSelect }) {
   });
 
   return (
-    // Outer group anchors the card at its grid position (never changes)
     <group position={pos}>
-      {/* Inner group handles hover animation (lift + scale) */}
       <group ref={innerRef}>
 
-        {/* ── 3D card body ──────────────────────────────── */}
+        {/* ── 3D card body — handles pointer events ── */}
         <RoundedBox
           args={[CARD_W, CARD_H, DEPTH]}
           radius={RADIUS}
@@ -64,58 +57,26 @@ function SectionCard({ index, onSelect }) {
             onSelect(index);
           }}
         >
-          <meshStandardMaterial
-            color="#f7f8ff"
-            roughness={0.06}
-            metalness={0.03}
-          />
+          <meshStandardMaterial color="#f7f8ff" roughness={0.06} metalness={0.03} />
         </RoundedBox>
 
-        {/* ── Accent colour stripe at top ───────────────── */}
-        <mesh
-          position={[0, CARD_H / 2 - STRIPE_H / 2 - 0.01, DEPTH / 2 + 0.003]}
-          raycast={() => null}
+        {/* ── HTML content preview on the card face ── */}
+        <Html
+          transform
+          position={[0, 0, DEPTH / 2 + 0.004]}
+          scale={HTML_SCALE}
+          style={{
+            width: `${CONTAINER_W}px`,
+            height: `${Math.round(CARD_H / HTML_SCALE)}px`,
+            overflow: 'hidden',
+            borderRadius: `${CORNER_PX}px`,
+            pointerEvents: 'none',
+            background: 'transparent',
+          }}
+          zIndexRange={[2, 3]}
         >
-          <planeGeometry args={[CARD_W - 0.26, STRIPE_H]} />
-          <meshBasicMaterial color={accentColor} />
-        </mesh>
-
-        {/* ── Section title ─────────────────────────────── */}
-        <Text
-          position={[0, 0.10, DEPTH / 2 + 0.012]}
-          fontSize={CARD_H * 0.135}
-          color="#111122"
-          anchorX="center"
-          anchorY="middle"
-          maxWidth={CARD_W * 0.80}
-          font={undefined}
-        >
-          {SECTION_LABELS[index]}
-        </Text>
-
-        {/* ── Short subtitle ────────────────────────────── */}
-        <Text
-          position={[0, -0.26, DEPTH / 2 + 0.012]}
-          fontSize={CARD_H * 0.074}
-          color="#555577"
-          anchorX="center"
-          anchorY="middle"
-          maxWidth={CARD_W * 0.76}
-          font={undefined}
-        >
-          {SUBTITLES[index]}
-        </Text>
-
-        {/* ── Card index number (bottom-right) ──────────── */}
-        <Text
-          position={[CARD_W / 2 - 0.18, -CARD_H / 2 + 0.17, DEPTH / 2 + 0.012]}
-          fontSize={CARD_H * 0.068}
-          color="#aaaacc"
-          anchorX="right"
-          anchorY="bottom"
-        >
-          {String(index + 1).padStart(2, '0')}
-        </Text>
+          <CardPreview index={index} />
+        </Html>
 
       </group>
     </group>
