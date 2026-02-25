@@ -1,7 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { ScrollProvider } from './context/ScrollContext';
 import Scene from './components/three/Scene';
-import WorkCard3D from './components/three/WorkCard3D';
+import SpatialGrid from './components/three/SpatialGrid';
 import SectionOverlay from './components/scroll/SectionOverlay';
 import ScrollProgress from './components/scroll/ScrollProgress';
 import ScreenReaderStatus from './components/scroll/ScreenReaderStatus';
@@ -21,17 +21,9 @@ import Footer from './components/footer/Footer';
 const App = () => {
   return (
     <ScrollProvider>
-      {/* Layer 1: 3D scene — canvas only, no Html elements inside */}
+      {/* Layer 1: 3D scene — spatial grid of clickable section cards */}
       <Scene>
-        <Suspense fallback={null}>
-          <WorkCard3D items={mobileApps} sectionIndex={6} />
-        </Suspense>
-        <Suspense fallback={null}>
-          <WorkCard3D items={platforms} sectionIndex={7} />
-        </Suspense>
-        <Suspense fallback={null}>
-          <WorkCard3D items={aiWork} sectionIndex={8} />
-        </Suspense>
+        <SpatialGrid />
       </Scene>
 
       {/* Layer 2: HTML content — CSS-positioned, scroll-driven overlays in the DOM */}
