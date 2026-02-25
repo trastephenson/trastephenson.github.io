@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useScroll } from '../../context/ScrollContext';
 import { SCROLL_CONFIG } from '../../hooks/useVirtualScroll';
@@ -32,9 +32,9 @@ function DynamicLights() {
 
   return (
     <>
-      <ambientLight intensity={0.15} color={0x0066aa} />
-      <pointLight ref={light1Ref} color={0x00f0ff} intensity={1.8} distance={50} />
-      <pointLight ref={light2Ref} color={0x0066aa} intensity={1.4} distance={50} />
+      <ambientLight intensity={0.8} color={0xffffff} />
+      <pointLight ref={light1Ref} color={0x0088cc} intensity={1.5} distance={60} />
+      <pointLight ref={light2Ref} color={0x004488} intensity={1.0} distance={60} />
     </>
   );
 }
@@ -57,16 +57,14 @@ export default function Scene({ children }) {
         dpr={Math.min(window.devicePixelRatio, 2)}
         style={{ background: 'transparent' }}
       >
-        <fogExp2 attach="fog" args={[0x050510, 0.03]} />
+        <fogExp2 attach="fog" args={[0xe8eef5, 0.018]} />
 
         <CameraRig />
         <DynamicLights />
         <TunnelRings />
         <Particles />
 
-        <Suspense fallback={null}>
-          {children}
-        </Suspense>
+        {children}
       </Canvas>
     </div>
   );

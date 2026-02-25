@@ -11,13 +11,13 @@ const glassStyle = {
   maxWidth: '1200px',
   maxHeight: '85vh',
   overflowY: 'auto',
-  background: 'rgba(8, 12, 28, 0.75)',
-  backdropFilter: 'blur(24px) saturate(120%)',
-  WebkitBackdropFilter: 'blur(24px) saturate(120%)',
-  border: '1px solid rgba(0, 240, 255, 0.08)',
+  background: 'rgba(255, 255, 255, 0.92)',
+  backdropFilter: 'blur(24px) saturate(140%)',
+  WebkitBackdropFilter: 'blur(24px) saturate(140%)',
+  border: '1px solid rgba(0, 100, 180, 0.14)',
   borderRadius: '20px',
   padding: 'clamp(1.5rem, 4vw, 3rem)',
-  boxShadow: '0 0 40px rgba(0, 240, 255, 0.05), 0 8px 32px rgba(0, 0, 0, 0.4)',
+  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255,255,255,0.8)',
 };
 
 const noPanelStyle = {

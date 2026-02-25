@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { ScrollProvider } from './context/ScrollContext';
 import Scene from './components/three/Scene';
 import SpatialSection from './components/three/SpatialSection';
@@ -42,10 +42,16 @@ const App = () => {
           <Services />
         </SpatialSection>
 
-        {/* 3D holographic work cards */}
-        <WorkCard3D items={mobileApps} sectionIndex={6} title="Featured Work — Mobile Apps" />
-        <WorkCard3D items={platforms} sectionIndex={7} title="Featured Work — Platforms" />
-        <WorkCard3D items={aiWork} sectionIndex={8} title="Featured Work — AI" />
+        {/* 3D holographic work cards — isolated Suspense per card so texture loading doesn't block other sections */}
+        <Suspense fallback={null}>
+          <WorkCard3D items={mobileApps} sectionIndex={6} title="Featured Work — Mobile Apps" />
+        </Suspense>
+        <Suspense fallback={null}>
+          <WorkCard3D items={platforms} sectionIndex={7} title="Featured Work — Platforms" />
+        </Suspense>
+        <Suspense fallback={null}>
+          <WorkCard3D items={aiWork} sectionIndex={8} title="Featured Work — AI" />
+        </Suspense>
 
         {/* More HTML sections */}
         <SpatialSection sectionIndex={9}>
