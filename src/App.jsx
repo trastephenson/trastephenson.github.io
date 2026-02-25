@@ -11,7 +11,7 @@ import About from './components/about/About'
 import Strengths from './components/about/Strengths'
 import Experience from './components/experience/Experience'
 import Services from './components/services/Services'
-import { Work1, Work2, Work3 } from './components/portfolio/Portfolio'
+// Portfolio data is now rendered as 3D cards via WorkCard3D in Scene
 import Testimonials from './components/testimonials/Testimonials'
 import Contact from './components/contact/Contact'
 import Footer from './components/footer/Footer'
@@ -41,15 +41,7 @@ const App = () => {
       <SectionWrapper sectionIndex={5} transition="rise-up">
         <Services />
       </SectionWrapper>
-      <SectionWrapper sectionIndex={6} transition="slide-right">
-        <Work1 />
-      </SectionWrapper>
-      <SectionWrapper sectionIndex={7} transition="slide-left">
-        <Work2 />
-      </SectionWrapper>
-      <SectionWrapper sectionIndex={8} transition="slide-right">
-        <Work3 />
-      </SectionWrapper>
+      {/* Sections 6-8: Portfolio work cards rendered in 3D layer via WorkCard3D */}
       <SectionWrapper sectionIndex={9} transition="materialize">
         <Testimonials />
       </SectionWrapper>

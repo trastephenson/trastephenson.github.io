@@ -1,12 +1,10 @@
-import React from 'react';
-import WorkHighlight from './WorkHighlight';
 import IMG1 from '../../assets/sot.png';
 import IMG2 from '../../assets/portfolio3.gif';
 import IMG3 from '../../assets/CAMS.png';
 import IMG4 from '../../assets/Safety.png';
 import IMG5 from '../../assets/portfolio5.png';
 
-const mobileApps = [
+export const mobileApps = [
   {
     id: 1,
     image: IMG1,
@@ -29,7 +27,7 @@ const mobileApps = [
   },
 ];
 
-const platforms = [
+export const platforms = [
   {
     id: 3,
     image: IMG3,
@@ -52,7 +50,7 @@ const platforms = [
   },
 ];
 
-const aiWork = [
+export const aiWork = [
   {
     id: 5,
     image: IMG5,
@@ -64,10 +62,3 @@ const aiWork = [
     secondaryUrl: 'https://www.linkedin.com/in/mrtravisstephenson',
   },
 ];
-
-export const Work1 = () => <WorkHighlight title="Featured Work — Mobile Apps" items={mobileApps} />;
-export const Work2 = () => <WorkHighlight title="Featured Work — Platforms" items={platforms} />;
-export const Work3 = () => <WorkHighlight title="Featured Work — AI" items={aiWork} />;
-
-const Portfolio = Work1;
-export default Portfolio;
