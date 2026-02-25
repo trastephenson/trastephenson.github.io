@@ -19,7 +19,7 @@ export default function Particles() {
       pos[i * 3 + 1] = Math.sin(angle) * radius;
       pos[i * 3 + 2] = -Math.random() * TOTAL_DEPTH;
 
-      const c = new THREE.Color(0x00b8d4);
+      const c = new THREE.Color(0x2255bb);
       const variation = 0.8 + Math.random() * 0.4;
       c.multiplyScalar(variation);
       col[i * 3] = c.r;
@@ -50,8 +50,8 @@ export default function Particles() {
         size={0.07}
         vertexColors
         transparent
-        opacity={0.6}
-        blending={THREE.AdditiveBlending}
+        opacity={0.65}
+        blending={THREE.NormalBlending}
         depthWrite={false}
       />
     </points>

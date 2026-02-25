@@ -38,6 +38,9 @@ export default function SpatialSection({ sectionIndex, children, noPanel }) {
   const { camera } = useThree();
   const containerRef = useRef();
   const sectionZ = -(sectionIndex * SCROLL_CONFIG.SECTION_HEIGHT);
+  // Render Html 0.5 units in front of the camera path to avoid degenerate
+  // perspective projection (division by zero) when camera.z === sectionZ.
+  const renderZ = sectionZ - 0.5;
 
   useFrame(() => {
     if (!containerRef.current) return;
@@ -57,7 +60,7 @@ export default function SpatialSection({ sectionIndex, children, noPanel }) {
   return (
     <Html
       center
-      position={[0, 0, sectionZ]}
+      position={[0, 0, renderZ]}
       style={{ pointerEvents: 'none' }}
       role="region"
       aria-label={SECTION_NAMES[sectionIndex] || `Section ${sectionIndex + 1}`}

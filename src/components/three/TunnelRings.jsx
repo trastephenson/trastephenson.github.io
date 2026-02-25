@@ -60,10 +60,10 @@ export default function TunnelRings() {
           <meshStandardMaterial
             color={data.color}
             emissive={data.color}
-            emissiveIntensity={0.5}
+            emissiveIntensity={0.6}
             wireframe
             transparent
-            opacity={0.7}
+            opacity={0.85}
           />
         </mesh>
       ))}
