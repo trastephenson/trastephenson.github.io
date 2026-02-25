@@ -5,24 +5,23 @@ import {ImProfile} from 'react-icons/im'
 import {GiDiceTwentyFacesTwenty} from 'react-icons/gi'
 import {FaToolbox} from 'react-icons/fa'
 import {BiMessageSquareDetail} from 'react-icons/bi'
-import { useState } from 'react'
+import { useScroll } from '../../context/ScrollContext'
 
 const StyledNav = styled.nav`
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(5, 5, 16, 0.6);
   width: max-content;
-  display: block;
+  display: flex;
   padding: 0.7rem 1.7rem;
-  z-index: 2;
+  z-index: 100;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
   bottom: 2rem;
-  display: flex;
   gap: 0.8rem;
   border-radius: 3rem;
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(0, 240, 255, 0.08);
 
-  /* Mobile responsive */
   @media screen and (max-width: 600px) {
     padding: 0.5rem 1.2rem;
     gap: 0.5rem;
@@ -35,19 +34,19 @@ const StyledNav = styled.nav`
   }
 `;
 
-const StyledNavLink = styled.a`
+const StyledNavButton = styled.button`
   background: transparent;
   padding: 0.9rem;
   border-radius: 50%;
   display: flex;
-  color: white;
+  color: var(--text-secondary);
   font-size: 1.1rem;
   transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
-  text-decoration: none;
+  border: none;
+  outline: none;
 
-  /* Mobile responsive */
   @media screen and (max-width: 600px) {
     padding: 0.7rem;
     font-size: 1rem;
@@ -59,63 +58,73 @@ const StyledNavLink = styled.a`
   }
 
   &:hover {
-    color: white;
-    background: rgba(0, 0, 0, 0.3);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    color: var(--accent);
+    background: rgba(0, 240, 255, 0.08);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
     transform: scale(1.1);
   }
 
-  /* Touch device optimization */
   @media (hover: none) and (pointer: coarse) {
     &:hover {
       transform: none;
       box-shadow: none;
     }
-    
     &:active {
-      color: white;
-      background: rgba(0, 0, 0, 0.3);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      color: var(--accent);
+      background: rgba(0, 240, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
       transform: scale(1.05);
     }
   }
 
   &.active {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    background: rgba(0, 240, 255, 0.12);
+    color: var(--accent);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
   }
 
   &.active:hover {
-    color: white;
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 25px rgba(255, 255, 255, 0.7);
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    background: rgba(0, 240, 255, 0.18);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
   }
 `;
 
+const NAV_ITEMS = [
+  { icon: ImHome, label: 'Home', sectionIndex: 0 },
+  { icon: ImProfile, label: 'About', sectionIndex: 2 },
+  { icon: GiDiceTwentyFacesTwenty, label: 'Skills', sectionIndex: 4 },
+  { icon: FaToolbox, label: 'Work', sectionIndex: 6 },
+  { icon: BiMessageSquareDetail, label: 'Contact', sectionIndex: 10 },
+];
+
+const SECTION_TO_NAV = {
+  0: 0, 1: 0,
+  2: 2, 3: 2,
+  4: 4, 5: 4,
+  6: 6, 7: 6, 8: 6,
+  9: 10,
+  10: 10,
+  11: 10,
+};
+
 const Nav = () => {
-  const [activeNav, setActiveNav] = useState('#')
+  const { currentSection, scrollTo } = useScroll();
+  const activeMapped = SECTION_TO_NAV[currentSection];
+
   return (
-    <StyledNav>
-      <StyledNavLink href="#" onClick={() => setActiveNav('#')} className={activeNav === '#' ? 'active' : ''}>
-        <ImHome/>
-      </StyledNavLink>
-      <StyledNavLink href="#about" onClick={() => setActiveNav('#about')} className={activeNav === '#about' ? 'active' : ''}>
-        <ImProfile/>
-      </StyledNavLink>
-      <StyledNavLink href="#experience" onClick={() => setActiveNav('#experience')} className={activeNav === '#experience' ? 'active' : ''}>
-        <GiDiceTwentyFacesTwenty/>
-      </StyledNavLink>
-      <StyledNavLink href="#services" onClick={() => setActiveNav('#services')} className={activeNav === '#services' ? 'active' : ''}>
-        <FaToolbox/>
-      </StyledNavLink>
-      <StyledNavLink href='#contact' onClick={() => setActiveNav('#contact')} className={activeNav === '#contact' ? 'active' : ''}>
-        <BiMessageSquareDetail/>
-      </StyledNavLink>
+    <StyledNav aria-label="Section navigation">
+      {NAV_ITEMS.map(({ icon: Icon, label, sectionIndex }) => (
+        <StyledNavButton
+          key={label}
+          onClick={() => scrollTo(sectionIndex)}
+          className={activeMapped === sectionIndex ? 'active' : ''}
+          aria-label={`Navigate to ${label}`}
+          aria-current={activeMapped === sectionIndex ? 'true' : undefined}
+          title={label}
+        >
+          <Icon />
+        </StyledNavButton>
+      ))}
     </StyledNav>
   )
 }

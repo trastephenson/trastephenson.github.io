@@ -1,92 +1,81 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    outline: 0;
-    box-sizing: border-box;
-    list-style: none;
-    text-decoration: none;
-  }
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
 
-  /* Remove any debug overlays or unwanted borders */
-  [class*="sc-"] {
-    border: none !important;
-    outline: none !important;
-  }
-  
-  :root {
-     --primary-color: #198754;  /* Rich Green */
-  --heading-color: #1c1c1c;   /* Deep Charcoal */
-  --body-text-color: #333333; /* Standard Dark Gray */
-  --background-color: #FFFFFF; /* Pure White */
-  --accent-color: #ffc107;   /* Warm Gold */
-  --link-color: var(--primary-color); /* Use primary color for links */
-  
-    --transition: all 400ms ease;
-  
-    --container-width-lg: 75%;
-    --container-width-md: 86%;
-    --container-width-sm: 90%;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-    font-size: 16px;
-  }
-  
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  
-  body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    background: linear-gradient(
-      135deg,
-      #667eea 0%,
-      #764ba2 100%
-    ); /* Professional gradient background */
-    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    line-height: 1.7;
-    color: var(--body-text-color);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-    position: relative;
-  }
-  
-  /* ============== GENEARL STYLES ============== */
-  .container {
-    position: relative;
-    width: 100%; /* Fill the entire screen */
-    min-height: 100vh;
-    background: radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.1) 0%,
-      rgba(0, 0, 0, 0.05) 100%
-    );
-  }
+:root {
+  /* Dark Cosmos Palette */
+  --bg-void: #050510;
+  --bg-surface: rgba(8, 12, 28, 0.75);
+  --text-primary: #f0f0f0;
+  --text-secondary: rgba(180, 200, 220, 0.8);
+  --accent: #00f0ff;
+  --accent-glow: rgba(0, 240, 255, 0.4);
+  --ring-near: #00d4ff;
+  --ring-far: #0066aa;
+  --particle: #00b8d4;
+  --danger: #ff3366;
 
-  /* Content positioning */
-  .container > * {
-    position: relative;
-    z-index: 1;
-  }
+  /* Layout */
+  --container-width-lg: 75%;
+  --container-width-md: 86%;
+  --container-width-sm: 90%;
+  --transition: all 400ms ease;
+}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+html {
+  font-size: 16px;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-void);
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+/* Screen reader only utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============== GENERAL STYLES ============== */
+.container {
+  position: relative;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  color: var(--heading-color);
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 h1 {
@@ -94,46 +83,39 @@ h1 {
 }
 
 section {
-  margin-top: 0;
-  background: rgba(255, 255, 255, 0);
-  backdrop-filter: none;
-  border-radius: 1rem;
-  padding: 0.5rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
-}
-
-section#contact {
-  padding: 0;
   margin: 0;
-  position: relative;
-  z-index: 2;
-}
-
-section > h2,
-section > h5 {
-  text-align: center;
-  /* If you want a light text color for a specific section, create a new variable or use a direct hex code */
-  /* For now, we'll let them inherit the main heading color */
+  padding: 0.5rem;
+  background: none;
+  border-radius: 0;
 }
 
 section > h2 {
-  color: var(--primary-color); /* Corrected from --color-primary */
+  text-align: center;
+  color: var(--accent);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   margin-bottom: 0.5rem;
 }
 
+section > h5 {
+  text-align: center;
+  color: var(--text-secondary);
+}
+
 .text-light {
-  /* This class was using an undefined color. Let's make it use the accent color for now. */
-  color: var(--accent-color);
+  color: var(--text-secondary);
 }
 
 a {
-  color: var(--link-color);
+  color: var(--accent);
   transition: var(--transition);
 }
 
 a:hover {
   text-decoration: underline;
+  text-shadow: 0 0 8px var(--accent-glow);
 }
 
 .btn {
@@ -143,22 +125,20 @@ a:hover {
   border-radius: 0.4rem;
   cursor: pointer;
   transition: var(--transition);
-
-  /* --- CORRECTED COLORS --- */
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
+  color: var(--accent);
+  border: 1px solid var(--accent);
 }
 
 .btn:hover {
-  background-color: var(--primary-color);
-  color: var(--background-color); /* Use background color for text on hover for better contrast */
+  background-color: var(--accent);
+  color: var(--bg-void);
   border-color: transparent;
+  box-shadow: 0 0 20px var(--accent-glow);
 }
 
 .btn-primary {
-  /* --- CORRECTED COLORS --- */
-  background: var(--primary-color);
-  color: var(--background-color);
+  background: var(--accent);
+  color: var(--bg-void);
 }
 
 img {
@@ -171,91 +151,91 @@ img {
 @media (hover: none) and (pointer: coarse) {
   .btn:hover {
     background-color: transparent;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
+    color: var(--accent);
+    border-color: var(--accent);
   }
-  
+
   .btn:active {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    background-color: var(--accent);
+    color: var(--bg-void);
     border-color: transparent;
   }
 }
-  
-  /* ================ MEDIA QUERIES (LARGE DEVICES) ================= */
-  @media screen and (max-width: 1200px) {
-    .container:not(.main-container) {
-      width: var(--container-width-md);
-    }
+
+/* ================ MEDIA QUERIES (LARGE DEVICES) ================= */
+@media screen and (max-width: 1200px) {
+  .container:not(.main-container) {
+    width: var(--container-width-md);
+  }
+}
+
+/* ================ MEDIA QUERIES (MEDIUM DEVICES) ================= */
+@media screen and (max-width: 1024px) {
+  .container:not(.main-container) {
+    width: var(--container-width-md);
   }
 
-  /* ================ MEDIA QUERIES (MEDIUM DEVICES) ================= */
-  @media screen and (max-width: 1024px) {
-    .container:not(.main-container) {
-      width: var(--container-width-md);
-    }
-  
-    section {
-      margin-top: 0;
-      padding: 0.5rem;
-    }
-
-    h1 {
-      font-size: clamp(1.8rem, 4vw, 2.2rem);
-    }
-  }
-  
-  /* ================ MEDIA QUERIES (SMALL DEVICES) ================= */
-  @media screen and (max-width: 600px) {
-    .container:not(.main-container) {
-      width: var(--container-width-sm);
-    }
-  
-    section {
-      margin-top: 0;
-      padding: 0.5rem;
-      margin-left: 0.5rem;
-      margin-right: 0.5rem;
-    }
-
-    section > h2 {
-      margin-bottom: 2rem;
-      font-size: clamp(1.5rem, 4vw, 2rem);
-    }
-
-    h1 {
-      font-size: clamp(1.5rem, 3.5vw, 2rem);
-    }
-
-    .btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.9rem;
-    }
+  section {
+    margin-top: 0;
+    padding: 0.5rem;
   }
 
-  /* ================ MEDIA QUERIES (EXTRA SMALL DEVICES) ================= */
-  @media screen and (max-width: 480px) {
-    .container:not(.main-container) {
-      width: 95%;
-    }
-
-    section {
-      margin-top: 0;
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-    }
-
-    section > h2 {
-      margin-bottom: 1.5rem;
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-    }
-
-    h1 {
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-    }
-
-    .btn {
-      padding: 0.5rem 0.8rem;
-      font-size: 0.8rem;
-    }
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
   }
+}
+
+/* ================ MEDIA QUERIES (SMALL DEVICES) ================= */
+@media screen and (max-width: 600px) {
+  .container:not(.main-container) {
+    width: var(--container-width-sm);
+  }
+
+  section {
+    margin-top: 0;
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  section > h2 {
+    margin-bottom: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+  }
+
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ================ MEDIA QUERIES (EXTRA SMALL DEVICES) ================= */
+@media screen and (max-width: 480px) {
+  .container:not(.main-container) {
+    width: 95%;
+  }
+
+  section {
+    margin-top: 0;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+  section > h2 {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+  }
+
+  h1 {
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+  }
+
+  .btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}

@@ -1,33 +1,127 @@
-import React from 'react'
-import './footer.css'
-import {FaLinkedinIn} from 'react-icons/fa'
+import React from 'react';
+import styled from 'styled-components';
+import { FaLinkedinIn } from 'react-icons/fa';
+import { useScroll } from '../../context/ScrollContext';
+
+const FOOTER_LINKS = [
+  { label: 'Home', sectionIndex: 0 },
+  { label: 'About', sectionIndex: 2 },
+  { label: 'Skills', sectionIndex: 4 },
+  { label: 'Work', sectionIndex: 6 },
+  { label: 'Testimonials', sectionIndex: 9 },
+  { label: 'Contact', sectionIndex: 10 },
+];
+
+const FooterContainer = styled.footer`
+  text-align: center;
+  padding: 1.5rem;
+  width: 100%;
+`;
+
+const LogoButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px var(--accent-glow);
+
+  &:hover {
+    text-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(-2px);
+  }
+`;
+
+const NavLinks = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0 auto 1rem;
+`;
+
+const NavButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  padding: 0;
+
+  &:hover {
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent-glow);
+  }
+`;
+
+const Socials = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  a {
+    background: rgba(0, 240, 255, 0.06);
+    color: var(--text-primary);
+    padding: 0.6rem;
+    border-radius: 0.5rem;
+    display: flex;
+    border: 1px solid rgba(0, 240, 255, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: rgba(0, 240, 255, 0.3);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+      transform: translateY(-2px);
+    }
+  }
+`;
+
+const Copyright = styled.small`
+  color: var(--text-secondary);
+  opacity: 0.6;
+  font-size: 0.8rem;
+`;
 
 const Footer = () => {
+  const { scrollTo } = useScroll();
+
   return (
-    <footer>
-      <a href="#" className='footer__logo'>Travis Stephenson</a>
+    <FooterContainer>
+      <LogoButton onClick={() => scrollTo(0)}>
+        Travis Stephenson
+      </LogoButton>
 
-      <ul className='permalinks'>
-        <li><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#services">Tools</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <NavLinks>
+        {FOOTER_LINKS.map(({ label, sectionIndex }) => (
+          <li key={label}>
+            <NavButton onClick={() => scrollTo(sectionIndex)}>
+              {label}
+            </NavButton>
+          </li>
+        ))}
+      </NavLinks>
 
-      <div className="footer__socials">
+      <Socials>
         <a href="https://www.linkedin.com/in/mrtravisstephenson/" target="_blank" rel="noopener noreferrer">
-          <FaLinkedinIn/>
+          <FaLinkedinIn />
         </a>
-      </div>
+      </Socials>
 
-      <div className="footer__copyright">
-        <small>&copy; Travis Stephenson All rights reserved.</small>
-      </div>
-    </footer>
-  )
-}
+      <Copyright>&copy; Travis Stephenson. All rights reserved.</Copyright>
+    </FooterContainer>
+  );
+};
 
-export default Footer
+export default Footer;

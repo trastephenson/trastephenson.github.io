@@ -1,61 +1,70 @@
-import React from 'react'
-import './services.css'
-import StyledTagCard from '../experience/StyledTagCard'
+import React from 'react';
+import styled from 'styled-components';
+
+const ToolsContainer = styled.section`
+  text-align: center;
+`;
+
+const SectionTitle = styled.h2`
+  color: var(--accent);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+`;
+
+const TagCloud = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  max-width: 900px;
+  margin: 0 auto;
+`;
+
+const Tag = styled.span`
+  display: inline-block;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  background: rgba(0, 180, 212, 0.08);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 180, 212, 0.15);
+  cursor: default;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+
+  &:hover {
+    background: rgba(0, 180, 212, 0.2);
+    border-color: rgba(0, 180, 212, 0.35);
+    box-shadow: 0 0 15px rgba(0, 180, 212, 0.2);
+    transform: translateY(-2px);
+  }
+`;
+
+const ALL_TOOLS = [
+  'Figma', 'Adobe XD', 'Blender', 'Adalo', 'Sketch', 'InVision',
+  'Adobe Creative Suite', 'Prototyping', 'Wireframing', 'User Research',
+  'AWS', 'Azure', 'GitHub/GitLab', 'Docker', 'Kubernetes', 'Jenkins',
+  'Terraform', 'Ansible', 'Vagrant', 'VSCode', 'IntelliJ', 'Postman',
+  'Jira', 'DevOps', 'Lean Six Sigma', 'OpenProject', 'Confluence',
+  'Trello', 'Asana', 'Monday.com', 'Slack', 'Microsoft Teams',
+];
 
 const Services = () => {
-  const uiUxTools = [
-    'Figma', 'Adobe XD', 'Blender', 'Adalo', 'Sketch', 'InVision',
-    'Adobe Creative Suite', 'Prototyping', 'Wireframing', 'User Research'
-  ];
-
-  const softwareDevTools = [
-    'AWS', 'Azure', 'GitHub/GitLab', 'Docker', 'Kubernetes', 'Jenkins',
-    'Terraform', 'Ansible', 'Vagrant', 'VSCode', 'IntelliJ', 'Postman'
-  ];
-
-  const projectManagementTools = [
-    'Jira', 'DevOps', 'Lean Six Sigma', 'OpenProject', 'Confluence',
-    'Trello', 'Asana', 'Monday.com', 'Slack', 'Microsoft Teams'
-  ];
-
   return (
-    <section id='services' style={{ marginBottom: '0', paddingTop: '4rem' }}>
-      <h5 style={{ 
-        color: '#E6E6FA',
-        fontSize: '1.2rem',
-        fontWeight: '400',
-        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
-        letterSpacing: '0.05em',
-        textTransform: 'uppercase'
-      }}>Other Proficiencies</h5>
-      <h2 style={{ 
-        color: 'white',
-        fontSize: '2.5rem',
-        fontWeight: '700',
-        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
-        letterSpacing: '0.05em',
-        textTransform: 'uppercase',
-        textShadow: '0 0 20px rgba(255,255,255,0.3)'
-      }}>Tools</h2>
+    <ToolsContainer>
+      <SectionTitle>Tools</SectionTitle>
+      <TagCloud>
+        {ALL_TOOLS.map((tool) => (
+          <Tag key={tool}>{tool}</Tag>
+        ))}
+      </TagCloud>
+    </ToolsContainer>
+  );
+};
 
-      <div className="container services__container">
-        <StyledTagCard 
-          title="UI/UX Design Tools"
-          tags={uiUxTools}
-        />
-        
-        <StyledTagCard 
-          title="Software Development Tools"
-          tags={softwareDevTools}
-        />
-
-        <StyledTagCard 
-          title="Project Management Tools"
-          tags={projectManagementTools}
-        />
-      </div>
-    </section>
-  )
-}
-
-export default Services
+export default Services;

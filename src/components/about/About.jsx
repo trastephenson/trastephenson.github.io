@@ -1,93 +1,78 @@
-import React from 'react'
-import './about.css'
-import ME from '../../assets/me-about.png'
-import {GiDiceTwentyFacesTwenty} from 'react-icons/gi'
-import {IoIosPeople} from 'react-icons/io'
-import {MdOutlineFolderSpecial} from 'react-icons/md'
-import SleekButton from '../common/SleekButton'
-import InteractiveCard from './InteractiveCard'
+import React from 'react';
+import styled from 'styled-components';
+import ME from '../../assets/me-about.png';
+
+const AboutGrid = styled.div`
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  width: 100%;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+const PhotoWrapper = styled.div`
+  flex-shrink: 0;
+  width: clamp(120px, 20vw, 200px);
+  height: clamp(120px, 20vw, 200px);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+const BioText = styled.div`
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.7;
+
+  p {
+    margin-bottom: 0.75rem;
+  }
+
+  strong {
+    color: var(--text-primary);
+  }
+`;
+
+const SectionTitle = styled.h2`
+  color: var(--accent);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  text-align: center;
+`;
 
 const About = () => {
   return (
-    <section id='about' style={{ marginBottom: '0', paddingTop: '6rem', marginTop: '0', position: 'relative', zIndex: 0 }}>
-      <h5 style={{ 
-        color: '#E6E6FA',
-        fontSize: '1.2rem',
-        fontWeight: '400',
-        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
-        letterSpacing: '0.05em',
-        textTransform: 'uppercase'
-      }}>Get To Know</h5>
-      <h2 style={{ 
-        color: 'white',
-        fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
-        fontWeight: '700',
-        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
-        letterSpacing: '0.05em',
-        textTransform: 'uppercase',
-        textShadow: '0 0 20px rgba(255,255,255,0.3)'
-      }}>About Me</h2>
-
-      <div className="container about__container">
-        <div className="about__me">
-          <div className="about__me-image">
-            <img src={ME} alt="About Image" />
-          </div>
-        </div>
-
-        <div className="about__content">
-          <div className="about__cards">
-            <InteractiveCard 
-              icon={GiDiceTwentyFacesTwenty}
-              title="Experience"
-              subtitle="<ul><li>Software Development</li><li>Project Management</li><li>Solutions Architecture</li><li>Quality Assurance</li></ul>"
-              prompt="HOVER FOR DETAILS"
-            />
-
-            <InteractiveCard 
-              icon={IoIosPeople}
-              title="Clients"
-              subtitle="<ul><li>Total Wellness Media</li><li>Seeds of Thyme</li><li>Utah Valley University</li><li>Companion Asset Management</li><li>Angel Studios</li></ul>"
-              prompt="HOVER FOR DETAILS"
-            />
-
-            <InteractiveCard 
-              icon={MdOutlineFolderSpecial}
-              title="Projects"
-              subtitle="<ul><li><a href='https://www.oillife.com/pages/essential-life-app' target='_blank' rel='noopener noreferrer'>Essential Life</a></li><li><a href='https://www.seedsofthyme.com/pages/app-seedsofthyme' target='_blank' rel='noopener noreferrer'>Seeds of Thyme</a></li><li><a href='https://camscompanion.com/' target='_blank' rel='noopener noreferrer'>CAMS ATM Management</a></li><li><a href='https://safetywallet.org/' target='_blank' rel='noopener noreferrer'>Safety Wallet</a></li><li><a href='https://www.pantryplenty.com/' target='_blank' rel='noopener noreferrer'>Pantry Plenty</a></li></ul>"
-              prompt="HOVER FOR DETAILS"
-            />
-          </div>
-
-          <div style={{ marginTop: '1.5rem', color: '#E6E6FA', fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif" }}>
-            <p style={{ color: 'white', fontSize: '1.05rem', lineHeight: '1.7', marginBottom: '1rem' }}>
-              I'm a Principal-level Solutions Architect and Technical Product Leader with 10+ years of experience delivering cloud-scale platforms across mobile, backend, and AI-enabled systems. My work bridges solution architecture, product strategy, and delivery governance—helping organizations translate complex business goals into scalable, production-ready systems.
-            </p>
-
-            <div style={{ marginTop: '1rem' }}>
-              <p style={{ color: 'white', fontWeight: 700, marginBottom: '0.5rem' }}>What I do best:</p>
-              <ul style={{ marginLeft: '1.2rem', lineHeight: '1.8' }}>
-                <li>Own solution architecture from discovery through delivery and production readiness</li>
-                <li>Define cloud standards across AWS/Azure (APIs, data models, reliability practices)</li>
-                <li>Lead cross-functional execution across engineering, product, design, and QA</li>
-                <li>Integrate GenAI/LLM workflows for automation, search, summarization, and decision support</li>
-              </ul>
-            </div>
-
-            <p style={{ marginTop: '1rem', opacity: 0.95 }}>
-              <strong style={{ color: 'white' }}>Open to:</strong> Principal Solutions Architect and Director / Principal Technical Product roles (platform-scale and AI-enabled systems)
-            </p>
-          </div>
-
-          <div style={{ marginTop: '1rem' }}>
-            <SleekButton>
-              <a href="#contact" style={{ color: 'inherit', textDecoration: 'none' }}>Let's Talk</a>
-            </SleekButton>
-          </div>
-        </div>
-      </div>
+    <section>
+      <SectionTitle>About Me</SectionTitle>
+      <AboutGrid>
+        <PhotoWrapper>
+          <img src={ME} alt="Travis Stephenson" />
+        </PhotoWrapper>
+        <BioText>
+          <p>
+            I'm a <strong>Principal-level Solutions Architect</strong> and Technical Product Leader with 10+ years of experience delivering cloud-scale platforms across mobile, backend, and AI-enabled systems.
+          </p>
+          <p>
+            My work bridges solution architecture, product strategy, and delivery governance — helping organizations translate complex business goals into scalable, production-ready systems.
+          </p>
+        </BioText>
+      </AboutGrid>
     </section>
-  )
-}
+  );
+};
 
-export default About
+export default About;

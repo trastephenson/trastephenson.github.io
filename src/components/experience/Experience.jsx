@@ -1,73 +1,74 @@
-import React from 'react'
-import './experience.css'
-import StyledTagCard from './StyledTagCard'
+import React from 'react';
+import styled from 'styled-components';
+
+const SkillsContainer = styled.section`
+  text-align: center;
+`;
+
+const SectionTitle = styled.h2`
+  color: var(--accent);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+`;
+
+const TagCloud = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  max-width: 900px;
+  margin: 0 auto;
+`;
+
+const Tag = styled.span`
+  display: inline-block;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  background: rgba(0, 240, 255, 0.06);
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  border: 1px solid rgba(0, 240, 255, 0.12);
+  cursor: default;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+
+  &:hover {
+    background: rgba(0, 240, 255, 0.15);
+    border-color: rgba(0, 240, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+    transform: translateY(-2px);
+  }
+`;
+
+const ALL_SKILLS = [
+  'HTML', 'CSS', 'JavaScript', 'React', 'TypeScript', 'Next.js',
+  'Vue.js', 'Angular', 'Tailwind CSS', 'Sass', 'Bootstrap', 'Ruby on Rails',
+  'Node.js', 'Python', 'PHP', 'Elixir', 'Express.js',
+  'MongoDB', 'MySQL', 'PostgreSQL', 'Redis', 'GraphQL', 'Docker', 'AWS',
+  'System Design', 'Microservices', 'API Design', 'Cloud Architecture',
+  'Database Design', 'Security Architecture', 'Scalability Planning',
+  'Integration Patterns', 'DevOps Practices', 'Performance Optimization',
+  'Data Modeling', 'Enterprise Architecture',
+  'CompTIA Project+', 'ITIL Foundations', 'Lean Six Sigma Yellow Belt',
+  'AWS Cloud Practitioner', 'PMP Certification',
+];
 
 const Experience = () => {
-  const frontendSkills = [
-    'HTML', 'CSS', 'JavaScript', 'React', 'Bootstrap', 'Ruby on Rails',
-    'TypeScript', 'Next.js', 'Tailwind CSS', 'Sass', 'Vue.js', 'Angular'
-  ];
-
-  const backendSkills = [
-    'Node.js', 'MongoDB', 'MySQL', 'PHP', 'Elixir', 'Python',
-    'Express.js', 'PostgreSQL', 'Redis', 'GraphQL', 'Docker', 'AWS'
-  ];
-
-  const projectManagementCertifications = [
-    'CompTIA Project+', 'ITIL Foundations', 'Lean Six Sigma Yellow Belt',
-    'AWS Cloud Practitioner', 'PMP Certification'
-  ];
-
-  const solutionsArchitectureSkills = [
-    'System Design', 'Microservices', 'API Design', 'Cloud Architecture',
-    'Database Design', 'Security Architecture', 'Scalability Planning',
-    'Integration Patterns', 'DevOps Practices', 'Performance Optimization',
-    'Data Modeling', 'Enterprise Architecture'
-  ];
-
   return (
-    <section id='experience' style={{ marginBottom: '0', paddingTop: '4rem' }}>
-      <h5 style={{ 
-        color: '#E6E6FA',
-        fontSize: '1.2rem',
-        fontWeight: '400',
-        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
-        letterSpacing: '0.05em',
-        textTransform: 'uppercase'
-      }}>The Skills I Have</h5>
-      <h2 style={{ 
-        color: 'white',
-        fontSize: '2.5rem',
-        fontWeight: '700',
-        fontFamily: "'Inter', 'Segoe UI', 'Roboto', sans-serif",
-        letterSpacing: '0.05em',
-        textTransform: 'uppercase',
-        textShadow: '0 0 20px rgba(255,255,255,0.3)'
-      }}>My Experience</h2>
-      
-      <div className="container experience__container">
-        <StyledTagCard 
-          title="Frontend Development"
-          tags={frontendSkills}
-        />
-        
-        <StyledTagCard 
-          title="Backend Development"
-          tags={backendSkills}
-        />
+    <SkillsContainer>
+      <SectionTitle>Skills</SectionTitle>
+      <TagCloud>
+        {ALL_SKILLS.map((skill) => (
+          <Tag key={skill}>{skill}</Tag>
+        ))}
+      </TagCloud>
+    </SkillsContainer>
+  );
+};
 
-        <StyledTagCard 
-          title="Solutions Architecture"
-          tags={solutionsArchitectureSkills}
-        />
-
-        <StyledTagCard 
-          title="Project Management & Certifications"
-          tags={projectManagementCertifications}
-        />
-      </div>
-    </section>
-  )
-}
-
-export default Experience
+export default Experience;
