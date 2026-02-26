@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollProvider } from './context/ScrollContext';
+import LoadingScreen from './components/common/LoadingScreen';
 import Scene from './components/three/Scene';
 import SpatialGrid from './components/three/SpatialGrid';
 import SectionOverlay from './components/scroll/SectionOverlay';
@@ -71,6 +72,7 @@ const App = () => {
 
   return (
     <ScrollProvider viewMode={viewMode}>
+      <LoadingScreen />
       {toggleBtn}
 
       {viewMode === '3d' ? (
@@ -94,7 +96,33 @@ const App = () => {
             </div>
           </SectionOverlay>
           <SectionOverlay sectionIndex={1}>
-            <CTA />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+              {[
+                { num: '10+', label: 'Years', sub: 'Enterprise & AI' },
+                { num: '5+',  label: 'Platforms', sub: 'Shipped to Production' },
+                { num: 'LLM', label: 'Multi-Agent', sub: 'RAG Pipelines Built' },
+                { num: 'AWS', label: 'Cloud', sub: 'Architecture & DevOps' },
+              ].map(({ num, label, sub }) => (
+                <div key={label} style={{
+                  background: 'rgba(255,255,255,0.52)',
+                  borderRadius: '16px',
+                  padding: 'clamp(1rem,3vw,1.4rem)',
+                  textAlign: 'center',
+                  border: '1px solid rgba(255,255,255,0.75)',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
+                }}>
+                  <div style={{ fontSize: 'clamp(1.7rem,4vw,2.4rem)', fontWeight: 800, letterSpacing: '-0.02em', color: '#111', lineHeight: 1 }}>
+                    {num}
+                  </div>
+                  <div style={{ fontSize: 'clamp(0.78rem,1.8vw,0.9rem)', fontWeight: 700, color: '#333', marginTop: '0.3rem' }}>
+                    {label}
+                  </div>
+                  <div style={{ fontSize: 'clamp(0.65rem,1.5vw,0.75rem)', color: '#888', marginTop: '0.15rem' }}>
+                    {sub}
+                  </div>
+                </div>
+              ))}
+            </div>
           </SectionOverlay>
           <SectionOverlay sectionIndex={2}>
             <About />
@@ -124,7 +152,21 @@ const App = () => {
             <Contact />
           </SectionOverlay>
           <SectionOverlay sectionIndex={11}>
-            <Footer />
+            <div style={{ textAlign: 'center', padding: '0.5rem 0' }}>
+              <p style={{ fontSize: 'clamp(0.85rem,2vw,1rem)', color: '#555', lineHeight: 1.8, marginBottom: '2rem' }}>
+                Open to Director of Engineering, AI Platform Architecture, and Principal Architect roles in enterprise SaaS and AI-enabled platform delivery.
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', justifyContent: 'center' }}>
+                <a href="https://www.linkedin.com/in/mrtravisstephenson" target="_blank" rel="noopener noreferrer"
+                   style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.6rem 1.4rem', borderRadius: '50px', background: '#0a66c2', color: '#fff', fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none', letterSpacing: '0.03em' }}>
+                  LinkedIn
+                </a>
+                <a href="mailto:trastephenson@gmail.com"
+                   style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.6rem 1.4rem', borderRadius: '50px', background: 'rgba(0,0,0,0.08)', color: '#111', fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.12)', letterSpacing: '0.03em' }}>
+                  Email
+                </a>
+              </div>
+            </div>
           </SectionOverlay>
 
           {/* Layer 3: Persistent UI overlay */}

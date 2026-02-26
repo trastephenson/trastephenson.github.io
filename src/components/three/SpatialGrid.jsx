@@ -292,18 +292,18 @@ function CardFace({ index, c }) {
         </>
       );
 
-    // ── 11: Footer ─────────────────────────────────────────────────────────────
+    // ── 11: Connect ────────────────────────────────────────────────────────────
     case 11:
       return (
         <>
           <CardHeader label={label} c={c} />
-          <Text position={[0, CY + 0.22, FACE_Z]} fontSize={0.21} color="#111"
-                anchorX="center" anchorY="middle">
-            Travis Stephenson
+          <Text position={[0, CY + 0.28, FACE_Z]} fontSize={0.2} color="#111"
+                anchorX="center" anchorY="middle" textAlign="center">
+            {"Let's Work\nTogether"}
           </Text>
-          <Text position={[0, CY - 0.14, FACE_Z]} fontSize={0.12} color="#555"
-                anchorX="center" anchorY="middle">
-            LinkedIn · GitHub · Email
+          <Text position={[0, CY - 0.24, FACE_Z]} fontSize={0.1} color="#666"
+                anchorX="center" anchorY="middle" maxWidth={2.3} textAlign="center">
+            {'Director of Engineering\nAI Platform · Principal Architect'}
           </Text>
         </>
       );
@@ -316,6 +316,7 @@ function CardFace({ index, c }) {
 // ── Individual card — hover pop + click to zoom ────────────────────────────────
 function SectionCard({ index, onSelect }) {
   const innerRef = useRef();
+  const matRef   = useRef();
   const [hovered, setHovered] = useState(false);
   const pos = useMemo(() => getCardPosition(index), [index]);
   const c   = ACCENT_COLORS[index] ?? '#888';
@@ -326,6 +327,10 @@ function SectionCard({ index, onSelect }) {
     const sc = hovered ? 1.04 : 1.0;
     easing.damp(innerRef.current.scale, 'x', sc, 0.10, delta);
     easing.damp(innerRef.current.scale, 'y', sc, 0.10, delta);
+    // Accent emissive glow fades in on hover, out on leave
+    if (matRef.current) {
+      easing.damp(matRef.current, 'emissiveIntensity', hovered ? 0.14 : 0, 0.10, delta);
+    }
   });
 
   return (
@@ -351,7 +356,16 @@ function SectionCard({ index, onSelect }) {
             onSelect(index);
           }}
         >
-          <meshStandardMaterial color="#f7f8ff" roughness={0.06} metalness={0.03} transparent opacity={0.69} />
+          <meshStandardMaterial
+            ref={matRef}
+            color="#f7f8ff"
+            roughness={0.06}
+            metalness={0.03}
+            transparent
+            opacity={0.69}
+            emissive={c}
+            emissiveIntensity={0}
+          />
         </RoundedBox>
 
         {/* ── Three.js-native face content (Text + textures) ── */}

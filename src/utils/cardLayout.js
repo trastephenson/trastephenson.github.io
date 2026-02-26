@@ -53,7 +53,7 @@ export const SECTION_LABELS = [
   'AI Work',
   'Testimonials',
   'Contact',
-  'Footer',
+  'Connect',
 ];
 
 // Keep SCROLL_CONFIG as a re-export alias so existing imports don't break

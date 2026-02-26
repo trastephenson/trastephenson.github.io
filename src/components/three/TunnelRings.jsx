@@ -46,19 +46,19 @@ const fragmentShader = `
     uv.x *= uAspect;
     uv *= 3.0; // scale — matches demo's "Scale: 3.0"
 
-    float t = uTime * 0.05; // slow drift — matches "Speed: 0.05"
+    float t = uTime * 0.07; // slightly faster drift for ambient life
     float h = fbm(uv + t);
 
     // Contour lines: thin bands at regular intervals (thickness ~0.03)
-    float contour = abs(fract(h * 8.0) - 0.5);
+    float contour = abs(fract(h * 9.0) - 0.5);
     float line = 1.0 - smoothstep(0.0, 0.03, contour);
 
-    // Background color: #eaeaea
-    vec3 bgColor = vec3(0.918, 0.918, 0.918);
-    // Line color: slightly darker — matches demo's #e0e0e0 @ 0.40 opacity
-    vec3 lineColor = vec3(0.82, 0.82, 0.82);
+    // Very slow warm-to-cool pulse (~63s cycle) — barely perceptible but alive
+    float pulse = sin(uTime * 0.1) * 0.5 + 0.5;
+    vec3 bgColor   = mix(vec3(0.918, 0.918, 0.918), vec3(0.912, 0.912, 0.924), pulse);
+    vec3 lineColor = mix(vec3(0.820, 0.820, 0.820), vec3(0.800, 0.800, 0.840), pulse);
 
-    vec3 color = mix(bgColor, lineColor, line * 0.55);
+    vec3 color = mix(bgColor, lineColor, line * 0.62);
     gl_FragColor = vec4(color, 1.0);
   }
 `;
