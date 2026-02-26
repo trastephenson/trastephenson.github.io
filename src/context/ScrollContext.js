@@ -3,8 +3,8 @@ import useVirtualScroll from '../hooks/useVirtualScroll';
 
 const ScrollContext = createContext(null);
 
-export function ScrollProvider({ children }) {
-  const scroll = useVirtualScroll();
+export function ScrollProvider({ children, viewMode = '3d' }) {
+  const scroll = useVirtualScroll({ enabled: viewMode === '3d' });
 
   return (
     <ScrollContext.Provider value={scroll}>

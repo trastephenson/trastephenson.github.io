@@ -4,12 +4,22 @@ import { TOTAL_SECTIONS } from '../utils/cardLayout';
 // Keep SCROLL_CONFIG exported so any remaining imports don't break
 export { SCROLL_CONFIG } from '../utils/cardLayout';
 
+// Section anchor IDs for DOM scroll in classic mode (index → element id)
+const SECTION_IDS = [
+  'home', 'home',
+  'about', 'about',
+  'experience', 'services',
+  'portfolio', 'portfolio', 'portfolio',
+  'testimonials',
+  'contact', 'contact',
+];
+
 /**
  * Click-to-zoom spatial navigation model.
- * Overview: camera shows all 12 section cards.
- * Detail:   camera zooms to the selected section card; content overlay appears.
+ * When enabled=true  → 3D virtual scroll (intercepts wheel, zooms camera).
+ * When enabled=false → classic mode (native scroll; scrollTo does scrollIntoView).
  */
-export default function useVirtualScroll() {
+export default function useVirtualScroll({ enabled = true } = {}) {
   const [activeSection, setActiveSection] = useState(null);
   const [isOverview, setIsOverview] = useState(true);
   const [currentSection, setCurrentSection] = useState(null);
@@ -26,8 +36,14 @@ export default function useVirtualScroll() {
     setIsOverview(true);
   }, []);
 
-  // Keyboard navigation
+  // Reset to overview when switching back into 3D mode
   useEffect(() => {
+    if (enabled) zoomOut();
+  }, [enabled]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Escape key — only intercept in 3D mode
+  useEffect(() => {
+    if (!enabled) return;
     function handleKey(e) {
       if (e.key === 'Escape') {
         e.preventDefault();
@@ -36,10 +52,11 @@ export default function useVirtualScroll() {
     }
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [zoomOut]);
+  }, [zoomOut, enabled]);
 
-  // Scroll wheel: when zoomed in, wheel cycles to next/prev section
+  // Wheel scroll intercept — only in 3D mode
   useEffect(() => {
+    if (!enabled) return;
     let lastWheel = 0;
     function handleWheel(e) {
       e.preventDefault();
@@ -59,12 +76,19 @@ export default function useVirtualScroll() {
     }
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
-  }, []);
+  }, [enabled]);
 
-  // Legacy compat: scrollTo = zoomToSection (used by Nav)
-  const scrollTo = zoomToSection;
+  // scrollTo: DOM scrollIntoView in classic mode, zoom in 3D mode
+  const scrollTo = useCallback((index) => {
+    if (!enabled) {
+      const id = SECTION_IDS[index] ?? 'home';
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    zoomToSection(index);
+  }, [enabled, zoomToSection]);
 
-  // progress for ScrollProgress bar
+  // Legacy compat: progress for ScrollProgress bar
   const progress = currentSection !== null
     ? currentSection / (TOTAL_SECTIONS - 1)
     : 0;
@@ -78,5 +102,6 @@ export default function useVirtualScroll() {
     scrollTo,
     totalSections: TOTAL_SECTIONS,
     progress,
+    enabled,
   };
 }
