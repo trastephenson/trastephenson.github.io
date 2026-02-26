@@ -35,9 +35,9 @@ const CTA = () => {
   return (
     <TaglineContainer>
       <Subtitle>
-        Technical Product &amp; Platform Leader | AI Engineering (MS)
+        Director of Engineering Operations &middot; AI Platform Architecture
         <br />
-        Cloud-native platforms &bull; AI-enabled automation &bull; Client-facing architecture &amp; delivery ownership
+        Multi-agent LLM systems &bull; RAG pipelines &bull; Enterprise SaaS delivery
       </Subtitle>
 
       <ButtonRow>

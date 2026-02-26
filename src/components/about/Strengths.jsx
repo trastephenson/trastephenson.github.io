@@ -55,13 +55,13 @@ const Strengths = () => {
     <StrengthsContainer>
       <SectionTitle>What I Do Best</SectionTitle>
       <BulletList>
-        <li>Own solution architecture from discovery through delivery and production readiness</li>
-        <li>Define cloud standards across AWS/Azure (APIs, data models, reliability practices)</li>
-        <li>Lead cross-functional execution across engineering, product, design, and QA</li>
-        <li>Integrate GenAI/LLM workflows for automation, search, summarization, and decision support</li>
+        <li>Architect and operate multi-agent LLM systems and RAG pipelines at enterprise scale</li>
+        <li>Drive engineering operations, delivery governance, and cloud-native SaaS strategy</li>
+        <li>Lead cross-functional execution across engineering, product, data, and C-suite stakeholders</li>
+        <li>Define platform architecture across AWS - APIs, data models, reliability, and scalability</li>
       </BulletList>
       <OpenTo>
-        <strong>Open to:</strong> Principal Solutions Architect and Director / Principal Technical Product roles (platform-scale and AI-enabled systems)
+        <strong>Open to:</strong> Director of Engineering, AI Platform Architecture, and Principal Architect roles - enterprise SaaS, multi-agent systems, and AI-enabled platform delivery
       </OpenTo>
     </StrengthsContainer>
   );
