@@ -161,7 +161,7 @@ const App = () => {
                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.6rem 1.4rem', borderRadius: '50px', background: '#0a66c2', color: '#fff', fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none', letterSpacing: '0.03em' }}>
                   LinkedIn
                 </a>
-                <a href="mailto:trastephenson@gmail.com"
+                <a href="mailto:stephenson.tra@gmail.com"
                    style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.6rem 1.4rem', borderRadius: '50px', background: 'rgba(0,0,0,0.08)', color: '#111', fontWeight: 700, fontSize: '0.85rem', textDecoration: 'none', border: '1px solid rgba(0,0,0,0.12)', letterSpacing: '0.03em' }}>
                   Email
                 </a>

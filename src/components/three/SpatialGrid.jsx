@@ -321,15 +321,19 @@ function SectionCard({ index, onSelect }) {
   const pos = useMemo(() => getCardPosition(index), [index]);
   const c   = ACCENT_COLORS[index] ?? '#888';
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     if (!innerRef.current) return;
-    easing.damp(innerRef.current.position, 'z', hovered ? 0.22 : 0, 0.12, delta);
-    const sc = hovered ? 1.04 : 1.0;
+    // Bigger pop: more z-push and scale on hover
+    easing.damp(innerRef.current.position, 'z', hovered ? 0.55 : 0, 0.12, delta);
+    const sc = hovered ? 1.10 : 1.0;
     easing.damp(innerRef.current.scale, 'x', sc, 0.10, delta);
     easing.damp(innerRef.current.scale, 'y', sc, 0.10, delta);
-    // Accent emissive glow fades in on hover, out on leave
+    // Idle breathing glow — each card phase-shifted so they pulse out of sync
     if (matRef.current) {
-      easing.damp(matRef.current, 'emissiveIntensity', hovered ? 0.14 : 0, 0.10, delta);
+      const phase = state.clock.getElapsedTime() * 0.7 + index * 0.55;
+      const idle = (Math.sin(phase) * 0.5 + 0.5) * 0.10;
+      const target = hovered ? 0.70 : idle;
+      easing.damp(matRef.current, 'emissiveIntensity', target, 0.10, delta);
     }
   });
 

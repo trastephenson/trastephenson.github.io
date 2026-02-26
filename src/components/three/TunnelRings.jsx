@@ -53,10 +53,10 @@ const fragmentShader = `
     float contour = abs(fract(h * 9.0) - 0.5);
     float line = 1.0 - smoothstep(0.0, 0.03, contour);
 
-    // Very slow warm-to-cool pulse (~63s cycle) — barely perceptible but alive
-    float pulse = sin(uTime * 0.1) * 0.5 + 0.5;
-    vec3 bgColor   = mix(vec3(0.918, 0.918, 0.918), vec3(0.912, 0.912, 0.924), pulse);
-    vec3 lineColor = mix(vec3(0.820, 0.820, 0.820), vec3(0.800, 0.800, 0.840), pulse);
+    // Clearly visible neutral-gray → lavender pulse (~20s cycle)
+    float pulse = sin(uTime * 0.32) * 0.5 + 0.5;
+    vec3 bgColor   = mix(vec3(0.925, 0.922, 0.922), vec3(0.868, 0.856, 0.958), pulse);
+    vec3 lineColor = mix(vec3(0.840, 0.836, 0.836), vec3(0.748, 0.732, 0.906), pulse);
 
     vec3 color = mix(bgColor, lineColor, line * 0.62);
     gl_FragColor = vec4(color, 1.0);
