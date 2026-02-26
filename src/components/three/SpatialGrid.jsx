@@ -351,7 +351,7 @@ function SectionCard({ index, onSelect }) {
             onSelect(index);
           }}
         >
-          <meshStandardMaterial color="#f7f8ff" roughness={0.06} metalness={0.03} transparent opacity={0.39} />
+          <meshStandardMaterial color="#f7f8ff" roughness={0.06} metalness={0.03} transparent opacity={0.69} />
         </RoundedBox>
 
         {/* ── Three.js-native face content (Text + textures) ── */}
