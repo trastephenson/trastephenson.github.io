@@ -68,8 +68,14 @@ const btnRowStyle = {
   justifyContent: 'center',
 };
 
-// Blue colour theme — keeps #0088cc brand colour, fills with blue on hover, text flips to white
-const BTN_COLOR = { '--btn-text': '#0088cc', '--btn-fill': '#0088cc' };
+// Blue compact theme — smaller pill, side-by-side fit, blue fill on hover
+const BTN_COLOR = {
+  '--btn-text': '#0088cc',
+  '--btn-fill': '#0088cc',
+  '--btn-pad-y': '0.55rem',
+  '--btn-pad-x': '1rem',
+  '--btn-font-size': '0.78rem',
+};
 
 export default function WorkPanel({ items, title }) {
   return (

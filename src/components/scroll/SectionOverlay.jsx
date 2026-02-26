@@ -10,25 +10,29 @@ const wrapperBase = {
   zIndex: 10,
   width: '90vw',
   maxWidth: '900px',
-  // Opaque liquid glass — matches the 3D card material (f7f8ff, roughness 0.06)
-  background: 'linear-gradient(145deg, rgba(255,255,255,0.97) 0%, rgba(247,248,255,0.96) 55%, rgba(242,245,255,0.95) 100%)',
-  backdropFilter: 'blur(80px) saturate(280%) brightness(120%)',
-  WebkitBackdropFilter: 'blur(80px) saturate(280%) brightness(120%)',
-  // Bright top edge = specular light catching the glass rim
+  // ~90% opaque liquid glass — light, airy, but clearly glassy
+  background: 'linear-gradient(145deg, rgba(255,255,255,0.90) 0%, rgba(247,248,255,0.88) 55%, rgba(242,245,255,0.86) 100%)',
+  backdropFilter: 'blur(80px) saturate(320%) brightness(118%) contrast(1.01)',
+  WebkitBackdropFilter: 'blur(80px) saturate(320%) brightness(118%) contrast(1.01)',
+  // Bright top edge + right/bottom depth edges → physical 3D slab feel
   border: '1.5px solid rgba(255,255,255,0.88)',
   borderTop: '2px solid rgba(255,255,255,1)',
+  borderRight: '1px solid rgba(220,228,250,0.55)',
+  borderBottom: '1px solid rgba(200,212,240,0.45)',
   borderRadius: '24px',
   overflow: 'hidden',
   boxShadow: [
-    '0 48px 120px rgba(0,0,0,0.20)',
-    '0 16px 48px rgba(0,0,0,0.11)',
-    '0 4px 16px rgba(0,0,0,0.06)',
-    // inset specular facets — simulate the glassy surface reflections
+    // Deep cast shadow — physical depth below the card
+    '0 64px 140px rgba(0,0,0,0.22)',
+    '0 24px 64px rgba(0,0,0,0.14)',
+    '0 8px 24px rgba(0,0,0,0.08)',
+    '0 2px 6px rgba(0,0,0,0.04)',
+    // inset specular facets — light catching each glass rim
     'inset 0 2px 0 rgba(255,255,255,1)',
-    'inset 0 1px 1px rgba(255,255,255,0.85)',
-    'inset 0 -1px 0 rgba(255,255,255,0.42)',
-    'inset 1px 0 0 rgba(255,255,255,0.68)',
-    'inset -1px 0 0 rgba(255,255,255,0.34)',
+    'inset 0 1.5px 1.5px rgba(255,255,255,0.90)',
+    'inset 0 -2px 0 rgba(255,255,255,0.25)',
+    'inset 1.5px 0 0 rgba(255,255,255,0.78)',
+    'inset -1.5px 0 0 rgba(255,255,255,0.22)',
   ].join(', '),
   maxHeight: '84vh',
   display: 'flex',

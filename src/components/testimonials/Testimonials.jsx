@@ -18,6 +18,10 @@ const SectionTitle = styled.h2`
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.6),
+    0 2px 0 rgba(0,100,180,0.15),
+    0 3px 8px rgba(0,136,204,0.12);
 `;
 
 const SliderWrapper = styled.div`

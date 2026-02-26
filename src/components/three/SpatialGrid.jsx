@@ -151,7 +151,7 @@ function CardFace({ index, c }) {
           </Text>
           <Text position={[0.3, CY - 0.16, FACE_Z]} fontSize={0.1} color="#666"
                 anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center">
-            {'Principal Solutions\nArchitect'}
+            {'Director of Engineering\nOperations'}
           </Text>
         </>
       );
@@ -163,11 +163,11 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.28, FACE_Z]} fontSize={0.19} color="#111"
                 anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center">
-            {'Technical Product\n& Platform Leader'}
+            {'AI Platform Architecture\n& Engineering Operations'}
           </Text>
           <Text position={[0, CY - 0.36, FACE_Z]} fontSize={0.11} color="#666"
                 anchorX="center" anchorY="middle" maxWidth={2.3} textAlign="center">
-            {'AI Engineering (MS) · Cloud-native\nAI-enabled automation · Leadership'}
+            {'Multi-Agent LLM · RAG Pipelines\nEnterprise SaaS · Cloud Architecture'}
           </Text>
         </>
       );
@@ -182,11 +182,11 @@ function CardFace({ index, c }) {
           </Suspense>
           <Text position={[0.3, CY + 0.3, FACE_Z]} fontSize={0.17} color="#111"
                 anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center">
-            {'10+ Years\nCloud & Product'}
+            {'10+ Years\nEnterprise & AI'}
           </Text>
           <Text position={[0.3, CY - 0.22, FACE_Z]} fontSize={0.1} color="#555"
                 anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center">
-            {'Architecture · Strategy\n& Delivery Governance'}
+            {'Multi-Agent LLM · RAG\nEngineering Operations'}
           </Text>
         </>
       );
@@ -198,7 +198,7 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.1, FACE_Z]} fontSize={0.13} color="#333"
                 anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center" lineHeight={1.8}>
-            {'React · Node.js · Python · AWS\nTypeScript · Docker · GraphQL\nSystem Design · Architecture'}
+            {'Multi-Agent LLM · RAG · Python\nAWS · Docker · TypeScript\nEnterprise Architecture'}
           </Text>
         </>
       );
@@ -210,7 +210,7 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.1, FACE_Z]} fontSize={0.13} color="#333"
                 anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center" lineHeight={1.8}>
-            {'Solutions Architecture\nTechnical Leadership · Cloud Strategy\nProduct Delivery · AI/ML Integration'}
+            {'Engineering Operations\nAI Platform Architecture\nDelivery Governance · LLM Systems'}
           </Text>
         </>
       );
@@ -222,7 +222,7 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.1, FACE_Z]} fontSize={0.13} color="#333"
                 anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center" lineHeight={1.8}>
-            {'Figma · AWS · Docker · Kubernetes\nTerraform · Jira · Confluence\nGitHub · Datadog · Grafana'}
+            {'Figma · AWS · Docker · Kubernetes\nTerraform · Jira · Confluence\nGitHub · Postman · CI/CD'}
           </Text>
         </>
       );

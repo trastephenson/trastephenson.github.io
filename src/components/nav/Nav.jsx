@@ -10,8 +10,8 @@ import { useScroll } from '../../context/ScrollContext'
 const StyledNav = styled.nav`
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(240, 244, 255, 0.93) 100%
+    rgba(255, 255, 255, 0.88) 0%,
+    rgba(240, 244, 255, 0.84) 100%
   );
   width: max-content;
   display: flex;
@@ -69,7 +69,8 @@ const StyledNavButton = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.22s ease;
+    transition: transform 0.22s ease, filter 0.22s ease;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.18)) drop-shadow(0 1px 1px rgba(0, 0, 0, 0.10));
   }
 
   .label {
@@ -90,6 +91,7 @@ const StyledNavButton = styled.button`
 
     .icon {
       transform: scale(1.12) translateY(-1px);
+      filter: drop-shadow(0 4px 6px rgba(0, 136, 204, 0.28)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.12));
     }
 
     .label {

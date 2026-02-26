@@ -18,6 +18,10 @@ const SectionTitle = styled.h2`
   letter-spacing: 0.1em;
   margin-bottom: 0.75rem;
   text-align: center;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.6),
+    0 2px 0 rgba(0,100,180,0.15),
+    0 3px 8px rgba(0,136,204,0.12);
 `;
 
 const Subtitle = styled.p`
@@ -172,7 +176,7 @@ const Contact = () => {
     <ContactSection>
       <SectionTitle>Contact Me</SectionTitle>
       <Subtitle>
-        Open to Principal Solutions Architect and Director / Principal Technical Product roles — especially platform and AI-enabled products.
+        Open to Director of Engineering, AI Platform Architecture, and Principal Architect roles — enterprise SaaS, multi-agent systems, and AI-enabled platform delivery.
       </Subtitle>
 
       <Grid>

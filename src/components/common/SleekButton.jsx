@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SleekButton = ({ children, onClick, type = "button", className }) => {
+const SleekButton = ({ children, onClick, type = "button", className, style }) => {
   return (
-    <StyledWrapper>
+    <StyledWrapper style={style}>
       <button className={`btn-31 ${className || ''}`} type={type} onClick={onClick}>
         <span className="text-container">
           <span className="text">{children}</span>
@@ -62,9 +62,10 @@ const StyledWrapper = styled.div`
   .btn-31 {
     border-width: 1px;
     border-color: rgba(0, 136, 204, 0.2);
-    padding: 1rem 2rem;
+    padding: var(--btn-pad-y, 1rem) var(--btn-pad-x, 2rem);
     position: relative;
     text-transform: uppercase;
+    font-size: var(--btn-font-size, 100%);
   }
 
   .btn-31:before {

@@ -52,6 +52,10 @@ const SectionTitle = styled.h2`
   letter-spacing: 0.1em;
   margin-bottom: 1.5rem;
   text-align: center;
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.6),
+    0 2px 0 rgba(0,100,180,0.15),
+    0 3px 8px rgba(0,136,204,0.12);
 `;
 
 const About = () => {
@@ -64,10 +68,13 @@ const About = () => {
         </PhotoWrapper>
         <BioText>
           <p>
-            I'm a <strong>Principal-level Solutions Architect</strong> and Technical Product Leader with 10+ years of experience delivering cloud-scale platforms across mobile, backend, and AI-enabled systems.
+            I'm a <strong>Director of Engineering Operations</strong> with 10+ years leading AI-enabled enterprise SaaS platforms from architecture through production delivery. I design and operate multi-agent LLM systems, RAG pipelines, and cloud-native platform infrastructure at scale.
           </p>
           <p>
-            My work bridges solution architecture, product strategy, and delivery governance — helping organizations translate complex business goals into scalable, production-ready systems.
+            At Appstango, I lead engineering operations across the full platform lifecycle — translating executive strategy into governed technical roadmaps, shipping 5+ production platforms across mobile, backend, and AI systems, and aligning cross-functional teams around architecture decisions that hold under real enterprise load.
+          </p>
+          <p>
+            I partner with product, data, and C-suite stakeholders to drive AI platform strategy, manage delivery governance, and bring clarity to complex, multi-team builds.
           </p>
         </BioText>
       </AboutGrid>
