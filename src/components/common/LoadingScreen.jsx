@@ -3,15 +3,23 @@ import { useEffect, useState } from 'react';
 
 export default function LoadingScreen() {
   const { active } = useProgress();
+  // Guarantee at least 1s of visibility so the splash is actually seen
+  const [minTimeDone, setMinTimeDone] = useState(false);
   const [visible, setVisible] = useState(true);
 
-  // Keep mounted for the fade-out, then remove from DOM
   useEffect(() => {
-    if (!active) {
-      const t = setTimeout(() => setVisible(false), 700);
-      return () => clearTimeout(t);
-    }
-  }, [active]);
+    const t = setTimeout(() => setMinTimeDone(true), 1000);
+    return () => clearTimeout(t);
+  }, []);
+
+  // Fade out only after both: min time elapsed AND R3F is done loading
+  const shouldFade = minTimeDone && !active;
+
+  useEffect(() => {
+    if (!shouldFade) return;
+    const t = setTimeout(() => setVisible(false), 700);
+    return () => clearTimeout(t);
+  }, [shouldFade]);
 
   if (!visible) return null;
 
@@ -25,9 +33,9 @@ export default function LoadingScreen() {
       alignItems: 'center',
       justifyContent: 'center',
       background: '#eaeaea',
-      opacity: active ? 1 : 0,
+      opacity: shouldFade ? 0 : 1,
       transition: 'opacity 0.7s ease',
-      pointerEvents: active ? 'auto' : 'none',
+      pointerEvents: shouldFade ? 'none' : 'auto',
       fontFamily: "'Inter', sans-serif",
     }}>
       <div style={{

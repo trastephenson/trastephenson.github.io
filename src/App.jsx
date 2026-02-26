@@ -74,11 +74,11 @@ const App = () => {
 
   return (
     <ScrollProvider viewMode={viewMode}>
-      <LoadingScreen />
       {toggleBtn}
 
       {viewMode === '3d' ? (
         <>
+          <LoadingScreen />
           {/* Layer 1: 3D scene — spatial grid of clickable section cards */}
           <Scene>
             <SpatialGrid />
