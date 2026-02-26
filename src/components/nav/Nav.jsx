@@ -11,8 +11,8 @@ import { useScroll } from '../../context/ScrollContext'
 const StyledNav = styled.nav`
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.30) 0%,
-    rgba(240, 244, 255, 0.22) 100%
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(240, 244, 255, 0.07) 100%
   );
   width: max-content;
   display: flex;
