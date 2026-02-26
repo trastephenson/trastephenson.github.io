@@ -2,8 +2,9 @@
 
 **Director of Engineering Operations · AI Platform Architecture · Principal Architect**
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-trastephenson.github.io-7c6ff7?style=for-the-badge&logo=github)](https://trastephenson.github.io)
-[![Render](https://img.shields.io/badge/Also%20on-Render.com-46E3B7?style=for-the-badge&logo=render)](https://travis-stephensons-react-app.onrender.com)
+[![Live Site](https://img.shields.io/badge/Live%20Site-travis--stephenson.cv-7c6ff7?style=for-the-badge&logo=googlechrome)](https://www.travis-stephenson.cv/)
+[![GitHub Pages](https://img.shields.io/badge/Mirror-trastephenson.github.io-333?style=for-the-badge&logo=github)](https://trastephenson.github.io)
+[![Render](https://img.shields.io/badge/Hosted%20on-Render.com-46E3B7?style=for-the-badge&logo=render)](https://travis-stephensons-react-app.onrender.com)
 
 ---
 
@@ -11,8 +12,9 @@
 
 | URL | Platform |
 |-----|----------|
-| [trastephenson.github.io](https://trastephenson.github.io) | GitHub Pages (built → `master` branch) |
+| [travis-stephenson.cv](https://www.travis-stephenson.cv/) | Custom domain → Render.com |
 | [travis-stephensons-react-app.onrender.com](https://travis-stephensons-react-app.onrender.com) | Render.com (auto-deploys from `main`) |
+| [trastephenson.github.io](https://trastephenson.github.io) | GitHub Pages (built → `master` branch) |
 
 ---
 
@@ -32,7 +34,7 @@ An interactive portfolio built with React 18 and React Three Fiber, featuring a 
 | UI | React 18, styled-components |
 | 3D | Three.js, React Three Fiber, @react-three/drei |
 | Animation | maath (easing), GLSL shaders |
-| Deployment | GitHub Pages (`master`), Render.com (`main`) |
+| Deployment | Render.com (`main`), GitHub Pages (`master`), custom domain `travis-stephenson.cv` |
 
 ---
 
