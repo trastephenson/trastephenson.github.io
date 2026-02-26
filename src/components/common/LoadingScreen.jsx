@@ -1,23 +1,24 @@
 import { useProgress } from '@react-three/drei';
 import { useEffect, useState } from 'react';
 
+// Shows on every first load (both 3D and Classic modes).
+// Guaranteed minimum 1.5s so users actually see the splash.
 export default function LoadingScreen() {
   const { active } = useProgress();
-  // Guarantee at least 1s of visibility so the splash is actually seen
   const [minTimeDone, setMinTimeDone] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setMinTimeDone(true), 1000);
+    const t = setTimeout(() => setMinTimeDone(true), 1500);
     return () => clearTimeout(t);
   }, []);
 
-  // Fade out only after both: min time elapsed AND R3F is done loading
+  // Fade only after both min time and R3F loading are complete
   const shouldFade = minTimeDone && !active;
 
   useEffect(() => {
     if (!shouldFade) return;
-    const t = setTimeout(() => setVisible(false), 700);
+    const t = setTimeout(() => setVisible(false), 800);
     return () => clearTimeout(t);
   }, [shouldFade]);
 
@@ -27,47 +28,64 @@ export default function LoadingScreen() {
     <div style={{
       position: 'fixed',
       inset: 0,
-      zIndex: 9000,
+      zIndex: 9999,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      background: '#eaeaea',
+      background: 'linear-gradient(160deg, #ffffff 0%, #f4f4fb 100%)',
       opacity: shouldFade ? 0 : 1,
-      transition: 'opacity 0.7s ease',
+      transition: 'opacity 0.8s cubic-bezier(0.4,0,0.2,1)',
       pointerEvents: shouldFade ? 'none' : 'auto',
       fontFamily: "'Inter', sans-serif",
     }}>
+
+      {/* Name */}
       <div style={{
-        fontSize: 'clamp(2rem, 5vw, 2.8rem)',
-        fontWeight: 800,
-        letterSpacing: '-0.03em',
-        color: '#111',
-        marginBottom: '0.6rem',
+        fontSize: 'clamp(2.2rem, 6vw, 3.2rem)',
+        fontWeight: 900,
+        letterSpacing: '-0.04em',
+        color: '#0f0f1a',
+        lineHeight: 1,
+        marginBottom: '0.5rem',
       }}>
         Travis Stephenson
       </div>
+
+      {/* Title */}
       <div style={{
-        fontSize: '0.72rem',
+        fontSize: 'clamp(0.65rem, 1.8vw, 0.75rem)',
         fontWeight: 600,
-        letterSpacing: '0.2em',
+        letterSpacing: '0.22em',
         textTransform: 'uppercase',
-        color: '#999',
+        color: '#7c6ff7',
+        marginBottom: '3rem',
       }}>
         Director of Engineering Operations
       </div>
+
+      {/* Progress bar track */}
       <div style={{
-        marginTop: '2.5rem',
-        width: '7px',
-        height: '7px',
-        borderRadius: '50%',
-        background: '#7c6ff7',
-        animation: 'ts-pulse 1.1s ease-in-out infinite',
-      }} />
+        width: 'clamp(140px, 28vw, 220px)',
+        height: '3px',
+        background: 'rgba(124,111,247,0.15)',
+        borderRadius: '99px',
+        overflow: 'hidden',
+      }}>
+        {/* Animated fill — runs for 1.4s matching the min display time */}
+        <div style={{
+          height: '100%',
+          background: 'linear-gradient(90deg, #7c6ff7, #9c6df7)',
+          borderRadius: '99px',
+          animation: 'ts-bar 1.4s cubic-bezier(0.4,0,0.6,1) forwards',
+        }} />
+      </div>
+
       <style>{`
-        @keyframes ts-pulse {
-          0%, 100% { opacity: 0.25; transform: scale(0.75); }
-          50%       { opacity: 1;    transform: scale(1.4);  }
+        @keyframes ts-bar {
+          0%   { width: 0%; }
+          60%  { width: 72%; }
+          100% { width: 100%; }
         }
       `}</style>
     </div>

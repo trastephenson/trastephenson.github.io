@@ -25,7 +25,7 @@ const toggleBtnStyle = {
   position: 'fixed',
   top: '1.25rem',
   right: '1.25rem',
-  zIndex: 9999,
+  zIndex: 9000,
   padding: '0.48rem 1.1rem',
   borderRadius: '50px',
   border: '1.5px solid rgba(0,0,0,0.13)',
@@ -74,11 +74,11 @@ const App = () => {
 
   return (
     <ScrollProvider viewMode={viewMode}>
+      <LoadingScreen />
       {toggleBtn}
 
       {viewMode === '3d' ? (
         <>
-          <LoadingScreen />
           {/* Layer 1: 3D scene — spatial grid of clickable section cards */}
           <Scene>
             <SpatialGrid />
