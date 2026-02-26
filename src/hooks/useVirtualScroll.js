@@ -78,6 +78,64 @@ export default function useVirtualScroll({ enabled = true } = {}) {
     return () => window.removeEventListener('wheel', handleWheel);
   }, [enabled]);
 
+  // Touch swipe — horizontal swipe cycles sections in 3D mode
+  useEffect(() => {
+    if (!enabled) return;
+    let startX = 0;
+    let startY = 0;
+    const onTouchStart = (e) => {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    };
+    const onTouchEnd = (e) => {
+      const dx = e.changedTouches[0].clientX - startX;
+      const dy = e.changedTouches[0].clientY - startY;
+      // Require at least 50px and more horizontal than vertical
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+      setActiveSection((prev) => {
+        if (prev === null) return prev;
+        const next = dx < 0
+          ? Math.min(TOTAL_SECTIONS - 1, prev + 1)
+          : Math.max(0, prev - 1);
+        setCurrentSection(next);
+        setIsOverview(false);
+        return next;
+      });
+    };
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchend', onTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [enabled]);
+
+  // Classic mode: IntersectionObserver keeps nav in sync with scroll position
+  useEffect(() => {
+    if (enabled) return;
+    const ID_MAP = [
+      ['home', 0], ['about', 2], ['strengths', 3],
+      ['experience', 4], ['services', 5],
+      ['portfolio', 6], ['testimonials', 9], ['contact', 10],
+    ];
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const match = ID_MAP.find(([id]) => id === entry.target.id);
+            if (match) setCurrentSection(match[1]);
+          }
+        });
+      },
+      { threshold: 0.25 }
+    );
+    ID_MAP.forEach(([id]) => {
+      const el = document.getElementById(id);
+      if (el) obs.observe(el);
+    });
+    return () => obs.disconnect();
+  }, [enabled]);
+
   // scrollTo: DOM scrollIntoView in classic mode, zoom in 3D mode
   const scrollTo = useCallback((index) => {
     if (!enabled) {

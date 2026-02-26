@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import MAGESH from '../../assets/magesh.jpg';
 import BERT from '../../assets/bert.jpg';
@@ -144,6 +144,51 @@ const DotButton = styled.button`
   padding: 0;
 `;
 
+const CarouselOuter = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+`;
+
+const ArrowBtn = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  ${props => props.$left ? 'left: -1.2rem;' : 'right: -1.2rem;'}
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.88);
+  background: rgba(255,255,255,0.76);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #333;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,1);
+  transition: all 0.2s ease;
+  z-index: 2;
+
+  &:hover {
+    background: rgba(255,255,255,0.95);
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  @media (max-width: 720px) {
+    ${props => props.$left ? 'left: 0.25rem;' : 'right: 0.25rem;'}
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    &:hover { transform: translateY(-50%); background: rgba(255,255,255,0.76); }
+    &:active { background: rgba(255,255,255,0.95); transform: translateY(-50%) scale(1.05); }
+  }
+`;
+
 const data = [
   {
     avatar: MAGESH,
@@ -191,6 +236,7 @@ const renderStars = (count) =>
 
 const Testimonials = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -199,28 +245,45 @@ const Testimonials = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const goPrev = () => setActiveIndex(i => (i - 1 + data.length) % data.length);
+  const goNext = () => setActiveIndex(i => (i + 1) % data.length);
+
+  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(dx) < 40) return;
+    dx < 0 ? goNext() : goPrev();
+  };
+
   return (
     <TestimonialsContainer>
       <SectionTitle>Recommendations</SectionTitle>
-      <SliderWrapper>
-        {data.map((item, index) => (
-          <Slide key={index} $active={activeIndex === index}>
-            <TestimonialCard>
-              <CardHeader>
-                <Avatar>
-                  <img src={item.avatar} alt={item.name} />
-                </Avatar>
-                <div>
-                  <Stars>{renderStars(item.rating)}</Stars>
-                  <Name>{item.name}</Name>
-                  <JobTitle>{item.jobTitle}</JobTitle>
-                </div>
-              </CardHeader>
-              <ReviewText>{item.review}</ReviewText>
-            </TestimonialCard>
-          </Slide>
-        ))}
-      </SliderWrapper>
+      <CarouselOuter>
+        <ArrowBtn $left onClick={goPrev} aria-label="Previous testimonial">&#8249;</ArrowBtn>
+        <SliderWrapper
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          {data.map((item, index) => (
+            <Slide key={index} $active={activeIndex === index}>
+              <TestimonialCard>
+                <CardHeader>
+                  <Avatar>
+                    <img src={item.avatar} alt={item.name} />
+                  </Avatar>
+                  <div>
+                    <Stars>{renderStars(item.rating)}</Stars>
+                    <Name>{item.name}</Name>
+                    <JobTitle>{item.jobTitle}</JobTitle>
+                  </div>
+                </CardHeader>
+                <ReviewText>{item.review}</ReviewText>
+              </TestimonialCard>
+            </Slide>
+          ))}
+        </SliderWrapper>
+        <ArrowBtn onClick={goNext} aria-label="Next testimonial">&#8250;</ArrowBtn>
+      </CarouselOuter>
       <DotRow>
         {data.map((_, i) => (
           <DotButton

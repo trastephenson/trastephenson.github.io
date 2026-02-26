@@ -47,7 +47,9 @@ const toggleBtnStyle = {
 const sectionGap = { paddingTop: '3rem', paddingBottom: '2rem' };
 
 const App = () => {
-  const [viewMode, setViewMode] = useState('3d');
+  const [viewMode, setViewMode] = useState(() =>
+    typeof window !== 'undefined' && window.innerWidth < 768 ? 'classic' : '3d'
+  );
 
   // Toggle native body scroll when switching modes
   useEffect(() => {
