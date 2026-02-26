@@ -28,7 +28,7 @@ const GroupsGrid = styled.div`
 `;
 
 const Group = styled.div`
-  background: linear-gradient(145deg, rgba(255,255,255,0.88) 0%, rgba(247,249,255,0.84) 100%);
+  background: linear-gradient(145deg, rgba(255,255,255,0.35) 0%, rgba(247,249,255,0.28) 100%);
   backdrop-filter: blur(28px) saturate(200%) brightness(112%);
   -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(112%);
   border: 1px solid rgba(255,255,255,0.75);

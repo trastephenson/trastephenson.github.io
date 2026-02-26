@@ -57,13 +57,13 @@ const App = () => {
         <Services />
       </SectionOverlay>
       <SectionOverlay sectionIndex={6}>
-        <WorkPanel items={mobileApps} title="Featured Work — Mobile Apps" />
+        <WorkPanel items={mobileApps} title="Featured Work -Mobile Apps" />
       </SectionOverlay>
       <SectionOverlay sectionIndex={7}>
-        <WorkPanel items={platforms} title="Featured Work — Platforms" />
+        <WorkPanel items={platforms} title="Featured Work -Platforms" />
       </SectionOverlay>
       <SectionOverlay sectionIndex={8}>
-        <WorkPanel items={aiWork} title="Featured Work — AI" />
+        <WorkPanel items={aiWork} title="Featured Work -AI" />
       </SectionOverlay>
       <SectionOverlay sectionIndex={9}>
         <Testimonials />

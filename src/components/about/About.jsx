@@ -71,7 +71,7 @@ const About = () => {
             I'm a <strong>Director of Engineering Operations</strong> with 10+ years leading AI-enabled enterprise SaaS platforms from architecture through production delivery. I design and operate multi-agent LLM systems, RAG pipelines, and cloud-native platform infrastructure at scale.
           </p>
           <p>
-            At Appstango, I lead engineering operations across the full platform lifecycle — translating executive strategy into governed technical roadmaps, shipping 5+ production platforms across mobile, backend, and AI systems, and aligning cross-functional teams around architecture decisions that hold under real enterprise load.
+            At Appstango, I lead engineering operations across the full platform lifecycle - translating executive strategy into governed technical roadmaps, shipping 5+ production platforms across mobile, backend, and AI systems, and aligning cross-functional teams around architecture decisions that hold under real enterprise load.
           </p>
           <p>
             I partner with product, data, and C-suite stakeholders to drive AI platform strategy, manage delivery governance, and bring clarity to complex, multi-team builds.

@@ -5,13 +5,14 @@ import {ImProfile} from 'react-icons/im'
 import {GiDiceTwentyFacesTwenty} from 'react-icons/gi'
 import {FaToolbox} from 'react-icons/fa'
 import {BiMessageSquareDetail} from 'react-icons/bi'
+import {FaLinkedinIn} from 'react-icons/fa'
 import { useScroll } from '../../context/ScrollContext'
 
 const StyledNav = styled.nav`
   background: linear-gradient(
     160deg,
-    rgba(255, 255, 255, 0.88) 0%,
-    rgba(240, 244, 255, 0.84) 100%
+    rgba(255, 255, 255, 0.30) 0%,
+    rgba(240, 244, 255, 0.22) 100%
   );
   width: max-content;
   display: flex;
@@ -135,6 +136,7 @@ const NAV_ITEMS = [
   { icon: GiDiceTwentyFacesTwenty, label: 'Skills', sectionIndex: 4 },
   { icon: FaToolbox, label: 'Work', sectionIndex: 6 },
   { icon: BiMessageSquareDetail, label: 'Contact', sectionIndex: 10 },
+  { icon: FaLinkedinIn, label: 'LinkedIn', href: 'https://www.linkedin.com/in/mrtravisstephenson' },
 ]
 
 const SECTION_TO_NAV = {
@@ -153,19 +155,37 @@ const Nav = () => {
 
   return (
     <StyledNav aria-label="Section navigation">
-      {NAV_ITEMS.map(({ icon: Icon, label, sectionIndex }) => (
-        <StyledNavButton
-          key={label}
-          onClick={() => scrollTo(sectionIndex)}
-          className={activeMapped === sectionIndex ? 'active' : ''}
-          aria-label={`Navigate to ${label}`}
-          aria-current={activeMapped === sectionIndex ? 'true' : undefined}
-          title={label}
-        >
-          <span className="icon"><Icon /></span>
-          <span className="label">{label}</span>
-        </StyledNavButton>
-      ))}
+      {NAV_ITEMS.map(({ icon: Icon, label, sectionIndex, href }) => {
+        if (href) {
+          return (
+            <StyledNavButton
+              key={label}
+              as="a"
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              title={label}
+            >
+              <span className="icon"><Icon /></span>
+              <span className="label">{label}</span>
+            </StyledNavButton>
+          );
+        }
+        return (
+          <StyledNavButton
+            key={label}
+            onClick={() => scrollTo(sectionIndex)}
+            className={activeMapped === sectionIndex ? 'active' : ''}
+            aria-label={`Navigate to ${label}`}
+            aria-current={activeMapped === sectionIndex ? 'true' : undefined}
+            title={label}
+          >
+            <span className="icon"><Icon /></span>
+            <span className="label">{label}</span>
+          </StyledNavButton>
+        );
+      })}
     </StyledNav>
   )
 }

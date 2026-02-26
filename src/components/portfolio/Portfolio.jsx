@@ -9,7 +9,7 @@ export const mobileApps = [
     id: 1,
     image: IMG1,
     title: 'Seeds of Thyme',
-    summary: 'End-to-end product ownership for iOS mobile application — architecture, UX direction, and production delivery.',
+    summary: 'End-to-end product ownership for iOS mobile application - architecture, UX direction, and production delivery.',
     primaryCta: 'Product Site',
     primaryUrl: 'https://www.seedsofthyme.com/pages/app-seedsofthyme',
     secondaryCta: 'App Store',

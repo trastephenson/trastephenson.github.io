@@ -29,10 +29,10 @@ const T_SRCS   = [IMG_MAGESH, IMG_BERT,      IMG_ARYAN,              IMG_SAM,   
 const T_NAMES  = ['Magesh',  'Bert Curtis',  'Aryan Basak',          'Sammuel Syphrett',         'Anirban Dutta'];
 const T_ROLES  = ['QA Lead, Fidelity', 'Senior SDET', 'PM @ Utah Tech Labs', 'Supervisor',     'Python Data Engineer'];
 const T_QUOTES = [
-  '"highly skilled, dedicated professional — problem-solving sets them apart"',
+  '"highly skilled, dedicated professional - problem-solving sets them apart"',
   '"consistently demonstrates a passion for learning and problem-solving"',
-  '"drives projects to successful completion — truly impressive"',
-  '"exceptional leadership and humility — invaluable asset"',
+  '"drives projects to successful completion - truly impressive"',
+  '"exceptional leadership and humility - invaluable asset"',
   '"great team player, always keeps the team spirit high"',
 ];
 
@@ -163,11 +163,11 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.28, FACE_Z]} fontSize={0.19} color="#111"
                 anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center">
-            {'AI Platform Architecture\n& Engineering Operations'}
+            {'Director,\nEngineering Operations'}
           </Text>
           <Text position={[0, CY - 0.36, FACE_Z]} fontSize={0.11} color="#666"
                 anchorX="center" anchorY="middle" maxWidth={2.3} textAlign="center">
-            {'Multi-Agent LLM · RAG Pipelines\nEnterprise SaaS · Cloud Architecture'}
+            {'AI Platform Architecture\nMulti-Agent LLM · Enterprise SaaS'}
           </Text>
         </>
       );
@@ -351,7 +351,7 @@ function SectionCard({ index, onSelect }) {
             onSelect(index);
           }}
         >
-          <meshStandardMaterial color="#f7f8ff" roughness={0.06} metalness={0.03} />
+          <meshStandardMaterial color="#f7f8ff" roughness={0.06} metalness={0.03} transparent opacity={0.55} />
         </RoundedBox>
 
         {/* ── Three.js-native face content (Text + textures) ── */}

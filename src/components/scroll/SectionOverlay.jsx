@@ -10,8 +10,8 @@ const wrapperBase = {
   zIndex: 10,
   width: '90vw',
   maxWidth: '900px',
-  // ~90% opaque liquid glass — light, airy, but clearly glassy
-  background: 'linear-gradient(145deg, rgba(255,255,255,0.90) 0%, rgba(247,248,255,0.88) 55%, rgba(242,245,255,0.86) 100%)',
+  // ~40% opacity — clear glass, 3D scene visible behind
+  background: 'linear-gradient(145deg, rgba(255,255,255,0.42) 0%, rgba(247,248,255,0.36) 55%, rgba(242,245,255,0.30) 100%)',
   backdropFilter: 'blur(80px) saturate(320%) brightness(118%) contrast(1.01)',
   WebkitBackdropFilter: 'blur(80px) saturate(320%) brightness(118%) contrast(1.01)',
   // Bright top edge + right/bottom depth edges → physical 3D slab feel

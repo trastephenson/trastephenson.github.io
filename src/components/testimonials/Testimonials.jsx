@@ -43,7 +43,7 @@ const Slide = styled.div`
 `;
 
 const TestimonialCard = styled.div`
-  background: linear-gradient(145deg, rgba(255,255,255,0.93) 0%, rgba(247,249,255,0.89) 100%);
+  background: linear-gradient(145deg, rgba(255,255,255,0.38) 0%, rgba(247,249,255,0.30) 100%);
   backdrop-filter: blur(28px) saturate(200%) brightness(112%);
   -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(112%);
   border: 1px solid rgba(255,255,255,0.78);
