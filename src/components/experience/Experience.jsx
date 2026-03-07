@@ -6,52 +6,39 @@ const SkillsContainer = styled.section`
 `;
 
 const SectionTitle = styled.h2`
-  color: var(--accent);
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  line-height: var(--leading-heading);
+  letter-spacing: -0.04em;
   margin-bottom: 2rem;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.6),
-    0 2px 0 rgba(0,100,180,0.15),
-    0 3px 8px rgba(0,136,204,0.12);
 `;
 
 const AccordionStack = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
+  gap: 0.75rem;
   max-width: 720px;
   margin: 0 auto;
   text-align: left;
 `;
 
 const Panel = styled.div`
-  background: linear-gradient(145deg, rgba(255,255,255,0.35) 0%, rgba(247,249,255,0.28) 100%);
-  backdrop-filter: blur(28px) saturate(220%) brightness(115%);
-  -webkit-backdrop-filter: blur(28px) saturate(220%) brightness(115%);
-  border: 1px solid rgba(255,255,255,0.75);
-  border-top: 1.5px solid rgba(255,255,255,0.96);
-  border-radius: 14px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow:
-    0 8px 28px rgba(0,0,0,0.07),
-    0 2px 8px rgba(0,0,0,0.04),
-    inset 0 1.5px 0 rgba(255,255,255,0.98),
-    inset 0 -1px 0 rgba(255,255,255,0.25),
-    inset 1px 0 0 rgba(255,255,255,0.68),
-    inset -1px 0 0 rgba(255,255,255,0.18);
-  transition: box-shadow 0.22s ease;
+  box-shadow: var(--shadow-md);
+  transition:
+    box-shadow var(--motion-normal) var(--ease-standard),
+    transform var(--motion-normal) var(--ease-standard);
 
   &:hover {
-    box-shadow:
-      0 12px 36px rgba(0,136,204,0.09),
-      0 2px 8px rgba(0,0,0,0.04),
-      inset 0 1.5px 0 rgba(255,255,255,0.98),
-      inset 0 -1px 0 rgba(255,255,255,0.25),
-      inset 1px 0 0 rgba(255,255,255,0.68),
-      inset -1px 0 0 rgba(255,255,255,0.18);
+    transform: translateY(-2px);
+    box-shadow: 0 24px 52px color-mix(in srgb, var(--accent) 12%, rgba(18, 25, 34, 0.1));
   }
 `;
 
@@ -63,7 +50,7 @@ const PanelHeader = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.9rem 1.1rem;
+  padding: 1rem 1.1rem;
   text-align: left;
   outline: none;
   gap: 0.75rem;
@@ -71,17 +58,17 @@ const PanelHeader = styled.button`
   &:focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: -2px;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
   }
 `;
 
 const CategoryLabel = styled.span`
-  font-size: 0.72rem;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
-  text-shadow: 0 1px 3px rgba(0,136,204,0.18);
   flex: 1;
 `;
 
@@ -89,7 +76,7 @@ const SkillCount = styled.span`
   font-size: 0.68rem;
   font-weight: 600;
   color: var(--text-secondary);
-  opacity: 0.55;
+  opacity: 0.75;
   letter-spacing: 0.05em;
 `;
 
@@ -97,19 +84,18 @@ const Chevron = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
-  opacity: 0.55;
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: rotate(${props => props.$open ? '180deg' : '0deg'});
+  opacity: 0.65;
+  transition: transform var(--motion-normal) var(--ease-standard);
+  transform: rotate(${(props) => (props.$open ? '180deg' : '0deg')});
   flex-shrink: 0;
 `;
 
-// CSS grid trick: grid-template-rows 0fr → 1fr for smooth height animation
 const TagsOuter = styled.div`
   display: grid;
-  grid-template-rows: ${props => props.$open ? '1fr' : '0fr'};
-  transition: grid-template-rows 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  grid-template-rows: ${(props) => (props.$open ? '1fr' : '0fr')};
+  transition: grid-template-rows var(--motion-slow) var(--ease-standard);
 `;
 
 const TagsInner = styled.div`
@@ -129,18 +115,22 @@ const Tag = styled.span`
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.03em;
-  background: rgba(0, 136, 204, 0.07);
+  background: color-mix(in srgb, var(--accent) 9%, white);
   padding: 0.35rem 0.85rem;
-  border-radius: 50px;
-  border: 1px solid rgba(0, 136, 204, 0.14);
+  border-radius: var(--radius-pill);
+  border: 1px solid color-mix(in srgb, var(--accent) 16%, white);
   cursor: default;
-  transition: all 0.22s ease;
-  font-family: 'Inter', sans-serif;
+  transition:
+    background-color var(--motion-normal) var(--ease-standard),
+    border-color var(--motion-normal) var(--ease-standard),
+    box-shadow var(--motion-normal) var(--ease-standard),
+    transform var(--motion-normal) var(--ease-standard);
+  font-family: var(--font-body);
 
   &:hover {
-    background: rgba(0, 136, 204, 0.14);
-    border-color: rgba(0, 136, 204, 0.28);
-    box-shadow: 0 2px 8px rgba(0, 136, 204, 0.10);
+    background: color-mix(in srgb, var(--accent) 14%, white);
+    border-color: color-mix(in srgb, var(--accent) 22%, white);
+    box-shadow: var(--shadow-sm);
     transform: translateY(-1px);
   }
 `;
@@ -151,7 +141,7 @@ const SKILL_GROUPS = [
     skills: [
       'Multi-Agent LLM Systems',
       'RAG Architecture',
-      'OpenAI · Gemini · DeepSeek',
+      'OpenAI / Gemini / DeepSeek',
       'LLM Workflow Orchestration',
       'AI-Enabled Automation',
     ],
@@ -178,11 +168,11 @@ const SKILL_GROUPS = [
     ],
   },
   {
-    category: 'Cloud & DevOps',
+    category: 'Cloud and DevOps',
     skills: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'GitHub / GitLab'],
   },
   {
-    category: 'Languages & Frameworks',
+    category: 'Languages and Frameworks',
     skills: ['Python', 'TypeScript', 'React', 'Node.js', 'GraphQL', 'PostgreSQL'],
   },
   {
@@ -198,11 +188,10 @@ const SKILL_GROUPS = [
 ];
 
 const Experience = () => {
-  // AI Systems open by default — leads with the most strategic category
   const [openGroup, setOpenGroup] = useState('AI Systems');
 
   const toggle = (category) => {
-    setOpenGroup(prev => prev === category ? null : category);
+    setOpenGroup((prev) => (prev === category ? null : category));
   };
 
   return (
@@ -220,7 +209,7 @@ const Experience = () => {
               >
                 <CategoryLabel>{category}</CategoryLabel>
                 <SkillCount>{skills.length} skills</SkillCount>
-                <Chevron $open={isOpen}>▼</Chevron>
+                <Chevron $open={isOpen}>v</Chevron>
               </PanelHeader>
               <TagsOuter $open={isOpen} id={`skills-${category}`} role="region">
                 <TagsInner>

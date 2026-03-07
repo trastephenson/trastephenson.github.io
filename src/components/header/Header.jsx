@@ -13,41 +13,30 @@ const HeroContainer = styled.div`
 
 const HeroName = styled.h1`
   color: var(--text-primary);
-  font-size: clamp(1.8rem, 6vw, 3.5rem);
-  font-weight: 900;
-  font-family: 'Inter', sans-serif;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.85),
-    0 2px 0 rgba(0,0,0,0.06),
-    0 3px 0 rgba(0,0,0,0.04),
-    0 4px 12px rgba(0,0,0,0.12);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  line-height: 1.1;
+  font-size: clamp(2.3rem, 7vw, 4.8rem);
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+  line-height: 0.94;
   margin: 0;
 `;
 
 const HeroTitle = styled.h2`
   color: var(--text-secondary);
-  font-size: clamp(0.85rem, 2.4vw, 1.15rem);
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
-  letter-spacing: 0.12em;
+  font-size: clamp(0.75rem, 1.9vw, 0.95rem);
+  font-weight: 700;
+  font-family: var(--font-body);
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin-top: 0.75rem;
-  opacity: 0.9;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.7),
-    0 1px 4px rgba(0,0,0,0.08);
+  margin-top: 0.9rem;
+  opacity: 0.88;
 `;
 
-const Header = () => {
-  return (
-    <HeroContainer>
-      <HeroName>Travis Stephenson</HeroName>
-      <HeroTitle>Director of Engineering Operations · AI Platform Architecture</HeroTitle>
-    </HeroContainer>
-  );
-};
+const Header = () => (
+  <HeroContainer>
+    <HeroName>Travis Stephenson</HeroName>
+    <HeroTitle>Director of Engineering Operations · AI Platform Architecture</HeroTitle>
+  </HeroContainer>
+);
 
 export default Header;

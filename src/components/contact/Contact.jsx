@@ -11,17 +11,14 @@ const ContactSection = styled.section`
 `;
 
 const SectionTitle = styled.h2`
-  color: var(--accent);
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  line-height: var(--leading-heading);
+  letter-spacing: -0.04em;
   margin-bottom: 0.75rem;
   text-align: center;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.6),
-    0 2px 0 rgba(0,100,180,0.15),
-    0 3px 8px rgba(0,136,204,0.12);
 `;
 
 const Subtitle = styled.p`
@@ -30,7 +27,7 @@ const Subtitle = styled.p`
   margin: 0 auto 1.5rem;
   text-align: center;
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: var(--leading-body);
 `;
 
 const Grid = styled.div`
@@ -52,20 +49,23 @@ const ContactOptions = styled.div`
 `;
 
 const ContactCard = styled.article`
-  background: linear-gradient(145deg, rgba(255,255,255,0.35) 0%, rgba(247,249,255,0.28) 100%);
-  backdrop-filter: blur(28px) saturate(200%) brightness(112%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(112%);
-  border: 1px solid rgba(255,255,255,0.75);
-  border-top: 1.5px solid rgba(255,255,255,0.96);
-  border-radius: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
   padding: 1.2rem;
   text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.95);
+  transition:
+    transform var(--motion-normal) var(--ease-standard),
+    box-shadow var(--motion-normal) var(--ease-standard),
+    border-color var(--motion-normal) var(--ease-standard);
+  box-shadow: var(--shadow-sm);
 
   &:hover {
-    box-shadow: 0 8px 32px rgba(0,136,204,0.10), inset 0 1px 0 rgba(255,255,255,0.95);
-    border-color: rgba(255,255,255,0.88);
+    transform: translateY(-2px);
+    box-shadow: 0 24px 54px color-mix(in srgb, var(--accent) 12%, rgba(18, 25, 34, 0.1));
+    border-color: color-mix(in srgb, var(--accent) 18%, white);
   }
 
   svg {
@@ -76,6 +76,7 @@ const ContactCard = styled.article`
 
   h4 {
     color: var(--text-primary);
+    font-family: var(--font-display);
     font-size: 1rem;
     margin-bottom: 0.25rem;
   }
@@ -89,18 +90,18 @@ const ContactCard = styled.article`
 `;
 
 const FormWrapper = styled.div`
-  background: linear-gradient(145deg, rgba(255,255,255,0.35) 0%, rgba(247,249,255,0.28) 100%);
-  backdrop-filter: blur(28px) saturate(200%) brightness(112%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(112%);
-  border: 1px solid rgba(255,255,255,0.75);
-  border-top: 1.5px solid rgba(255,255,255,0.96);
-  border-radius: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
   padding: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.95);
+  box-shadow: var(--shadow-sm);
 `;
 
 const FormTitle = styled.p`
   color: var(--text-primary);
+  font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 600;
   text-align: center;
@@ -108,15 +109,20 @@ const FormTitle = styled.p`
 `;
 
 const FormField = styled.div`
-  background: rgba(0, 136, 204, 0.04);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.56);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
   padding: 0.6rem;
   margin-bottom: 0.8rem;
-  transition: all 0.3s ease;
+  transition:
+    border-color var(--motion-normal) var(--ease-standard),
+    box-shadow var(--motion-normal) var(--ease-standard),
+    background-color var(--motion-normal) var(--ease-standard);
 
   &:focus-within {
-    background: rgba(0, 136, 204, 0.06);
-    box-shadow: 0 2px 8px rgba(0, 136, 204, 0.08);
+    background: rgba(255, 255, 255, 0.82);
+    border-color: color-mix(in srgb, var(--accent) 20%, white);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 10%, transparent);
   }
 `;
 
@@ -127,7 +133,7 @@ const Input = styled.input`
   width: 100%;
   color: var(--text-primary);
   padding: 0.4rem 0.8rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.95rem;
 
   &::placeholder {
@@ -143,7 +149,7 @@ const TextArea = styled.textarea`
   width: 100%;
   color: var(--text-primary);
   padding: 0.4rem 0.8rem;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.95rem;
   resize: vertical;
 
@@ -164,19 +170,23 @@ const Contact = () => {
     e.preventDefault();
     emailjs
       .sendForm('service_77o3efy', 'template_1kwjnyx', form.current, 'NDbWMvRzAqmh3g5Dj')
-      .then(() => {
-        alert('Message sent successfully!');
-        e.target.reset();
-      }, () => {
-        alert('Failed to send message. Please try again.');
-      });
+      .then(
+        () => {
+          alert('Message sent successfully!');
+          e.target.reset();
+        },
+        () => {
+          alert('Failed to send message. Please try again.');
+        }
+      );
   };
 
   return (
     <ContactSection>
       <SectionTitle>Contact Me</SectionTitle>
       <Subtitle>
-        Open to Director of Engineering, AI Platform Architecture, and Principal Architect roles - enterprise SaaS, multi-agent systems, and AI-enabled platform delivery.
+        Open to Director of Engineering, AI Platform Architecture, and Principal Architect
+        roles - enterprise SaaS, multi-agent systems, and AI-enabled platform delivery.
       </Subtitle>
 
       <Grid>
@@ -194,7 +204,12 @@ const Contact = () => {
             <RiMessengerLine />
             <h4>Messenger</h4>
             <h5>Travis Stephenson</h5>
-            <a href="https://m.me/travis.stephenson.9887" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <a
+              href="https://m.me/travis.stephenson.9887"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
               <SleekButton>Send a message</SleekButton>
             </a>
           </ContactCard>

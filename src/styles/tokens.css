@@ -1,0 +1,94 @@
+:root {
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 4.5rem;
+
+  --leading-body: 1.65;
+  --leading-heading: 1.04;
+  --measure: 66ch;
+
+  --accent-primary: #b77045;
+  --accent-secondary: #66d4ef;
+  --accent: var(--accent-primary);
+  --accent-alpha-10: color-mix(in srgb, var(--accent) 10%, transparent);
+  --accent-alpha-20: color-mix(in srgb, var(--accent) 20%, transparent);
+  --accent-secondary-soft: rgba(102, 212, 239, 0.18);
+
+  --text-primary: #121922;
+  --text-secondary: rgba(18, 25, 34, 0.72);
+  --text-muted: rgba(18, 25, 34, 0.5);
+  --text-on-dark: rgba(247, 244, 239, 0.92);
+
+  --bg-page: linear-gradient(180deg, #f7f3ec 0%, #ebe4d8 100%);
+  --bg-void: #f7f3ec;
+  --bg-surface: rgba(255, 255, 255, 0.78);
+  --bg-surface-strong: rgba(255, 255, 255, 0.9);
+  --bg-technical: #101923;
+  --glass-bg: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.74) 0%,
+    rgba(247, 242, 235, 0.62) 100%
+  );
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 16px 38px rgba(18, 25, 34, 0.1);
+  --accent-glow: rgba(183, 112, 69, 0.18);
+  --ring-near: #d8e2e2;
+  --ring-far: #eae5dc;
+  --particle: #d7c6bb;
+  --danger: #c94d3f;
+
+  --border-subtle: rgba(18, 25, 34, 0.08);
+  --border-medium: rgba(18, 25, 34, 0.14);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 8px 20px rgba(18, 25, 34, 0.06);
+  --shadow-md: 0 16px 38px rgba(18, 25, 34, 0.1);
+  --shadow-lg: 0 24px 70px rgba(18, 25, 34, 0.14);
+  --shadow-xl: 0 32px 90px rgba(18, 25, 34, 0.18);
+
+  --motion-fast: 120ms;
+  --motion-normal: 220ms;
+  --motion-slow: 360ms;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-soft-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all var(--motion-slow) var(--ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

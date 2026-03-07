@@ -6,11 +6,12 @@ const StrengthsContainer = styled.section`
 `;
 
 const SectionTitle = styled.h2`
-  color: var(--accent);
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  line-height: var(--leading-heading);
+  letter-spacing: -0.04em;
   margin-bottom: 1.5rem;
 `;
 
@@ -19,24 +20,27 @@ const BulletList = styled.ul`
   max-width: 700px;
   margin: 0 auto;
   color: var(--text-secondary);
-  line-height: 2;
+  line-height: 1.9;
   font-size: 1rem;
 
   li {
-    padding-left: 0.5rem;
+    padding-left: 0.75rem;
     position: relative;
 
     &::before {
-      content: '\\25B8';
+      content: '->';
       color: var(--accent);
       position: absolute;
       left: -1rem;
+      top: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
     }
   }
 
   @media screen and (max-width: 600px) {
     font-size: 0.95rem;
-    line-height: 1.8;
+    line-height: 1.75;
   }
 `;
 
@@ -44,6 +48,7 @@ const OpenTo = styled.p`
   color: var(--text-secondary);
   margin-top: 1.5rem;
   font-size: 0.95rem;
+  line-height: var(--leading-body);
 
   strong {
     color: var(--accent);
@@ -55,13 +60,15 @@ const Strengths = () => {
     <StrengthsContainer>
       <SectionTitle>What I Do Best</SectionTitle>
       <BulletList>
-        <li>Architect and operate multi-agent LLM systems and RAG pipelines at enterprise scale</li>
-        <li>Drive engineering operations, delivery governance, and cloud-native SaaS strategy</li>
-        <li>Lead cross-functional execution across engineering, product, data, and C-suite stakeholders</li>
-        <li>Define platform architecture across AWS - APIs, data models, reliability, and scalability</li>
+        <li>Architect and operate multi-agent LLM systems and RAG pipelines at enterprise scale.</li>
+        <li>Drive engineering operations, delivery governance, and cloud-native SaaS strategy.</li>
+        <li>Lead cross-functional execution across engineering, product, data, and C-suite stakeholders.</li>
+        <li>Define platform architecture across AWS, APIs, data models, reliability, and scalability.</li>
       </BulletList>
       <OpenTo>
-        <strong>Open to:</strong> Director of Engineering, AI Platform Architecture, and Principal Architect roles - enterprise SaaS, multi-agent systems, and AI-enabled platform delivery
+        <strong>Open to:</strong> Director of Engineering, AI Platform Architecture, and
+        Principal Architect roles - enterprise SaaS, multi-agent systems, and AI-enabled
+        platform delivery.
       </OpenTo>
     </StrengthsContainer>
   );

@@ -15,10 +15,10 @@ const TaglineContainer = styled.div`
 
 const Subtitle = styled.p`
   color: var(--text-secondary);
-  font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-  font-family: 'Inter', sans-serif;
-  line-height: 1.7;
-  max-width: 600px;
+  font-size: clamp(1rem, 2.4vw, 1.18rem);
+  font-family: var(--font-body);
+  line-height: 1.75;
+  max-width: 720px;
 `;
 
 const ButtonRow = styled.div`
@@ -29,25 +29,47 @@ const ButtonRow = styled.div`
   align-items: center;
 `;
 
+const primaryButtonStyle = {
+  '--btn-text': '#111111',
+  '--btn-hover-text': '#ffffff',
+  '--btn-surface': 'color-mix(in srgb, var(--accent) 14%, white)',
+  '--btn-fill': 'var(--accent)',
+  '--btn-border': 'rgba(18, 25, 34, 0.34)',
+  '--btn-hover-border': 'rgba(18, 25, 34, 0.34)',
+  '--btn-shadow': '0 10px 22px rgba(18, 25, 34, 0.1)',
+  '--btn-hover-shadow': '0 14px 28px rgba(18, 25, 34, 0.16)',
+  '--btn-pad-y': '0.78rem',
+  '--btn-pad-x': '1.35rem',
+  '--btn-font-size': '0.8rem',
+};
+
+const secondaryButtonStyle = {
+  '--btn-text': 'var(--text-primary)',
+  '--btn-fill': 'var(--accent-secondary)',
+  '--btn-pad-y': '0.78rem',
+  '--btn-pad-x': '1.35rem',
+  '--btn-font-size': '0.8rem',
+};
+
 const CTA = () => {
   const { scrollTo } = useScroll();
 
   return (
     <TaglineContainer>
       <Subtitle>
-        Director of Engineering Operations &middot; AI Platform Architecture
+        Architecting AI platforms, product systems, and enterprise delivery with clarity.
         <br />
-        Multi-agent LLM systems &bull; RAG pipelines &bull; Enterprise SaaS delivery
+        Multi-agent LLM systems • RAG pipelines • enterprise SaaS delivery
       </Subtitle>
 
       <ButtonRow>
-        <SleekButton>
+        <SleekButton style={primaryButtonStyle}>
           <a href={CV} download style={{ color: 'inherit', textDecoration: 'none' }}>
             Download Resume
           </a>
         </SleekButton>
 
-        <SleekButton>
+        <SleekButton style={secondaryButtonStyle}>
           <a
             href="https://www.linkedin.com/in/mrtravisstephenson"
             target="_blank"
@@ -59,7 +81,7 @@ const CTA = () => {
           </a>
         </SleekButton>
 
-        <SleekButton>
+        <SleekButton style={primaryButtonStyle}>
           <button
             onClick={(e) => { e.preventDefault(); scrollTo(10); }}
             style={{ color: 'inherit', textDecoration: 'none', background: 'none', border: 'none', cursor: 'pointer', font: 'inherit', padding: 0 }}

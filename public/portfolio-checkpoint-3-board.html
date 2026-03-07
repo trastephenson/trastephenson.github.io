@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Checkpoint 3 Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Lato:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Montserrat:wght@500;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./portfolio-figma-concepts.css">
+  <style>
+    .board { display:grid; gap:24px; }
+    .panel {
+      padding: 28px;
+      border-radius: 34px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(255,255,255,0.88);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(18px);
+    }
+    .head { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; margin-bottom:18px; }
+    .copy h2 { font-size:34px; line-height:.98; }
+    .copy p { margin-top:10px; max-width:62ch; font-size:14px; line-height:1.65; color:var(--ink-soft); }
+    .status {
+      min-width:250px; padding:16px 18px; border-radius:20px; background:rgba(183,112,69,0.14);
+      border:1px solid rgba(183,112,69,0.22); font-size:12px; font-weight:800; letter-spacing:.08em; line-height:1.55; text-transform:uppercase;
+    }
+    .grid-2,.grid-3 { display:grid; gap:18px; }
+    .grid-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .grid-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .card {
+      display:grid; gap:12px; padding:18px; min-height:320px; border-radius:24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(245,239,231,0.92));
+      border:1px solid var(--line); box-shadow:0 14px 28px rgba(18,25,34,0.08);
+    }
+    .card.reco { border:2px solid rgba(183,112,69,0.42); box-shadow:0 22px 42px rgba(183,112,69,0.14); }
+    .meta { display:flex; justify-content:space-between; gap:12px; align-items:center; }
+    .badge,.state {
+      display:inline-flex; align-items:center; min-height:30px; padding:0 10px; border-radius:999px; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+    }
+    .badge { background:rgba(18,25,34,0.06); color:var(--ink-soft); }
+    .state { background:rgba(102,212,239,0.16); color:#16576a; }
+    .state.reco { background:rgba(183,112,69,0.16); color:#8a4f27; }
+    .card h3 { font-size:22px; line-height:1.08; }
+    .card p { font-size:13px; line-height:1.6; color:var(--ink-soft); }
+    .pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
+    .pill {
+      padding:8px 10px; border-radius:999px; background:rgba(18,25,34,0.05); font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft);
+    }
+    .spec {
+      min-height:180px; padding:18px; border-radius:20px; border:1px solid rgba(18,25,34,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(245,239,231,0.92));
+      display:grid; gap:12px; align-content:start;
+    }
+    .spec.dark {
+      color:#f6f2ea;
+      background: linear-gradient(180deg, #101923 0%, #172432 100%);
+      border-color: rgba(255,255,255,0.12);
+    }
+    .label { font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); }
+    .spec.dark .label, .spec.dark p { color:rgba(255,255,255,0.74); }
+    .spec h4 { font-size:34px; line-height:.96; max-width:11ch; }
+    .spec p { font-size:13px; line-height:1.55; color:var(--ink-soft); }
+    .font-a h4, .font-a .headline { font-family:"Space Grotesk",sans-serif; }
+    .font-a p, .font-a .body { font-family:"Manrope",sans-serif; }
+    .font-b h4, .font-b .headline { font-family:"Montserrat",sans-serif; }
+    .font-b p, .font-b .body { font-family:"Lato",sans-serif; }
+    .font-c h4, .font-c .headline, .font-c p, .font-c .body { font-family:"Inter",sans-serif; }
+    .space-demo { display:grid; gap:8px; min-height:180px; align-content:start; }
+    .space-demo .bar { height:20px; border-radius:999px; background:linear-gradient(135deg, rgba(183,112,69,0.82), rgba(102,212,239,0.82)); }
+    .swatches { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; min-height:180px; }
+    .swatch { min-height:82px; padding:14px; border-radius:16px; display:grid; align-content:end; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .radius-demo { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; min-height:180px; align-content:start; }
+    .radius-box { height:120px; background:rgba(18,25,34,0.08); border:1px solid rgba(18,25,34,0.1); }
+    .shadow-demo { display:grid; gap:14px; min-height:180px; align-content:start; }
+    .shadow-box { height:72px; border-radius:18px; background:rgba(255,255,255,0.92); border:1px solid rgba(18,25,34,0.08); }
+    .motion-demo { display:grid; gap:12px; min-height:180px; align-content:start; }
+    .motion-row { display:grid; grid-template-columns:82px 1fr; gap:10px; align-items:center; }
+    .motion-row strong { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); }
+    .lane { position:relative; height:48px; border-radius:16px; background:rgba(18,25,34,0.05); overflow:hidden; }
+    .lane::before,.lane::after {
+      content:""; position:absolute; top:10px; width:74px; height:28px; border-radius:999px;
+      background:linear-gradient(135deg, rgba(183,112,69,0.88), rgba(102,212,239,0.88));
+    }
+    .lane.a::before { left:10px; opacity:.35; transform:scale(.85); } .lane.a::after { left:116px; }
+    .lane.b::before { left:24px; opacity:.48; } .lane.b::after { left:152px; }
+    .lane.c::before { left:62px; opacity:.42; } .lane.c::after { left:132px; transform:translateY(-3px) scale(1.03); box-shadow:0 10px 20px rgba(183,112,69,0.22); }
+    .density-demo { display:grid; gap:12px; min-height:180px; }
+    .density-strip { display:grid; gap:8px; padding:14px; border-radius:18px; background:rgba(18,25,34,0.05); border:1px solid rgba(18,25,34,0.08); }
+    .density-block { height:18px; border-radius:999px; background:rgba(18,25,34,0.12); }
+    .look-lock { display:grid; gap:12px; }
+    .look-item {
+      padding:14px 16px; border-radius:18px; background:rgba(255,255,255,0.82); border:1px solid rgba(18,25,34,0.08);
+      font-size:14px; line-height:1.55; color:var(--ink-soft);
+    }
+    .look-item strong { color:var(--ink); }
+    .token-block {
+      padding:18px; border-radius:24px; background:#101923; color:#f6f2ea; font-family:Consolas, monospace; font-size:12px; line-height:1.6; white-space:pre-wrap;
+      border:1px solid rgba(255,255,255,0.1);
+    }
+    @media (max-width:1240px) {
+      .head,.grid-2,.grid-3,.radius-demo { grid-template-columns:1fr; flex-direction:column; }
+      .status { min-width:0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <section class="topbar">
+      <div class="glass hero-intro">
+        <div class="eyebrow">Checkpoint 3</div>
+        <h1>Token lock and motion system approval board.</h1>
+        <p>This board translates the approved structure into explicit visual constraints: type, spacing, color, radius, shadows, motion, and density. Once approved, these become locked constraints for high-fidelity design and implementation.</p>
+        <div class="tag-row">
+          <div class="tag">Typography</div>
+          <div class="tag">Spacing</div>
+          <div class="tag">Color</div>
+          <div class="tag">Motion</div>
+        </div>
+      </div>
+      <aside class="glass">
+        <div class="eyebrow">Recommended lock</div>
+        <div class="source-list">
+          <div class="source-item"><strong>Primary mode</strong><span>Warm editorial-light with copper and signal cyan accents.</span></div>
+          <div class="source-item"><strong>Secondary mode</strong><span>Dark technical treatment for system-heavy case studies.</span></div>
+          <div class="source-item"><strong>Motion stance</strong><span>Purposeful only: entry, chapter progress, and hover emphasis.</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="board">
+      <section class="panel">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Typography</div>
+            <h2>Choose the voice system.</h2>
+            <p>The recommended type pair gives the site a more editorial point of view without sacrificing dense case-study readability.</p>
+          </div>
+          <div class="status">Recommended lock: Option A</div>
+        </div>
+        <div class="grid-3">
+          <article class="card reco">
+            <div class="meta"><span class="badge">Option A</span><span class="state reco">Recommended</span></div>
+            <div class="spec font-a">
+              <div class="label">Space Grotesk + Manrope</div>
+              <h4 class="headline">Architecting product systems with clarity and range.</h4>
+              <p class="body">Editorial but modern. Best fit for flagship headlines, proof labels, and dense case-study copy.</p>
+            </div>
+            <h3>Editorial-modern pair</h3>
+            <p>Distinct headline presence with stable utility copy below it.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Option B</span><span class="state">Current-adjacent</span></div>
+            <div class="spec font-b">
+              <div class="label">Montserrat + Lato</div>
+              <h4 class="headline">Architecting product systems with clarity and range.</h4>
+              <p class="body">Closer to the repo today. Lower migration cost, but weaker identity.</p>
+            </div>
+            <h3>Low-risk migration</h3>
+            <p>Keeps continuity, but does not push the portfolio forward enough.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Option C</span><span class="state">Neutral</span></div>
+            <div class="spec font-c">
+              <div class="label">Inter only</div>
+              <h4 class="headline">Architecting product systems with clarity and range.</h4>
+              <p class="body">Maximum consistency, minimum distinctiveness. Most neutral product default.</p>
+            </div>
+            <h3>Neutral product UI</h3>
+            <p>Efficient, but too generic for a portfolio that needs stronger authorship.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Spacing and density</div>
+            <h2>Keep the flagship roomy and the supporting layers compact.</h2>
+            <p>The spacing and density decisions work together. The recommended lock gives flagship sections room while keeping metadata and proof surfaces tight.</p>
+          </div>
+          <div class="status">Recommended lock: Spacing A and Density A</div>
+        </div>
+        <div class="grid-3">
+          <article class="card reco">
+            <div class="meta"><span class="badge">Spacing A</span><span class="state reco">Recommended</span></div>
+            <div class="space-demo">
+              <div class="bar" style="width:14%;"></div>
+              <div class="bar" style="width:22%;"></div>
+              <div class="bar" style="width:30%;"></div>
+              <div class="bar" style="width:40%;"></div>
+              <div class="bar" style="width:52%;"></div>
+              <div class="bar" style="width:66%;"></div>
+              <div class="bar" style="width:80%;"></div>
+            </div>
+            <h3>4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96</h3>
+            <p>Balanced scale for spacious hero layouts and compact supporting cards.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Spacing B</span><span class="state">Looser</span></div>
+            <div class="space-demo">
+              <div class="bar" style="width:16%;"></div>
+              <div class="bar" style="width:28%;"></div>
+              <div class="bar" style="width:42%;"></div>
+              <div class="bar" style="width:56%;"></div>
+              <div class="bar" style="width:72%;"></div>
+            </div>
+            <h3>4 / 8 / 16 / 24 / 32 / 48 / 72 / 96</h3>
+            <p>More editorial space, but less flexible for dense portfolio surfaces.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Density A</span><span class="state reco">Recommended</span></div>
+            <div class="density-demo">
+              <div class="density-strip">
+                <div class="density-block" style="width:88%; height:24px;"></div>
+                <div class="density-block" style="width:62%;"></div>
+              </div>
+              <div class="density-strip">
+                <div class="density-block" style="width:72%;"></div>
+                <div class="density-block" style="width:56%;"></div>
+                <div class="density-block" style="width:34%;"></div>
+              </div>
+            </div>
+            <h3>Roomy flagship, compact support</h3>
+            <p>The flagship story breathes, while supporting work and proof stay efficient.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Color</div>
+            <h2>Choose the primary visual language.</h2>
+            <p>The portfolio should not oscillate between unrelated aesthetics. The recommended system keeps one primary mode and one reserved technical mode.</p>
+          </div>
+          <div class="status">Recommended lock: Color A</div>
+        </div>
+        <div class="grid-3">
+          <article class="card reco">
+            <div class="meta"><span class="badge">Option A</span><span class="state reco">Recommended</span></div>
+            <div class="swatches">
+              <div class="swatch" style="background:#f7f3ec; color:#121922;">Paper</div>
+              <div class="swatch" style="background:#121922;">Ink</div>
+              <div class="swatch" style="background:#b77045;">Copper</div>
+              <div class="swatch" style="background:#66d4ef; color:#121922;">Signal cyan</div>
+            </div>
+            <h3>Warm editorial-light</h3>
+            <p>Primary background system with a dark technical secondary mode for system-heavy surfaces.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Option B</span><span class="state">Current-adjacent</span></div>
+            <div class="swatches">
+              <div class="swatch" style="background:#e8f4fd; color:#121922;">Cool blue</div>
+              <div class="swatch" style="background:#f0f4ff; color:#121922;">Mist</div>
+              <div class="swatch" style="background:#0088cc;">Blue accent</div>
+              <div class="swatch" style="background:#1a1a2e;">Charcoal</div>
+            </div>
+            <h3>Cool gradient product</h3>
+            <p>Low-friction to keep, but weaker and less intentional than the approved direction.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Option C</span><span class="state">Legacy</span></div>
+            <div class="swatches">
+              <div class="swatch" style="background:#050510;">Void</div>
+              <div class="swatch" style="background:#00f0ff; color:#121922;">Neon cyan</div>
+              <div class="swatch" style="background:#ff8b4a;">Hot orange</div>
+              <div class="swatch" style="background:#f0f0f0; color:#121922;">Off-white</div>
+            </div>
+            <h3>Dark cosmos</h3>
+            <p>Too dominant as a primary system. Better reserved only as a technical or archival accent if used at all.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Radius and shadows</div>
+            <h2>Keep surfaces soft, rounded, and lightly elevated.</h2>
+            <p>The token system should support the more editorial-light direction. Sharp or overly glowing surfaces work against that goal.</p>
+          </div>
+          <div class="status">Recommended lock: Radius A and Shadow A</div>
+        </div>
+        <div class="grid-2">
+          <article class="card reco">
+            <div class="meta"><span class="badge">Radius A</span><span class="state reco">Recommended</span></div>
+            <div class="radius-demo">
+              <div class="radius-box" style="border-radius:16px;"></div>
+              <div class="radius-box" style="border-radius:24px;"></div>
+              <div class="radius-box" style="border-radius:32px;"></div>
+            </div>
+            <h3>16 / 24 / 32 / pill</h3>
+            <p>Best fit for flagship panels, supporting cards, and rounded action chips.</p>
+          </article>
+          <article class="card reco">
+            <div class="meta"><span class="badge">Shadow A</span><span class="state reco">Recommended</span></div>
+            <div class="shadow-demo">
+              <div class="shadow-box" style="box-shadow:0 8px 20px rgba(18,25,34,0.06);"></div>
+              <div class="shadow-box" style="box-shadow:0 16px 38px rgba(18,25,34,0.10);"></div>
+              <div class="shadow-box" style="box-shadow:0 24px 70px rgba(18,25,34,0.14);"></div>
+            </div>
+            <h3>Soft editorial elevation</h3>
+            <p>Broad blur, low contrast, and just enough depth to separate layers without becoming glossy.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Motion</div>
+            <h2>Lock the motion system to three jobs.</h2>
+            <p>The approved direction rejects ambient motion without purpose. The token set should reinforce that discipline.</p>
+          </div>
+          <div class="status">Recommended lock: Motion A</div>
+        </div>
+        <div class="grid-3">
+          <article class="card reco">
+            <div class="meta"><span class="badge">Option A</span><span class="state reco">Recommended</span></div>
+            <div class="motion-demo">
+              <div class="motion-row"><strong>Entry</strong><div class="lane a"></div></div>
+              <div class="motion-row"><strong>Chapter</strong><div class="lane b"></div></div>
+              <div class="motion-row"><strong>Hover</strong><div class="lane c"></div></div>
+            </div>
+            <h3>120 / 220 / 360</h3>
+            <p>Purposeful timing for scene entry, chapter progress, and hover emphasis. Reduced-motion stays first-class.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Option B</span><span class="state">Current</span></div>
+            <div class="motion-demo">
+              <div class="motion-row"><strong>Fast</strong><div class="lane a"></div></div>
+              <div class="motion-row"><strong>Normal</strong><div class="lane b"></div></div>
+            </div>
+            <h3>100 / 200 / 350</h3>
+            <p>Close to the current repo, but less tuned to the approved editorial pacing.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Option C</span><span class="state">Cinematic</span></div>
+            <div class="motion-demo">
+              <div class="motion-row"><strong>Slow</strong><div class="lane c"></div></div>
+              <div class="motion-row"><strong>Scene</strong><div class="lane b"></div></div>
+            </div>
+            <h3>180 / 320 / 500</h3>
+            <p>More cinematic, but too heavy for the “readable first” portfolio direction.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Look-lock summary</div>
+            <h2>These choices define the portfolio’s visual constraint set.</h2>
+            <p>If approved, these become the locked basis for high-fidelity Figma design and later code changes.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="look-lock">
+            <div class="look-item"><strong>Typography:</strong> Space Grotesk for display, Manrope for body.</div>
+            <div class="look-item"><strong>Spacing:</strong> balanced 4 to 96 scale with roomy flagship sections.</div>
+            <div class="look-item"><strong>Colors:</strong> warm editorial-light primary with copper and signal cyan accents.</div>
+            <div class="look-item"><strong>Radius and shadow:</strong> soft, rounded, lightly elevated surfaces.</div>
+            <div class="look-item"><strong>Motion:</strong> three jobs only, with reduced-motion preserved.</div>
+            <div class="look-item"><strong>Density:</strong> roomy flagship, medium-density support, compact metadata.</div>
+          </div>
+          <div class="token-block">:root {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --accent-primary: #b77045;
+  --accent-secondary: #66d4ef;
+  --bg-page: linear-gradient(180deg, #f7f3ec 0%, #ebe4d8 100%);
+  --bg-technical: #101923;
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --shadow-sm: 0 8px 20px rgba(18,25,34,0.06);
+  --shadow-md: 0 16px 38px rgba(18,25,34,0.10);
+  --shadow-lg: 0 24px 70px rgba(18,25,34,0.14);
+  --motion-fast: 120ms;
+  --motion-normal: 220ms;
+  --motion-slow: 360ms;
+}</div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+</html>

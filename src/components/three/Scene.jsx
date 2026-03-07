@@ -3,7 +3,7 @@ import CameraRig from './CameraRig';
 import TunnelRings from './TunnelRings';
 import Particles from './Particles';
 
-export default function Scene({ children }) {
+export default function Scene({ children, style }) {
   return (
     <div
       style={{
@@ -13,6 +13,7 @@ export default function Scene({ children }) {
         width: '100vw',
         height: '100vh',
         zIndex: 1,
+        ...style,
       }}
     >
       <Canvas

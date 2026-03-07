@@ -11,33 +11,29 @@ const wrapperBase = {
   width: '90vw',
   maxWidth: '900px',
   // ~40% opacity — clear glass, 3D scene visible behind
-  background: 'linear-gradient(145deg, rgba(255,255,255,0.42) 0%, rgba(247,248,255,0.36) 55%, rgba(242,245,255,0.30) 100%)',
-  backdropFilter: 'blur(80px) saturate(320%) brightness(118%) contrast(1.01)',
-  WebkitBackdropFilter: 'blur(80px) saturate(320%) brightness(118%) contrast(1.01)',
+  background: 'linear-gradient(145deg, rgba(255,255,255,0.82) 0%, rgba(247,242,235,0.7) 100%)',
+  backdropFilter: 'blur(28px) saturate(170%)',
+  WebkitBackdropFilter: 'blur(28px) saturate(170%)',
   // Bright top edge + right/bottom depth edges → physical 3D slab feel
-  border: '1.5px solid rgba(255,255,255,0.88)',
-  borderTop: '2px solid rgba(255,255,255,1)',
-  borderRight: '1px solid rgba(220,228,250,0.55)',
-  borderBottom: '1px solid rgba(200,212,240,0.45)',
-  borderRadius: '24px',
+  border: '1px solid rgba(255,255,255,0.82)',
+  borderTop: '1px solid rgba(255,255,255,0.96)',
+  borderRight: '1px solid rgba(18,25,34,0.05)',
+  borderBottom: '1px solid rgba(18,25,34,0.08)',
+  borderRadius: 'var(--radius-lg)',
   overflow: 'hidden',
   boxShadow: [
     // Deep cast shadow — physical depth below the card
-    '0 64px 140px rgba(0,0,0,0.22)',
-    '0 24px 64px rgba(0,0,0,0.14)',
-    '0 8px 24px rgba(0,0,0,0.08)',
-    '0 2px 6px rgba(0,0,0,0.04)',
+    '0 24px 70px rgba(18,25,34,0.14)',
+    '0 16px 38px rgba(18,25,34,0.1)',
+    '0 6px 18px rgba(18,25,34,0.06)',
     // inset specular facets — light catching each glass rim
-    'inset 0 2px 0 rgba(255,255,255,1)',
-    'inset 0 1.5px 1.5px rgba(255,255,255,0.90)',
-    'inset 0 -2px 0 rgba(255,255,255,0.25)',
-    'inset 1.5px 0 0 rgba(255,255,255,0.78)',
-    'inset -1.5px 0 0 rgba(255,255,255,0.22)',
+    'inset 0 1px 0 rgba(255,255,255,0.94)',
+    'inset 0 -1px 0 rgba(255,255,255,0.24)',
   ].join(', '),
   maxHeight: '84vh',
   display: 'flex',
   flexDirection: 'column',
-  transition: 'opacity 0.36s cubic-bezier(0.4,0,0.2,1), transform 0.36s cubic-bezier(0.4,0,0.2,1)',
+  transition: 'opacity var(--motion-slow) var(--ease-standard), transform var(--motion-slow) var(--ease-standard)',
 };
 
 // Hero (noPanel) — transparent passthrough, no glass card
@@ -51,7 +47,7 @@ const heroPanelBase = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: 'opacity 0.36s cubic-bezier(0.4,0,0.2,1), transform 0.36s cubic-bezier(0.4,0,0.2,1)',
+  transition: 'opacity var(--motion-slow) var(--ease-standard), transform var(--motion-slow) var(--ease-standard)',
 };
 
 export default function SectionOverlay({ sectionIndex, children, noPanel }) {
@@ -99,7 +95,7 @@ export default function SectionOverlay({ sectionIndex, children, noPanel }) {
         alignItems: 'center',
         gap: '0.75rem',
         padding: '0 1.25rem',
-        borderBottom: '1px solid rgba(0,0,0,0.055)',
+        borderBottom: '1px solid var(--border-subtle)',
         flexShrink: 0,
       }}>
         {/* Accent colour dot matching the card stripe */}
@@ -117,7 +113,8 @@ export default function SectionOverlay({ sectionIndex, children, noPanel }) {
           padding: '0.9rem 0',
           fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
           fontWeight: 700,
-          color: '#111',
+          color: 'var(--text-primary)',
+          fontFamily: 'var(--font-display)',
           letterSpacing: '-0.01em',
           flex: 1,
         }}>
@@ -129,8 +126,8 @@ export default function SectionOverlay({ sectionIndex, children, noPanel }) {
           aria-label="Back to overview"
           title="Back (Esc)"
           style={{
-            background: 'rgba(0,0,0,0.06)',
-            border: '1px solid rgba(0,0,0,0.08)',
+            background: 'rgba(255,255,255,0.66)',
+            border: '1px solid var(--border-subtle)',
             borderRadius: '50%',
             width: '1.9rem',
             height: '1.9rem',
@@ -139,7 +136,8 @@ export default function SectionOverlay({ sectionIndex, children, noPanel }) {
             justifyContent: 'center',
             cursor: 'pointer',
             fontSize: '0.8rem',
-            color: '#444',
+            color: 'var(--text-secondary)',
+            boxShadow: 'var(--shadow-sm)',
             flexShrink: 0,
           }}
         >

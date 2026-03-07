@@ -9,7 +9,7 @@ const ProgressContainer = styled.div`
   transform: translateY(-50%);
   width: 3px;
   height: 240px;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--border-subtle);
   border-radius: 2px;
   z-index: 100;
   overflow: hidden;
@@ -25,7 +25,7 @@ const ProgressFill = styled.div`
   width: 100%;
   background: var(--accent);
   border-radius: 2px;
-  transition: height 0.15s ease-out;
+  transition: height var(--motion-fast) var(--ease-soft-out);
   box-shadow: 0 0 8px var(--accent-glow);
 `;
 
@@ -51,8 +51,8 @@ const Dot = styled.div`
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: ${props => props.$active ? 'var(--accent)' : 'rgba(0, 0, 0, 0.15)'};
-  transition: all 0.3s ease;
+  background: ${props => props.$active ? 'var(--accent)' : 'var(--border-medium)'};
+  transition: all var(--motion-normal) var(--ease-standard);
   box-shadow: ${props => props.$active ? '0 0 8px var(--accent-glow)' : 'none'};
   transform: ${props => props.$active ? 'scale(1.3)' : 'scale(1)'};
 

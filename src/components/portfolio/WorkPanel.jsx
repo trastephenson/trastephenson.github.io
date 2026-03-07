@@ -1,80 +1,106 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SleekButton from '../common/SleekButton';
 
 const headingStyle = {
-  color: '#0088cc',
-  fontSize: 'clamp(1.1rem, 2.5vw, 1.6rem)',
+  color: 'var(--accent)',
+  fontSize: 'clamp(1.1rem, 2.5vw, 1.55rem)',
   fontWeight: 700,
   textTransform: 'uppercase',
-  letterSpacing: '0.1em',
-  fontFamily: "'Inter', sans-serif",
+  letterSpacing: '0.12em',
+  fontFamily: 'var(--font-body)',
   marginBottom: '1.5rem',
 };
 
 const gridStyle = {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-  gap: '1.25rem',
+  gap: '1.5rem',
 };
 
 const cardStyle = {
-  background: 'linear-gradient(145deg, rgba(255,255,255,0.35) 0%, rgba(247,249,255,0.28) 100%)',
-  backdropFilter: 'blur(28px) saturate(200%) brightness(112%)',
-  WebkitBackdropFilter: 'blur(28px) saturate(200%) brightness(112%)',
-  border: '1px solid rgba(255,255,255,0.75)',
-  borderTop: '1.5px solid rgba(255,255,255,0.96)',
-  borderRadius: '16px',
+  background:
+    'linear-gradient(145deg, rgba(255,255,255,0.76) 0%, rgba(247,242,235,0.7) 100%)',
+  backdropFilter: 'blur(24px) saturate(170%)',
+  WebkitBackdropFilter: 'blur(24px) saturate(170%)',
+  border: '1px solid rgba(255,255,255,0.8)',
+  borderTop: '1px solid rgba(255,255,255,0.94)',
+  borderRadius: 'var(--radius-md)',
   overflow: 'hidden',
   display: 'flex',
   flexDirection: 'column',
-  boxShadow: '0 8px 32px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.95)',
+  boxShadow: 'var(--shadow-md)',
 };
 
 const imgStyle = {
   width: '100%',
-  height: '160px',
+  height: '176px',
   objectFit: 'cover',
 };
 
 const bodyStyle = {
-  padding: '1rem',
+  padding: 'var(--space-5)',
   display: 'flex',
   flexDirection: 'column',
-  gap: '0.5rem',
+  gap: '0.65rem',
   flex: 1,
 };
 
 const titleStyle = {
-  color: '#1a1a2e',
+  color: 'var(--text-primary)',
   fontWeight: 700,
-  fontSize: '0.95rem',
-  fontFamily: "'Inter', sans-serif",
+  fontSize: '1.02rem',
+  fontFamily: 'var(--font-display)',
+  lineHeight: 1.1,
   margin: 0,
 };
 
 const summaryStyle = {
-  color: 'rgba(40, 50, 70, 0.75)',
-  fontSize: '0.82rem',
-  lineHeight: 1.55,
+  color: 'var(--text-secondary)',
+  fontSize: '0.88rem',
+  lineHeight: 1.6,
   margin: 0,
   flex: 1,
+  fontFamily: 'var(--font-body)',
 };
 
 const btnRowStyle = {
   display: 'flex',
-  gap: '0.5rem',
+  gap: '0.65rem',
   flexWrap: 'wrap',
-  marginTop: '0.25rem',
-  justifyContent: 'center',
+  marginTop: '0.35rem',
 };
 
-// Blue compact theme — smaller pill, side-by-side fit, blue fill on hover
-const BTN_COLOR = {
-  '--btn-text': '#0088cc',
-  '--btn-fill': '#0088cc',
-  '--btn-pad-y': '0.55rem',
-  '--btn-pad-x': '1rem',
-  '--btn-font-size': '0.78rem',
+const deepBlue = 'color-mix(in srgb, var(--accent-secondary) 58%, #0f3658)';
+const neutralOutline = 'rgba(18, 25, 34, 0.44)';
+
+const primaryButton = {
+  '--btn-text': '#ffffff',
+  '--btn-hover-text': '#ffffff',
+  '--btn-surface': deepBlue,
+  '--btn-fill': 'var(--accent)',
+  '--btn-border': neutralOutline,
+  '--btn-hover-border': neutralOutline,
+  '--btn-shadow': '0 10px 22px rgba(18, 25, 34, 0.12)',
+  '--btn-hover-shadow':
+    '0 14px 28px rgba(18, 25, 34, 0.16)',
+  '--btn-pad-y': '0.62rem',
+  '--btn-pad-x': '1.05rem',
+  '--btn-font-size': '0.76rem',
+};
+
+const secondaryButton = {
+  '--btn-text': '#ffffff',
+  '--btn-hover-text': '#ffffff',
+  '--btn-surface': 'var(--accent)',
+  '--btn-fill': deepBlue,
+  '--btn-border': neutralOutline,
+  '--btn-hover-border': neutralOutline,
+  '--btn-shadow': '0 10px 22px rgba(18, 25, 34, 0.12)',
+  '--btn-hover-shadow': '0 14px 28px rgba(18, 25, 34, 0.16)',
+  '--btn-pad-y': '0.62rem',
+  '--btn-pad-x': '1.05rem',
+  '--btn-font-size': '0.76rem',
 };
 
 export default function WorkPanel({ items, title }) {
@@ -84,25 +110,41 @@ export default function WorkPanel({ items, title }) {
       <div style={gridStyle}>
         {items.map((item) => (
           <div key={item.id} style={cardStyle}>
-            <img src={item.image} alt={item.title} style={imgStyle} />
+            {item.imageComponent ? (
+              <div style={{ padding: '0.9rem 0.9rem 0' }}>
+                <item.imageComponent />
+              </div>
+            ) : (
+              <img src={item.image} alt={item.imageAlt || item.title} style={imgStyle} />
+            )}
             <div style={bodyStyle}>
               <h3 style={titleStyle}>{item.title}</h3>
               <p style={summaryStyle}>{item.summary}</p>
               <div style={btnRowStyle}>
-                {item.primaryUrl && item.primaryUrl !== '#contact' && (
-                  <SleekButton style={BTN_COLOR}>
-                    <a href={item.primaryUrl} target="_blank" rel="noopener noreferrer"
-                       style={{ color: 'inherit', textDecoration: 'none' }}>
-                      {item.primaryCta}
-                    </a>
+                {item.routeUrl ? (
+                  <SleekButton as={Link} to={item.routeUrl} style={primaryButton}>
+                    {item.primaryCta}
                   </SleekButton>
-                )}
+                ) : item.primaryUrl && item.primaryUrl !== '#contact' ? (
+                  <SleekButton
+                    as="a"
+                    href={item.primaryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={primaryButton}
+                  >
+                    {item.primaryCta}
+                  </SleekButton>
+                ) : null}
                 {item.secondaryUrl && item.secondaryUrl !== '#contact' && (
-                  <SleekButton style={BTN_COLOR}>
-                    <a href={item.secondaryUrl} target="_blank" rel="noopener noreferrer"
-                       style={{ color: 'inherit', textDecoration: 'none' }}>
-                      {item.secondaryCta}
-                    </a>
+                  <SleekButton
+                    as="a"
+                    href={item.secondaryUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={secondaryButton}
+                  >
+                    {item.secondaryCta}
                   </SleekButton>
                 )}
               </div>

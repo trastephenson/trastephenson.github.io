@@ -267,7 +267,7 @@ function CardFace({ index, c }) {
           </Suspense>
           <Text position={[0, -0.77, FACE_Z]} fontSize={0.1} color="#333"
                 anchorX="center" anchorY="middle">
-            GenAI / LLM Workflows
+            GenAI / LLM Workflows · Movie Vault
           </Text>
         </>
       );

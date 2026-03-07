@@ -22,16 +22,16 @@ const LogoButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
   font-weight: 700;
   color: var(--text-primary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: -0.04em;
   margin-bottom: 1rem;
   display: inline-block;
-  transition: all 0.3s ease;
-  text-shadow: none;
+  transition:
+    color var(--motion-normal) var(--ease-standard),
+    transform var(--motion-normal) var(--ease-standard);
 
   &:hover {
     color: var(--accent);
@@ -51,11 +51,11 @@ const NavButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-weight: 500;
   color: var(--text-secondary);
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: color var(--motion-normal) var(--ease-standard);
   padding: 0;
 
   &:hover {
@@ -71,18 +71,21 @@ const Socials = styled.div`
   margin-bottom: 1rem;
 
   a {
-    background: rgba(0, 136, 204, 0.06);
+    background: var(--bg-surface);
     color: var(--text-primary);
     padding: 0.6rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-pill);
     display: flex;
-    border: 1px solid rgba(0, 136, 204, 0.12);
-    transition: all 0.3s ease;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-sm);
+    transition:
+      transform var(--motion-normal) var(--ease-standard),
+      border-color var(--motion-normal) var(--ease-standard),
+      background-color var(--motion-normal) var(--ease-standard);
 
     &:hover {
-      background: rgba(0, 136, 204, 0.12);
-      border-color: rgba(0, 136, 204, 0.25);
-      box-shadow: 0 2px 8px rgba(0, 136, 204, 0.12);
+      background: color-mix(in srgb, var(--accent) 8%, white);
+      border-color: color-mix(in srgb, var(--accent) 20%, white);
       transform: translateY(-2px);
     }
   }
@@ -90,7 +93,7 @@ const Socials = styled.div`
 
 const Copyright = styled.small`
   color: var(--text-secondary);
-  opacity: 0.6;
+  opacity: 0.7;
   font-size: 0.8rem;
 `;
 
@@ -99,16 +102,12 @@ const Footer = () => {
 
   return (
     <FooterContainer>
-      <LogoButton onClick={() => scrollTo(0)}>
-        Travis Stephenson
-      </LogoButton>
+      <LogoButton onClick={() => scrollTo(0)}>Travis Stephenson</LogoButton>
 
       <NavLinks>
         {FOOTER_LINKS.map(({ label, sectionIndex }) => (
           <li key={label}>
-            <NavButton onClick={() => scrollTo(sectionIndex)}>
-              {label}
-            </NavButton>
+            <NavButton onClick={() => scrollTo(sectionIndex)}>{label}</NavButton>
           </li>
         ))}
       </NavLinks>

@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Update Ideas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4f1eb;
+      --paper-deep: #ece7de;
+      --ink: #0f1720;
+      --ink-soft: rgba(15, 23, 32, 0.72);
+      --line: rgba(15, 23, 32, 0.12);
+      --glass: rgba(255, 255, 255, 0.7);
+      --white: #fbfaf7;
+      --accent-cyan: #5fd6f5;
+      --accent-copper: #bb724b;
+      --accent-leaf: #7e9d73;
+      --midnight: #0f1723;
+      --midnight-soft: #182434;
+      --mist: rgba(255, 255, 255, 0.6);
+      --shadow-lg: 0 28px 80px rgba(18, 28, 39, 0.16);
+      --shadow-md: 0 16px 42px rgba(18, 28, 39, 0.12);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(95, 214, 245, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(187, 114, 75, 0.12), transparent 24%),
+        linear-gradient(180deg, #f7f5f0 0%, #ede8df 100%);
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(15, 23, 32, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 32, 0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    .board { position: relative; max-width: 1640px; margin: 0 auto; padding: 40px 32px 96px; }
+    .board-header { display: grid; grid-template-columns: 1.4fr 0.8fr; gap: 28px; margin-bottom: 32px; }
+    .hero-note, .sources {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow-md);
+      border-radius: 28px;
+      padding: 28px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(15, 23, 32, 0.06);
+      color: rgba(15, 23, 32, 0.72);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-copper), var(--accent-cyan));
+    }
+    h1, h2, h3, h4 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .hero-note h1 { margin-top: 18px; font-size: clamp(44px, 6vw, 76px); line-height: 0.96; max-width: 10ch; }
+    .hero-note p { margin: 18px 0 0; max-width: 66ch; font-size: 16px; line-height: 1.7; color: var(--ink-soft); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 32, 0.08);
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(15, 23, 32, 0.76);
+    }
+    .sources h3 { font-size: 20px; margin-top: 18px; }
+    .source-list { display: grid; gap: 12px; margin-top: 18px; }
+    .source-card {
+      display: grid;
+      gap: 4px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(15, 23, 32, 0.04);
+      border: 1px solid rgba(15, 23, 32, 0.06);
+    }
+    .source-card strong { font-size: 14px; color: var(--ink); }
+    .source-card span { font-size: 13px; color: rgba(15, 23, 32, 0.66); line-height: 1.5; }
+    .artboard {
+      position: relative;
+      margin: 26px 0;
+      min-height: 1040px;
+      padding: 36px;
+      border-radius: 40px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .artboard::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+    }
+    .artboard-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+    .artboard-label { display: inline-block; margin-bottom: 14px; font-size: 12px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; }
+    .artboard-header h2 { font-size: clamp(34px, 4vw, 56px); line-height: 0.98; max-width: 12ch; }
+    .artboard-header p { max-width: 60ch; margin: 10px 0 0; font-size: 15px; line-height: 1.7; color: rgba(15, 23, 32, 0.72); }
+    .signal-stack { display: grid; gap: 10px; min-width: 280px; }
+    .signal {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.74);
+      font-size: 13px;
+      line-height: 1.5;
+      color: rgba(15, 23, 32, 0.74);
+    }
+    .concept-grid { position: relative; z-index: 2; display: grid; gap: 24px; }
+    .artboard-a {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(95, 214, 245, 0.18), transparent 24%),
+        radial-gradient(circle at 90% 0%, rgba(187, 114, 75, 0.16), transparent 22%),
+        linear-gradient(180deg, rgba(253, 252, 248, 0.98) 0%, rgba(245, 239, 230, 0.98) 100%);
+    }
+    .artboard-a .artboard-label { color: var(--accent-copper); }
+    .hero-shell { display: grid; grid-template-columns: 1.08fr 0.92fr; gap: 26px; align-items: stretch; }
+    .home-panel {
+      padding: 30px;
+      border-radius: 30px;
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.54));
+      border: 1px solid rgba(255, 255, 255, 0.84);
+      box-shadow: 0 16px 38px rgba(18, 28, 39, 0.08);
+    }
+    .nav-line, .metric-line { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .nav-mark { font-family: "Space Grotesk", sans-serif; font-size: 20px; font-weight: 700; }
+    .nav-links { display: flex; gap: 16px; color: rgba(15, 23, 32, 0.58); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .hero-copy { margin-top: 68px; max-width: 13ch; font-family: "Space Grotesk", sans-serif; font-size: clamp(54px, 6vw, 92px); line-height: 0.92; letter-spacing: -0.05em; }
+    .hero-copy span { color: rgba(15, 23, 32, 0.36); }
+    .hero-sub { max-width: 56ch; margin-top: 22px; color: rgba(15, 23, 32, 0.68); font-size: 16px; line-height: 1.7; }
+    .cta-line { display: flex; gap: 12px; margin-top: 30px; }
+    .cta, .ghost {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 148px;
+      min-height: 50px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .cta { color: #fff; background: linear-gradient(135deg, var(--accent-copper), #c69472); box-shadow: 0 18px 32px rgba(187, 114, 75, 0.26); }
+    .ghost { color: var(--ink); background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(15, 23, 32, 0.08); }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 34px; }
+    .metric-card { padding: 18px; border-radius: 20px; background: rgba(255, 255, 255, 0.74); border: 1px solid rgba(15, 23, 32, 0.06); }
+    .metric-card strong { display: block; font-family: "Space Grotesk", sans-serif; font-size: 28px; letter-spacing: -0.04em; }
+    .metric-card span { display: block; margin-top: 8px; font-size: 12px; line-height: 1.5; color: rgba(15, 23, 32, 0.62); text-transform: uppercase; letter-spacing: 0.08em; }
+    .proof-column { display: grid; gap: 18px; }
+    .proof-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .proof-card, .work-card, .rail-card, .motion-card, .archive-card, .chapter-card { border-radius: 26px; overflow: hidden; }
+    .proof-card {
+      min-height: 260px;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(231, 241, 247, 0.92));
+      border: 1px solid rgba(255, 255, 255, 0.84);
+      box-shadow: 0 18px 34px rgba(18, 28, 39, 0.08);
+    }
+    .proof-card.dark { background: linear-gradient(180deg, #1d2836, #121921); color: #f5f6f7; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .proof-card .mini-title { font-size: 12px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(15, 23, 32, 0.48); }
+    .proof-card.dark .mini-title { color: rgba(255, 255, 255, 0.46); }
+    .proof-card h4 { margin-top: 14px; font-size: 28px; line-height: 1.04; }
+    .proof-card p { margin-top: 12px; font-size: 14px; line-height: 1.65; color: rgba(15, 23, 32, 0.68); }
+    .proof-card.dark p { color: rgba(255, 255, 255, 0.72); }
+    .proof-strip { display: flex; gap: 12px; margin-top: 18px; }
+    .chip { padding: 9px 12px; border-radius: 999px; background: rgba(15, 23, 32, 0.06); font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .proof-card.dark .chip { background: rgba(255, 255, 255, 0.08); }
+    .featured-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .work-card {
+      min-height: 270px;
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(243, 238, 229, 0.86));
+      border: 1px solid rgba(15, 23, 32, 0.06);
+      box-shadow: 0 16px 30px rgba(18, 28, 39, 0.08);
+      display: grid;
+      align-content: end;
+      position: relative;
+    }
+    .work-card::before {
+      content: "";
+      position: absolute;
+      inset: 18px 18px auto;
+      height: 120px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(95, 214, 245, 0.2), rgba(187, 114, 75, 0.16)), rgba(15, 23, 32, 0.06);
+    }
+    .work-card strong, .rail-card strong, .archive-card strong { position: relative; z-index: 2; font-size: 18px; }
+    .work-card span, .rail-card span, .archive-card span { position: relative; z-index: 2; display: block; margin-top: 10px; font-size: 13px; line-height: 1.55; color: rgba(15, 23, 32, 0.66); }
+    .artboard-b {
+      color: #f6f3ee;
+      background:
+        radial-gradient(circle at 14% 12%, rgba(95, 214, 245, 0.2), transparent 24%),
+        radial-gradient(circle at 84% 18%, rgba(255, 122, 72, 0.18), transparent 22%),
+        linear-gradient(180deg, #0d1520 0%, #101923 55%, #15202d 100%);
+    }
+    .artboard-b .artboard-label, .artboard-b .artboard-header p { color: rgba(255, 255, 255, 0.7); }
+    .artboard-b .signal { background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.1); color: rgba(255, 255, 255, 0.76); }
+    .showreel-shell { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 22px; }
+    .stage {
+      padding: 22px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+    .stage-top { display: flex; justify-content: space-between; gap: 16px; color: rgba(255, 255, 255, 0.66); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; }
+    .cinema {
+      position: relative;
+      min-height: 540px;
+      margin-top: 22px;
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 22%, rgba(95, 214, 245, 0.24), transparent 22%),
+        radial-gradient(circle at 72% 18%, rgba(255, 122, 72, 0.22), transparent 18%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .cinema::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: 22px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.09), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 42%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .film-copy {
+      position: absolute;
+      left: 38px;
+      bottom: 40px;
+      z-index: 2;
+      max-width: 14ch;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(52px, 5vw, 84px);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+    }
+    .film-strip { position: absolute; right: 32px; top: 34px; width: 340px; display: grid; gap: 14px; z-index: 2; }
+    .frame {
+      min-height: 136px;
+      padding: 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)), rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+    .frame small { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.48); }
+    .frame strong { display: block; margin-top: 14px; font-size: 22px; line-height: 1.04; }
+    .frame span { display: block; margin-top: 10px; font-size: 13px; line-height: 1.55; color: rgba(255, 255, 255, 0.68); }
+    .rail-column { display: grid; gap: 16px; }
+    .rail-card {
+      min-height: 175px;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .rail-card strong, .rail-card span { color: rgba(255, 255, 255, 0.86); }
+    .rail-card span { color: rgba(255, 255, 255, 0.64); }
+    .artboard-c {
+      background:
+        radial-gradient(circle at 12% 12%, rgba(126, 157, 115, 0.18), transparent 24%),
+        linear-gradient(180deg, rgba(250, 247, 240, 0.98) 0%, rgba(240, 233, 222, 0.98) 100%);
+    }
+    .artboard-c .artboard-label { color: var(--accent-leaf); }
+    .archive-shell { display: grid; grid-template-columns: 310px 1fr; gap: 22px; }
+    .index-panel, .case-panel {
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 16px 34px rgba(18, 28, 39, 0.08);
+    }
+    .index-panel h3, .case-panel h3 { font-size: 28px; }
+    .index-list { display: grid; gap: 10px; margin-top: 18px; }
+    .index-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(15, 23, 32, 0.04);
+      border: 1px solid rgba(15, 23, 32, 0.06);
+    }
+    .index-item strong { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(15, 23, 32, 0.46); }
+    .index-item span { display: block; margin-top: 4px; font-size: 13px; line-height: 1.55; color: rgba(15, 23, 32, 0.66); }
+    .case-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 18px; margin-top: 20px; }
+    .archive-card {
+      min-height: 230px;
+      padding: 22px;
+      background: linear-gradient(160deg, rgba(249, 246, 240, 0.98), rgba(241, 235, 224, 0.98));
+      border: 1px solid rgba(15, 23, 32, 0.08);
+      box-shadow: 0 12px 24px rgba(18, 28, 39, 0.08);
+      position: relative;
+    }
+    .archive-card::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 112px;
+      height: 132px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(15, 23, 32, 0.08), rgba(95, 214, 245, 0.18));
+      border: 1px solid rgba(15, 23, 32, 0.08);
+    }
+    .chapter-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+    .chapter-card { min-height: 180px; padding: 18px; background: rgba(255, 255, 255, 0.82); border: 1px solid rgba(15, 23, 32, 0.06); box-shadow: 0 10px 22px rgba(18, 28, 39, 0.08); }
+    .chapter-card small { display: block; font-size: 11px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(15, 23, 32, 0.46); }
+    .chapter-card h4 { margin-top: 12px; font-size: 21px; line-height: 1.08; }
+    .chapter-card p { margin-top: 10px; font-size: 13px; line-height: 1.55; color: rgba(15, 23, 32, 0.66); }
+    .artboard-d {
+      background:
+        radial-gradient(circle at top right, rgba(95, 214, 245, 0.14), transparent 24%),
+        linear-gradient(180deg, rgba(249, 246, 239, 0.98) 0%, rgba(241, 235, 225, 0.98) 100%);
+    }
+    .artboard-d .artboard-label { color: #3a6f7b; }
+    .motion-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 10px; }
+    .motion-card { min-height: 240px; padding: 20px; background: rgba(255, 255, 255, 0.78); border: 1px solid rgba(15, 23, 32, 0.08); box-shadow: 0 14px 28px rgba(18, 28, 39, 0.08); }
+    .motion-card h4 { font-size: 22px; line-height: 1.08; }
+    .motion-card p { margin-top: 12px; font-size: 13px; line-height: 1.62; color: rgba(15, 23, 32, 0.66); }
+    .motion-swatch {
+      height: 92px;
+      margin-bottom: 16px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(95, 214, 245, 0.25), rgba(187, 114, 75, 0.2)), rgba(15, 23, 32, 0.06);
+      border: 1px solid rgba(15, 23, 32, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .motion-swatch::before {
+      content: "";
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      top: 18px;
+      left: 18px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 22px 0 0 rgba(15, 23, 32, 0.08), 44px 0 0 rgba(255, 255, 255, 0.42);
+      transform: rotate(-8deg);
+    }
+    .timeline { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 18px; margin-top: 24px; }
+    .timeline-panel, .wins-panel { padding: 22px; border-radius: 26px; background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(15, 23, 32, 0.08); box-shadow: 0 14px 28px rgba(18, 28, 39, 0.08); }
+    .timeline-line { display: grid; gap: 12px; margin-top: 16px; }
+    .timeline-step { display: grid; grid-template-columns: 74px 1fr; gap: 14px; padding: 14px 0; border-top: 1px solid rgba(15, 23, 32, 0.08); }
+    .timeline-step:first-child { border-top: 0; padding-top: 0; }
+    .timeline-step strong { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(15, 23, 32, 0.48); }
+    .timeline-step span { display: block; font-size: 14px; line-height: 1.6; color: rgba(15, 23, 32, 0.7); }
+    .wins-list { display: grid; gap: 12px; margin-top: 16px; }
+    .wins-list div { padding: 14px 16px; border-radius: 18px; background: rgba(15, 23, 32, 0.04); border: 1px solid rgba(15, 23, 32, 0.06); font-size: 14px; line-height: 1.55; color: rgba(15, 23, 32, 0.68); }
+    @media (max-width: 1260px) {
+      .board-header, .hero-shell, .showreel-shell, .archive-shell, .timeline, .case-grid { grid-template-columns: 1fr; }
+      .motion-grid, .chapter-grid, .featured-strip, .proof-stack, .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 860px) {
+      .board { padding: 24px 16px 72px; }
+      .artboard { padding: 20px; min-height: auto; }
+      .artboard-header { flex-direction: column; }
+      .motion-grid, .chapter-grid, .featured-strip, .proof-stack, .metric-grid { grid-template-columns: 1fr; }
+      .film-strip { position: static; width: auto; margin: 24px; }
+      .film-copy { position: static; padding: 36px 24px 0; }
+      .cinema { min-height: 720px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="board">
+    <section class="board-header">
+      <div class="hero-note">
+        <div class="eyebrow">Portfolio concept page</div>
+        <h1>Actual design directions for the next portfolio update.</h1>
+        <p>
+          This page turns the research into concrete visual directions you can edit in Figma. The focus is not clean SaaS but a more distinct identity for Travis Stephenson's portfolio: stronger proof, clearer flagship work, and motion that feels directed instead of ambient.
+        </p>
+        <div class="pill-row">
+          <div class="pill">Editorial glass</div>
+          <div class="pill">Cinematic showreel</div>
+          <div class="pill">Archive of proof</div>
+          <div class="pill">Case study rails</div>
+          <div class="pill">Motion system</div>
+        </div>
+      </div>
+      <aside class="sources">
+        <div class="eyebrow">Mobbin reference signals</div>
+        <h3>Source patterns translated into the boards below.</h3>
+        <div class="source-list">
+          <div class="source-card">
+            <strong>Koto</strong>
+            <span>Case-study clarity, generous spacing, and restrained typography that gives the work room.</span>
+          </div>
+          <div class="source-card">
+            <strong>Air</strong>
+            <span>Gallery-like presentation that still feels navigable and operational rather than decorative.</span>
+          </div>
+          <div class="source-card">
+            <strong>Jitter</strong>
+            <span>Homepage as showreel: product glimpses and motion stitched into the story without excess.</span>
+          </div>
+          <div class="source-card">
+            <strong>Shopify Editions and Luma AI</strong>
+            <span>Typographic confidence, cinematic restraint, and atmospheric contrast without clutter.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="artboard artboard-a">
+      <div class="artboard-header">
+        <div>
+          <div class="artboard-label">Concept 01 - Editorial Glass</div>
+          <h2>Sharpen the existing visual language instead of replacing it.</h2>
+          <p>
+            This direction keeps the bright, layered feel from the current site but removes the haze. The homepage becomes more explicit about role, outcomes, and flagship work. It should feel closer to a premium editorial portfolio than a soft landing page.
+          </p>
+        </div>
+        <div class="signal-stack">
+          <div class="signal">Best for preserving continuity with the current 3D portfolio while making it read more clearly.</div>
+          <div class="signal">Use this if the goal is same identity, higher precision rather than a total rebrand.</div>
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="hero-shell">
+          <div class="home-panel">
+            <div class="nav-line">
+              <div class="nav-mark">TS / Portfolio</div>
+              <div class="nav-links">
+                <span>Work</span>
+                <span>Case studies</span>
+                <span>About</span>
+                <span>Contact</span>
+              </div>
+            </div>
+            <div class="hero-copy">Architecting <span>AI products</span> and platform systems with craft.</div>
+            <div class="hero-sub">
+              Replace the current intro with a thesis-led opening. Lead with a role statement, then show evidence immediately: scale, shipped platforms, and one flagship case that proves range.
+            </div>
+            <div class="cta-line">
+              <div class="cta">View flagship case</div>
+              <div class="ghost">Browse all work</div>
+            </div>
+            <div class="metric-grid">
+              <div class="metric-card">
+                <strong>10+</strong>
+                <span>Years across enterprise, mobile, and AI delivery</span>
+              </div>
+              <div class="metric-card">
+                <strong>6</strong>
+                <span>Flagship case studies with distinct product and platform angles</span>
+              </div>
+              <div class="metric-card">
+                <strong>1</strong>
+                <span>Experimental lab track for Movie Vault and motion-heavy builds</span>
+              </div>
+            </div>
+          </div>
+          <div class="proof-column">
+            <div class="proof-stack">
+              <div class="proof-card">
+                <div class="mini-title">Flagship work</div>
+                <h4>Seeds of Thyme</h4>
+                <p>Show one project as the current headline proof point with tighter framing and a shorter path into the case study.</p>
+                <div class="proof-strip">
+                  <div class="chip">Product strategy</div>
+                  <div class="chip">Mobile</div>
+                </div>
+              </div>
+              <div class="proof-card dark">
+                <div class="mini-title">Leadership proof</div>
+                <h4>Architecture, UX direction, delivery.</h4>
+                <p>Make the leadership fingerprint visible. The portfolio should explain what changed because Travis led it.</p>
+              </div>
+            </div>
+            <div class="proof-card">
+              <div class="mini-title">Home section update</div>
+              <h4>Featured work as mini dossiers.</h4>
+              <p>Cards become more informative: role chip, one measurable result, and a more intentional image crop. The goal is faster scanning with a more premium feel.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-strip">
+          <div class="work-card">
+            <strong>CAMS ATM Management</strong>
+            <span>Cloud-native enterprise platform. Focus this card on workflow automation and compliance outcomes.</span>
+          </div>
+          <div class="work-card">
+            <strong>Multi-Agent LLM Pipelines</strong>
+            <span>Position the AI work as platform architecture rather than a generic AI bucket.</span>
+          </div>
+          <div class="work-card">
+            <strong>Movie Vault</strong>
+            <span>Frame as the experimental lab: performance, animation craft, API orchestration, and solo build quality.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="artboard artboard-b">
+      <div class="artboard-header">
+        <div>
+          <div class="artboard-label">Concept 02 - Cinematic Showreel</div>
+          <h2>Turn the homepage into a guided sequence, not a stack of sections.</h2>
+          <p>
+            This direction pulls from Jitter and motion-led portfolio sites. The page should feel like a controlled camera move through projects and ideas. Motion becomes a storytelling device, not a decorative layer.
+          </p>
+        </div>
+        <div class="signal-stack">
+          <div class="signal">Best if you want the 3D mode to feel more authored and less ambient.</div>
+          <div class="signal">The key is restraint: motion should reveal structure, not compete with content.</div>
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="showreel-shell">
+          <div class="stage">
+            <div class="stage-top">
+              <span>Story mode / Explore</span>
+              <span>Rail transition system</span>
+            </div>
+            <div class="cinema">
+              <div class="film-copy">Flagship work seen through movement, contrast, and pacing.</div>
+              <div class="film-strip">
+                <div class="frame">
+                  <small>Scene 01</small>
+                  <strong>Open on thesis, not biography.</strong>
+                  <span>One message. One flagship action. One high-confidence visual cue.</span>
+                </div>
+                <div class="frame">
+                  <small>Scene 02</small>
+                  <strong>Preview the work before explaining it.</strong>
+                  <span>Show fragments of projects as a sequence before expanding into detail.</span>
+                </div>
+                <div class="frame">
+                  <small>Scene 03</small>
+                  <strong>Lock captions during transitions.</strong>
+                  <span>Text stays readable while the environment shifts behind it.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="rail-column">
+            <div class="rail-card">
+              <strong>Replace the toggle label.</strong>
+              <span>The current 3D/classic switch can become Explore / Browse so the interaction feels intentional and productized.</span>
+            </div>
+            <div class="rail-card">
+              <strong>Use showreel previews on featured cards.</strong>
+              <span>Hover can reveal a short motion treatment or caption change rather than a generic lift.</span>
+            </div>
+            <div class="rail-card">
+              <strong>Keep motion readable under reduced motion.</strong>
+              <span>Every sequence should degrade to opacity and layout changes without losing meaning.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="artboard artboard-c">
+      <div class="artboard-header">
+        <div>
+          <div class="artboard-label">Concept 03 - Archive Of Proof</div>
+          <h2>Make long case studies feel curated, numbered, and evidential.</h2>
+          <p>
+            This direction is for the case-study system. It treats each project like an organized record rather than a blog post. It is especially strong for enterprise and architecture-heavy work where decisions, constraints, and outcomes matter as much as visuals.
+          </p>
+        </div>
+        <div class="signal-stack">
+          <div class="signal">Best for elevating the case-study pages and separating them from generic portfolio templates.</div>
+          <div class="signal">Works well with product, platform, and AI projects because it favors structure and evidence.</div>
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="archive-shell">
+          <div class="index-panel">
+            <div class="eyebrow">Sticky project rail</div>
+            <h3>Case study index</h3>
+            <div class="index-list">
+              <div class="index-item">
+                <strong>01</strong>
+                <div>
+                  <h4>Context</h4>
+                  <span>What the product was, who it served, and what was at stake.</span>
+                </div>
+              </div>
+              <div class="index-item">
+                <strong>02</strong>
+                <div>
+                  <h4>Constraints</h4>
+                  <span>Operational, technical, or organizational complexity called out early.</span>
+                </div>
+              </div>
+              <div class="index-item">
+                <strong>03</strong>
+                <div>
+                  <h4>Decisions</h4>
+                  <span>Show the calls that materially changed the product or platform.</span>
+                </div>
+              </div>
+              <div class="index-item">
+                <strong>04</strong>
+                <div>
+                  <h4>Outcome</h4>
+                  <span>End with measurable proof, not a generic reflection paragraph.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-panel">
+            <div class="eyebrow">Proof-first page</div>
+            <h3>One flagship template reused across all projects.</h3>
+            <div class="case-grid">
+              <div class="archive-card">
+                <strong>Role, scope, timeline, system footprint.</strong>
+                <span>A compact sticky summary should stay visible so the page always anchors the reader in the problem and Travis's role.</span>
+              </div>
+              <div class="archive-card">
+                <strong>Artifacts, not just mockups.</strong>
+                <span>Bring in system diagrams, workflow notes, launch decisions, and before/after frames so the case study feels authored.</span>
+              </div>
+            </div>
+            <div class="chapter-grid">
+              <div class="chapter-card">
+                <small>Chapter A</small>
+                <h4>Context and stakes</h4>
+                <p>Open with a one-sentence thesis and 2 to 3 hard metrics.</p>
+              </div>
+              <div class="chapter-card">
+                <small>Chapter B</small>
+                <h4>System moves</h4>
+                <p>Explain the architecture or product decisions with precise language.</p>
+              </div>
+              <div class="chapter-card">
+                <small>Chapter C</small>
+                <h4>Outcome and proof</h4>
+                <p>Show what shipped, what improved, and what became easier or faster.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="artboard artboard-d">
+      <div class="artboard-header">
+        <div>
+          <div class="artboard-label">Concept 04 - Motion And Rollout</div>
+          <h2>Choose one motion language, then apply it everywhere.</h2>
+          <p>
+            The update should not mix unrelated animation styles. Pick a signature language: smooth rail travel, soft showreel fades, dossier reveals, and tactile card states. This gives the portfolio a recognizable feel without over-designing every interaction.
+          </p>
+        </div>
+        <div class="signal-stack">
+          <div class="signal">This section is intended to become reusable motion notes inside the final Figma file.</div>
+          <div class="signal">Keep the system focused on reveal, emphasis, and hierarchy. Avoid playful motion unless it supports the story.</div>
+        </div>
+      </div>
+
+      <div class="concept-grid">
+        <div class="motion-grid">
+          <div class="motion-card">
+            <div class="motion-swatch"></div>
+            <h4>Rail transitions</h4>
+            <p>Move between major scenes with a controlled camera path and a locked caption zone. The environment changes; the message stays steady.</p>
+          </div>
+          <div class="motion-card">
+            <div class="motion-swatch"></div>
+            <h4>Dossier reveal</h4>
+            <p>Case-study modules can rise in with opacity plus slight vertical travel. Keep the motion short and documentary in tone.</p>
+          </div>
+          <div class="motion-card">
+            <div class="motion-swatch"></div>
+            <h4>Showreel hover</h4>
+            <p>Featured cards should preview a caption change, image shift, or subtle light sweep rather than a generic scale effect.</p>
+          </div>
+          <div class="motion-card">
+            <div class="motion-swatch"></div>
+            <h4>Movie Vault as lab</h4>
+            <p>Give the experimental work a slightly different behavior set: richer contrast, stronger motion, and more obvious craft cues.</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <div class="timeline-panel">
+            <div class="eyebrow">Recommended rollout</div>
+            <div class="timeline-line">
+              <div class="timeline-step">
+                <strong>Step 01</strong>
+                <span>Redesign the hero and the first featured-work sequence. This changes the portfolio's first impression immediately.</span>
+              </div>
+              <div class="timeline-step">
+                <strong>Step 02</strong>
+                <span>Build one flagship case-study template that handles mobile, platform, and AI work without feeling like a generic template.</span>
+              </div>
+              <div class="timeline-step">
+                <strong>Step 03</strong>
+                <span>Turn Movie Vault into a deliberate experimental case with stronger visual separation from client-facing platform work.</span>
+              </div>
+            </div>
+          </div>
+          <div class="wins-panel">
+            <div class="eyebrow">Immediate gains</div>
+            <div class="wins-list">
+              <div>Clearer value proposition above the fold.</div>
+              <div>Stronger relationship between proof and projects.</div>
+              <div>More memorable motion identity.</div>
+              <div>Case studies that read as authored, not assembled.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+</html>

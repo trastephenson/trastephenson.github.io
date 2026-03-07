@@ -12,16 +12,13 @@ const TestimonialsContainer = styled.section`
 `;
 
 const SectionTitle = styled.h2`
-  color: var(--accent);
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 4vw, 3rem);
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  line-height: var(--leading-heading);
+  letter-spacing: -0.04em;
   margin-bottom: 1.5rem;
-  text-shadow:
-    0 1px 0 rgba(255,255,255,0.6),
-    0 2px 0 rgba(0,100,180,0.15),
-    0 3px 8px rgba(0,136,204,0.12);
 `;
 
 const SliderWrapper = styled.div`
@@ -33,29 +30,27 @@ const SliderWrapper = styled.div`
 `;
 
 const Slide = styled.div`
-  opacity: ${props => props.$active ? 1 : 0};
-  transform: ${props => props.$active ? 'scale(1) translateX(0)' : 'scale(0.95) translateX(20px)'};
-  transition: all 0.6s ease;
-  position: ${props => props.$active ? 'relative' : 'absolute'};
+  opacity: ${(props) => (props.$active ? 1 : 0)};
+  transform: ${(props) =>
+    props.$active ? 'scale(1) translateX(0)' : 'scale(0.95) translateX(20px)'};
+  transition:
+    opacity var(--motion-slow) var(--ease-standard),
+    transform var(--motion-slow) var(--ease-standard);
+  position: ${(props) => (props.$active ? 'relative' : 'absolute')};
   top: 0;
   left: 0;
   width: 100%;
 `;
 
 const TestimonialCard = styled.div`
-  background: linear-gradient(145deg, rgba(255,255,255,0.38) 0%, rgba(247,249,255,0.30) 100%);
-  backdrop-filter: blur(28px) saturate(200%) brightness(112%);
-  -webkit-backdrop-filter: blur(28px) saturate(200%) brightness(112%);
-  border: 1px solid rgba(255,255,255,0.78);
-  border-top: 1.5px solid rgba(255,255,255,0.97);
-  border-radius: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
   padding: 2rem;
   text-align: left;
-  box-shadow:
-    0 8px 32px rgba(0,0,0,0.07),
-    0 2px 8px rgba(0,0,0,0.04),
-    inset 0 1.5px 0 rgba(255,255,255,0.97),
-    inset 0 -1px 0 rgba(255,255,255,0.32);
+  box-shadow: var(--shadow-md);
 
   @media (max-width: 600px) {
     padding: 1.2rem;
@@ -74,7 +69,7 @@ const Avatar = styled.div`
   height: 3.5rem;
   border-radius: 50%;
   overflow: hidden;
-  border: 2px solid rgba(0, 136, 204, 0.15);
+  border: 2px solid color-mix(in srgb, var(--accent) 18%, white);
   flex-shrink: 0;
 
   img {
@@ -86,6 +81,7 @@ const Avatar = styled.div`
 
 const Name = styled.p`
   color: var(--text-primary);
+  font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 600;
 `;
@@ -119,8 +115,9 @@ const ReviewText = styled.p`
   &::-webkit-scrollbar {
     width: 3px;
   }
+
   &::-webkit-scrollbar-thumb {
-    background: rgba(0, 136, 204, 0.15);
+    background: var(--border-medium);
     border-radius: 2px;
   }
 `;
@@ -138,9 +135,12 @@ const DotButton = styled.button`
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background: ${props => props.$active ? 'var(--accent)' : 'rgba(0, 136, 204, 0.2)'};
-  box-shadow: ${props => props.$active ? '0 0 8px var(--accent-glow)' : 'none'};
-  transition: all 0.3s ease;
+  background: ${(props) => (props.$active ? 'var(--accent)' : 'var(--border-medium)')};
+  box-shadow: ${(props) => (props.$active ? '0 0 8px var(--accent-glow)' : 'none')};
+  transition:
+    background-color var(--motion-normal) var(--ease-standard),
+    transform var(--motion-normal) var(--ease-standard),
+    box-shadow var(--motion-normal) var(--ease-standard);
   padding: 0;
 `;
 
@@ -155,12 +155,12 @@ const ArrowBtn = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  ${props => props.$left ? 'left: -1.2rem;' : 'right: -1.2rem;'}
+  ${(props) => (props.$left ? 'left: -1.2rem;' : 'right: -1.2rem;')}
   width: 2.2rem;
   height: 2.2rem;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.88);
-  background: rgba(255,255,255,0.76);
+  border: 1px solid var(--glass-border);
+  background: var(--bg-surface-strong);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
@@ -169,23 +169,34 @@ const ArrowBtn = styled.button`
   justify-content: center;
   font-size: 1.1rem;
   line-height: 1;
-  color: #333;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,1);
-  transition: all 0.2s ease;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--motion-normal) var(--ease-standard),
+    background-color var(--motion-normal) var(--ease-standard),
+    border-color var(--motion-normal) var(--ease-standard);
   z-index: 2;
 
   &:hover {
-    background: rgba(255,255,255,0.95);
+    background: color-mix(in srgb, var(--accent) 8%, white);
+    border-color: color-mix(in srgb, var(--accent) 20%, white);
     transform: translateY(-50%) scale(1.08);
   }
 
   @media (max-width: 720px) {
-    ${props => props.$left ? 'left: 0.25rem;' : 'right: 0.25rem;'}
+    ${(props) => (props.$left ? 'left: 0.25rem;' : 'right: 0.25rem;')}
   }
 
   @media (hover: none) and (pointer: coarse) {
-    &:hover { transform: translateY(-50%); background: rgba(255,255,255,0.76); }
-    &:active { background: rgba(255,255,255,0.95); transform: translateY(-50%) scale(1.05); }
+    &:hover {
+      transform: translateY(-50%);
+      background: var(--bg-surface-strong);
+    }
+
+    &:active {
+      background: color-mix(in srgb, var(--accent) 8%, white);
+      transform: translateY(-50%) scale(1.05);
+    }
   }
 `;
 
@@ -194,35 +205,40 @@ const data = [
     avatar: MAGESH,
     name: 'Magesh',
     jobTitle: 'QA Lead at Fidelity',
-    review: '"I\'ve had a pleasure of working with Travis and can confidently say they are a highly skilled, dedicated professional. Their ability to manage projects efficiently, communicate effectively, and solve problems proactively sets them apart."',
+    review:
+      "\"I've had a pleasure of working with Travis and can confidently say they are a highly skilled, dedicated professional. Their ability to manage projects efficiently, communicate effectively, and solve problems proactively sets them apart.\"",
     rating: 5,
   },
   {
     avatar: BERT,
     name: 'Bert Curtis',
     jobTitle: 'Senior SDET',
-    review: '"It has been a pleasure to see Travis as he develops his full stack software development skills. He consistently demonstrates a passion for learning and problem-solving, with a strong grasp of both front-end and back-end technologies."',
+    review:
+      "\"It has been a pleasure to see Travis as he develops his full stack software development skills. He consistently demonstrates a passion for learning and problem-solving, with a strong grasp of both front-end and back-end technologies.\"",
     rating: 5,
   },
   {
     avatar: ARYAN,
     name: 'Aryan Basak',
     jobTitle: 'Project Manager @ Utah Tech Labs',
-    review: '"Travis excels at managing complex projects with a keen eye for detail and a strong commitment to Agile principles. His ability to foster collaboration within the team and drive projects to successful completion is truly impressive."',
+    review:
+      "\"Travis excels at managing complex projects with a keen eye for detail and a strong commitment to Agile principles. His ability to foster collaboration within the team and drive projects to successful completion is truly impressive.\"",
     rating: 5,
   },
   {
     avatar: SAM,
     name: 'Sammuel Syphrett',
     jobTitle: 'Concrete Paving Estimator',
-    review: '"As a supervisor, Travis has consistently demonstrated exceptional leadership and humility. His ability to explain complex concepts clearly and effectively makes him an invaluable asset to any team."',
+    review:
+      "\"As a supervisor, Travis has consistently demonstrated exceptional leadership and humility. His ability to explain complex concepts clearly and effectively makes him an invaluable asset to any team.\"",
     rating: 5,
   },
   {
     avatar: ANIRBAN,
     name: 'Anirban Dutta',
     jobTitle: 'Python Data Engineer',
-    review: '"Travis is a well organised Project Manager who has lots of experience in handling clients. He is a great team player and always keeps the team spirit high."',
+    review:
+      '"Travis is a well organised Project Manager who has lots of experience in handling clients. He is a great team player and always keeps the team spirit high."',
     rating: 5,
   },
 ];
@@ -245,25 +261,33 @@ const Testimonials = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const goPrev = () => setActiveIndex(i => (i - 1 + data.length) % data.length);
-  const goNext = () => setActiveIndex(i => (i + 1) % data.length);
+  const goPrev = () => setActiveIndex((i) => (i - 1 + data.length) % data.length);
+  const goNext = () => setActiveIndex((i) => (i + 1) % data.length);
 
-  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
   const handleTouchEnd = (e) => {
     const dx = e.changedTouches[0].clientX - touchStartX.current;
-    if (Math.abs(dx) < 40) return;
-    dx < 0 ? goNext() : goPrev();
+    if (Math.abs(dx) < 40) {
+      return;
+    }
+    if (dx < 0) {
+      goNext();
+      return;
+    }
+    goPrev();
   };
 
   return (
     <TestimonialsContainer>
       <SectionTitle>Recommendations</SectionTitle>
       <CarouselOuter>
-        <ArrowBtn $left onClick={goPrev} aria-label="Previous testimonial">&#8249;</ArrowBtn>
-        <SliderWrapper
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-        >
+        <ArrowBtn $left onClick={goPrev} aria-label="Previous testimonial">
+          &#8249;
+        </ArrowBtn>
+        <SliderWrapper onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
           {data.map((item, index) => (
             <Slide key={index} $active={activeIndex === index}>
               <TestimonialCard>
@@ -282,7 +306,9 @@ const Testimonials = () => {
             </Slide>
           ))}
         </SliderWrapper>
-        <ArrowBtn onClick={goNext} aria-label="Next testimonial">&#8250;</ArrowBtn>
+        <ArrowBtn onClick={goNext} aria-label="Next testimonial">
+          &#8250;
+        </ArrowBtn>
       </CarouselOuter>
       <DotRow>
         {data.map((_, i) => (

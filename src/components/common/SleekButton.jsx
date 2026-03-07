@@ -1,17 +1,35 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const SleekButton = ({ children, onClick, type = "button", className, style }) => {
+const SleekButton = ({
+  children,
+  onClick,
+  type = 'button',
+  className,
+  style,
+  as: Component = 'button',
+  ...rest
+}) => {
+  const sharedProps = {
+    className: `btn-31 ${className || ''}`.trim(),
+    onClick,
+    ...rest,
+  };
+
+  if (Component === 'button') {
+    sharedProps.type = type;
+  }
+
   return (
     <StyledWrapper style={style}>
-      <button className={`btn-31 ${className || ''}`} type={type} onClick={onClick}>
+      <Component {...sharedProps}>
         <span className="text-container">
           <span className="text">{children}</span>
         </span>
-      </button>
+      </Component>
     </StyledWrapper>
   );
-}
+};
 
 const StyledWrapper = styled.div`
   .btn-31,
@@ -26,20 +44,21 @@ const StyledWrapper = styled.div`
 
   .btn-31 {
     -webkit-tap-highlight-color: transparent;
-    -webkit-appearance: button;
-    background-color: var(--bg-void, #f5f5f5);
+    background-color: var(--btn-surface, var(--bg-void, #f5f5f5));
     background-image: none;
     color: var(--btn-text, #111);
     cursor: pointer;
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-      Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-      Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display, 'Montserrat', sans-serif);
     font-size: 100%;
     font-weight: 900;
     line-height: 1.5;
     margin: 0;
     -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
     padding: 0;
+    text-decoration: none;
   }
 
   .btn-31:disabled {
@@ -61,16 +80,44 @@ const StyledWrapper = styled.div`
 
   .btn-31 {
     border-width: 1px;
-    border-color: rgba(0, 136, 204, 0.2);
+    border-color: var(
+      --btn-border,
+      color-mix(in srgb, var(--accent, #111) 24%, white)
+    );
+    border-style: solid;
+    border-radius: 999px;
+    min-height: 44px;
     padding: var(--btn-pad-y, 1rem) var(--btn-pad-x, 2rem);
     position: relative;
     text-transform: uppercase;
     font-size: var(--btn-font-size, 100%);
+    overflow: hidden;
+    isolation: isolate;
+    box-shadow: var(--btn-shadow, none);
+    transition:
+      transform var(--motion-fast, 120ms) var(--ease-standard, ease),
+      background-color var(--motion-fast, 120ms) var(--ease-standard, ease),
+      border-color var(--motion-fast, 120ms) var(--ease-standard, ease),
+      box-shadow var(--motion-fast, 120ms) var(--ease-standard, ease);
+  }
+
+  .btn-31:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--accent, #111) 38%, transparent);
+    outline-offset: 3px;
+  }
+
+  .btn-31:hover {
+    border-color: var(
+      --btn-hover-border,
+      var(--btn-border, color-mix(in srgb, var(--accent, #111) 24%, white))
+    );
+    box-shadow: var(--btn-hover-shadow, var(--btn-shadow, none));
   }
 
   .btn-31:before {
     --progress: 100%;
     background: var(--btn-fill, var(--accent, #111));
+    border-radius: inherit;
     -webkit-clip-path: polygon(
       100% 0,
       var(--progress) var(--progress),
@@ -86,9 +133,10 @@ const StyledWrapper = styled.div`
     content: "";
     inset: 0;
     position: absolute;
-    transition: -webkit-clip-path 0.2s ease;
-    transition: clip-path 0.2s ease;
-    transition: clip-path 0.2s ease, -webkit-clip-path 0.2s ease;
+    z-index: 0;
+    transition:
+      clip-path var(--motion-normal, 220ms) var(--ease-standard, ease),
+      -webkit-clip-path var(--motion-normal, 220ms) var(--ease-standard, ease);
   }
 
   .btn-31:hover:before {
@@ -99,6 +147,7 @@ const StyledWrapper = styled.div`
     display: block;
     overflow: hidden;
     position: relative;
+    z-index: 1;
   }
 
   .btn-31 .text {
@@ -106,13 +155,14 @@ const StyledWrapper = styled.div`
     font-weight: 900;
     position: relative;
     color: var(--btn-text, #111);
-    transition: color 0.15s ease;
+    transition: color var(--motion-fast, 120ms) var(--ease-standard, ease);
   }
 
   .btn-31:hover .text {
-    color: #ffffff;
-    -webkit-animation: move-up-alternate 0.3s ease forwards;
-    animation: move-up-alternate 0.3s ease forwards;
+    color: var(--btn-hover-text, #ffffff);
+    -webkit-animation: move-up-alternate var(--motion-normal, 220ms) var(--ease-standard, ease)
+      forwards;
+    animation: move-up-alternate var(--motion-normal, 220ms) var(--ease-standard, ease) forwards;
   }
 
   @-webkit-keyframes move-up-alternate {
@@ -167,4 +217,4 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export default SleekButton; 
+export default SleekButton;
