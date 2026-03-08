@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Case Study Concept</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./portfolio-figma-concepts.css">
+  <style>
+    .rail-card,
+    .chapter-card,
+    .artifact-card,
+    .quote-card,
+    .metric-strip {
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.76);
+      box-shadow: var(--shadow-md);
+    }
+
+    .case-layout {
+      display: grid;
+      grid-template-columns: 0.74fr 1.4fr 0.86fr;
+      gap: 18px;
+      padding: 24px;
+    }
+
+    .rail-card,
+    .chapter-card,
+    .artifact-card,
+    .quote-card {
+      padding: 18px;
+    }
+
+    .rail-stack,
+    .chapter-stack,
+    .artifact-stack {
+      display: grid;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .rail-card h3,
+    .chapter-card h3,
+    .artifact-card h3 {
+      font-size: 22px;
+      line-height: 1.06;
+    }
+
+    .rail-card p,
+    .chapter-card p,
+    .artifact-card p,
+    .quote-card p {
+      margin-top: 10px;
+      font-size: 13px;
+      line-height: 1.62;
+      color: var(--ink-soft);
+    }
+
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      overflow: hidden;
+    }
+
+    .metric-strip div {
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .metric-strip strong {
+      display: block;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 34px;
+      letter-spacing: -0.05em;
+    }
+
+    .metric-strip span {
+      display: block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .artifact-preview {
+      min-height: 188px;
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(102, 212, 239, 0.2), rgba(183, 112, 69, 0.16)),
+        rgba(18, 25, 34, 0.05);
+      border: 1px solid rgba(18, 25, 34, 0.08);
+    }
+
+    .artifact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .chapter-label {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .quote-card {
+      background: rgba(18, 25, 34, 0.04);
+      border-style: dashed;
+    }
+
+    .quote-card strong {
+      display: block;
+      font-size: 20px;
+      line-height: 1.22;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .chapter-card.tall {
+      min-height: 290px;
+    }
+
+    .chapter-card.hero {
+      min-height: 410px;
+      display: grid;
+      align-content: end;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.92)),
+        linear-gradient(135deg, rgba(102, 212, 239, 0.22), rgba(183, 112, 69, 0.2)),
+        rgba(18, 25, 34, 0.06);
+    }
+
+    .chapter-card.hero h3 {
+      font-size: 42px;
+      max-width: 10ch;
+    }
+
+    .artifact-card.mini {
+      min-height: 220px;
+    }
+
+    .surface-dark .rail-card,
+    .surface-dark .chapter-card,
+    .surface-dark .artifact-card,
+    .surface-dark .quote-card,
+    .surface-dark .metric-strip,
+    .surface-dark .metric-strip div {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(255, 255, 255, 0.1);
+      box-shadow: none;
+    }
+
+    .surface-dark .rail-card p,
+    .surface-dark .chapter-card p,
+    .surface-dark .artifact-card p,
+    .surface-dark .quote-card p,
+    .surface-dark .metric-strip span,
+    .surface-dark .chapter-label {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .surface-dark .artifact-preview {
+      background:
+        linear-gradient(135deg, rgba(102, 212, 239, 0.22), rgba(255, 126, 71, 0.18)),
+        rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    @media (max-width: 1240px) {
+      .case-layout,
+      .artifact-grid,
+      .metric-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <section class="topbar">
+      <div class="glass hero-intro">
+        <div class="eyebrow">Case study frame concepts</div>
+        <h1>Case-study pages designed as narratives, not dumps.</h1>
+        <p>
+          These frames turn the portfolio case studies into product stories with a clear opening thesis, visible proof, and a structure that gives artifacts room to do real work.
+        </p>
+        <div class="tag-row">
+          <div class="tag">Story before gallery</div>
+          <div class="tag">Proof beside claim</div>
+          <div class="tag">Artifact chapters</div>
+          <div class="tag">Mobile-aware framing</div>
+        </div>
+      </div>
+      <aside class="glass">
+        <div class="eyebrow">Intent</div>
+        <div class="source-list">
+          <div class="source-item">
+            <strong>Flagship case logic</strong>
+            <span>One strong story arc, then supporting artifacts and outcomes that earn trust section by section.</span>
+          </div>
+          <div class="source-item">
+            <strong>Archive of proof</strong>
+            <span>Convert screenshots and process material into labeled evidence instead of generic image galleries.</span>
+          </div>
+          <div class="source-item">
+            <strong>Motion as chaptering</strong>
+            <span>Subtle progress cues and sticky rails guide the read without overwhelming the content.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="board">
+      <article class="frame">
+        <header class="frame-header">
+          <div class="frame-copy">
+            <div class="frame-label" style="color:#b77045;">Desktop case study / Story-led flagship</div>
+            <h2>A structured narrative with a sticky proof rail and chaptered artifacts.</h2>
+            <p>
+              This direction makes the strongest portfolio pieces feel like product reviews. Every claim about role, scope, and outcome sits close to supporting evidence.
+            </p>
+          </div>
+          <div class="hint-stack">
+            <div class="hint">Open with the decision context, not the generic overview paragraph.</div>
+            <div class="hint">Keep a persistent rail for role, scope, stack, and impact so the reader never loses orientation.</div>
+          </div>
+        </header>
+
+        <div class="case-shell">
+          <div class="case-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="site-id">case study / seeds of thyme</div>
+            <div class="btn-chip primary">Download dossier</div>
+          </div>
+
+          <div class="case-layout">
+            <aside class="rail-stack">
+              <div class="rail-card">
+                <div class="eyebrow">Project rail</div>
+                <h3 style="margin-top:16px;">Seeds of Thyme</h3>
+                <p>Lead with the portfolio-worthy angle: product architecture, UX direction, delivery leadership, and a clear system outcome.</p>
+                <div class="meta-row">
+                  <span>Lead UX</span>
+                  <span>Product strategy</span>
+                  <span>Delivery</span>
+                </div>
+              </div>
+              <div class="metric-strip">
+                <div>
+                  <strong>4.8</strong>
+                  <span>App store rating to anchor trust fast</span>
+                </div>
+                <div>
+                  <strong>3</strong>
+                  <span>Core audience groups supported by the product model</span>
+                </div>
+                <div>
+                  <strong>1</strong>
+                  <span>System narrative instead of scattered screenshots</span>
+                </div>
+              </div>
+              <div class="rail-card">
+                <div class="eyebrow">Chapter map</div>
+                <div class="timeline" style="margin-top:16px;">
+                  <div class="timeline-step">
+                    <strong>01</strong>
+                    <span>Decision context and product constraints</span>
+                  </div>
+                  <div class="timeline-step">
+                    <strong>02</strong>
+                    <span>System design, flows, and service orchestration</span>
+                  </div>
+                  <div class="timeline-step">
+                    <strong>03</strong>
+                    <span>Outcome proof, release notes, and operating learnings</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <section class="chapter-stack">
+              <div class="chapter-card hero">
+                <div class="chapter-label">Opening thesis</div>
+                <h3>Designing a food ordering product that felt calm, premium, and easy to operate under real constraints.</h3>
+                <p>The first frame should work like an executive summary. It states the product problem, the level of ownership, and the kind of craft the user is about to see.</p>
+              </div>
+
+              <div class="chapter-card tall">
+                <div class="chapter-label">Problem framing</div>
+                <h3>Explain the operational challenge before showing interface surfaces.</h3>
+                <p>Case studies become more credible when the constraints are explicit: menu complexity, customer trust, delivery expectations, and the need for a system that scales without losing clarity.</p>
+                <ul class="impact-list">
+                  <li>Clarify what was broken or missing before the redesign work started.</li>
+                  <li>Name the decisions that changed the product direction or information architecture.</li>
+                  <li>Use copy that sounds like product review, not portfolio filler.</li>
+                </ul>
+              </div>
+
+              <div class="artifact-grid">
+                <div class="artifact-card">
+                  <div class="chapter-label">Artifact chapter</div>
+                  <div class="artifact-preview"></div>
+                  <h3 style="margin-top:16px;">Annotated flow or interface surface</h3>
+                  <p>Artifacts should carry labels, decisions, and product reasoning so they read as evidence rather than decoration.</p>
+                </div>
+                <div class="artifact-card">
+                  <div class="chapter-label">System note</div>
+                  <div class="artifact-preview"></div>
+                  <h3 style="margin-top:16px;">Operations and service design crossover</h3>
+                  <p>Show how UX decisions affected fulfillment, content structure, or product maintainability.</p>
+                </div>
+              </div>
+
+              <div class="quote-card">
+                <strong>"Pair each big visual with one clear claim and one piece of measurable proof."</strong>
+                <p>This keeps the reading pace intentional and stops the case study from becoming a long stack of unlabeled screens.</p>
+              </div>
+            </section>
+
+            <aside class="artifact-stack">
+              <div class="mobile-preview">
+                <div class="eyebrow">Mobile proof</div>
+                <div class="phone" style="margin-top:14px;">
+                  <div class="phone-screen">
+                    <div class="phone-block tall"></div>
+                    <div class="phone-block">
+                      <strong style="display:block;font-size:18px;">Decision context</strong>
+                      <span style="display:block;margin-top:8px;color:var(--ink-soft);font-size:13px;line-height:1.55;">Open with scope, role, and product challenge.</span>
+                    </div>
+                    <div class="phone-block">
+                      <strong style="display:block;font-size:18px;">Artifact chapter</strong>
+                      <span style="display:block;margin-top:8px;color:var(--ink-soft);font-size:13px;line-height:1.55;">One labeled surface at a time.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="artifact-card mini">
+                <div class="chapter-label">Outcome strip</div>
+                <h3>Outcome cards can sit beside the narrative, not only at the end.</h3>
+                <p>Ratings, adoption, operational gains, release quality, or internal alignment points should appear where they support the story most.</p>
+              </div>
+
+              <div class="artifact-card mini">
+                <div class="chapter-label">Motion note</div>
+                <h3>Use progress tracking as a reading aid.</h3>
+                <p>A subtle chapter indicator or sticky rail marker is enough. Avoid turning the case study into a full scrollytelling performance.</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </article>
+
+      <article class="frame surface-dark ink-dark">
+        <header class="frame-header">
+          <div class="frame-copy">
+            <div class="frame-label" style="color:#66d4ef;">Desktop case study / Artifact archive</div>
+            <h2>A darker, more editorial layout for process evidence and design reviews.</h2>
+            <p>
+              This alternative is useful for technical or system-heavy projects. It treats the case study like an archive page with stronger contrast and more space for artifacts, diagrams, and decision logs.
+            </p>
+          </div>
+          <div class="hint-stack">
+            <div class="hint">Use this mode for enterprise, AI, or systems work where architecture needs more room than marketing visuals.</div>
+            <div class="hint">Group artifacts by decision, not by media type, so the page still feels authored.</div>
+          </div>
+        </header>
+
+        <div class="case-shell">
+          <div class="case-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <div class="site-id">case study / systems archive</div>
+            <div class="btn-chip secondary">View decisions</div>
+          </div>
+
+          <div class="case-layout">
+            <aside class="rail-stack">
+              <div class="rail-card">
+                <div class="eyebrow">Archive mode</div>
+                <h3 style="margin-top:16px;">Built for technical storytelling.</h3>
+                <p>Use a darker surface when the portfolio needs to hold architecture diagrams, flows, and implementation notes without feeling cluttered.</p>
+              </div>
+              <div class="rail-card">
+                <div class="eyebrow">Decision log</div>
+                <div class="timeline" style="margin-top:16px;">
+                  <div class="timeline-step">
+                    <strong>IA</strong>
+                    <span>How the information model changed and why</span>
+                  </div>
+                  <div class="timeline-step">
+                    <strong>UX</strong>
+                    <span>Key workflow simplifications and evidence of effect</span>
+                  </div>
+                  <div class="timeline-step">
+                    <strong>Tech</strong>
+                    <span>Implementation implications worth calling out</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <section class="chapter-stack">
+              <div class="artifact-grid">
+                <div class="artifact-card">
+                  <div class="chapter-label">Artifact 01</div>
+                  <div class="artifact-preview"></div>
+                  <h3 style="margin-top:16px;">Architecture map</h3>
+                  <p>Use these panels for service maps, orchestration diagrams, or end-to-end workflow models that support the narrative.</p>
+                </div>
+                <div class="artifact-card">
+                  <div class="chapter-label">Artifact 02</div>
+                  <div class="artifact-preview"></div>
+                  <h3 style="margin-top:16px;">UI decision review</h3>
+                  <p>Annotated interfaces can sit beside the system layer to show both macro and micro product thinking.</p>
+                </div>
+              </div>
+
+              <div class="chapter-card tall">
+                <div class="chapter-label">Decision chapter</div>
+                <h3>Explain what changed, who it affected, and why the tradeoff mattered.</h3>
+                <p>Readers should be able to skim a case study and still understand the strategic decisions. This layout gives decision logs and proofs equal weight with the visuals.</p>
+                <ul class="impact-list">
+                  <li>Pair diagrams with plain-language rationale.</li>
+                  <li>Call out constraints, dependencies, and implementation consequences.</li>
+                  <li>Use the darker surface to create a distinct mode for technical depth.</li>
+                </ul>
+              </div>
+
+              <div class="quote-card">
+                <strong>"For AI and platform work, the reasoning is part of the design. The page should show that."</strong>
+                <p>That makes system-heavy projects feel intentional instead of over-explained.</p>
+              </div>
+            </section>
+
+            <aside class="artifact-stack">
+              <div class="metric-strip">
+                <div>
+                  <strong>2</strong>
+                  <span>Artifact lanes above the fold</span>
+                </div>
+                <div>
+                  <strong>3</strong>
+                  <span>Decision buckets to organize proof</span>
+                </div>
+                <div>
+                  <strong>0</strong>
+                  <span>Need for generic gallery sections</span>
+                </div>
+              </div>
+              <div class="artifact-card mini">
+                <div class="chapter-label">Motion system</div>
+                <h3>Use small transitions between chapters, not continuous movement.</h3>
+                <p>Fades, slide-ins, and chapter index updates are enough to support reading without distracting from the artifacts.</p>
+              </div>
+              <div class="artifact-card mini">
+                <div class="chapter-label">Content rule</div>
+                <h3>Every artifact needs a job.</h3>
+                <p>If a screenshot cannot support a decision, outcome, or workflow explanation, it does not belong in the page.</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+</html>

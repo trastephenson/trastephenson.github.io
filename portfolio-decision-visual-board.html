@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Decision Board Visuals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./portfolio-figma-concepts.css">
+  <style>
+    .board { display:grid; gap:24px; }
+    .section {
+      padding: 28px; border-radius: 34px; background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(255,255,255,0.88); box-shadow: var(--shadow-md); backdrop-filter: blur(18px);
+    }
+    .head { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; margin-bottom:18px; }
+    .copy h2 { font-size: 34px; line-height: .98; }
+    .copy p { margin-top:10px; max-width:62ch; font-size:14px; line-height:1.65; color:var(--ink-soft); }
+    .pill {
+      min-width:260px; padding:16px 18px; border-radius:20px; background:rgba(183,112,69,.12);
+      border:1px solid rgba(183,112,69,.22); font-size:12px; font-weight:800; letter-spacing:.08em;
+      line-height:1.55; text-transform:uppercase;
+    }
+    .cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .card {
+      display:grid; gap:14px; padding:16px; min-height:410px; border-radius:24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.86), rgba(245,239,231,.92));
+      border:1px solid var(--line); box-shadow:0 14px 28px rgba(18,25,34,.08);
+    }
+    .card.reco { border:2px solid rgba(183,112,69,.44); box-shadow:0 22px 42px rgba(183,112,69,.16); }
+    .meta { display:flex; justify-content:space-between; gap:12px; align-items:center; }
+    .badge,.state {
+      display:inline-flex; align-items:center; min-height:30px; padding:0 10px; border-radius:999px;
+      font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+    }
+    .badge { background:rgba(18,25,34,.06); color:var(--ink-soft); }
+    .state { background:rgba(102,212,239,.18); color:#15566a; }
+    .state.reco { background:rgba(183,112,69,.16); color:#8c4f26; }
+    .media {
+      position:relative; min-height:220px; border-radius:20px; overflow:hidden;
+      border:1px solid rgba(18,25,34,.08); background:rgba(18,25,34,.06);
+    }
+    .media img { width:100%; height:100%; object-fit:cover; display:block; }
+    .note {
+      position:absolute; left:14px; bottom:14px; max-width:22ch; padding:10px 12px; border-radius:16px;
+      background:rgba(255,255,255,.82); backdrop-filter:blur(14px); font-size:12px; line-height:1.45;
+    }
+    .card h3 { font-size:22px; line-height:1.08; }
+    .card p { font-size:13px; line-height:1.6; color:var(--ink-soft); }
+    .spec {
+      display:grid; gap:14px; min-height:220px; padding:18px; border-radius:20px;
+      background: radial-gradient(circle at top right, rgba(102,212,239,.18), transparent 26%), linear-gradient(180deg, rgba(255,255,255,.92), rgba(245,239,231,.9));
+      border:1px solid rgba(18,25,34,.08);
+    }
+    .spec.dark {
+      background: radial-gradient(circle at top right, rgba(102,212,239,.18), transparent 24%), linear-gradient(180deg, #101923 0%, #172432 100%);
+      color:#f6f2ea; border-color:rgba(255,255,255,.1);
+    }
+    .spec .k { font-size:11px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); }
+    .spec.dark .k, .spec.dark p { color:rgba(255,255,255,.74); }
+    .spec h4 { font-size:42px; line-height:.94; max-width:10ch; }
+    .palette { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; min-height:220px; }
+    .swatch {
+      display:grid; align-content:end; padding:16px; border-radius:18px; min-height:102px;
+      color:#fff; font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+    }
+    .motion { display:grid; gap:12px; min-height:220px; padding:16px; border-radius:20px; background:linear-gradient(180deg, rgba(255,255,255,.92), rgba(244,237,228,.92)); border:1px solid rgba(18,25,34,.08); }
+    .mrow { display:grid; grid-template-columns:90px 1fr; gap:10px; align-items:center; }
+    .mrow strong { font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-muted); }
+    .lane { position:relative; height:54px; border-radius:16px; background:rgba(18,25,34,.05); overflow:hidden; }
+    .lane::before, .lane::after {
+      content:""; position:absolute; top:12px; width:82px; height:30px; border-radius:999px;
+      background:linear-gradient(135deg, rgba(183,112,69,.88), rgba(102,212,239,.88));
+    }
+    .entry::before { left:12px; opacity:.34; transform:scale(.84); } .entry::after { left:124px; opacity:1; }
+    .progress::before { left:42px; opacity:.5; } .progress::after { left:172px; opacity:1; }
+    .hover::before { left:64px; opacity:.44; } .hover::after { left:136px; opacity:1; transform:translateY(-4px) scale(1.04); box-shadow:0 10px 22px rgba(183,112,69,.26); }
+    .proof { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; border-radius:20px; overflow:hidden; border:1px solid rgba(18,25,34,.08); min-height:220px; background:rgba(18,25,34,.08); }
+    .proof div { padding:18px; background:rgba(255,255,255,.92); }
+    .proof strong { display:block; font-family:"Space Grotesk",sans-serif; font-size:38px; line-height:.96; letter-spacing:-.05em; }
+    .proof span { display:block; margin-top:10px; font-size:12px; line-height:1.55; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em; }
+    @media (max-width:1240px) { .head,.cards { grid-template-columns:1fr; flex-direction:column; } .pill { min-width:0; } }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <section class="topbar">
+      <div class="glass hero-intro">
+        <div class="eyebrow">Checkpoint 1 visuals</div>
+        <h1>Visual references for every portfolio direction decision.</h1>
+        <p>This board combines Mobbin captures with the local homepage and case-study concepts so each approval area has an actual visual anchor.</p>
+        <div class="tag-row">
+          <div class="tag">Mobbin references</div>
+          <div class="tag">Local concept captures</div>
+          <div class="tag">Recommended path marked</div>
+          <div class="tag">Ready for approval</div>
+        </div>
+      </div>
+      <aside class="glass">
+        <div class="eyebrow">Sources used</div>
+        <div class="source-list">
+          <div class="source-item"><strong>Koto</strong><span>Editorial clarity and disciplined case-study framing.</span></div>
+          <div class="source-item"><strong>Jitter</strong><span>Showreel pacing and restrained animation.</span></div>
+          <div class="source-item"><strong>Air and Luma AI</strong><span>Browse logic, preview-first scanning, and motion-led sequencing.</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="board">
+      <section class="section">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Hero posture</div>
+            <h2>Lead with a flagship thesis instead of biography.</h2>
+            <p>The homepage should establish point of view immediately, then route the reader toward one featured case that anchors the rest of the work.</p>
+          </div>
+          <div class="pill">Recommended: flagship-first hero with one dominant case and a secondary browse path.</div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Koto</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-42-34-530Z.png" alt="Koto reference"><div class="note">Calm hierarchy and immediate authority through headline control.</div></div>
+            <h3>Editorial restraint</h3>
+            <p>Use this as the baseline for tone and headline confidence, not as a literal layout copy.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Jitter</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-42-59-881Z.png" alt="Jitter reference"><div class="note">Showreel-like pacing with direct, product-first framing.</div></div>
+            <h3>Motion-backed clarity</h3>
+            <p>Useful when the hero needs more energy, but still has to stay readable and controlled.</p>
+          </article>
+          <article class="card reco">
+            <div class="meta"><span class="badge">Local concept</span><span class="state reco">Recommended</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-44-46-860Z.png" alt="Homepage concept"><div class="note">Portfolio-specific direction: one thesis, one flagship case, one browse action.</div></div>
+            <h3>Flagship-first homepage</h3>
+            <p>This is the right synthesis for the portfolio: clear stance first, supporting work second.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Navigation</div>
+            <h2>Turn the mode switch into a meaningful browsing choice.</h2>
+            <p>The current `3d` and `classic` toggle works mechanically. The stronger version frames the two modes as different ways to consume the portfolio.</p>
+          </div>
+          <div class="pill">Recommended: rename the modes to Explore and Browse, and keep the global navigation minimal.</div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Air</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-43-30-697Z.png" alt="Air reference"><div class="note">Browseable gallery logic without excessive chrome.</div></div>
+            <h3>Low-friction navigation</h3>
+            <p>Let the work do the talking. Navigation should orient, not dominate.</p>
+          </article>
+          <article class="card reco">
+            <div class="meta"><span class="badge">Portfolio control</span><span class="state reco">Recommended</span></div>
+            <div class="spec">
+              <div class="k">Mode framing</div>
+              <h4>Explore the story. Browse the dossier.</h4>
+              <p>Make the switch read like a user intent choice. Explore is guided and cinematic. Browse is fast and index-like.</p>
+            </div>
+            <h3>Explore / Browse toggle</h3>
+            <p>This gives the homepage modes product meaning and better matches the portfolio story.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Local concept</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-44-46-860Z.png" alt="Homepage control reference"><div class="note">Use minimal top-level controls and keep the work visible.</div></div>
+            <h3>Compact control surface</h3>
+            <p>Supports the recommendation by keeping navigation light and the content dense.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Showcase structure</div>
+            <h2>One flagship lane, supporting proof lanes, and a lab track.</h2>
+            <p>Not every project should carry identical emphasis. The structure should tell the user which work defines the portfolio and which work expands it.</p>
+          </div>
+          <div class="pill">Recommended: promote one flagship case, group the rest by role or system type, and reserve one experimental lane for Movie Vault.</div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Air</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-43-30-697Z.png" alt="Air gallery reference"><div class="note">Gallery logic that supports fast scanning and clear grouping.</div></div>
+            <h3>Browsable work index</h3>
+            <p>Good for density, but it needs a stronger featured project to lead the portfolio.</p>
+          </article>
+          <article class="card reco">
+            <div class="meta"><span class="badge">Local concept</span><span class="state reco">Recommended</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-44-46-860Z.png" alt="Homepage showcase concept"><div class="note">Flagship case first, then grouped supporting work and experimental lane.</div></div>
+            <h3>Curated hierarchy</h3>
+            <p>This keeps the range while making the portfolio feel authored instead of evenly stacked.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Experimental lane</span><span class="state">Option</span></div>
+            <div class="spec dark">
+              <div class="k">Lab track</div>
+              <h4>Movie Vault and future solo builds live in a distinct experimental lane.</h4>
+              <p>This lets experimental work feel intentional without competing with the flagship product story.</p>
+            </div>
+            <h3>Lab section</h3>
+            <p>A separate lane is the cleanest way to include experimental work without flattening hierarchy.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Case-study format</div>
+            <h2>Tell the story, then prove it chapter by chapter.</h2>
+            <p>Case studies should act like product reviews: clear opening thesis, persistent orientation, and artifacts that work as evidence rather than filler.</p>
+          </div>
+          <div class="pill">Recommended: story-led case studies with a sticky proof rail, chaptered artifacts, and outcome cards beside claims.</div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Koto</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-42-34-530Z.png" alt="Koto case study"><div class="note">Editorial framing and disciplined reading pace.</div></div>
+            <h3>Clear story arc</h3>
+            <p>Strong precedent for concise chaptering and a clean reading hierarchy.</p>
+          </article>
+          <article class="card reco">
+            <div class="meta"><span class="badge">Local concept</span><span class="state reco">Recommended</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-45-14-218Z.png" alt="Case study concept"><div class="note">Story-led case-study frame with proof rail and artifact chapters.</div></div>
+            <h3>Proof beside claim</h3>
+            <p>This is already the strongest portfolio-specific case-study direction and should become the default pattern.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Technical mode</span><span class="state">Option</span></div>
+            <div class="spec dark">
+              <div class="k">Archive mode</div>
+              <h4>Use a darker archival layout for AI, platform, and systems-heavy stories.</h4>
+              <p>Reserve this mode for projects where diagrams, decision logs, and architecture matter more than marketing surfaces.</p>
+            </div>
+            <h3>Archive-led alternative</h3>
+            <p>Keep this as a secondary pattern for technical depth, not the default for every case study.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Typography tone</div>
+            <h2>Pair an expressive display voice with a calmer utility system.</h2>
+            <p>The portfolio should feel deliberate and authored, but still read quickly. Typography has to create personality without overwhelming the content.</p>
+          </div>
+          <div class="pill">Recommended: expressive display headlines plus a restrained supporting face for body copy, labels, and proof.</div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Koto</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-42-34-530Z.png" alt="Koto typography"><div class="note">Hierarchy built through size, weight, and spacing rather than clutter.</div></div>
+            <h3>Editorial control</h3>
+            <p>Ideal model for keeping dense content legible and confident.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Jitter</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-42-59-881Z.png" alt="Jitter typography"><div class="note">Expressive type moments give the product character.</div></div>
+            <h3>Character through display type</h3>
+            <p>Useful for hero moments and scene labels, but it needs an editorial counterweight.</p>
+          </article>
+          <article class="card reco">
+            <div class="meta"><span class="badge">Type system</span><span class="state reco">Recommended</span></div>
+            <div class="spec">
+              <div class="k">Display + utility</div>
+              <h4>Architecting product systems with clarity and range.</h4>
+              <p>Body copy, proof labels, and captions stay calm while headlines carry more personality and compression.</p>
+            </div>
+            <h3>Dual-voice type system</h3>
+            <p>This is the balance the portfolio needs: distinct but still highly readable.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Color tone</div>
+            <h2>Unify the portfolio around one primary light language.</h2>
+            <p>The current work is split between bright surfaces and older dark-cosmos cues. The better move is one primary editorial-light system with a reserved darker mode for technical depth.</p>
+          </div>
+          <div class="pill">Recommended: warm editorial-light base, one accent family, and a secondary dark technical mode for systems-heavy pages.</div>
+        </div>
+        <div class="cards">
+          <article class="card reco">
+            <div class="meta"><span class="badge">Primary palette</span><span class="state reco">Recommended</span></div>
+            <div class="palette">
+              <div class="swatch" style="background:#f3eee5;color:#121922;">Paper / Sand</div>
+              <div class="swatch" style="background:#121922;">Ink / Near Black</div>
+              <div class="swatch" style="background:#b77045;">Accent / Copper</div>
+              <div class="swatch" style="background:#66d4ef;color:#121922;">Accent / Cyan</div>
+            </div>
+            <h3>Warm editorial light</h3>
+            <p>This palette already fits the stronger concept work and gives the site one clear identity.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Secondary palette</span><span class="state">Option</span></div>
+            <div class="palette">
+              <div class="swatch" style="background:#101923;">Void / Technical</div>
+              <div class="swatch" style="background:#172432;">Surface / Midnight</div>
+              <div class="swatch" style="background:#66d4ef;color:#121922;">Signal / Cyan</div>
+              <div class="swatch" style="background:#ff8b4a;">Heat / Orange</div>
+            </div>
+            <h3>Dark technical mode</h3>
+            <p>Keep this available for archive-heavy case studies and system diagrams, not as the whole-site default.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Local concept</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-44-46-860Z.png" alt="Homepage tone reference"><div class="note">The light editorial direction already looks more unified and current.</div></div>
+            <h3>Proof of fit</h3>
+            <p>The current concept work validates the warm base as the strongest primary language.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Motion style</div>
+            <h2>Use motion to guide reading, not to compete with it.</h2>
+            <p>Animation should support sequencing, previews, and chapter transitions. The site already has ambition here; the update is mostly about editing and intent.</p>
+          </div>
+          <div class="pill">Recommended: restrained scene transitions, preview reveals, and hover lift, with reduced-motion fallbacks preserved.</div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Jitter</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-42-59-881Z.png" alt="Jitter motion"><div class="note">Motion has personality, but the message remains legible.</div></div>
+            <h3>Controlled expressiveness</h3>
+            <p>Strong model for animated previews and hero pacing without visual noise.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Mobbin / Luma AI</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-44-01-263Z.png" alt="Luma AI motion"><div class="note">Sequencing can feel cinematic while still staying product-led.</div></div>
+            <h3>Scene sequencing</h3>
+            <p>Useful for the Explore mode if the transitions stay brief and purposeful.</p>
+          </article>
+          <article class="card reco">
+            <div class="meta"><span class="badge">Motion system</span><span class="state reco">Recommended</span></div>
+            <div class="motion">
+              <div class="mrow"><strong>Entry</strong><div class="lane entry"></div></div>
+              <div class="mrow"><strong>Chapter</strong><div class="lane progress"></div></div>
+              <div class="mrow"><strong>Hover</strong><div class="lane hover"></div></div>
+            </div>
+            <h3>Guided motion set</h3>
+            <p>Three motion jobs are enough: scene entry, chapter progress, and hover emphasis.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="head">
+          <div class="copy">
+            <div class="frame-label" style="color:#b77045;">Proof placement</div>
+            <h2>Put evidence next to the story while the user is reading it.</h2>
+            <p>Ratings, shipped scale, architecture scope, and delivery outcomes should support claims immediately instead of being isolated in separate sections or scattered cards.</p>
+          </div>
+          <div class="pill">Recommended: move trust signals into the flagship hero, supporting cards, and case-study chapters.</div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="meta"><span class="badge">Local homepage</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-44-46-860Z.png" alt="Homepage proof"><div class="note">Trust signals can support the flagship case directly in the first screen.</div></div>
+            <h3>Proof in the fold</h3>
+            <p>Use the first screen to establish credibility, not only the design direction.</p>
+          </article>
+          <article class="card">
+            <div class="meta"><span class="badge">Local case study</span><span class="state">Reference</span></div>
+            <div class="media"><img src="../.playwright-cli/page-2026-03-06T16-45-14-218Z.png" alt="Case-study proof"><div class="note">Outcome cards and rails keep evidence close to the chapter it supports.</div></div>
+            <h3>Chapter-level evidence</h3>
+            <p>Case studies become more believable when proof is distributed, not saved for the end.</p>
+          </article>
+          <article class="card reco">
+            <div class="meta"><span class="badge">Trust system</span><span class="state reco">Recommended</span></div>
+            <div class="proof">
+              <div><strong>4.8</strong><span>App store trust signal near the featured product story</span></div>
+              <div><strong>929</strong><span>Ratings or scale signals should appear beside the product claim</span></div>
+              <div><strong>AWS</strong><span>Architecture and delivery scope belong in the proof layer too</span></div>
+            </div>
+            <h3>Integrated trust strips</h3>
+            <p>Make proof a system that appears throughout the site, not a single isolated section.</p>
+          </article>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+</html>

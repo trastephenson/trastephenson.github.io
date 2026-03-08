@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Checkpoint 2 Board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./portfolio-figma-concepts.css">
+  <style>
+    .board { display: grid; gap: 24px; }
+    .panel {
+      padding: 28px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(255, 255, 255, 0.88);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(18px);
+    }
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+    .panel-copy h2 { font-size: 34px; line-height: 0.98; }
+    .panel-copy p { margin-top: 10px; max-width: 62ch; font-size: 14px; line-height: 1.65; color: var(--ink-soft); }
+    .status {
+      min-width: 250px;
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(102, 212, 239, 0.16);
+      border: 1px solid rgba(102, 212, 239, 0.24);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1.55;
+      text-transform: uppercase;
+      color: #0e5b71;
+    }
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 18px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card {
+      padding: 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.86), rgba(245,239,231,0.92));
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 28px rgba(18,25,34,0.08);
+    }
+    .card h3 { font-size: 22px; line-height: 1.08; }
+    .card p { margin-top: 10px; font-size: 13px; line-height: 1.6; color: var(--ink-soft); }
+    .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .pill {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(18,25,34,0.05);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .mode-card {
+      min-height: 300px;
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      padding: 22px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(243,237,229,0.92));
+    }
+    .mode-card.recommended {
+      border: 2px solid rgba(183,112,69,0.4);
+      box-shadow: 0 20px 42px rgba(183,112,69,0.14);
+    }
+    .mode-card h3 { font-size: 30px; }
+    .mode-list { margin: 0; padding-left: 18px; display: grid; gap: 10px; }
+    .mode-list li { color: var(--ink-soft); font-size: 14px; line-height: 1.55; }
+    .route-card {
+      min-height: 180px;
+      display: grid;
+      align-content: start;
+      gap: 10px;
+    }
+    .route-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .route-path {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 24px;
+      line-height: 1.05;
+    }
+    .flow {
+      display: grid;
+      gap: 12px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(18,25,34,0.04);
+      border: 1px solid rgba(18,25,34,0.06);
+    }
+    .step strong {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(183,112,69,0.18), rgba(102,212,239,0.18));
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 20px;
+    }
+    .step span { display: block; color: var(--ink-soft); font-size: 13px; line-height: 1.55; }
+    .mini-wireframe {
+      display: grid;
+      gap: 10px;
+      padding: 16px;
+      min-height: 420px;
+      border-radius: 26px;
+      background: rgba(18,25,34,0.05);
+      border: 1px solid rgba(18,25,34,0.08);
+    }
+    .wire { border-radius: 18px; background: rgba(255,255,255,0.86); border: 1px solid rgba(18,25,34,0.07); }
+    .wire.hero { min-height: 108px; background: linear-gradient(135deg, rgba(102,212,239,0.22), rgba(183,112,69,0.18)), rgba(255,255,255,0.84); }
+    .wire.proof { min-height: 62px; }
+    .wire.flagship { min-height: 100px; }
+    .wire.lanes { min-height: 126px; }
+    .wire.trust { min-height: 78px; }
+    .wire.contact { min-height: 76px; }
+    .lane-stack { display: grid; gap: 14px; }
+    .lane-card { min-height: 150px; }
+    .lane-card.flagship { background: linear-gradient(135deg, rgba(102,212,239,0.18), rgba(183,112,69,0.16)), rgba(255,255,255,0.88); }
+    .approval {
+      display: grid;
+      gap: 12px;
+    }
+    .approval-item {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.82);
+      border: 1px solid rgba(18,25,34,0.08);
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+    .approval-item strong { color: var(--ink); }
+    @media (max-width: 1240px) {
+      .panel-head, .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; flex-direction: column; }
+      .status { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <section class="topbar">
+      <div class="glass hero-intro">
+        <div class="eyebrow">Checkpoint 2</div>
+        <h1>UX structure and content architecture approval board.</h1>
+        <p>This board translates the approved direction into page structure, route hierarchy, browsing behavior, case-study chaptering, and proof distribution before token lock begins.</p>
+        <div class="tag-row">
+          <div class="tag">Explore / Browse model</div>
+          <div class="tag">Homepage IA</div>
+          <div class="tag">Case-study template</div>
+          <div class="tag">Proof system</div>
+        </div>
+      </div>
+      <aside class="glass">
+        <div class="eyebrow">Locked from Checkpoint 1</div>
+        <div class="source-list">
+          <div class="source-item"><strong>Primary tone</strong><span>Warm editorial-light with a dark technical secondary mode.</span></div>
+          <div class="source-item"><strong>Homepage stance</strong><span>Flagship-first with supporting lanes and restrained motion.</span></div>
+          <div class="source-item"><strong>Case studies</strong><span>Story-led format with proof rail and chaptered artifacts.</span></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="board">
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-copy">
+            <div class="frame-label" style="color:#b77045;">Core experience model</div>
+            <h2>Two reading modes, one portfolio hierarchy.</h2>
+            <p>Both modes carry the same content priorities. `Explore` guides the story. `Browse` compresses the same material into a faster dossier view.</p>
+          </div>
+          <div class="status">Checkpoint 2 focus: approve the mode split and shared hierarchy before token decisions.</div>
+        </div>
+        <div class="grid-2">
+          <article class="mode-card recommended">
+            <div class="eyebrow">Explore</div>
+            <h3>Guided narrative mode</h3>
+            <ul class="mode-list">
+              <li>Flagship case appears before the full work grid.</li>
+              <li>Motion supports entry, preview, and chapter pacing.</li>
+              <li>Stable message area keeps the story readable.</li>
+              <li>Reduced-motion fallback preserves the full hierarchy.</li>
+            </ul>
+          </article>
+          <article class="mode-card">
+            <div class="eyebrow">Browse</div>
+            <h3>Dossier mode</h3>
+            <ul class="mode-list">
+              <li>Faster scan of grouped work and direct case-study links.</li>
+              <li>Minimal decorative motion and denser content packing.</li>
+              <li>Persistent access to flagship, proof, and experimental lanes.</li>
+              <li>Same visual language, different reading speed.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-copy">
+            <div class="frame-label" style="color:#b77045;">Site hierarchy</div>
+            <h2>One homepage, six case studies, one experimental app route.</h2>
+            <p>The structure stays simple at the route level while the content hierarchy inside the homepage becomes much more deliberate.</p>
+          </div>
+        </div>
+        <div class="grid-4">
+          <article class="card route-card"><div class="route-label">Home</div><div class="route-path">/</div><p>Portfolio home with Explore and Browse modes.</p></article>
+          <article class="card route-card"><div class="route-label">Flagship</div><div class="route-path">/projects/seeds-of-thyme</div><p>Primary case study and strongest portfolio entry point.</p></article>
+          <article class="card route-card"><div class="route-label">Supporting</div><div class="route-path">/projects/*</div><p>Mobile, enterprise, compliance, AI, and experimental supporting cases.</p></article>
+          <article class="card route-card"><div class="route-label">Lab app</div><div class="route-path">/movies.html</div><p>Standalone Movie Vault experience linked from its case study and lab lane.</p></article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-copy">
+            <div class="frame-label" style="color:#b77045;">Homepage structure</div>
+            <h2>Seven sections, with proof pulled forward.</h2>
+            <p>The homepage should establish point of view, credibility, and flagship work before the supporting project lanes appear.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="flow">
+            <div class="step"><strong>01</strong><div><h3>Flagship hero</h3><span>Thesis-led opening with one primary CTA and one secondary browse CTA.</span></div></div>
+            <div class="step"><strong>02</strong><div><h3>Proof strip</h3><span>Ratings, shipped scale, platform breadth, and architecture scope close to the fold.</span></div></div>
+            <div class="step"><strong>03</strong><div><h3>Flagship preview</h3><span>Large featured project framed by role, challenge, and outcome.</span></div></div>
+            <div class="step"><strong>04</strong><div><h3>Supporting work lanes</h3><span>Grouped by product type or systems context, with Movie Vault isolated as the lab track.</span></div></div>
+            <div class="step"><strong>05</strong><div><h3>Leadership and systems</h3><span>Architecture, delivery, AI, and cross-functional capability in compact form.</span></div></div>
+            <div class="step"><strong>06</strong><div><h3>Trust layer</h3><span>Selective testimonials or delivery proof, kept concise.</span></div></div>
+            <div class="step"><strong>07</strong><div><h3>Contact and role alignment</h3><span>Clear target roles and focused contact actions.</span></div></div>
+          </div>
+          <div class="mini-wireframe">
+            <div class="wire hero"></div>
+            <div class="wire proof"></div>
+            <div class="wire flagship"></div>
+            <div class="wire lanes"></div>
+            <div class="wire trust"></div>
+            <div class="wire contact"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-copy">
+            <div class="frame-label" style="color:#b77045;">Showcase hierarchy</div>
+            <h2>One flagship lane, three supporting lanes, one experimental lane.</h2>
+            <p>This is the content-weighting system that keeps the portfolio curated instead of evenly distributed.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="lane-stack">
+            <article class="card lane-card flagship">
+              <div class="route-label">Flagship lane</div>
+              <h3>Seeds of Thyme</h3>
+              <p>The defining portfolio case. Largest visual weight, strongest proof, clearest route-in.</p>
+            </article>
+            <div class="grid-3">
+              <article class="card lane-card"><div class="route-label">Supporting lane</div><h3>Mobile product work</h3><p>Essential Life and adjacent product depth.</p></article>
+              <article class="card lane-card"><div class="route-label">Supporting lane</div><h3>Enterprise and platform</h3><p>CAMS ATM and Safety Wallet as systems and delivery proof.</p></article>
+              <article class="card lane-card"><div class="route-label">Supporting lane</div><h3>AI systems</h3><p>LLM and RAG pipelines framed as architecture and decision-support work.</p></article>
+            </div>
+          </div>
+          <article class="card lane-card">
+            <div class="route-label">Experimental lane</div>
+            <h3>Movie Vault lab track</h3>
+            <p>Separate visual lane for motion, performance, API craft, and solo execution quality.</p>
+            <div class="pill-row">
+              <span class="pill">Motion</span>
+              <span class="pill">Performance</span>
+              <span class="pill">TMDB API</span>
+              <span class="pill">Standalone app</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-copy">
+            <div class="frame-label" style="color:#b77045;">Case-study template</div>
+            <h2>Story-led structure with proof anchored to each chapter.</h2>
+            <p>The default pattern should work for most projects, with the dark technical mode reserved for archive-heavy or diagram-heavy cases.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="flow">
+            <div class="step"><strong>01</strong><div><h3>Opening thesis</h3><span>Product-level summary that clarifies the case before any gallery content.</span></div></div>
+            <div class="step"><strong>02</strong><div><h3>Scope and role rail</h3><span>Persistent orientation for role, scope, stack, and outcomes.</span></div></div>
+            <div class="step"><strong>03</strong><div><h3>Problem framing</h3><span>What needed to change, under what constraints, and for whom.</span></div></div>
+            <div class="step"><strong>04</strong><div><h3>Key decisions</h3><span>Main product, architecture, or UX choices and why they mattered.</span></div></div>
+            <div class="step"><strong>05</strong><div><h3>Artifact chapters</h3><span>Labeled visuals and system evidence grouped by decision relevance.</span></div></div>
+            <div class="step"><strong>06</strong><div><h3>Outcome blocks</h3><span>Ratings, scale, delivery, and operating proof beside the claims they support.</span></div></div>
+            <div class="step"><strong>07</strong><div><h3>Reflection</h3><span>Operating lessons and what the project demonstrates about capability.</span></div></div>
+          </div>
+          <article class="card">
+            <div class="eyebrow">Pattern rules</div>
+            <p>Each case opens with a thesis, not a tool list. The orientation rail persists. Artifacts need labels. Proof sits beside the chapter it validates. The dark technical mode is reserved for AI, platform, and system-heavy cases where diagrams need more room.</p>
+            <div class="pill-row">
+              <span class="pill">Persistent rail</span>
+              <span class="pill">Labeled artifacts</span>
+              <span class="pill">Proof beside claim</span>
+              <span class="pill">Dark technical secondary</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-copy">
+            <div class="frame-label" style="color:#b77045;">Proof distribution</div>
+            <h2>Evidence should appear throughout the experience.</h2>
+            <p>Instead of one isolated proof section, trust should be layered into the hero, flagship preview, case-study chapters, and enterprise or AI supporting stories.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <div class="eyebrow">Proof locations</div>
+            <div class="flow" style="margin-top:16px;">
+              <div class="step"><strong>H</strong><div><h3>Hero-level proof</h3><span>Ratings, shipped scale, or role scope close to the thesis.</span></div></div>
+              <div class="step"><strong>F</strong><div><h3>Flagship preview</h3><span>Outcome and role proof directly beside the featured case.</span></div></div>
+              <div class="step"><strong>C</strong><div><h3>Case-study chapters</h3><span>Chapter-specific trust signals embedded where the claim is made.</span></div></div>
+              <div class="step"><strong>E</strong><div><h3>Enterprise / AI support</h3><span>Architecture, delivery complexity, and implementation scope highlighted in supporting lanes.</span></div></div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="eyebrow">Preferred proof types</div>
+            <div class="pill-row" style="margin-top:18px;">
+              <span class="pill">Ratings</span>
+              <span class="pill">Shipped platforms</span>
+              <span class="pill">Scale indicators</span>
+              <span class="pill">Architecture scope</span>
+              <span class="pill">Implementation depth</span>
+              <span class="pill">Operational complexity</span>
+            </div>
+            <p style="margin-top:16px;">The site should support claims in real time. That means evidence appears where the user is reading, not only in a dedicated trust block later in the page.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-copy">
+            <div class="frame-label" style="color:#b77045;">Checkpoint 2 approval</div>
+            <h2>Review the structure before token lock.</h2>
+            <p>Once this structure is approved, the next pipeline phase is token lock and design-system decisions.</p>
+          </div>
+        </div>
+        <div class="approval">
+          <div class="approval-item"><strong>Approve or revise:</strong> homepage section order</div>
+          <div class="approval-item"><strong>Approve or revise:</strong> flagship versus supporting lane model</div>
+          <div class="approval-item"><strong>Approve or revise:</strong> Explore versus Browse behavior split</div>
+          <div class="approval-item"><strong>Approve or revise:</strong> default case-study chapter structure</div>
+          <div class="approval-item"><strong>Approve or revise:</strong> proof distribution model</div>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+</body>
+</html>
