@@ -51,6 +51,7 @@ export default function MovieVaultCasePage() {
       stats={stats}
       liveUrl={movieVaultUrl}
       pdfUrl={pdfUrl}
+      returnToSectionIndex={8}
     >
       <Section label="Overview" title="A Real Product for a Real Daily Workflow">
         <BodyText>

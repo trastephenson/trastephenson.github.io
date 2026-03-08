@@ -236,6 +236,38 @@ export function Divider() {
   return <hr className="case-study-divider" />;
 }
 
+export function ShowcaseGrid({ columns = 2, children }) {
+  return (
+    <div
+      className="case-study-media-grid"
+      style={{ '--case-study-media-columns': `${columns}` }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function ShowcaseImage({
+  src,
+  alt,
+  caption,
+  fit = 'cover',
+  ratio = '16 / 9',
+}) {
+  return (
+    <figure
+      className="case-study-media"
+      style={{
+        '--case-study-media-fit': fit,
+        '--case-study-media-ratio': ratio,
+      }}
+    >
+      <img src={src} alt={alt} loading="lazy" decoding="async" />
+      {caption ? <figcaption className="case-study-media-caption">{caption}</figcaption> : null}
+    </figure>
+  );
+}
+
 function NavButton({ href, variant, children }) {
   return (
     <a
@@ -260,6 +292,7 @@ export default function CaseStudyPage({
   stats,
   liveUrl,
   pdfUrl,
+  returnToSectionIndex = 6,
   children,
 }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -286,7 +319,7 @@ export default function CaseStudyPage({
   return (
     <div className="case-study-page" style={pageStyle}>
       <nav className={`case-study-nav${isScrolled ? ' is-scrolled' : ''}`} aria-label="Case study">
-        <Link className="case-study-back-link" to="/" state={{ returnToSection: 6 }}>
+        <Link className="case-study-back-link" to="/" state={{ returnToSection: returnToSectionIndex }}>
           <svg
             aria-hidden="true"
             width="18"

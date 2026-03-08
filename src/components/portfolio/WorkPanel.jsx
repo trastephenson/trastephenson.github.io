@@ -14,7 +14,7 @@ const headingStyle = {
 
 const gridStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
   gap: '1.5rem',
 };
 
@@ -115,7 +115,13 @@ export default function WorkPanel({ items, title }) {
                 <item.imageComponent />
               </div>
             ) : (
-              <img src={item.image} alt={item.imageAlt || item.title} style={imgStyle} />
+              <img
+                src={item.image}
+                alt={item.imageAlt || item.title}
+                style={imgStyle}
+                loading="lazy"
+                decoding="async"
+              />
             )}
             <div style={bodyStyle}>
               <h3 style={titleStyle}>{item.title}</h3>

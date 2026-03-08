@@ -57,6 +57,7 @@ export default function SafetyWalletCasePage() {
       meta={meta}
       stats={stats}
       pdfUrl={pdfUrl}
+      returnToSectionIndex={7}
     >
       <Section label="Overview" title="Turning Compliance Into a Live Digital Workflow">
         <BodyText>

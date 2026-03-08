@@ -58,6 +58,17 @@ export const platforms = [
 export const aiWork = [
   {
     id: 5,
+    image: `${process.env.PUBLIC_URL || ''}/vega/vega-spec-extraction.png`,
+    imageAlt: 'Vega AI estimation platform extraction workflow preview',
+    title: 'Vega',
+    summary: 'AI-assisted construction takeoff platform that converts blueprint sets into structured, trade-specific outputs estimators can review and use for bidding.',
+    primaryCta: 'Case Study',
+    routeUrl: '/projects/vega',
+    secondaryCta: 'Contact Me',
+    secondaryUrl: '#contact',
+  },
+  {
+    id: 6,
     image: IMG5,
     imageAlt: 'AI workflow visualization',
     title: 'Multi-Agent LLM & RAG Pipelines',
@@ -68,7 +79,7 @@ export const aiWork = [
     secondaryUrl: 'https://www.linkedin.com/in/mrtravisstephenson',
   },
   {
-    id: 6,
+    id: 7,
     imageComponent: MovieVaultPlaceholder,
     imageAlt: 'Movie Vault placeholder artwork',
     title: 'Movie Vault',

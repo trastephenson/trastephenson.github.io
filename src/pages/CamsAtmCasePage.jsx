@@ -58,6 +58,7 @@ export default function CamsAtmCasePage() {
       stats={stats}
       liveUrl="https://camscompanion.com/"
       pdfUrl={pdfUrl}
+      returnToSectionIndex={7}
     >
       <Section label="Overview" title="Operational Control for ATM Fleets">
         <BodyText>

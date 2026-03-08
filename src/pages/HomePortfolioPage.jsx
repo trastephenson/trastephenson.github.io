@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { ScrollProvider, useScroll } from '../context/ScrollContext';
 import LoadingScreen from '../components/common/LoadingScreen';
-import Scene from '../components/three/Scene';
-import SpatialGrid from '../components/three/SpatialGrid';
 import SectionOverlay from '../components/scroll/SectionOverlay';
 import ScrollProgress from '../components/scroll/ScrollProgress';
 import ScreenReaderStatus from '../components/scroll/ScreenReaderStatus';
@@ -21,6 +19,10 @@ import Testimonials from '../components/testimonials/Testimonials';
 import Contact from '../components/contact/Contact';
 import Footer from '../components/footer/Footer';
 import ME from '../assets/me.png';
+
+const Scene = lazy(() => import('../components/three/Scene'));
+const SpatialGrid = lazy(() => import('../components/three/SpatialGrid'));
+const COMPACT_BREAKPOINT = 768;
 
 const statItems = [
   { num: '10+', label: 'Years', sub: 'Enterprise and AI delivery' },
@@ -66,7 +68,7 @@ const heroImageStyle = {
 
 const statsGridStyle = {
   display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
   gap: '1rem',
 };
 
@@ -107,6 +109,43 @@ const secondaryLinkStyle = {
   border: '1px solid var(--glass-border)',
   boxShadow: 'var(--shadow-sm)',
 };
+
+const threeSceneFallbackStyle = {
+  position: 'fixed',
+  inset: 0,
+  zIndex: 1,
+  background:
+    'radial-gradient(circle at top left, rgba(102, 212, 239, 0.1), transparent 24%), radial-gradient(circle at top right, rgba(183, 112, 69, 0.1), transparent 24%), linear-gradient(180deg, #f7f3ec 0%, #ebe4d8 100%)',
+};
+
+function useCompactViewport() {
+  const [isCompactViewport, setIsCompactViewport] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth <= COMPACT_BREAKPOINT : false
+  );
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia(`(max-width: ${COMPACT_BREAKPOINT}px)`);
+    const handleChange = (event) => {
+      setIsCompactViewport(event.matches);
+    };
+
+    setIsCompactViewport(mediaQuery.matches);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  return isCompactViewport;
+}
 
 function StatGrid() {
   return (
@@ -154,7 +193,7 @@ function StatGrid() {
   );
 }
 
-function ModeToggleButton({ viewMode, setViewMode, onPrepareMode }) {
+function ModeToggleButton({ viewMode, setViewMode, onPrepareMode, isCompactViewport }) {
   const [isHovered, setIsHovered] = useState(false);
   const [cornerIndex, setCornerIndex] = useState(0);
   const [isRelocating, setIsRelocating] = useState(false);
@@ -163,6 +202,9 @@ function ModeToggleButton({ viewMode, setViewMode, onPrepareMode }) {
   const nextModeAriaLabel =
     viewMode === '3d' ? 'Switch to browse mode' : 'Switch to explore mode';
   const shouldPulse = viewMode === 'classic';
+  const toggleWidth = isCompactViewport ? '9.85rem' : '11.85rem';
+  const toggleHeight = isCompactViewport ? '3.05rem' : '3.4rem';
+  const edgeOffset = isCompactViewport ? '0.9rem' : '1.25rem';
   const cornerSequence = ['topRight', 'bottomLeft', 'topLeft', 'bottomRight'];
   const currentCorner = cornerSequence[cornerIndex];
   const nextCorner = cornerSequence[(cornerIndex + 1) % cornerSequence.length];
@@ -210,10 +252,22 @@ function ModeToggleButton({ viewMode, setViewMode, onPrepareMode }) {
     settleY: '0px',
   };
   const cornerPositions = {
-    topRight: { top: '1.25rem', left: 'calc(100vw - 1.25rem - 11.85rem)', transformOrigin: '100% 0%' },
-    bottomLeft: { top: 'calc(100vh - 1.25rem - 3.4rem)', left: '1.25rem', transformOrigin: '0% 100%' },
-    topLeft: { top: '1.25rem', left: '1.25rem', transformOrigin: '0% 0%' },
-    bottomRight: { top: 'calc(100vh - 1.25rem - 3.4rem)', left: 'calc(100vw - 1.25rem - 11.85rem)', transformOrigin: '100% 100%' },
+    topRight: {
+      top: edgeOffset,
+      left: `calc(100vw - ${edgeOffset} - ${toggleWidth})`,
+      transformOrigin: '100% 0%',
+    },
+    bottomLeft: {
+      top: `calc(100vh - ${edgeOffset} - ${toggleHeight})`,
+      left: edgeOffset,
+      transformOrigin: '0% 100%',
+    },
+    topLeft: { top: edgeOffset, left: edgeOffset, transformOrigin: '0% 0%' },
+    bottomRight: {
+      top: `calc(100vh - ${edgeOffset} - ${toggleHeight})`,
+      left: `calc(100vw - ${edgeOffset} - ${toggleWidth})`,
+      transformOrigin: '100% 100%',
+    },
   };
 
   const handleToggle = () => {
@@ -222,6 +276,12 @@ function ModeToggleButton({ viewMode, setViewMode, onPrepareMode }) {
   };
 
   useEffect(() => {
+    if (isCompactViewport) {
+      setCornerIndex(0);
+      setIsRelocating(false);
+      return undefined;
+    }
+
     const timers = [];
 
     const scheduleCycle = () => {
@@ -251,25 +311,26 @@ function ModeToggleButton({ viewMode, setViewMode, onPrepareMode }) {
     return () => {
       timers.forEach((timer) => window.clearTimeout(timer));
     };
-  }, [cornerSequence.length]);
+  }, [cornerSequence.length, isCompactViewport]);
 
-    return (
-      <div
-        style={{
-          position: 'fixed',
-          top: cornerPositions[currentCorner].top,
-          left: cornerPositions[currentCorner].left,
-          zIndex: 9000,
-          transformOrigin: cornerPositions[currentCorner].transformOrigin,
-          animation: shouldPulse ? 'mode-toggle-pulse 9.2s cubic-bezier(0.22, 1, 0.36, 1) infinite' : 'none',
-          transition: 'top 1120ms cubic-bezier(0.2, 0.84, 0.2, 1), left 1120ms cubic-bezier(0.2, 0.84, 0.2, 1)',
-        }}
-      >
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        top: cornerPositions[currentCorner].top,
+        left: cornerPositions[currentCorner].left,
+        zIndex: 9000,
+        maxWidth: 'calc(100vw - 1.8rem)',
+        transformOrigin: cornerPositions[currentCorner].transformOrigin,
+        animation: shouldPulse ? 'mode-toggle-pulse 9.2s cubic-bezier(0.22, 1, 0.36, 1) infinite' : 'none',
+        transition: 'top 1120ms cubic-bezier(0.2, 0.84, 0.2, 1), left 1120ms cubic-bezier(0.2, 0.84, 0.2, 1)',
+      }}
+    >
       <span
         aria-hidden="true"
         style={{
           position: 'absolute',
-          inset: '-0.38rem',
+          inset: isCompactViewport ? '-0.24rem' : '-0.38rem',
           borderRadius: '999px',
           background:
             nextMode === 'classic'
@@ -289,9 +350,9 @@ function ModeToggleButton({ viewMode, setViewMode, onPrepareMode }) {
           top: 'auto',
           right: 'auto',
           zIndex: 1,
-          width: '11.85rem',
-          minHeight: '3.4rem',
-          padding: '0.68rem 1.42rem',
+          width: toggleWidth,
+          minHeight: toggleHeight,
+          padding: isCompactViewport ? '0.58rem 1rem' : '0.68rem 1.42rem',
           borderRadius: '999px',
           border: '1px solid rgba(255, 255, 255, 0.72)',
           background:
@@ -317,6 +378,7 @@ function ModeToggleButton({ viewMode, setViewMode, onPrepareMode }) {
           transition:
             'transform 220ms var(--ease-standard), background 220ms var(--ease-standard), border-color 220ms var(--ease-standard), box-shadow 220ms var(--ease-standard)',
           animation: isRelocating ? 'mode-toggle-sneak 1440ms cubic-bezier(0.2, 0.84, 0.2, 1) both' : 'none',
+          fontSize: isCompactViewport ? '0.62rem' : '0.68rem',
         }}
         onClick={handleToggle}
         onMouseEnter={() => setIsHovered(true)}
@@ -413,7 +475,7 @@ function ModeToggleButton({ viewMode, setViewMode, onPrepareMode }) {
             display: 'inline-flex',
             alignItems: 'center',
             justifyContent: 'center',
-            minWidth: '9rem',
+            minWidth: isCompactViewport ? '7.1rem' : '9rem',
             textShadow: '0 1px 0 rgba(255,255,255,0.48)',
             fontWeight: 800,
           }}
@@ -515,6 +577,16 @@ function HomePortfolioContent({ viewMode, setViewMode }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { scrollTo } = useScroll();
+  const isCompactViewport = useCompactViewport();
+  const responsiveSectionGap = {
+    paddingTop: isCompactViewport ? '2rem' : sectionGap.paddingTop,
+    paddingBottom: isCompactViewport ? '1.5rem' : sectionGap.paddingBottom,
+  };
+  const deferredSectionStyle = {
+    contentVisibility: 'auto',
+    containIntrinsicSize: isCompactViewport ? '480px' : '640px',
+    contain: 'layout style paint',
+  };
 
   useEffect(() => {
     if (location.state?.returnToSection === undefined) {
@@ -552,6 +624,7 @@ function HomePortfolioContent({ viewMode, setViewMode }) {
       viewMode={viewMode}
       setViewMode={setViewMode}
       onPrepareMode={() => {}}
+      isCompactViewport={isCompactViewport}
     />
   );
 
@@ -562,17 +635,20 @@ function HomePortfolioContent({ viewMode, setViewMode }) {
 
       {viewMode === '3d' ? (
         <>
-          <Scene>
-          <SpatialGrid />
-          </Scene>
+          <Suspense fallback={<div style={threeSceneFallbackStyle} />}>
+            <Scene>
+              <SpatialGrid />
+            </Scene>
+          </Suspense>
           <SectionOverlay sectionIndex={0}>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '1.25rem',
+                gap: isCompactViewport ? '1rem' : '1.25rem',
                 textAlign: 'center',
+                padding: isCompactViewport ? '0 1rem' : undefined,
               }}
             >
               <img
@@ -646,16 +722,22 @@ function HomePortfolioContent({ viewMode, setViewMode }) {
         </>
       ) : (
         <>
-          <div style={{ maxWidth: '960px', margin: '0 auto', padding: '2rem 1.5rem 8rem' }}>
+          <div
+            style={{
+              maxWidth: isCompactViewport ? '100%' : '960px',
+              margin: '0 auto',
+              padding: isCompactViewport ? '1rem 1rem 7rem' : '2rem 1.5rem 8rem',
+            }}
+          >
             <div
               id="home"
               style={{
-                paddingTop: '5rem',
-                paddingBottom: '3rem',
+                paddingTop: isCompactViewport ? '4.25rem' : '5rem',
+                paddingBottom: isCompactViewport ? '2.25rem' : '3rem',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: '1.5rem',
+                gap: isCompactViewport ? '1.15rem' : '1.5rem',
                 textAlign: 'center',
               }}
             >
@@ -664,26 +746,32 @@ function HomePortfolioContent({ viewMode, setViewMode }) {
               <CTA />
             </div>
 
-            <div style={{ ...sectionGap, paddingTop: '0.5rem' }}>
+            <div style={{ ...responsiveSectionGap, ...deferredSectionStyle, paddingTop: '0.5rem' }}>
               <StatGrid />
             </div>
 
-            <div id="about" style={sectionGap}><About /></div>
-            <div id="strengths" style={sectionGap}><Strengths /></div>
-            <div id="experience" style={sectionGap}><Experience /></div>
-            <div id="services" style={sectionGap}><Services /></div>
+            <div id="about" style={{ ...responsiveSectionGap, ...deferredSectionStyle }}><About /></div>
+            <div id="strengths" style={{ ...responsiveSectionGap, ...deferredSectionStyle }}><Strengths /></div>
+            <div id="experience" style={{ ...responsiveSectionGap, ...deferredSectionStyle }}><Experience /></div>
+            <div id="services" style={{ ...responsiveSectionGap, ...deferredSectionStyle }}><Services /></div>
 
             <div
               id="portfolio"
-              style={{ ...sectionGap, display: 'flex', flexDirection: 'column', gap: '2.5rem' }}
+              style={{
+                ...responsiveSectionGap,
+                ...deferredSectionStyle,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: isCompactViewport ? '2rem' : '2.5rem',
+              }}
             >
               <WorkPanel items={mobileApps} title="Featured Work - Mobile Apps" />
               <WorkPanel items={platforms} title="Featured Work - Platforms" />
               <WorkPanel items={aiWork} title="Featured Work - AI" />
             </div>
 
-            <div id="testimonials" style={sectionGap}><Testimonials /></div>
-            <div id="contact" style={sectionGap}><Contact /></div>
+            <div id="testimonials" style={{ ...responsiveSectionGap, ...deferredSectionStyle }}><Testimonials /></div>
+            <div id="contact" style={{ ...responsiveSectionGap, ...deferredSectionStyle }}><Contact /></div>
             <Footer />
           </div>
 

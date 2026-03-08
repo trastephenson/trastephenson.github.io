@@ -1,4 +1,3 @@
-import { useProgress } from '@react-three/drei';
 import { useEffect, useState } from 'react';
 
 let hasShownInitialLoadOverlay = false;
@@ -8,12 +7,10 @@ export default function LoadingScreen({
   playToken = 0,
   minDurationMs = 1500,
   fadeDurationMs = 800,
-  waitForProgress = variant === 'initial',
   title = 'Explore the portfolio',
   showName = true,
   blockPointerEvents = true,
 }) {
-  const { active: assetsLoading } = useProgress();
   const [visible, setVisible] = useState(() =>
     variant === 'initial' ? !hasShownInitialLoadOverlay : false
   );
@@ -37,12 +34,7 @@ export default function LoadingScreen({
   }, [minDurationMs, variant, visible]);
 
   useEffect(() => {
-    if (
-      variant !== 'initial' ||
-      !visible ||
-      !holdDone ||
-      (waitForProgress && assetsLoading)
-    ) {
+    if (variant !== 'initial' || !visible || !holdDone) {
       return undefined;
     }
 
@@ -55,7 +47,7 @@ export default function LoadingScreen({
     return () => {
       window.clearTimeout(hideTimer);
     };
-  }, [assetsLoading, fadeDurationMs, holdDone, visible, variant, waitForProgress]);
+  }, [fadeDurationMs, holdDone, visible, variant]);
 
   useEffect(() => {
     if (variant !== 'transition' || !playToken) {

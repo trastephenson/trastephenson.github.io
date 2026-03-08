@@ -4,6 +4,8 @@ import TunnelRings from './TunnelRings';
 import Particles from './Particles';
 
 export default function Scene({ children, style }) {
+  const isCompactViewport = typeof window !== 'undefined' && window.innerWidth <= 768;
+
   return (
     <div
       style={{
@@ -18,8 +20,8 @@ export default function Scene({ children, style }) {
     >
       <Canvas
         camera={{ position: [0, 0, 20], fov: 55, near: 0.1, far: 200 }}
-        gl={{ antialias: true }}
-        dpr={Math.min(window.devicePixelRatio, 2)}
+        gl={{ antialias: !isCompactViewport, powerPreference: 'high-performance' }}
+        dpr={isCompactViewport ? [1, 1.15] : [1, 1.5]}
       >
         {/* Background shader — unaffected by lights (depthTest:false) */}
         <TunnelRings />

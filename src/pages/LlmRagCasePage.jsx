@@ -57,6 +57,7 @@ export default function LlmRagCasePage() {
       meta={meta}
       stats={stats}
       pdfUrl={pdfUrl}
+      returnToSectionIndex={8}
     >
       <Section label="Overview" title="From AI Prototype to Production Platform">
         <BodyText>
