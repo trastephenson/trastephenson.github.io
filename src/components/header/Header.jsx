@@ -35,7 +35,9 @@ const HeroTitle = styled.h2`
 const Header = () => (
   <HeroContainer>
     <HeroName>Travis Stephenson</HeroName>
-    <HeroTitle>Director of Engineering Operations · AI Platform Architecture</HeroTitle>
+    <HeroTitle>
+      Technical Product Manager &middot; Engineer &middot; Platform Architecture
+    </HeroTitle>
   </HeroContainer>
 );
 

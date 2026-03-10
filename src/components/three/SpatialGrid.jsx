@@ -151,7 +151,7 @@ function CardFace({ index, c }) {
           </Text>
           <Text position={[0.3, CY - 0.16, FACE_Z]} fontSize={0.1} color="#666"
                 anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center">
-            {'Director of Engineering\nOperations'}
+            {'Technical Product Manager\nEngineer \u00b7 Platform Architecture'}
           </Text>
         </>
       );
@@ -163,11 +163,11 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.28, FACE_Z]} fontSize={0.19} color="#111"
                 anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center">
-            {'Director,\nEngineering Operations'}
+            {'Technical Product Manager\nEngineer \u00b7 Platform Architecture'}
           </Text>
           <Text position={[0, CY - 0.36, FACE_Z]} fontSize={0.11} color="#666"
                 anchorX="center" anchorY="middle" maxWidth={2.3} textAlign="center">
-            {'AI Platform Architecture\nMulti-Agent LLM · Enterprise SaaS'}
+            {'AI Platform Architecture\nProduct Delivery \u00b7 Enterprise SaaS'}
           </Text>
         </>
       );

@@ -163,7 +163,7 @@ const About = () => {
             enterprise SaaS, AI systems, and software platforms from architecture through
             production. I turn executive strategy into governed roadmaps, scalable systems,
             and shipped products that create measurable business value, including platforms
-            supporting 275,000+ users.
+            supporting 500,000+ users.
           </p>
           <p>
             At Appstango, I&apos;ve led delivery across 5+ production platforms spanning
