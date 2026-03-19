@@ -3,6 +3,7 @@ import { useFrame } from '@react-three/fiber';
 import { RoundedBox, PresentationControls, Text, useTexture } from '@react-three/drei';
 import { easing } from 'maath';
 import { useScroll } from '../../context/ScrollContext';
+import profile from '../../content/profile.json';
 import {
   getCardPosition,
   CARD_W,
@@ -39,6 +40,8 @@ const T_QUOTES = [
 const DEPTH  = 0.12;
 const RADIUS = 0.05;
 const FACE_Z = DEPTH / 2 + 0.003; // just in front of the card face
+const HERO_NAME_STACK = profile.name.split(' ').join('\n');
+const HERO_HEADLINE_STACK = profile.headlineDisplayLines.join('\n');
 
 const STRIPE_H = 0.07;
 const STRIPE_Y = CARD_H / 2 - STRIPE_H / 2;    // ≈ 0.865
@@ -147,11 +150,11 @@ function CardFace({ index, c }) {
           </Suspense>
           <Text position={[0.3, CY + 0.36, FACE_Z]} fontSize={0.17} color="#111"
                 anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center">
-            {'Travis\nStephenson'}
+            {HERO_NAME_STACK}
           </Text>
-          <Text position={[0.3, CY - 0.16, FACE_Z]} fontSize={0.1} color="#666"
-                anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center">
-            {'Technical Product Manager\nEngineer \u00b7 Platform Architecture'}
+          <Text position={[0.3, CY - 0.08, FACE_Z]} fontSize={0.074} color="#666"
+                anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center" lineHeight={1.5}>
+            {HERO_HEADLINE_STACK}
           </Text>
         </>
       );
@@ -161,13 +164,9 @@ function CardFace({ index, c }) {
       return (
         <>
           <CardHeader label={label} c={c} />
-          <Text position={[0, CY + 0.28, FACE_Z]} fontSize={0.19} color="#111"
-                anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center">
-            {'Technical Product Manager\nEngineer \u00b7 Platform Architecture'}
-          </Text>
-          <Text position={[0, CY - 0.36, FACE_Z]} fontSize={0.11} color="#666"
-                anchorX="center" anchorY="middle" maxWidth={2.3} textAlign="center">
-            {'AI Platform Architecture\nProduct Delivery \u00b7 Enterprise SaaS'}
+          <Text position={[0, CY + 0.08, FACE_Z]} fontSize={0.14} color="#111"
+                anchorX="center" anchorY="middle" maxWidth={2.55} textAlign="center" lineHeight={1.45}>
+            {HERO_HEADLINE_STACK}
           </Text>
         </>
       );
