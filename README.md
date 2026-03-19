@@ -1,6 +1,6 @@
 # Travis Stephenson — Portfolio
 
-**Director of Engineering Operations · AI Platform Architecture · Principal Architect**
+**Senior Technical Product Manager · AI Platform Architecture · Principal Architect**
 
 [![Live Site](https://img.shields.io/badge/Live%20Site-travis--stephenson.cv-7c6ff7?style=for-the-badge&logo=googlechrome)](https://www.travis-stephenson.cv/)
 [![GitHub Pages](https://img.shields.io/badge/Mirror-trastephenson.github.io-333?style=for-the-badge&logo=github)](https://trastephenson.github.io)

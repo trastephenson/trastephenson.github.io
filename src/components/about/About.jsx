@@ -153,13 +153,13 @@ const About = () => {
           </PhotoWrapper>
           <PhotoMeta>
             <MetaEyebrow>Engineering Leadership</MetaEyebrow>
-            <MetaTitle>Director of Engineering Operations</MetaTitle>
+            <MetaTitle>Senior Technical Product Manager</MetaTitle>
             <MetaNote>AI platforms, SaaS delivery, and multi-agent systems from strategy through production.</MetaNote>
           </PhotoMeta>
         </PortraitColumn>
         <BioText>
           <p>
-            <strong>Director of Engineering Operations</strong> with 10+ years delivering
+            <strong>Senior Technical Product Manager</strong> with 10+ years delivering
             enterprise SaaS, AI systems, and software platforms from architecture through
             production. I turn executive strategy into governed roadmaps, scalable systems,
             and shipped products that create measurable business value, including platforms
