@@ -19,17 +19,13 @@ import Testimonials from '../components/testimonials/Testimonials';
 import Contact from '../components/contact/Contact';
 import Footer from '../components/footer/Footer';
 import ME from '../assets/me.png';
+import profile from '../content/profile.json';
 
 const Scene = lazy(() => import('../components/three/Scene'));
 const SpatialGrid = lazy(() => import('../components/three/SpatialGrid'));
 const COMPACT_BREAKPOINT = 768;
 
-const statItems = [
-  { num: '10+', label: 'Years', sub: 'Enterprise and AI delivery' },
-  { num: '5+', label: 'Platforms', sub: 'Shipped into production' },
-  { num: 'LLM', label: 'Systems', sub: 'Multi-agent and RAG architecture' },
-  { num: 'AWS', label: 'Cloud', sub: 'Platform and DevOps strategy' },
-];
+const statItems = profile.stats;
 
 const toggleBtnStyle = {
   position: 'fixed',
@@ -689,8 +685,7 @@ function HomePortfolioContent({ viewMode, setViewMode }) {
                   lineHeight: 1.8,
                 }}
               >
-                Open to Director of Engineering, AI Platform Architecture, and Principal
-                Architect roles in enterprise SaaS and AI-enabled platform delivery.
+                {profile.availability.summary}
               </p>
               <div
                 style={{
@@ -701,14 +696,14 @@ function HomePortfolioContent({ viewMode, setViewMode }) {
                 }}
               >
                 <a
-                  href="https://www.linkedin.com/in/mrtravisstephenson"
+                  href={profile.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={primaryLinkStyle}
                 >
                   LinkedIn
                 </a>
-                <a href="mailto:stephenson.tra@gmail.com" style={secondaryLinkStyle}>
+                <a href={profile.links.email} style={secondaryLinkStyle}>
                   Email
                 </a>
               </div>

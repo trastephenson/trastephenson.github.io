@@ -4,9 +4,50 @@ import IMG3 from '../../assets/CAMS.png';
 import IMG4 from '../../assets/Safety.png';
 import IMG5 from '../../assets/portfolio5.png';
 import MovieVaultPlaceholder from '../../assets/MovieVaultPlaceholder';
+import profile from '../../content/profile.json';
+
+function slugify(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function pickWorkFields(item = {}) {
+  return ['title', 'summary', 'secondaryCta', 'secondaryUrl'].reduce((fields, key) => {
+    if (item[key]) {
+      fields[key] = item[key];
+    }
+    return fields;
+  }, {});
+}
+
+function findImportedWork(key, title) {
+  const importedItems = Array.isArray(profile.featuredWork) ? profile.featuredWork : [];
+  const normalizedKey = slugify(key);
+  const normalizedTitle = slugify(title);
+
+  return importedItems.find((item) => {
+    const itemKey = slugify(item.key);
+    const itemTitle = slugify(item.title);
+    return itemKey === normalizedKey || itemKey === normalizedTitle || itemTitle === normalizedTitle;
+  });
+}
+
+function withProfileWork(key, localItem) {
+  const curated = profile.featuredWorkOverrides?.[key] || {};
+  const imported = curated.enabled === false ? null : findImportedWork(key, curated.title || localItem.title);
+
+  return {
+    ...localItem,
+    ...pickWorkFields(curated),
+    ...pickWorkFields(imported),
+    profileKey: key,
+  };
+}
 
 export const mobileApps = [
-  {
+  withProfileWork('seedsOfThyme', {
     id: 1,
     image: IMG1,
     imageAlt: 'Seeds of Thyme mobile app preview',
@@ -16,8 +57,8 @@ export const mobileApps = [
     routeUrl: '/projects/seeds-of-thyme',
     secondaryCta: 'App Store',
     secondaryUrl: 'https://apps.apple.com/us/app/seeds-of-thyme/id6450909951',
-  },
-  {
+  }),
+  withProfileWork('essentialLife', {
     id: 2,
     image: IMG2,
     imageAlt: 'The Essential Life mobile app preview',
@@ -27,11 +68,11 @@ export const mobileApps = [
     routeUrl: '/projects/essential-life',
     secondaryCta: 'App Store',
     secondaryUrl: 'https://apps.apple.com/us/app/the-essential-life-oil-guide/id1434661865',
-  },
+  }),
 ];
 
 export const platforms = [
-  {
+  withProfileWork('camsAtm', {
     id: 3,
     image: IMG3,
     imageAlt: 'CAMS ATM platform dashboard preview',
@@ -41,8 +82,8 @@ export const platforms = [
     routeUrl: '/projects/cams-atm',
     secondaryCta: 'Company Site',
     secondaryUrl: 'https://camscompanion.com/',
-  },
-  {
+  }),
+  withProfileWork('safetyWallet', {
     id: 4,
     image: IMG4,
     imageAlt: 'Safety Wallet compliance platform preview',
@@ -52,11 +93,11 @@ export const platforms = [
     routeUrl: '/projects/safety-wallet',
     secondaryCta: 'Contact Me',
     secondaryUrl: '#contact',
-  },
+  }),
 ];
 
 export const aiWork = [
-  {
+  withProfileWork('vega', {
     id: 5,
     image: `${process.env.PUBLIC_URL || ''}/vega/vega-spec-extraction.png`,
     imageAlt: 'Vega AI estimation platform extraction workflow preview',
@@ -66,8 +107,8 @@ export const aiWork = [
     routeUrl: '/projects/vega',
     secondaryCta: 'Contact Me',
     secondaryUrl: '#contact',
-  },
-  {
+  }),
+  withProfileWork('llmRagPipelines', {
     id: 6,
     image: IMG5,
     imageAlt: 'AI workflow visualization',
@@ -76,9 +117,9 @@ export const aiWork = [
     primaryCta: 'Case Study',
     routeUrl: '/projects/llm-rag-pipelines',
     secondaryCta: 'LinkedIn',
-    secondaryUrl: 'https://www.linkedin.com/in/mrtravisstephenson',
-  },
-  {
+    secondaryUrl: profile.links.linkedin,
+  }),
+  withProfileWork('movieVault', {
     id: 7,
     imageComponent: MovieVaultPlaceholder,
     imageAlt: 'Movie Vault placeholder artwork',
@@ -88,5 +129,5 @@ export const aiWork = [
     routeUrl: '/projects/movie-vault',
     secondaryCta: 'View App',
     secondaryUrl: `${process.env.PUBLIC_URL || ''}/movies.html`,
-  },
+  }),
 ];

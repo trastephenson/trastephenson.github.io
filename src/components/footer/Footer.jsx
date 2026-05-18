@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { useScroll } from '../../context/ScrollContext';
+import profile from '../../content/profile.json';
 
 const FOOTER_LINKS = [
   { label: 'Home', sectionIndex: 0 },
@@ -113,7 +114,7 @@ const Footer = () => {
       </NavLinks>
 
       <Socials>
-        <a href="https://www.linkedin.com/in/mrtravisstephenson/" target="_blank" rel="noopener noreferrer">
+        <a href={profile.links.linkedin} target="_blank" rel="noopener noreferrer">
           <FaLinkedinIn />
         </a>
       </Socials>

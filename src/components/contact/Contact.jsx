@@ -5,6 +5,7 @@ import { RiMessengerLine } from 'react-icons/ri';
 import { FaLinkedinIn } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
 import SleekButton from '../common/SleekButton';
+import profile from '../../content/profile.json';
 
 const ContactSection = styled.section`
   width: 100%;
@@ -161,6 +162,7 @@ const TextArea = styled.textarea`
 
 const Contact = () => {
   const form = useRef();
+  const emailAddress = profile.links.email.replace(/^mailto:/, '');
 
   useEffect(() => {
     emailjs.init('NDbWMvRzAqmh3g5Dj');
@@ -184,18 +186,15 @@ const Contact = () => {
   return (
     <ContactSection>
       <SectionTitle>Contact Me</SectionTitle>
-      <Subtitle>
-        Open to Director of Engineering, AI Platform Architecture, and Principal Architect
-        roles - enterprise SaaS, multi-agent systems, and AI-enabled platform delivery.
-      </Subtitle>
+      <Subtitle>{profile.availability.summary}</Subtitle>
 
       <Grid>
         <ContactOptions>
           <ContactCard>
             <MdOutlineEmail />
             <h4>Email</h4>
-            <h5>stephenson.tra@gmail.com</h5>
-            <a href="mailto:stephenson.tra@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+            <h5>{emailAddress}</h5>
+            <a href={profile.links.email} style={{ color: 'inherit', textDecoration: 'none' }}>
               <SleekButton>Send a message</SleekButton>
             </a>
           </ContactCard>
@@ -205,7 +204,7 @@ const Contact = () => {
             <h4>Messenger</h4>
             <h5>Travis Stephenson</h5>
             <a
-              href="https://m.me/travis.stephenson.9887"
+              href={profile.links.messenger}
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: 'inherit', textDecoration: 'none' }}
@@ -219,7 +218,7 @@ const Contact = () => {
             <h4>LinkedIn</h4>
             <h5>Connect on LinkedIn</h5>
             <a
-              href="https://www.linkedin.com/in/mrtravisstephenson"
+              href={profile.links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: 'inherit', textDecoration: 'none' }}

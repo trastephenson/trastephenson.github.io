@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import profile from '../../content/profile.json';
 
 const ToolsContainer = styled.section`
   text-align: center;
@@ -84,24 +85,7 @@ const Tag = styled.span`
   }
 `;
 
-const TOOL_GROUPS = [
-  {
-    category: 'Cloud and Infrastructure',
-    tools: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'Terraform', 'Jenkins'],
-  },
-  {
-    category: 'Development and API',
-    tools: ['GitHub / GitLab', 'VSCode', 'IntelliJ', 'Postman', 'CI/CD Pipelines'],
-  },
-  {
-    category: 'Design and Prototyping',
-    tools: ['Figma', 'Prototyping', 'Wireframing'],
-  },
-  {
-    category: 'Project and Collaboration',
-    tools: ['Jira', 'Confluence', 'Slack', 'Microsoft Teams'],
-  },
-];
+const TOOL_GROUPS = profile.toolGroups;
 
 const Services = () => {
   return (

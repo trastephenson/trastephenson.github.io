@@ -159,6 +159,55 @@
   color: var(--text-secondary);
 }
 
+.case-study-subtitle--supporting {
+  margin: var(--space-3) auto 0;
+  max-width: 44rem;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--text-secondary);
+}
+
+.case-study-hero-metrics {
+  margin: var(--space-5) auto 0;
+  max-width: 52rem;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in srgb, var(--accent) 24%, white);
+  background: var(--accent-alpha-10);
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  line-height: 1.55;
+}
+
+.case-study-hero-my-role {
+  margin: var(--space-6) auto 0;
+  max-width: 44rem;
+  text-align: left;
+}
+
+.case-study-hero-my-role .case-study-mini-card {
+  margin: 0;
+}
+
+.case-study-hero-my-role-label {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.case-study-body-text--tight {
+  margin: 0;
+}
+
+.case-study-callout--freeform .case-study-bullets {
+  margin: 0;
+}
+
 .case-study-meta {
   display: flex;
   flex-wrap: wrap;
@@ -562,6 +611,12 @@
 }
 
 @media (max-width: 640px) {
+  .case-study-hero-metrics {
+    font-size: var(--text-xs);
+    letter-spacing: 0.03em;
+    padding: var(--space-3) var(--space-4);
+  }
+
   .case-study-two-col {
     grid-template-columns: 1fr;
   }

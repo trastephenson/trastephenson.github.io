@@ -1,55 +1,51 @@
 const fs = require('fs');
 const path = require('path');
+const {
+  buildProfile,
+  normalizeHeadlineText,
+  splitHeadlineLines,
+} = require('./profile-model.cjs');
 
 const repoRoot = path.resolve(__dirname, '..');
 const profilePath = path.join(repoRoot, 'src', 'content', 'profile.json');
+const generatedProfilePath = path.join(repoRoot, 'src', 'content', 'profile.generated.json');
+const overridesProfilePath = path.join(repoRoot, 'src', 'content', 'profile.overrides.json');
+
+function readJsonIfExists(filePath, fallback = {}) {
+  if (!fs.existsSync(filePath)) {
+    return fallback;
+  }
+
+  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function writeJson(filePath, value) {
+  const serialized = JSON.stringify(value, null, 2).replace(/→/g, '\\u2192');
+  fs.writeFileSync(filePath, `${serialized}\n`, 'utf8');
+}
+
+function loadGeneratedProfile() {
+  return readJsonIfExists(generatedProfilePath);
+}
+
+function saveGeneratedProfile(profile) {
+  writeJson(generatedProfilePath, profile);
+}
+
+function loadOverridesProfile() {
+  return readJsonIfExists(overridesProfilePath);
+}
+
+function saveOverridesProfile(profile) {
+  writeJson(overridesProfilePath, profile);
+}
 
 function loadProfile() {
-  return JSON.parse(fs.readFileSync(profilePath, 'utf8'));
+  return buildProfile(loadGeneratedProfile(), loadOverridesProfile());
 }
 
 function saveProfile(profile) {
-  const serialized = JSON.stringify(profile, null, 2).replace(/→/g, '\\u2192');
-  fs.writeFileSync(profilePath, `${serialized}\n`, 'utf8');
-}
-
-function normalizeHeadlineText(headlineText) {
-  return headlineText
-    .replace(/(\d)\s*->\s*(\d)/g, '$1→$2')
-    .split('|')
-    .map((part) => part.trim())
-    .filter(Boolean)
-    .join(' | ');
-}
-
-function splitHeadlineLines(headlineText) {
-  const segments = normalizeHeadlineText(headlineText)
-    .split('|')
-    .map((part) => part.trim())
-    .filter(Boolean);
-
-  if (segments.length <= 1) {
-    return segments.length ? segments : [''];
-  }
-
-  let bestIndex = 1;
-  let bestDelta = Number.POSITIVE_INFINITY;
-
-  for (let i = 1; i < segments.length; i += 1) {
-    const left = segments.slice(0, i).join(' | ');
-    const right = segments.slice(i).join(' | ');
-    const delta = Math.abs(left.length - right.length);
-
-    if (delta < bestDelta) {
-      bestDelta = delta;
-      bestIndex = i;
-    }
-  }
-
-  return [
-    segments.slice(0, bestIndex).join(' | '),
-    segments.slice(bestIndex).join(' | '),
-  ].filter(Boolean);
+  writeJson(profilePath, profile);
 }
 
 function escapeHtml(value) {
@@ -74,10 +70,18 @@ module.exports = {
   buildMetaDescription,
   buildPageTitle,
   escapeHtml,
+  generatedProfilePath,
+  loadGeneratedProfile,
+  loadOverridesProfile,
   loadProfile,
   normalizeHeadlineText,
+  overridesProfilePath,
   profilePath,
+  readJsonIfExists,
   repoRoot,
+  saveGeneratedProfile,
+  saveOverridesProfile,
   saveProfile,
   splitHeadlineLines,
+  writeJson,
 };

@@ -11,7 +11,7 @@ import CaseStudyPage, {
 const pdfUrl = null;
 
 const meta = [
-  { label: 'Role', value: 'Principal Architect & AI Platform Lead' },
+  { label: 'Role', value: 'AI Platform Product Lead' },
   { label: 'Stack', value: 'Python / AWS / Docker / TS' },
   { label: 'Models', value: 'OpenAI / Gemini / DeepSeek' },
   { label: 'Scope', value: 'Enterprise SaaS' },
@@ -53,7 +53,7 @@ export default function LlmRagCasePage() {
       accentColor="66D4EF"
       eyebrow="Case Study - AI Work"
       title="Multi-Agent LLM & RAG Pipelines"
-      subtitle="Enterprise AI Platform Architecture - Knowledge Workflow Automation"
+      subtitle="Enterprise AI Platform - Knowledge Workflow Automation"
       meta={meta}
       stats={stats}
       pdfUrl={pdfUrl}

@@ -1,30 +1,18 @@
 {
-  "source": "linkedin",
-  "name": "Travis Stephenson",
-  "headlineText": "AI Platform Product Manager | LLM Workflow Automation | Technical Product Leader | Building AI Systems That Ship",
-  "headlineDisplayLines": [
-    "AI Platform Product Manager | LLM Workflow Automation",
-    "Technical Product Leader | Building AI Systems That Ship"
-  ],
-  "headlineLastUpdated": "2026-05-15T15:55:13.983Z",
+  "previewBadge": "CLOUD + AI DELIVERY",
+  "websiteLabel": "www.travis-stephenson.cv",
+  "canonicalUrl": "https://www.travis-stephenson.cv/",
+  "shareImageUrl": "https://www.travis-stephenson.cv/social-preview.png",
   "links": {
-    "linkedin": "https://www.linkedin.com/in/mrtravisstephenson/",
     "email": "mailto:stephenson.tra@gmail.com",
     "messenger": "https://m.me/travis.stephenson.9887",
     "website": "https://www.travis-stephenson.cv/"
   },
   "about": {
-    "paragraphs": [
-      "I build AI-powered platforms that turn complex, manual workflows into automated systems. Over the past 10+ years across product, architecture, and engineering, I’ve shipped systems at scale. That includes consumer apps serving 500,000+ daily users and AI estimation platforms that process construction blueprints 32x faster with 99% accuracy validated against independent domain experts. What drives me is the gap between what AI can do and what most organizations actually ship. I work in that gap, turning LLM capabilities into production systems with real accuracy, real governance, and real business impact. That means owning decisions end-to-end, from data pipelines and model evaluation to workflow design and domain expert trust. Outside of work, I’m usually with my family or building something new just to see how far I can push it. If you’re building serious AI products and need someone who can operate across product and architecture, I’m always open to connecting."
-    ],
     "metaEyebrow": "Product & platform",
     "metaTitle": "AI Platform Product Manager",
     "metaNote": "AI platforms, enterprise systems, and high-scale delivery - systems serving 500,000+ daily users."
   },
-  "previewBadge": "CLOUD + AI DELIVERY",
-  "websiteLabel": "www.travis-stephenson.cv",
-  "canonicalUrl": "https://www.travis-stephenson.cv/",
-  "shareImageUrl": "https://www.travis-stephenson.cv/social-preview.png",
   "stats": [
     {
       "num": "10+",
@@ -226,12 +214,5 @@
       "summary": "Personal film collection app built solo - TMDB API, Web Audio API, GPU-composited animations, multi-user social rating system. Vanilla JS, zero frameworks, 139KB total.",
       "secondaryCta": "View App"
     }
-  },
-  "previewBodyText": "I build AI-powered platforms that turn complex, manual workflows into automated systems. Over the past 10+ years across product, architecture, and engineering, I’ve shipped systems at scale. That includes consumer apps serving 500,000+ daily users and AI estimation platforms that process construction blueprints 32x faster with 99% accuracy validated against independent domain experts. What drives me is the gap between what AI can do and what most organizations actually ship. I work in that gap, turning LLM capabilities into production systems with real accuracy, real governance, and real business impact. That means owning decisions end-to-end, from data pipelines and model evaluation to workflow design and domain expert trust. Outside of work, I’m usually with my family or building something new just to see how far I can push it. If you’re building serious AI products and need someone who can operate across product and architecture, I’m always open to connecting.",
-  "previewBodyLines": [
-    "I build AI-powered platforms that turn complex,",
-    "manual workflows into automated systems. Over",
-    "the past 10+ years across product, architecture,",
-    "and engineering, I’ve shipped systems at scale."
-  ]
+  }
 }

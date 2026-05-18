@@ -1,7 +1,7 @@
 const {
-  loadProfile,
+  loadOverridesProfile,
   normalizeHeadlineText,
-  saveProfile,
+  saveOverridesProfile,
   splitHeadlineLines,
 } = require('./profile-utils.cjs');
 
@@ -12,14 +12,14 @@ if (!inputHeadline) {
   process.exit(1);
 }
 
-const profile = loadProfile();
+const profile = loadOverridesProfile();
 const normalizedHeadline = normalizeHeadlineText(inputHeadline);
 
 profile.headlineText = normalizedHeadline;
 profile.headlineDisplayLines = splitHeadlineLines(normalizedHeadline);
 profile.headlineLastUpdated = new Date().toISOString();
 
-saveProfile(profile);
+saveOverridesProfile(profile);
 
 process.stdout.write(
   `Updated headline to: ${profile.headlineText}\nLast updated: ${profile.headlineLastUpdated}\n`

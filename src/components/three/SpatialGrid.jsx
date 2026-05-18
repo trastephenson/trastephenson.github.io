@@ -41,7 +41,11 @@ const DEPTH  = 0.12;
 const RADIUS = 0.05;
 const FACE_Z = DEPTH / 2 + 0.003; // just in front of the card face
 const HERO_NAME_STACK = profile.name.split(' ').join('\n');
-const HERO_HEADLINE_STACK = profile.headlineDisplayLines.join('\n');
+const HERO_HEADLINE_STACK_CARD = profile.headlineDisplayLines.slice(0, 2).join('\n');
+
+function asMultilineText(value, fallback = '') {
+  return Array.isArray(value) ? value.join('\n') : String(value || fallback);
+}
 
 const STRIPE_H = 0.07;
 const STRIPE_Y = CARD_H / 2 - STRIPE_H / 2;    // ≈ 0.865
@@ -154,7 +158,7 @@ function CardFace({ index, c }) {
           </Text>
           <Text position={[0.3, CY - 0.08, FACE_Z]} fontSize={0.074} color="#666"
                 anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center" lineHeight={1.5}>
-            {HERO_HEADLINE_STACK}
+            {HERO_HEADLINE_STACK_CARD}
           </Text>
         </>
       );
@@ -166,7 +170,7 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.08, FACE_Z]} fontSize={0.14} color="#111"
                 anchorX="center" anchorY="middle" maxWidth={2.55} textAlign="center" lineHeight={1.45}>
-            {HERO_HEADLINE_STACK}
+            {HERO_HEADLINE_STACK_CARD}
           </Text>
         </>
       );
@@ -179,13 +183,13 @@ function CardFace({ index, c }) {
           <Suspense fallback={null}>
             <PhotoPlane src={ME_ABOUT} pos={[-0.7, CY + 0.05, FACE_Z]} w={0.72} h={0.72} circle />
           </Suspense>
-          <Text position={[0.3, CY + 0.3, FACE_Z]} fontSize={0.17} color="#111"
-                anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center">
-            {'10+ Years\nEnterprise & AI'}
+          <Text position={[0.3, CY + 0.28, FACE_Z]} fontSize={0.14} color="#111"
+                anchorX="center" anchorY="middle" maxWidth={1.45} textAlign="center" lineHeight={1.35}>
+            {asMultilineText(profile.spatialCards.aboutPrimary)}
           </Text>
-          <Text position={[0.3, CY - 0.22, FACE_Z]} fontSize={0.1} color="#555"
-                anchorX="center" anchorY="middle" maxWidth={1.4} textAlign="center">
-            {'Multi-Agent LLM · RAG\nEngineering Operations'}
+          <Text position={[0.3, CY - 0.24, FACE_Z]} fontSize={0.085} color="#555"
+                anchorX="center" anchorY="middle" maxWidth={1.45} textAlign="center" lineHeight={1.45}>
+            {asMultilineText(profile.spatialCards.aboutSecondary)}
           </Text>
         </>
       );
@@ -195,9 +199,9 @@ function CardFace({ index, c }) {
       return (
         <>
           <CardHeader label={label} c={c} />
-          <Text position={[0, CY + 0.1, FACE_Z]} fontSize={0.13} color="#333"
-                anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center" lineHeight={1.8}>
-            {'Multi-Agent LLM · RAG · Python\nAWS · Docker · TypeScript\nEnterprise Architecture'}
+          <Text position={[0, CY + 0.08, FACE_Z]} fontSize={0.11} color="#333"
+                anchorX="center" anchorY="middle" maxWidth={2.55} textAlign="center" lineHeight={1.65}>
+            {asMultilineText(profile.spatialCards.strengths)}
           </Text>
         </>
       );
@@ -209,7 +213,7 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.1, FACE_Z]} fontSize={0.13} color="#333"
                 anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center" lineHeight={1.8}>
-            {'Engineering Operations\nAI Platform Architecture\nDelivery Governance · LLM Systems'}
+            {asMultilineText(profile.spatialCards.experience)}
           </Text>
         </>
       );
@@ -221,7 +225,7 @@ function CardFace({ index, c }) {
           <CardHeader label={label} c={c} />
           <Text position={[0, CY + 0.1, FACE_Z]} fontSize={0.13} color="#333"
                 anchorX="center" anchorY="middle" maxWidth={2.5} textAlign="center" lineHeight={1.8}>
-            {'Figma · AWS · Docker · Kubernetes\nTerraform · Jira · Confluence\nGitHub · Postman · CI/CD'}
+            {asMultilineText(profile.spatialCards.tools)}
           </Text>
         </>
       );
@@ -286,7 +290,7 @@ function CardFace({ index, c }) {
           </Text>
           <Text position={[0, CY - 0.22, FACE_Z]} fontSize={0.11} color="#777"
                 anchorX="center" anchorY="middle" maxWidth={2.3} textAlign="center">
-            {'Architecture consulting\nAdvisory & senior product leadership'}
+            {asMultilineText(profile.spatialCards.contact)}
           </Text>
         </>
       );
@@ -302,7 +306,7 @@ function CardFace({ index, c }) {
           </Text>
           <Text position={[0, CY - 0.24, FACE_Z]} fontSize={0.1} color="#666"
                 anchorX="center" anchorY="middle" maxWidth={2.3} textAlign="center">
-            {'Director of Engineering\nAI Platform · Principal Architect'}
+            {asMultilineText(profile.spatialCards.connect)}
           </Text>
         </>
       );

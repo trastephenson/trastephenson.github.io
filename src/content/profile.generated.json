@@ -1,0 +1,18 @@
+{
+  "source": "linkedin",
+  "name": "Travis Stephenson",
+  "headlineText": "AI Platform Product Manager | LLM Workflow Automation | Technical Product Leader | Building AI Systems That Ship",
+  "headlineDisplayLines": [
+    "AI Platform Product Manager | LLM Workflow Automation",
+    "Technical Product Leader | Building AI Systems That Ship"
+  ],
+  "headlineLastUpdated": "2026-05-15T15:55:13.983Z",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/mrtravisstephenson/"
+  },
+  "about": {
+    "paragraphs": [
+      "I build AI-powered platforms that turn complex, manual workflows into automated systems. Over the past 10+ years across product, architecture, and engineering, I’ve shipped systems at scale. That includes consumer apps serving 500,000+ daily users and AI estimation platforms that process construction blueprints 32x faster with 99% accuracy validated against independent domain experts. What drives me is the gap between what AI can do and what most organizations actually ship. I work in that gap, turning LLM capabilities into production systems with real accuracy, real governance, and real business impact. That means owning decisions end-to-end, from data pipelines and model evaluation to workflow design and domain expert trust. Outside of work, I’m usually with my family or building something new just to see how far I can push it. If you’re building serious AI products and need someone who can operate across product and architecture, I’m always open to connecting."
+    ]
+  }
+}

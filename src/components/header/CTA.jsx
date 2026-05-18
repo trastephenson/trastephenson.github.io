@@ -4,6 +4,7 @@ import CV from '../../assets/cv.pdf';
 import SleekButton from '../common/SleekButton';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { useScroll } from '../../context/ScrollContext';
+import profile from '../../content/profile.json';
 
 const TaglineContainer = styled.div`
   display: flex;
@@ -57,9 +58,8 @@ const CTA = () => {
   return (
     <TaglineContainer>
       <Subtitle>
-        Architecting AI platforms, product systems, and enterprise delivery with clarity.
-        <br />
-        Multi-agent LLM systems • RAG pipelines • enterprise SaaS delivery
+        Owning product outcomes across AI, platform, and cloud systems from architecture
+        through production.
       </Subtitle>
 
       <ButtonRow>
@@ -71,7 +71,7 @@ const CTA = () => {
 
         <SleekButton style={secondaryButtonStyle}>
           <a
-            href="https://www.linkedin.com/in/mrtravisstephenson"
+            href={profile.links.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import profile from '../../content/profile.json';
 
 const SkillsContainer = styled.section`
   text-align: center;
@@ -135,60 +136,10 @@ const Tag = styled.span`
   }
 `;
 
-const SKILL_GROUPS = [
-  {
-    category: 'AI Systems',
-    skills: [
-      'Multi-Agent LLM Systems',
-      'RAG Architecture',
-      'OpenAI / Gemini / DeepSeek',
-      'LLM Workflow Orchestration',
-      'AI-Enabled Automation',
-    ],
-  },
-  {
-    category: 'Platform Architecture',
-    skills: [
-      'System Design',
-      'Enterprise Architecture',
-      'Microservices',
-      'API Design',
-      'Cloud Architecture',
-      'Integration Patterns',
-    ],
-  },
-  {
-    category: 'Engineering Operations',
-    skills: [
-      'Delivery Governance',
-      'Technical Roadmapping',
-      'Agile / Scrum',
-      'ITIL Foundations',
-      'Lean Six Sigma',
-    ],
-  },
-  {
-    category: 'Cloud and DevOps',
-    skills: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'CI/CD', 'GitHub / GitLab'],
-  },
-  {
-    category: 'Languages and Frameworks',
-    skills: ['Python', 'TypeScript', 'React', 'Node.js', 'GraphQL', 'PostgreSQL'],
-  },
-  {
-    category: 'Certifications',
-    skills: [
-      'AWS Cloud Practitioner',
-      'CompTIA Project+',
-      'PMP',
-      'ITIL Foundations',
-      'Lean Six Sigma Yellow Belt',
-    ],
-  },
-];
+const SKILL_GROUPS = profile.capabilityGroups;
 
 const Experience = () => {
-  const [openGroup, setOpenGroup] = useState('AI Systems');
+  const [openGroup, setOpenGroup] = useState(SKILL_GROUPS[0]?.category || null);
 
   const toggle = (category) => {
     setOpenGroup((prev) => (prev === category ? null : category));

@@ -7,27 +7,31 @@ const {
   escapeHtml,
   loadProfile,
   repoRoot,
+  saveProfile,
 } = require('./profile-utils.cjs');
 
 const profile = loadProfile();
+saveProfile(profile);
 const templatePath = path.join(repoRoot, 'public', 'index.template.html');
 const outputPath = path.join(repoRoot, 'public', 'index.html');
 
 const pageTitle = buildPageTitle(profile);
 const metaDescription = buildMetaDescription(profile);
+const canonicalUrl = profile.canonicalUrl || profile.links?.website || '';
+const shareImageUrl = profile.shareImageUrl || '';
 const replacements = {
   PROFILE_PAGE_TITLE: escapeHtml(pageTitle),
   PROFILE_META_DESCRIPTION: escapeHtml(metaDescription),
-  PROFILE_CANONICAL_URL: escapeHtml(profile.canonicalUrl),
+  PROFILE_CANONICAL_URL: escapeHtml(canonicalUrl),
   PROFILE_OG_TITLE: escapeHtml(pageTitle),
   PROFILE_OG_DESCRIPTION: escapeHtml(metaDescription),
-  PROFILE_OG_URL: escapeHtml(profile.canonicalUrl),
+  PROFILE_OG_URL: escapeHtml(canonicalUrl),
   PROFILE_OG_SITE_NAME: escapeHtml(profile.name),
-  PROFILE_OG_IMAGE_URL: escapeHtml(profile.shareImageUrl),
+  PROFILE_OG_IMAGE_URL: escapeHtml(shareImageUrl),
   PROFILE_OG_IMAGE_ALT: escapeHtml(`Preview card for ${profile.name}'s portfolio website.`),
   PROFILE_TWITTER_TITLE: escapeHtml(pageTitle),
   PROFILE_TWITTER_DESCRIPTION: escapeHtml(metaDescription),
-  PROFILE_TWITTER_IMAGE_URL: escapeHtml(profile.shareImageUrl),
+  PROFILE_TWITTER_IMAGE_URL: escapeHtml(shareImageUrl),
   PROFILE_TWITTER_IMAGE_ALT: escapeHtml(`Preview card for ${profile.name}'s portfolio website.`),
 };
 
@@ -36,6 +40,7 @@ for (const [token, value] of Object.entries(replacements)) {
   html = html.replace(new RegExp(`%${token}%`, 'g'), value);
 }
 
+html = html.replace(/\r\n/g, '\n');
 fs.writeFileSync(outputPath, html, 'utf8');
 
 if (process.platform === 'win32') {

@@ -24,14 +24,17 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "sync:linkedin": "node scripts/linkedin/sync-linkedin-profile.cjs",
     "sync:profile": "node scripts/sync-profile-content.cjs",
+    "sync:profile:validate": "node -e \"require('./scripts/profile-utils.cjs').loadProfile(); console.log('Profile valid')\"",
     "set-headline": "node scripts/set-headline.cjs",
-    "prestart": "npm run sync:profile && node scripts/sync-movies-config.cjs",
-    "prebuild": "npm run sync:profile && node scripts/sync-movies-config.cjs",
+    "prestart": "npm run sync:linkedin && npm run sync:profile && node scripts/sync-movies-config.cjs",
+    "prebuild": "npm run sync:linkedin && npm run sync:profile && node scripts/sync-movies-config.cjs",
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "test:profile": "node --test scripts/profile-model.test.cjs scripts/linkedin/map-linkedin-profile.test.cjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

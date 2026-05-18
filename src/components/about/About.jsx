@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ME from '../../assets/me-about.png';
+import profile from '../../content/profile.json';
 
 const AboutGrid = styled.div`
   display: grid;
@@ -152,33 +153,15 @@ const About = () => {
             <img src={ME} alt="Travis Stephenson" />
           </PhotoWrapper>
           <PhotoMeta>
-            <MetaEyebrow>Engineering Leadership</MetaEyebrow>
-            <MetaTitle>Senior Technical Product Manager</MetaTitle>
-            <MetaNote>AI platforms, SaaS delivery, and multi-agent systems from strategy through production.</MetaNote>
+            <MetaEyebrow>{profile.about.metaEyebrow}</MetaEyebrow>
+            <MetaTitle>{profile.about.metaTitle}</MetaTitle>
+            <MetaNote>{profile.about.metaNote}</MetaNote>
           </PhotoMeta>
         </PortraitColumn>
         <BioText>
-          <p>
-            <strong>Senior Technical Product Manager</strong> with 10+ years delivering
-            enterprise SaaS, AI systems, and software platforms from architecture through
-            production. I turn executive strategy into governed roadmaps, scalable systems,
-            and shipped products that create measurable business value, including platforms
-            supporting 500,000+ users.
-          </p>
-          <p>
-            At Appstango, I&apos;ve led delivery across 5+ production platforms spanning
-            mobile apps, backend services, and AI-enabled systems, aligning engineering,
-            product, and stakeholders to move complex initiatives from concept to launch. My
-            work has focused on reducing ambiguity in large builds, improving delivery
-            execution, and putting the architecture and operational processes in place to
-            support real-world scale.
-          </p>
-          <p>
-            I partner with product, data, and executive leadership to drive AI platform
-            strategy, delivery governance, and technical decision-making across multi-team
-            environments - bringing structure, velocity, and clarity to high-stakes software
-            initiatives.
-          </p>
+          {profile.about.paragraphs.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
         </BioText>
       </AboutGrid>
     </section>

@@ -85,14 +85,18 @@ function formatAnimatedValue(value, progress) {
   return text.replace(numeric[0], formattedNumber);
 }
 
-function AnimatedStat({ num, label, reducedMotion }) {
+function AnimatedStat({ num, label, reducedMotion, disableAnimation }) {
   const statRef = useRef(null);
   const isVisible = useRevealObserver(statRef, reducedMotion);
-  const [progress, setProgress] = useState(reducedMotion ? 1 : 0);
+  const [progress, setProgress] = useState(reducedMotion || disableAnimation ? 1 : 0);
 
   useEffect(() => {
-    if (!isVisible || reducedMotion) {
+    if (disableAnimation || reducedMotion) {
       setProgress(1);
+      return undefined;
+    }
+
+    if (!isVisible) {
       return undefined;
     }
 
@@ -112,11 +116,13 @@ function AnimatedStat({ num, label, reducedMotion }) {
     animationFrame = window.requestAnimationFrame(tick);
 
     return () => window.cancelAnimationFrame(animationFrame);
-  }, [isVisible, reducedMotion]);
+  }, [disableAnimation, isVisible, reducedMotion]);
+
+  const displayNum = disableAnimation ? num : formatAnimatedValue(num, progress);
 
   return (
     <div className="case-study-stat" ref={statRef}>
-      <span className="case-study-stat-num">{formatAnimatedValue(num, progress)}</span>
+      <span className="case-study-stat-num">{displayNum}</span>
       <span className="case-study-stat-label">{label}</span>
     </div>
   );
@@ -171,6 +177,15 @@ export function Callout({ label, children }) {
     <div className="case-study-callout">
       {label ? <span className="case-study-callout-label">{label}</span> : null}
       <BodyText>{children}</BodyText>
+    </div>
+  );
+}
+
+export function CalloutPanel({ label, children }) {
+  return (
+    <div className="case-study-callout case-study-callout--freeform">
+      {label ? <span className="case-study-callout-label">{label}</span> : null}
+      {children}
     </div>
   );
 }
@@ -288,6 +303,9 @@ export default function CaseStudyPage({
   eyebrow,
   title,
   subtitle,
+  subtitleSupporting,
+  heroMetrics,
+  heroMyRole,
   meta,
   stats,
   liveUrl,
@@ -358,6 +376,22 @@ export default function CaseStudyPage({
           </HeroAnimationItem>
           <HeroAnimationItem delayIndex={2}>
             <p className="case-study-subtitle">{subtitle}</p>
+            {subtitleSupporting ? (
+              <p className="case-study-subtitle case-study-subtitle--supporting">{subtitleSupporting}</p>
+            ) : null}
+            {heroMetrics ? (
+              <p className="case-study-hero-metrics" role="presentation">
+                {heroMetrics}
+              </p>
+            ) : null}
+            {heroMyRole ? (
+              <div className="case-study-hero-my-role">
+                <div className="case-study-mini-card">
+                  <p className="case-study-hero-my-role-label">My Role</p>
+                  <p className="case-study-body-text case-study-body-text--tight">{heroMyRole}</p>
+                </div>
+              </div>
+            ) : null}
           </HeroAnimationItem>
           <HeroAnimationItem delayIndex={3}>
             <div className="case-study-meta">
@@ -389,6 +423,7 @@ export default function CaseStudyPage({
               num={item.num}
               label={item.label}
               reducedMotion={reducedMotion}
+              disableAnimation={item.disableAnimation}
             />
           ))}
         </section>

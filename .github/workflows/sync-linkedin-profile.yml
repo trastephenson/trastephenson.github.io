@@ -1,0 +1,57 @@
+name: Sync LinkedIn Profile
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 12 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    env:
+      LINKEDIN_CLIENT_ID: ${{ secrets.LINKEDIN_CLIENT_ID }}
+      LINKEDIN_CLIENT_SECRET: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+      LINKEDIN_REFRESH_TOKEN: ${{ secrets.LINKEDIN_REFRESH_TOKEN }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Sync LinkedIn profile source
+        run: npm run sync:linkedin
+
+      - name: Generate portfolio profile content
+        run: npm run sync:profile
+
+      - name: Validate profile contract
+        run: npm run sync:profile:validate
+
+      - name: Run profile tests
+        run: npm run test:profile
+
+      - name: Build site
+        run: npm run build
+
+      - name: Commit generated profile changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/profile.generated.json src/content/profile.json public/index.html public/social-preview.png
+          if git diff --cached --quiet; then
+            echo "No profile changes to commit."
+          else
+            git commit -m "chore: sync linkedin profile"
+            git push
+          fi

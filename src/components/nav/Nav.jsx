@@ -7,6 +7,7 @@ import {FaToolbox} from 'react-icons/fa'
 import {BiMessageSquareDetail} from 'react-icons/bi'
 import {FaLinkedinIn} from 'react-icons/fa'
 import { useScroll } from '../../context/ScrollContext'
+import profile from '../../content/profile.json'
 
 const StyledNav = styled.nav`
   background: linear-gradient(
@@ -136,7 +137,7 @@ const NAV_ITEMS = [
   { icon: GiDiceTwentyFacesTwenty, label: 'Skills', sectionIndex: 4 },
   { icon: FaToolbox, label: 'Work', sectionIndex: 6 },
   { icon: BiMessageSquareDetail, label: 'Contact', sectionIndex: 10 },
-  { icon: FaLinkedinIn, label: 'LinkedIn', href: 'https://www.linkedin.com/in/mrtravisstephenson' },
+  { icon: FaLinkedinIn, label: 'LinkedIn', href: profile.links.linkedin },
 ]
 
 const SECTION_TO_NAV = {
