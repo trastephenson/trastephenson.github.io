@@ -109,7 +109,7 @@
   ],
   "headlineLastUpdated": "2026-05-14T00:00:00.000Z",
   "links": {
-    "linkedin": "https://www.linkedin.com/in/mrtravisstephenson/",
+    "linkedin": "https://www.linkedin.com/in/trastephenson/",
     "email": "mailto:stephenson.tra@gmail.com",
     "website": "https://www.travis-stephenson.cv/"
   },
@@ -260,14 +260,14 @@ test('maps LinkedIn profile headline into portfolio headline fields', () => {
       localizedFirstName: 'Travis',
       localizedLastName: 'Stephenson',
       localizedHeadline: 'Senior Product Manager | AI Product & Platform',
-      vanityName: 'mrtravisstephenson'
+      vanityName: 'trastephenson'
     },
     exportRecords: {}
   });
 
   assert.equal(profile.name, 'Travis Stephenson');
   assert.equal(profile.headlineText, 'Senior Product Manager | AI Product & Platform');
-  assert.equal(profile.links.linkedin, 'https://www.linkedin.com/in/mrtravisstephenson/');
+  assert.equal(profile.links.linkedin, 'https://www.linkedin.com/in/trastephenson/');
 });
 ```
 

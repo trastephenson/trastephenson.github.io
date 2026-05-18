@@ -105,5 +105,5 @@ src/
 
 ## Contact
 
-- LinkedIn: [linkedin.com/in/mrtravisstephenson](https://www.linkedin.com/in/mrtravisstephenson)
+- LinkedIn: [linkedin.com/in/trastephenson](https://www.linkedin.com/in/trastephenson/)
 - Email: stephenson.tra@gmail.com

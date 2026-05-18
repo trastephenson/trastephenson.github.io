@@ -133,8 +133,8 @@ function mapLinkedInProfile({ apiProfile = {}, exportRecords = {}, existingProfi
   );
   const linkedInUrl =
     profileUrlFromVanityName(apiProfile.vanityName) ||
-    ensureLinkedInUrl(pick(exportProfile, ['Profile URL', 'Public Profile URL', 'LinkedIn Profile'])) ||
     existingProfile.links?.linkedin ||
+    ensureLinkedInUrl(pick(exportProfile, ['Profile URL', 'Public Profile URL', 'LinkedIn Profile'])) ||
     '';
   const summary = pick(exportProfile, ['Summary', 'About', 'About Me']);
   const skills = mapSkills(exportRecords);

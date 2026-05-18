@@ -1167,7 +1167,7 @@ const CTA = () => {
 
         <SleekButton>
           <a
-            href="https://www.linkedin.com/in/mrtravisstephenson"
+            href="https://www.linkedin.com/in/trastephenson/"
             target="_blank"
             rel="noopener noreferrer"
             style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
@@ -1804,7 +1804,7 @@ const aiWork = [
     primaryCta: "Let's Talk",
     primaryUrl: '#contact',
     secondaryCta: 'LinkedIn',
-    secondaryUrl: 'https://www.linkedin.com/in/mrtravisstephenson',
+    secondaryUrl: 'https://www.linkedin.com/in/trastephenson/',
   },
 ];
 
@@ -2277,7 +2277,7 @@ const Contact = () => {
             <h4>LinkedIn</h4>
             <h5>Connect on LinkedIn</h5>
             <a
-              href="https://www.linkedin.com/in/mrtravisstephenson"
+              href="https://www.linkedin.com/in/trastephenson/"
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: 'inherit', textDecoration: 'none' }}
@@ -2449,7 +2449,7 @@ const Footer = () => {
       </NavLinks>
 
       <Socials>
-        <a href="https://www.linkedin.com/in/mrtravisstephenson/" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.linkedin.com/in/trastephenson/" target="_blank" rel="noopener noreferrer">
           <FaLinkedinIn />
         </a>
       </Socials>
