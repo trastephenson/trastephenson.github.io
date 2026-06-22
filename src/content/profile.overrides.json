@@ -214,5 +214,11 @@
       "summary": "Personal film collection app built solo - TMDB API, Web Audio API, GPU-composited animations, multi-user social rating system. Vanilla JS, zero frameworks, 139KB total.",
       "secondaryCta": "View App"
     }
-  }
+  },
+  "headlineText": "AI Platform Product Manager | PMP Certified | LLM Workflow Automation | Technical Product Leader | Building AI Systems That Ship",
+  "headlineDisplayLines": [
+    "AI Platform Product Manager | PMP Certified | LLM Workflow Automation",
+    "Technical Product Leader | Building AI Systems That Ship"
+  ],
+  "headlineLastUpdated": "2026-06-22T16:00:13.751Z"
 }
