@@ -1,6 +1,12 @@
 import { useRef, useState, useMemo, useEffect, Suspense } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { RoundedBox, PresentationControls, Text, useTexture } from '@react-three/drei';
+import {
+  RoundedBox,
+  PresentationControls,
+  Text,
+  useTexture,
+  useVideoTexture,
+} from '@react-three/drei';
 import { easing } from 'maath';
 import { useScroll } from '../../context/ScrollContext';
 import profile from '../../content/profile.json';
@@ -43,6 +49,8 @@ const HERO_NAME_STACK = profile.name.split(' ').join('\n');
 const HERO_HEADLINE_STACK_CARD = profile.headlineDisplayLines.slice(0, 2).join('\n');
 const VIDEO_STUDIO_POSTER =
   `${process.env.PUBLIC_URL || ''}/video-studio/video-studio-showcase-poster.png`;
+const VIDEO_STUDIO_REEL =
+  `${process.env.PUBLIC_URL || ''}/video-studio/video-studio-sizzle.mp4`;
 
 function asMultilineText(value, fallback = '') {
   return Array.isArray(value) ? value.join('\n') : String(value || fallback);
@@ -62,6 +70,73 @@ function PhotoPlane({ src, pos, w, h, circle }) {
         : <planeGeometry args={[w, h]} />}
       <meshBasicMaterial map={tex} transparent />
     </mesh>
+  );
+}
+
+function VideoPlane({ src, poster, pos, w, h }) {
+  const texture = useVideoTexture(src, {
+    muted: true,
+    loop: true,
+    playsInline: true,
+    poster,
+    preload: 'metadata',
+    unsuspend: 'loadeddata',
+  });
+
+  useEffect(() => () => {
+    texture.image.pause();
+    texture.dispose();
+  }, [texture]);
+
+  return (
+    <mesh position={pos}>
+      <planeGeometry args={[w, h]} />
+      <meshBasicMaterial map={texture} toneMapped={false} />
+    </mesh>
+  );
+}
+
+function usePrefersReducedMotion() {
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return false;
+    }
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onChange = (event) => setReducedMotion(event.matches);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', onChange);
+      return () => mediaQuery.removeEventListener('change', onChange);
+    }
+
+    mediaQuery.addListener(onChange);
+    return () => mediaQuery.removeListener(onChange);
+  }, []);
+
+  return reducedMotion;
+}
+
+function VideoStudioPlane(props) {
+  const reducedMotion = usePrefersReducedMotion();
+
+  if (reducedMotion) {
+    return <PhotoPlane src={VIDEO_STUDIO_POSTER} {...props} />;
+  }
+
+  return (
+    <VideoPlane
+      src={VIDEO_STUDIO_REEL}
+      poster={VIDEO_STUDIO_POSTER}
+      {...props}
+    />
   );
 }
 
@@ -267,8 +342,7 @@ function CardFace({ index, c }) {
         <>
           <CardHeader label={label} c={c} />
           <Suspense fallback={null}>
-            <PhotoPlane
-              src={VIDEO_STUDIO_POSTER}
+            <VideoStudioPlane
               pos={[0, CY - 0.04, FACE_Z]}
               w={2.42}
               h={1.12}

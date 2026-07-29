@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SleekButton from '../common/SleekButton';
 
@@ -36,6 +36,35 @@ const imgStyle = {
   width: '100%',
   height: '176px',
   objectFit: 'cover',
+};
+
+const reelLinkStyle = {
+  display: 'block',
+  position: 'relative',
+  height: '176px',
+  overflow: 'hidden',
+  background: '#07131c',
+};
+
+const reelBadgeStyle = {
+  position: 'absolute',
+  top: '0.75rem',
+  right: '0.75rem',
+  zIndex: 1,
+  padding: '0.38rem 0.58rem',
+  border: '1px solid rgba(255,255,255,0.24)',
+  borderRadius: '999px',
+  background: 'rgba(8,17,25,0.72)',
+  backdropFilter: 'blur(12px)',
+  WebkitBackdropFilter: 'blur(12px)',
+  color: '#ffffff',
+  fontFamily: 'var(--font-body)',
+  fontSize: '0.65rem',
+  fontWeight: 700,
+  letterSpacing: '0.1em',
+  lineHeight: 1,
+  textTransform: 'uppercase',
+  pointerEvents: 'none',
 };
 
 const bodyStyle = {
@@ -103,6 +132,107 @@ const secondaryButton = {
   '--btn-font-size': '0.76rem',
 };
 
+function usePrefersReducedMotion() {
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return false;
+    }
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const onChange = (event) => setReducedMotion(event.matches);
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', onChange);
+      return () => mediaQuery.removeEventListener('change', onChange);
+    }
+
+    mediaQuery.addListener(onChange);
+    return () => mediaQuery.removeListener(onChange);
+  }, []);
+
+  return reducedMotion;
+}
+
+function PortfolioReel({ item }) {
+  const videoRef = useRef(null);
+  const reducedMotion = usePrefersReducedMotion();
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return undefined;
+    }
+
+    const saveData = navigator.connection?.saveData;
+    if (reducedMotion || saveData) {
+      video.pause();
+      return undefined;
+    }
+
+    if (typeof IntersectionObserver === 'undefined') {
+      video.play().catch(() => {});
+      return () => video.pause();
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+      video.pause();
+    };
+  }, [item.video, reducedMotion]);
+
+  const reel = (
+    <div style={reelLinkStyle}>
+      <video
+        ref={videoRef}
+        aria-hidden="true"
+        autoPlay={!reducedMotion}
+        disablePictureInPicture
+        loop
+        muted
+        playsInline
+        poster={item.videoPoster || item.image}
+        preload="metadata"
+        src={item.video}
+        style={{ ...imgStyle, display: 'block', pointerEvents: 'none' }}
+      />
+      <span style={reelBadgeStyle}>{item.videoBadge || 'Reel'}</span>
+    </div>
+  );
+
+  if (!item.routeUrl) {
+    return reel;
+  }
+
+  return (
+    <Link
+      aria-label={`Open ${item.title} case study`}
+      style={{ color: 'inherit', textDecoration: 'none' }}
+      to={item.routeUrl}
+    >
+      {reel}
+    </Link>
+  );
+}
+
 export default function WorkPanel({ items, title }) {
   return (
     <div>
@@ -110,7 +240,9 @@ export default function WorkPanel({ items, title }) {
       <div style={gridStyle}>
         {items.map((item) => (
           <div key={item.id} style={cardStyle}>
-            {item.imageComponent ? (
+            {item.video ? (
+              <PortfolioReel item={item} />
+            ) : item.imageComponent ? (
               <div style={{ padding: '0.9rem 0.9rem 0' }}>
                 <item.imageComponent />
               </div>
