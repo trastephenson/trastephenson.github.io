@@ -46,20 +46,23 @@ export default function VideoStudioCasePage() {
       subtitleSupporting="A fully local interface that turns 16 model workflows into guided recipes, legible render progress, and a reusable results workspace."
       heroMetrics="16 recipes • 4 model families • 60 indexed clips • 31-second reel"
       heroMyRole="I shaped the product direction, researched the creative-tool category, designed and built the interface, and engineered the local ComfyUI workflow layer behind it."
+      heroMedia={(
+        <ShowcaseVideo
+          autoPlay
+          loop
+          muted
+          src={assets.reel}
+          poster={assets.poster}
+          captionsSrc={assets.captions}
+          label="Video Studio 31-second product reel"
+          variant="hero"
+          caption="The product in 31 seconds — composer, recipe catalog, generated motion, results workspace, and recovery-aware workflow. Sound is available in the player."
+        />
+      )}
       meta={meta}
       stats={stats}
       returnToSectionIndex={8}
     >
-      <Section label="Sizzle Reel" title="The Product in 31 Seconds">
-        <ShowcaseVideo
-          src={assets.reel}
-          poster={assets.poster}
-          captionsSrc={assets.captions}
-          label="Video Studio product sizzle reel"
-          caption="Real product states and verified local outputs: composer, recipe catalog, generated motion, results workspace, and recovery-aware workflow."
-        />
-      </Section>
-
       <Section label="Overview" title="Turning Infrastructure Into a Creative Tool">
         <BodyText>
           ComfyUI exposes powerful video models through node graphs, but creators still have to

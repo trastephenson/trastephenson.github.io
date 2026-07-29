@@ -290,18 +290,49 @@ export function ShowcaseVideo({
   captionsSrc,
   label = 'Product sizzle reel',
   ratio = '16 / 9',
+  autoPlay = false,
+  loop = false,
+  muted = false,
+  variant,
 }) {
+  const videoRef = useRef(null);
+  const reducedMotion = usePrefersReducedMotion();
+  const shouldAutoPlay = autoPlay && !reducedMotion;
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+
+    if (reducedMotion) {
+      video.pause();
+      video.currentTime = 0;
+      return;
+    }
+
+    if (shouldAutoPlay) {
+      video.play().catch(() => {});
+    }
+  }, [reducedMotion, shouldAutoPlay]);
+
   return (
     <figure
-      className="case-study-media"
+      className={`case-study-media${
+        variant === 'hero' ? ' case-study-media--hero' : ''
+      }`}
       style={{
         '--case-study-media-fit': 'cover',
         '--case-study-media-ratio': ratio,
       }}
     >
       <video
+        ref={videoRef}
         aria-label={label}
+        autoPlay={shouldAutoPlay}
         controls
+        loop={loop && !reducedMotion}
+        muted={muted}
         playsInline
         poster={poster}
         preload="metadata"
@@ -346,6 +377,7 @@ export default function CaseStudyPage({
   subtitleSupporting,
   heroMetrics,
   heroMyRole,
+  heroMedia,
   meta,
   stats,
   liveUrl,
@@ -407,7 +439,9 @@ export default function CaseStudyPage({
       </nav>
 
       <div className="case-study-shell">
-        <header className="case-study-hero">
+        <header
+          className={`case-study-hero${heroMedia ? ' case-study-hero--with-media' : ''}`}
+        >
           <HeroAnimationItem delayIndex={0}>
             <p className="case-study-eyebrow">{eyebrow}</p>
           </HeroAnimationItem>
@@ -418,6 +452,9 @@ export default function CaseStudyPage({
             <p className="case-study-subtitle">{subtitle}</p>
             {subtitleSupporting ? (
               <p className="case-study-subtitle case-study-subtitle--supporting">{subtitleSupporting}</p>
+            ) : null}
+            {heroMedia ? (
+              <div className="case-study-hero-media">{heroMedia}</div>
             ) : null}
             {heroMetrics ? (
               <p className="case-study-hero-metrics" role="presentation">
