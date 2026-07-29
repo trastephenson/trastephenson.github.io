@@ -18,7 +18,6 @@ import ME         from '../../assets/me.png';
 import ME_ABOUT   from '../../assets/me-about.png';
 import IMG_SOT    from '../../assets/sot.png';
 import IMG_CAMS   from '../../assets/CAMS.png';
-import IMG_AI     from '../../assets/portfolio5.png';
 import IMG_BERT   from '../../assets/bert.jpg';
 import IMG_MAGESH from '../../assets/magesh.jpg';
 import IMG_ARYAN  from '../../assets/aryan.jpg';
@@ -42,6 +41,8 @@ const RADIUS = 0.05;
 const FACE_Z = DEPTH / 2 + 0.003; // just in front of the card face
 const HERO_NAME_STACK = profile.name.split(' ').join('\n');
 const HERO_HEADLINE_STACK_CARD = profile.headlineDisplayLines.slice(0, 2).join('\n');
+const VIDEO_STUDIO_POSTER =
+  `${process.env.PUBLIC_URL || ''}/video-studio/video-studio-showcase-poster.png`;
 
 function asMultilineText(value, fallback = '') {
   return Array.isArray(value) ? value.join('\n') : String(value || fallback);
@@ -266,11 +267,16 @@ function CardFace({ index, c }) {
         <>
           <CardHeader label={label} c={c} />
           <Suspense fallback={null}>
-            <PhotoPlane src={IMG_AI} pos={[0, CY - 0.04, FACE_Z]} w={2.42} h={1.12} />
+            <PhotoPlane
+              src={VIDEO_STUDIO_POSTER}
+              pos={[0, CY - 0.04, FACE_Z]}
+              w={2.42}
+              h={1.12}
+            />
           </Suspense>
           <Text position={[0, -0.77, FACE_Z]} fontSize={0.1} color="#333"
                 anchorX="center" anchorY="middle">
-            GenAI / LLM Workflows · Movie Vault
+            Video Studio · Vega · LLM/RAG
           </Text>
         </>
       );

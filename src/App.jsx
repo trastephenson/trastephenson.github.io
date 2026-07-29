@@ -9,6 +9,7 @@ const SafetyWalletCasePage = lazy(() => import('./pages/SafetyWalletCasePage'));
 const LlmRagCasePage = lazy(() => import('./pages/LlmRagCasePage'));
 const VegaCasePage = lazy(() => import('./pages/VegaCasePage'));
 const MovieVaultCasePage = lazy(() => import('./pages/MovieVaultCasePage'));
+const VideoStudioCasePage = lazy(() => import('./pages/VideoStudioCasePage'));
 
 const routeFallbackStyle = {
   minHeight: '100vh',
@@ -34,6 +35,7 @@ const App = () => (
       <Route path="/projects/llm-rag-pipelines" element={<LlmRagCasePage />} />
       <Route path="/projects/vega" element={<VegaCasePage />} />
       <Route path="/projects/movie-vault" element={<MovieVaultCasePage />} />
+      <Route path="/projects/video-studio" element={<VideoStudioCasePage />} />
     </Routes>
   </Suspense>
 );

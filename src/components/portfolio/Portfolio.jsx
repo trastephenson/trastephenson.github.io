@@ -6,6 +6,8 @@ import IMG5 from '../../assets/portfolio5.png';
 import MovieVaultPlaceholder from '../../assets/MovieVaultPlaceholder';
 import profile from '../../content/profile.json';
 
+const videoStudioBase = `${process.env.PUBLIC_URL || ''}/video-studio`;
+
 function slugify(value) {
   return String(value || '')
     .toLowerCase()
@@ -97,6 +99,15 @@ export const platforms = [
 ];
 
 export const aiWork = [
+  withProfileWork('videoStudio', {
+    id: 'video-studio',
+    image: `${videoStudioBase}/video-studio-showcase-poster.png`,
+    imageAlt: 'Video Studio local AI motion workspace with a cinematic prompt composer',
+    title: 'Video Studio',
+    summary: 'Designed and engineered a fully local AI video studio that turns 16 ComfyUI workflows into guided recipes, recoverable renders, and a cinematic results workspace.',
+    primaryCta: 'Case Study',
+    routeUrl: '/projects/video-studio',
+  }),
   withProfileWork('vega', {
     id: 5,
     image: `${process.env.PUBLIC_URL || ''}/vega/vega-spec-extraction.png`,

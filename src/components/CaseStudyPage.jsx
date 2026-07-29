@@ -283,6 +283,46 @@ export function ShowcaseImage({
   );
 }
 
+export function ShowcaseVideo({
+  src,
+  poster,
+  caption,
+  captionsSrc,
+  label = 'Product sizzle reel',
+  ratio = '16 / 9',
+}) {
+  return (
+    <figure
+      className="case-study-media"
+      style={{
+        '--case-study-media-fit': 'cover',
+        '--case-study-media-ratio': ratio,
+      }}
+    >
+      <video
+        aria-label={label}
+        controls
+        playsInline
+        poster={poster}
+        preload="metadata"
+      >
+        <source src={src} type="video/mp4" />
+        {captionsSrc ? (
+          <track
+            default
+            kind="captions"
+            label="English"
+            src={captionsSrc}
+            srcLang="en"
+          />
+        ) : null}
+        Your browser does not support embedded video.
+      </video>
+      {caption ? <figcaption className="case-study-media-caption">{caption}</figcaption> : null}
+    </figure>
+  );
+}
+
 function NavButton({ href, variant, children }) {
   return (
     <a

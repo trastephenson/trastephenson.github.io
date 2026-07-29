@@ -63,31 +63,29 @@ const CTA = () => {
       </Subtitle>
 
       <ButtonRow>
-        <SleekButton style={primaryButtonStyle}>
-          <a href={CV} download style={{ color: 'inherit', textDecoration: 'none' }}>
-            Download Resume
-          </a>
+        <SleekButton as="a" href={CV} download style={primaryButtonStyle}>
+          Download Resume
         </SleekButton>
 
-        <SleekButton style={secondaryButtonStyle}>
-          <a
-            href={profile.links.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'inherit', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
-          >
-            <FaLinkedinIn style={{ fontSize: '1.2em' }} />
-            LinkedIn
-          </a>
+        <SleekButton
+          as="a"
+          href={profile.links.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={secondaryButtonStyle}
+        >
+          <FaLinkedinIn style={{ fontSize: '1.2em', marginRight: '8px' }} />
+          LinkedIn
         </SleekButton>
 
-        <SleekButton style={primaryButtonStyle}>
-          <button
-            onClick={(e) => { e.preventDefault(); scrollTo(10); }}
-            style={{ color: 'inherit', textDecoration: 'none', background: 'none', border: 'none', cursor: 'pointer', font: 'inherit', padding: 0 }}
-          >
-            Let's Talk
-          </button>
+        <SleekButton
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo(10);
+          }}
+          style={primaryButtonStyle}
+        >
+          Let's Talk
         </SleekButton>
       </ButtonRow>
     </TaglineContainer>
