@@ -33,7 +33,7 @@ const stats = [
   { num: '16', label: 'Production recipes' },
   { num: '4', label: 'Model families' },
   { num: '60', label: 'Clips indexed on disk' },
-  { num: '31s', label: 'Product reel' },
+  { num: '39s', label: 'Product reel' },
 ];
 
 export default function VideoStudioCasePage() {
@@ -44,7 +44,7 @@ export default function VideoStudioCasePage() {
       title="Video Studio"
       subtitle="From ComfyUI node graphs to a cinematic, recoverable creation flow."
       subtitleSupporting="A fully local interface that turns 16 model workflows into guided recipes, legible render progress, and a reusable results workspace."
-      heroMetrics="16 recipes • 4 model families • 60 indexed clips • 31-second reel"
+      heroMetrics="16 recipes • 4 model families • 60 indexed clips • 39-second reel"
       heroMyRole="I shaped the product direction, researched the creative-tool category, designed and built the interface, and engineered the local ComfyUI workflow layer behind it."
       heroMedia={(
         <ShowcaseVideo
@@ -54,9 +54,9 @@ export default function VideoStudioCasePage() {
           src={assets.reel}
           poster={assets.poster}
           captionsSrc={assets.captions}
-          label="Video Studio 31-second product reel"
+          label="Video Studio 39-second product reel with a Wan 14B-generated opening ident"
           variant="hero"
-          caption="The product in 31 seconds — composer, recipe catalog, generated motion, results workspace, and recovery-aware workflow. Sound is available in the player."
+          caption="The product in 39 seconds — opening on a locally generated Wan 14B studio ident, then moving through the composer, recipe catalog, generated motion, results workspace, and recovery-aware workflow. Sound is available in the player."
         />
       )}
       meta={meta}
@@ -203,7 +203,8 @@ export default function VideoStudioCasePage() {
               Queue-aware generation, reload recovery, and outputs that survive engine restarts.
             </BulletItem>
             <BulletItem>
-              Verified exports at 960×544 with audio, 1280×704, and 2560×1408 with audio.
+              Verified exports at 960×544 with audio, 1280×704, 1664×960 with Wan 14B,
+              and 2560×1408 with audio.
             </BulletItem>
           </BulletList>
         </CalloutPanel>

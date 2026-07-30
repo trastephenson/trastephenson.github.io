@@ -1,25 +1,28 @@
 WEBVTT
 
-00:00.000 --> 00:03.000
+00:00.000 --> 00:07.463
+A locally generated Wan 14B studio ident moves from a tactile mark into a cinematic water splash.
+
+00:07.463 --> 00:10.463
 [Music] Video Studio — From Nodes to Narrative.
 
-00:03.000 --> 00:08.000
+00:10.463 --> 00:15.463
 A wind-up robot sequence demonstrates prompt-led motion and generated sound.
 
-00:08.000 --> 00:11.000
+00:15.463 --> 00:18.463
 The model catalog presents 16 recipes across four model families.
 
-00:11.000 --> 00:16.000
+00:18.463 --> 00:23.463
 A native-HD Wan 2.2 5B sequence shows a truck moving through sunflowers.
 
-00:16.000 --> 00:19.000
+00:23.463 --> 00:26.463
 The results-first workspace organizes previews, metadata, and recipe reuse.
 
-00:19.000 --> 00:24.000
+00:26.463 --> 00:31.463
 An LTX-2 dialogue sequence demonstrates locally generated speech and motion.
 
-00:24.000 --> 00:28.000
+00:31.463 --> 00:35.463
 A two-stage 1440p sunflower sequence shows the finishing workflow.
 
-00:28.000 --> 00:31.500
+00:35.463 --> 00:38.684
 Video Studio — fully local, queue-aware, and reload-safe.
