@@ -50,7 +50,7 @@ const HERO_HEADLINE_STACK_CARD = profile.headlineDisplayLines.slice(0, 2).join('
 const VIDEO_STUDIO_POSTER =
   `${process.env.PUBLIC_URL || ''}/video-studio/video-studio-showcase-poster.png`;
 const VIDEO_STUDIO_REEL =
-  `${process.env.PUBLIC_URL || ''}/video-studio/video-studio-sizzle.mp4`;
+  `${process.env.PUBLIC_URL || ''}/video-studio/video-studio-sizzle-39s.mp4`;
 
 function asMultilineText(value, fallback = '') {
   return Array.isArray(value) ? value.join('\n') : String(value || fallback);

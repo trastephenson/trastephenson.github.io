@@ -103,7 +103,7 @@ export const aiWork = [
     id: 'video-studio',
     image: `${videoStudioBase}/video-studio-showcase-poster.png`,
     imageAlt: 'Video Studio local AI motion workspace with a cinematic prompt composer',
-    video: `${videoStudioBase}/video-studio-sizzle.mp4`,
+    video: `${videoStudioBase}/video-studio-sizzle-39s.mp4`,
     videoPoster: `${videoStudioBase}/video-studio-showcase-poster.png`,
     videoBadge: '39s reel',
     title: 'Video Studio',

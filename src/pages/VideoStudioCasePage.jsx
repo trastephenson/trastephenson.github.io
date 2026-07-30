@@ -16,7 +16,7 @@ import CaseStudyPage, {
 const videoStudioBase = `${process.env.PUBLIC_URL || ''}/video-studio`;
 
 const assets = {
-  reel: `${videoStudioBase}/video-studio-sizzle.mp4`,
+  reel: `${videoStudioBase}/video-studio-sizzle-39s.mp4`,
   captions: `${videoStudioBase}/video-studio-sizzle.vtt`,
   poster: `${videoStudioBase}/video-studio-showcase-poster.png`,
   catalog: `${videoStudioBase}/video-studio-model-catalog.png`,
